@@ -19,8 +19,16 @@ export const LetterShop: React.FC = () => {
           <div className="shop-leeter-inner-container">
             <Letter letter={shopLetter}/>
           </div>
-        </div> 
+        </div>
       ))}
+      <div className="shop-letter-container">
+        <div className="shop-letter-price">
+          "$1"
+        </div>
+        <div className="shop-leeter-inner-container">
+          <Letter letter={{ position: 8, letter: "", price: 1, points: 0 }}/>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,0 +1,50 @@
+.player-area {
+  margin-top: 200px;
+  position: relative;
+}
+
+.player-area-background {
+  position: absolute;
+  display: flex;
+  left: 0;
+  top: 0;
+}
+
+.player-area-background-cell {
+  border: 1px solid grey;
+  width: 40px;
+  height: 40px;
+  background-color: lightgray;
+}
+
+.player-area-background-cell:not(:first-child) {
+  margin-left: 15px;
+}
+
+.player-area-background-cell:nth-child(2) {
+  opacity: 0.875
+}
+
+.player-area-background-cell:nth-child(3) {
+  opacity: 0.75
+}
+
+.player-area-background-cell:nth-child(4) {
+  opacity: 0.625
+}
+
+.player-area-background-cell:nth-child(5) {
+  opacity: 0.5
+}
+
+.player-area-background-cell:nth-child(6) {
+  opacity: 0.375
+}
+
+.player-area-background-cell:nth-child(7) {
+  opacity: 0.25
+}
+
+.player-area-background-cell:nth-child(8) {
+  opacity: 0.125
+}
