@@ -1,0 +1,12 @@
+.shop-container {
+  display: flex;
+}
+
+.shop-letter-container:not(:first-child) {
+  margin-left: 20px;
+}
+
+.shop-letter-price {
+  text-align: center;
+  margin-bottom: 10px;
+}

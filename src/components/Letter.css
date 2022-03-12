@@ -1,0 +1,57 @@
+.letter-container {
+  position: relative;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4px;
+}
+
+.letter-container.letter-position-1 {
+  background-color: #b2e9dc;
+}
+
+.letter-container.letter-position-2 {
+  background-color:	#f2d2af;
+}
+
+.letter-container.letter-position-3 {
+  background-color: #dcc3e7;
+}
+
+.letter-container.letter-position-4 {
+  background-color: #baefcd;
+}
+
+.letter-container.letter-position-5 {
+  background-color: #f4c0bb;
+}
+
+.letter-container.letter-position-6 {
+  background-color: #f7eca8;
+}
+
+.letter-container.letter-position-7 {
+  background-color: #bcdbf2;
+}
+
+.letter-container.letter-position-8 {
+  background-color: #b9bfc7;
+}
+
+.letter-character {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.letter-points {
+  background: yellow;
+  position: absolute;
+  right: -4px;
+  top: -7px;
+}
+
+
