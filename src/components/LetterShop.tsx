@@ -1,12 +1,13 @@
 import './Letter.css';
 import './LetterShop.css';
 
+import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 
 import { GameContext } from '../stores/GameContext';
 import { Letter } from './Letter';
 
-export const LetterShop: React.FC = () => {
+export const LetterShop: React.FC = observer(() => {
   const { shopLetters } = useContext(GameContext)
 
   return (
@@ -26,9 +27,9 @@ export const LetterShop: React.FC = () => {
           "$1"
         </div>
         <div className="shop-leeter-inner-container">
-          <Letter letter={{ position: 8, letter: "", price: 1, points: 0 }}/>
+          <Letter letter={{ id: "?", position: 8, letter: "", price: 1, points: 0 }}/>
         </div>
       </div>
     </div>
   )
-}
+})
