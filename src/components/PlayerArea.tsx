@@ -54,6 +54,7 @@ export const PlayerArea: React.FC = observer(() => {
                 )}
               </Draggable>
             )) }
+            {provided.placeholder}
           </div>
         )}
       </Droppable>

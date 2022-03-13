@@ -9,6 +9,13 @@ import { GameStore } from '../stores/GameStore';
 import { getSampleGame } from '../utils/getSampleGame';
 import { GameArea } from './GameArea';
 
+const remove = (list: ShopLetter[], startIndex: number) => {
+  const result = Array.from(list);
+  result.splice(startIndex, 1);
+
+  return result
+}
+
 const insert = (list: ShopLetter[], letter: ShopLetter, endIndex: number) => {
   const result = Array.from(list);
   result.splice(endIndex, 0, letter);
@@ -33,6 +40,9 @@ export const Game: React.FC = observer(() => {
     gameStore.draggingId = undefined
 
     if (!result.destination) {
+      if (result.source.droppableId === "player-area") {
+        gameStore.playerWord = remove(gameStore.playerWord, result.source.index)
+      }
       return;
     }
 

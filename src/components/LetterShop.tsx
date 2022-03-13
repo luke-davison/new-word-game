@@ -22,6 +22,7 @@ const ShopDroppable: React.FC<{ letterId: string }> = ({ letterId, children }) =
               </div>
             )}
           </Draggable>
+          {provided.placeholder}
         </div>
       )}
     </Droppable>
