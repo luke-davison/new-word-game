@@ -11,6 +11,8 @@ export interface Ability {
   id: string;
   image: string;
   text: string;
+  points?: number;
+  multiplier?: number;
   getIsActive: (word: ShopLetter[], position: number) => boolean,
   getPoints: (word: ShopLetter[], position: number) => number
 }

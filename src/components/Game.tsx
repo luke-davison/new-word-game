@@ -47,10 +47,20 @@ export const Game: React.FC = observer(() => {
     }
 
     if (result.source.droppableId !== "player-area") {
+      const shopLetter = gameStore.shopLetters.find((letter) => letter.id === result.draggableId)!
+
+      let letterValue = shopLetter.letter
+      if (letterValue === "") {
+        letterValue = prompt("Please choose a letter") || ""
+      }
+
       const letter: ShopLetter = {
-        ...(gameStore.shopLetters.find((letter) => letter.id === result.draggableId)!),
+        ...shopLetter,
+        letter: letterValue,
         id: "player-" + (gameStore.letterCount++)
       }
+
+      
 
       const playerWord = insert(
         gameStore.playerWord,

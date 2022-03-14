@@ -48,10 +48,29 @@
 }
 
 .letter-points {
-  background: yellow;
-  position: absolute;
   right: -4px;
   top: -7px;
 }
+
+.letter-ability {
+  position: absolute;
+  bottom: -25px;
+}
+
+.letter-ability img {
+  transform: scale(40%)
+}
+
+.letter-points, .letter-ability-points, .letter-ability-multiplier {
+  background: yellow;
+  position: absolute;
+}
+
+.letter-ability-points, .letter-ability-multiplier {
+  font-size: 12px;
+  right: 30px;
+  top: 14px;
+}
+
 
 

@@ -7,13 +7,11 @@ import { Draggable, DraggingStyle, Droppable, NotDraggingStyle } from 'react-bea
 import { GameContext } from '../stores/GameContext';
 import { Letter } from './Letter';
 
-const grid = 5
-
 const getItemStyle = (draggableStyle: DraggingStyle | NotDraggingStyle | undefined) => ({
   // some basic styles to make the items look a bit nicer
   // userSelect: 'none',
-  padding: grid * 2,
-  margin: `0 ${grid}px 0 0`,
+  // padding: grid * 2,
+  margin: `0 15px 0 0`,
 
   // styles we need to apply on draggables
   ...draggableStyle,
@@ -22,6 +20,7 @@ const getItemStyle = (draggableStyle: DraggingStyle | NotDraggingStyle | undefin
 const getListStyle = () => ({
   display: 'flex',
   // padding: grid,
+  height: '80px',
   overflow: 'auto',
 });
 

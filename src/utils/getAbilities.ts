@@ -1,10 +1,10 @@
+import nextToVowel from '../images/next_to_vowel.png';
+import notNextToVowel from '../images/not_next_to_vowel.png';
+import otherInPosition1 from '../images/other_in_position_1.png';
+import otherInPosition2 from '../images/other_in_position_2.png';
+import otherInPosition3 from '../images/other_in_position_3.png';
+import inPosition1 from '../images/position_1.png';
 import { Ability, ShopLetter } from '../models';
-import nextToVowel from './next_to_vowel.png';
-import notNextToVowel from './not_next_to_vowel.png';
-import otherInPosition1 from './other_in_position_1.png';
-import otherInPosition2 from './other_in_position_2.png';
-import otherInPosition3 from './other_in_position_3.png';
-import inPosition1 from './position_1.png';
 
 const isCharacterVowel = (str: string) => {
   return str === "a" || str === "e" || str === "i" || str === "o" || str === "u"
@@ -37,7 +37,7 @@ const createGetLetterPoints = (position: number) => (word: ShopLetter[]) => {
 }
 
 const createIsAnyLetterInPosition = (otherPosition: number) => (word: ShopLetter[]) => {
-  return word.length >= otherPosition
+  return word.length > otherPosition
 }
 
 const createIsLetterInPosition = (otherPosition: number) => (word: ShopLetter[], position: number) => {
@@ -52,6 +52,7 @@ export const getNextToVowelAbility = (points: number): Ability => {
     id: String(nextAbilityId++),
     image: nextToVowel,
     text,
+    points,
     getIsActive: isLetterNextToVowel,
     getPoints: () => points
   }
@@ -63,6 +64,7 @@ export const getNotNextToVowelAbility = (points: number): Ability => {
     id: String(nextAbilityId++),
     image: notNextToVowel,
     text,
+    points,
     getIsActive: isLetterNotNextToVowel,
     getPoints: () => points
   }
@@ -74,6 +76,7 @@ export const getDoubleOtherLetterAbility = (position: number): Ability => {
     id: String(nextAbilityId++),
     image: images[position],
     text: `doubles base points of letter in position ${position + 1}`,
+    multiplier: 2,
     getIsActive: createIsAnyLetterInPosition(position),
     getPoints: createGetLetterPoints(position)
   }
@@ -86,6 +89,7 @@ export const getInPositionAbility = (points: number, position: number): Ability 
     id: String(nextAbilityId++),
     image: images[position],
     text,
+    points,
     getIsActive: createIsLetterInPosition(position),
     getPoints: () => points
   }
