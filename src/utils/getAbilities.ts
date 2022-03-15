@@ -44,6 +44,18 @@ const createIsLetterInPosition = (otherPosition: number) => (word: ShopLetter[],
   return otherPosition === position
 }
 
+const createIsWordLength = (length: number) => (word: ShopLetter[]) => {
+  return word.length === length
+}
+
+const createIsMinWordLength = (length: number) => (word: ShopLetter[]) => {
+  return word.length >= length
+}
+
+const createIsMaxWordLength = (length: number) => (word: ShopLetter[]) => {
+  return word.length <= length
+}
+
 let nextAbilityId = 1;
 
 export const getNextToVowelAbility = (points: number): Ability => {
@@ -91,6 +103,45 @@ export const getInPositionAbility = (points: number, position: number): Ability 
     text,
     points,
     getIsActive: createIsLetterInPosition(position),
+    getPoints: () => points
+  }
+}
+
+export const getWordLengthAbility = (points: number, length: number): Ability => {
+  const images = [inPosition1] // todo
+  const text = points === 1 ? `scores 1 extra point if word is ${length} letters long` : `scores ${points} extra points if word is ${length} letters long`
+  return {
+    id: String(nextAbilityId++),
+    image: images[length - 3],
+    text,
+    points,
+    getIsActive: createIsWordLength(length),
+    getPoints: () => points
+  }
+}
+
+export const getMinWordLengthAbility = (points: number, length: number): Ability => {
+  const images = [inPosition1] // todo
+  const text = points === 1 ? `scores 1 extra point if word is at least ${length} letters long` : `scores ${points} extra points if word is at least ${length} letters long`
+  return {
+    id: String(nextAbilityId++),
+    image: images[length - 3],
+    text,
+    points,
+    getIsActive: createIsMinWordLength(length),
+    getPoints: () => points
+  }
+}
+
+export const getMaxWordLengthAbility = (points: number, length: number): Ability => {
+  const images = [inPosition1] // todo
+  const text = points === 1 ? `scores 1 extra point if word is no more than ${length} letters long` : `scores ${points} extra points if word is no more than ${length} letters long`
+  return {
+    id: String(nextAbilityId++),
+    image: images[length - 3],
+    text,
+    points,
+    getIsActive: createIsMaxWordLength(length),
     getPoints: () => points
   }
 }
