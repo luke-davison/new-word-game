@@ -1,4 +1,4 @@
-import { computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 import { ShopLetter } from '../models';
 import { getIsValidWord } from '../utils/getWordlist';
@@ -7,25 +7,27 @@ export class GameStore {
   constructor(shopLetters: ShopLetter[]) {
     makeObservable(this, {
       shopLetters: observable,
-      playerWord: observable,
-      draggingId: observable,
+      playerWordData: observable,
       money: computed,
       isValidWord: computed,
-      wordPoints: computed
+      wordPoints: computed,
+      onDropLetter: action,
+      playerWord: computed
     })
 
-    this.shopLetters = [...shopLetters, { id: "?", position: 8, letter: "", price: 1, points: 0 }]
+    this.shopLetters = [...shopLetters, { id: "?", color: 8, letter: "", price: 1, points: 0 }]
   }
 
   shopLetters: ShopLetter[] = []
   letterCount: number = 3
 
-  playerWord: ShopLetter[] = [
-    // { id: "player-1", position: 4, letter: "D", price: 4, points: 5 },
-    // { id: "player-2", position: 2, letter: "O", price: 2, points: 2 }
-  ]
+  playerWordData: ShopLetter[] = []
 
-  draggingId: string | undefined;
+  get playerWord(): ShopLetter[] {
+    return Array.from(this.playerWordData).sort((a, b) => {
+      return (a.position || 0) - (b.position || 0)
+    })
+  }
 
   totalMoney: number = 15
 
@@ -38,7 +40,11 @@ export class GameStore {
   }
 
   get wordPoints() {
-    return this.playerWord.reduce((sum, letter, index) => {
+    const sortedWord = Array.from(this.playerWord).sort((a, b) => {
+      return (a.position || 0) - (b.position || 0)
+    })
+
+    return sortedWord.reduce((sum, letter, index) => {
       const basePoints = letter.points
       let abilityPoints = 0;
       if (letter.ability?.getIsActive(this.playerWord, index)) {
@@ -47,4 +53,11 @@ export class GameStore {
       return sum + basePoints + abilityPoints
     }, 0)
   }
+
+  onDropLetter = (letter: ShopLetter, position: number) => {
+    this.playerWordData = [
+      ...this.playerWord.filter((otherLetter) => otherLetter.position !== position && (letter.position === undefined || otherLetter.position !== letter.position)),
+      { ...letter, position }
+    ]
+  } 
 }

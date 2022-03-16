@@ -3,22 +3,37 @@
   position: relative;
 }
 
+.player-area-background, .player-area-word-area {
+  display: flex;
+}
+
 .player-area-background {
   position: absolute;
-  display: flex;
   left: 0;
   top: 0;
+  z-index: -1;
+}
+
+.player-area-background-cell {
+  width: 40px;
+  height: 40px;
+}
+
+.player-area-word-cell {
+  margin-top: -10px;
+  display: flex;
+  margin-left: -10px;
+  width: 62px;
+  height: 62px;
 }
 
 .player-area-background-cell {
   border: 1px solid grey;
-  width: 40px;
-  height: 40px;
   background-color: lightgray;
 }
 
 .player-area-background-cell:not(:first-child) {
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
 .player-area-background-cell:nth-child(2) {

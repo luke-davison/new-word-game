@@ -3,47 +3,43 @@ import './LetterShop.css';
 
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
-import { Draggable, Droppable } from 'react-beautiful-dnd';
+import { useDrag } from 'react-dnd';
 
+import { ShopLetter } from '../models';
 import { GameContext } from '../stores/GameContext';
 import { Letter } from './Letter';
 
-const ShopDroppable: React.FC<{ letterId: string }> = ({ letterId, children }) => {
-  return (
-    <Droppable droppableId={"droppable-" + letterId} isDropDisabled={true}>
-      {(provided) => (
-        <div ref={provided.innerRef} {...provided.droppableProps}>
-          <Draggable draggableId={letterId} index={0}>
-            {(provided) => (
-              <div ref={provided.innerRef}
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}>
-                { children }
-              </div>
-            )}
-          </Draggable>
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
-  )
-}
+export const LetterShopLetter: React.FC<{ letter: ShopLetter }> = observer(({ letter }) => {
+
+const [dragOptions, drag] = useDrag(
+  () => ({
+    type: "letter",
+    item: letter,
+    collect: (monitor) => ({
+      opacity: monitor.isDragging() ? 0.4 : 1,
+    }),
+  }),
+  [letter],
+)
+
+return (
+  <div ref={drag} className="shop-letter-drag-container">
+    <Letter letter={letter}/>
+  </div>
+)
+})
 
 export const LetterShop: React.FC = observer(() => {
   const { shopLetters } = useContext(GameContext)
 
   return (
     <div className="shop-container">
-      { shopLetters.map((shopLetter) => (
-        <div key={shopLetter.position} className="shop-letter-container">
+      { shopLetters.map((shopLetter, index) => (
+        <div key={index} className="shop-letter-container">
           <div className="shop-letter-price">
             {"$" + shopLetter.price}
           </div>
-          <ShopDroppable letterId={shopLetter.id}>
-          <div className="shop-leeter-inner-container">
-            <Letter letter={shopLetter}/>
-          </div>
-      </ShopDroppable>
+          <LetterShopLetter letter={shopLetter}/>
         </div>
       ))}
     </div>

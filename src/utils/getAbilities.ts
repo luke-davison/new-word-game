@@ -11,18 +11,14 @@ const isCharacterVowel = (str: string) => {
 }
 
 const isLetterNextToVowel = (word: ShopLetter[], position: number): boolean => {
-  if (position > 0) {
-    const leftLetter = word[position - 1];
-    if (isCharacterVowel(leftLetter.letter)) {
-      return true
-    }
+  const leftLetter = word.find((wordLetter) => wordLetter.position === position - 1)
+  if (leftLetter && isCharacterVowel(leftLetter.letter)) {
+    return true
   }
 
-  if (position < word.length - 1) {
-    const rightLetter = word[position + 1];
-    if (isCharacterVowel(rightLetter.letter)) {
-      return true
-    }
+  const rightLetter = word.find((wordLetter) => wordLetter.position === position + 1)
+  if (rightLetter && isCharacterVowel(rightLetter.letter)) {
+    return true
   }
 
   return false
@@ -33,11 +29,11 @@ const isLetterNotNextToVowel = (word: ShopLetter[], position: number): boolean =
 }
 
 const createGetLetterPoints = (position: number) => (word: ShopLetter[]) => {
-  return word[position].points
+  return word.find((wordLetter) => wordLetter.position === position)?.points || 0
 }
 
 const createIsAnyLetterInPosition = (otherPosition: number) => (word: ShopLetter[]) => {
-  return word.length > otherPosition
+  return word.some((wordLetter) => wordLetter.position === otherPosition)
 }
 
 const createIsLetterInPosition = (otherPosition: number) => (word: ShopLetter[], position: number) => {
