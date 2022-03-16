@@ -59,5 +59,11 @@ export class GameStore {
       ...this.playerWord.filter((otherLetter) => otherLetter.position !== position && (letter.position === undefined || otherLetter.position !== letter.position)),
       { ...letter, position }
     ]
-  } 
+  }
+
+  onDropLetterOutside = (letter: ShopLetter) => {
+    if (letter.position !== undefined) {
+      this.playerWordData = this.playerWord.filter((otherLetter) => otherLetter.position !== letter.position)
+    }
+  }
 }
