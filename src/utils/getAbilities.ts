@@ -1,3 +1,4 @@
+import minWordLength5 from '../images/min_word_length_5.png';
 import nextToVowel from '../images/next_to_vowel.png';
 import notNextToVowel from '../images/not_next_to_vowel.png';
 import otherInPosition1 from '../images/other_in_position_1.png';
@@ -117,11 +118,11 @@ export const getWordLengthAbility = (points: number, length: number): Ability =>
 }
 
 export const getMinWordLengthAbility = (points: number, length: number): Ability => {
-  const images = [inPosition1] // todo
+  const images = [minWordLength5] // todo
   const text = points === 1 ? `scores 1 extra point if word is at least ${length} letters long` : `scores ${points} extra points if word is at least ${length} letters long`
   return {
     id: String(nextAbilityId++),
-    image: images[length - 3],
+    image: images[length - 5],
     text,
     points,
     getIsActive: createIsMinWordLength(length),

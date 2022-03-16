@@ -6,11 +6,10 @@ import { useDrop } from 'react-dnd';
 
 import { ShopLetter } from '../models';
 import { GameContext } from '../stores/GameContext';
-import { Letter } from './Letter';
 import { LetterShopLetter } from './LetterShop';
 
 export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceIndex }) => {
-  const { playerWord, onDropLetter } = useContext(GameContext)
+  const { playerWord, onDropLetter, onQuickRemoveLetter } = useContext(GameContext)
 
   const letter = playerWord.find((letter) => letter.position === spaceIndex)
   const [dropOptions, drop] = useDrop({
@@ -22,8 +21,14 @@ export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceInde
     }),
   })
 
+  const onDoubleClick = () => {
+    if (letter) {
+      onQuickRemoveLetter(letter)
+    }
+  }
+
   return (
-    <div ref={drop} className="player-area-space">
+    <div ref={drop} className="player-area-space" onDoubleClick={onDoubleClick}>
       {letter && (
         <LetterShopLetter letter={letter}/>
       )}

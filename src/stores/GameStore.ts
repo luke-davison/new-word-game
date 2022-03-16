@@ -29,7 +29,7 @@ export class GameStore {
     })
   }
 
-  totalMoney: number = 15
+  totalMoney: number = 17
 
   get money() {
     return this.totalMoney - this.playerWord.reduce((sum, letter) => sum + letter.price, 0)
@@ -74,5 +74,18 @@ export class GameStore {
         letter.letter = newValue || ""
       })
     }
+  }
+
+  onQuickAddLetter = (letter: ShopLetter) => {
+    let nextPosition = 0;
+    while (this.playerWord.some((otherLetter) => otherLetter.position === nextPosition)) {
+      nextPosition++
+    }
+    this.onDropLetter(letter, nextPosition)
+  }
+
+  onQuickRemoveLetter = (letter: ShopLetter) => {
+    console.log(letter)
+    this.onDropLetterOutside(letter)
   }
 }

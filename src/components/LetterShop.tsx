@@ -30,12 +30,12 @@ return (
 })
 
 export const LetterShop: React.FC = observer(() => {
-  const { shopLetters } = useContext(GameContext)
+  const { shopLetters, onQuickAddLetter } = useContext(GameContext)
 
   return (
     <div className="shop-container">
       { shopLetters.map((shopLetter, index) => (
-        <div key={index} className="shop-letter-container">
+        <div key={index} className="shop-letter-container" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
           <div className="shop-letter-price">
             {"$" + shopLetter.price}
           </div>
