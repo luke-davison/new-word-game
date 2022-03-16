@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 
 import { ShopLetter } from '../models';
 import { getIsValidWord } from '../utils/getWordlist';
@@ -64,6 +64,15 @@ export class GameStore {
   onDropLetterOutside = (letter: ShopLetter) => {
     if (letter.position !== undefined) {
       this.playerWordData = this.playerWord.filter((otherLetter) => otherLetter.position !== letter.position)
+    }
+  }
+
+  onClickLetter = (letter: ShopLetter) => {
+    if (letter.id === "?") {
+      const newValue = prompt("Enter a letter");
+      runInAction(() => {
+        letter.letter = newValue || ""
+      })
     }
   }
 }

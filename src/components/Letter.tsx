@@ -1,12 +1,16 @@
 import './Letter.css';
 
 import { observer } from 'mobx-react-lite';
+import { useContext } from 'react';
 
 import { ShopLetter } from '../models';
+import { GameContext } from '../stores/GameContext';
 
 export const Letter: React.FC<{ letter: ShopLetter }> = observer(({ letter }) => {
+  const { onClickLetter } = useContext(GameContext)
+
   return (
-    <div className={"letter-container letter-color-" + letter.color}>
+    <div className={"letter-container letter-color-" + letter.color} onClick={() => onClickLetter(letter)}>
       <div className="letter-character">
         { letter.letter }
       </div>
