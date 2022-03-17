@@ -5,11 +5,10 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { GameContext } from '../stores/GameContext';
 import { GameStore } from '../stores/GameStore';
-import { getSampleGame } from '../utils/getSampleGame';
 import { GameArea } from './GameArea';
 
 export const Game: React.FC = observer(() => {
-  const [gameStore] = useState<GameStore>(new GameStore(getSampleGame()))
+  const [gameStore] = useState<GameStore>(new GameStore())
 
   return (
     <GameContext.Provider value={gameStore}>

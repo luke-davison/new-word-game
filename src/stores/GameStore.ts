@@ -1,10 +1,11 @@
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 
 import { ShopLetter } from '../models';
+import { generateGame } from '../utils/generateRandomGame';
 import { getIsValidWord } from '../utils/getWordlist';
 
 export class GameStore {
-  constructor(shopLetters: ShopLetter[]) {
+  constructor() {
     makeObservable(this, {
       shopLetters: observable,
       playerWordData: observable,
@@ -14,11 +15,12 @@ export class GameStore {
       onDropLetter: action,
       playerWord: computed
     })
-
-    this.shopLetters = [...shopLetters, { id: "?", color: 8, letter: "", price: 1, points: 0 }]
   }
 
-  shopLetters: ShopLetter[] = []
+  shopLetters: ShopLetter[] = [
+    ...generateGame(),
+    { id: "?", color: 8, letter: "", price: 1, points: 0 }
+  ]
   letterCount: number = 3
 
   playerWordData: ShopLetter[] = []

@@ -19,7 +19,7 @@ const [dragOptions, drag] = useDrag(
       opacity: monitor.isDragging() ? 0.4 : 1,
     }),
   }),
-  [letter],
+  [letter]
 )
 
 return (
@@ -31,6 +31,8 @@ return (
 
 export const LetterShop: React.FC = observer(() => {
   const { shopLetters, onQuickAddLetter } = useContext(GameContext)
+
+  console.log("shopLetters render", shopLetters.map(a => a.letter))
 
   return (
     <div className="shop-container">

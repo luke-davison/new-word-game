@@ -1,10 +1,21 @@
+import maxWordLength4 from '../images/max_word_length_4.png';
+import maxWordLength5 from '../images/max_word_length_5.png';
+import maxWordLength6 from '../images/max_word_length_6.png';
+import maxWordLength7 from '../images/max_word_length_7.png';
+import minWordLength4 from '../images/min_word_length_4.png';
 import minWordLength5 from '../images/min_word_length_5.png';
+import minWordLength6 from '../images/min_word_length_6.png';
+import minWordLength7 from '../images/min_word_length_7.png';
 import nextToVowel from '../images/next_to_vowel.png';
 import notNextToVowel from '../images/not_next_to_vowel.png';
 import otherInPosition1 from '../images/other_in_position_1.png';
 import otherInPosition2 from '../images/other_in_position_2.png';
 import otherInPosition3 from '../images/other_in_position_3.png';
 import inPosition1 from '../images/position_1.png';
+import wordLength4 from '../images/word_length_must_be_4.png';
+import wordLength5 from '../images/word_length_must_be_5.png';
+import wordLength6 from '../images/word_length_must_be_6.png';
+import wordLength7 from '../images/word_length_must_be_7.png';
 import { Ability, ShopLetter } from '../models';
 
 const isCharacterVowel = (str: string) => {
@@ -105,7 +116,10 @@ export const getInPositionAbility = (points: number, position: number): Ability 
 }
 
 export const getWordLengthAbility = (points: number, length: number): Ability => {
-  const images = [inPosition1] // todo
+  if (length < 4 || length > 7) {
+    throw new Error("getWordLengthAbility length arg out of bounds " + length)
+  }
+  const images = [wordLength4, wordLength5, wordLength6, wordLength7]
   const text = points === 1 ? `scores 1 extra point if word is ${length} letters long` : `scores ${points} extra points if word is ${length} letters long`
   return {
     id: String(nextAbilityId++),
@@ -118,11 +132,14 @@ export const getWordLengthAbility = (points: number, length: number): Ability =>
 }
 
 export const getMinWordLengthAbility = (points: number, length: number): Ability => {
-  const images = [minWordLength5] // todo
+  if (length < 4 || length > 7) {
+    throw new Error("getMinWordLengthAbility length arg out of bounds " + length)
+  }
+  const images = [minWordLength4, minWordLength5, minWordLength6, minWordLength7]
   const text = points === 1 ? `scores 1 extra point if word is at least ${length} letters long` : `scores ${points} extra points if word is at least ${length} letters long`
   return {
     id: String(nextAbilityId++),
-    image: images[length - 5],
+    image: images[length - 4],
     text,
     points,
     getIsActive: createIsMinWordLength(length),
@@ -131,7 +148,10 @@ export const getMinWordLengthAbility = (points: number, length: number): Ability
 }
 
 export const getMaxWordLengthAbility = (points: number, length: number): Ability => {
-  const images = [inPosition1] // todo
+  if (length < 4 || length > 7) {
+    throw new Error("getMaxWordLengthAbility length arg out of bounds " + length)
+  }
+  const images = [maxWordLength4, maxWordLength5, maxWordLength6, maxWordLength7]
   const text = points === 1 ? `scores 1 extra point if word is no more than ${length} letters long` : `scores ${points} extra points if word is no more than ${length} letters long`
   return {
     id: String(nextAbilityId++),
