@@ -20,11 +20,11 @@
 }
 
 .player-area-word-cell {
-  margin-top: -10px;
+  margin-top: -50px;
   display: flex;
   margin-left: -10px;
   width: 62px;
-  height: 62px;
+  height: 112px;
 }
 
 .player-area-background-cell {

@@ -31,7 +31,7 @@ export class GameStore {
     })
   }
 
-  totalMoney: number = 17
+  totalMoney: number = 18
 
   get money() {
     return this.totalMoney - this.playerWord.reduce((sum, letter) => sum + letter.price, 0)

@@ -1,14 +1,13 @@
 import { ShopLetter } from '../models';
 import {
-    getDoubleOtherLetterAbility, getInPositionAbility, getMinWordLengthAbility,
-    getNextToVowelAbility
+    getDoubleOtherLetterAbility, getInLastPosition, getInPositionAbility, getMinWordLengthAbility,
+    getNextToVowelAbility, getPointsPerVowelAbility
 } from './getAbilities';
 import { wordlist } from './getWordlist';
 
 export const generateGame = () => {
   const letters = getRandomWord().split("");
   const uniqueLetters = sortByFrequency(Array.from(new Set(letters)))
-  console.log('unique letters', uniqueLetters)
   const output: ShopLetter[] = []
   
   const mostCommonLetter = uniqueLetters.splice(0, 1)[0]
@@ -19,30 +18,23 @@ export const generateGame = () => {
     price: 1,
     points: 1
   }
-  console.log(mostCommonLetterOutput)
 
   const leastCommonLetter = uniqueLetters.splice(uniqueLetters.length - 1, 1)[0]
-  console.log("leastCommonLetter", leastCommonLetter)
-  const frequencyFactor = Math.floor(letterFrequencies.findIndex(({ letter }) => letter === leastCommonLetter) / 5) - 2
   let leastCommonLetterOutput: ShopLetter | undefined = {
     id: String(2),
     letter: leastCommonLetter,
-    color: 0,
+    color: 1,
     price: 5,
-    points: 5 + frequencyFactor
+    points: 4
   }
-  console.log(leastCommonLetterOutput)
 
-  const abilities = ["multiply", "vowel", "word-length", "set-points", "start"]
+  const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels"]
   const abilitiesShuffled: string[] = []
   for (let i = 0; i < 4; i++) {
     abilitiesShuffled.push(abilities.splice(Math.floor(Math.random() * abilities.length), 1)[0])
   }
 
-  console.log('letters', letters)
   letters.reverse().forEach((letter) => {
-    console.log(JSON.stringify(output))
-    console.log('letter', letter)
     if (letter === mostCommonLetterOutput?.letter) {
       mostCommonLetterOutput.color = 1
       output.unshift(mostCommonLetterOutput)
@@ -54,7 +46,6 @@ export const generateGame = () => {
     } else {
       const frequencyIndex = letterFrequencies.findIndex((a) => a.letter === letter)
       const ability = abilitiesShuffled.pop()
-      console.log('ability', ability)
       if (ability === "set-points") {
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
@@ -81,7 +72,7 @@ export const generateGame = () => {
           id: String(output.length + 1),
           letter,
           color: output.length + 1,
-          price: 3,
+          price: 4,
           points: 2 + frequencyFactor,
           ability: getMinWordLengthAbility(2, minLength)
         })
@@ -96,15 +87,35 @@ export const generateGame = () => {
           ability: getNextToVowelAbility(2)
         })
       } else if (ability === "multiply") {
-        const frequencyFactor1 = Math.floor(frequencyIndex / 10)
-        const frequencyFactor2 = Math.floor(frequencyIndex / 17)
+        const possiblePositions = [0, 1, 2].filter((position) => letters[position] !== leastCommonLetter)
+        const position = possiblePositions[Math.floor(Math.random() * possiblePositions.length)]
+        const frequencyFactor = Math.floor(frequencyIndex / 17)
         output.unshift({
           id: String(output.length + 1),
           letter,
           color: output.length + 1,
-          price: 5 - frequencyFactor2,
-          points: 2 + frequencyFactor1,
-          ability: getDoubleOtherLetterAbility(Math.floor(Math.random() * 3))
+          price: 5 - frequencyFactor,
+          points: 2,
+          ability: getDoubleOtherLetterAbility(position)
+        })
+      } else if (ability === "last") {
+        const frequencyFactor = Math.floor(frequencyIndex / 14)
+        output.unshift({
+          id: String(output.length + 1),
+          letter,
+          color: output.length + 1,
+          price: 3,
+          points: 2 + frequencyFactor,
+          ability: getInLastPosition(2 - frequencyFactor)
+        })
+      } else if (ability === "vowels") {
+        output.unshift({
+          id: String(output.length + 1),
+          letter,
+          color: output.length + 1,
+          price: 4,
+          points: 2,
+          ability: getPointsPerVowelAbility(1)
         })
       }
     }

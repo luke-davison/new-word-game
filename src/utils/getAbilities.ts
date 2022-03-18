@@ -11,7 +11,14 @@ import notNextToVowel from '../images/not_next_to_vowel.png';
 import otherInPosition1 from '../images/other_in_position_1.png';
 import otherInPosition2 from '../images/other_in_position_2.png';
 import otherInPosition3 from '../images/other_in_position_3.png';
+import otherInPosition4 from '../images/other_in_position_4.png';
+import otherInPosition5 from '../images/other_in_position_5.png';
 import inPosition1 from '../images/position_1.png';
+import inPosition2 from '../images/position_2.png';
+import inPosition3 from '../images/position_3.png';
+import inPosition4 from '../images/position_4.png';
+import inLastPosition from '../images/position_last.png';
+import vowel from '../images/vowel.png';
 import wordLength4 from '../images/word_length_must_be_4.png';
 import wordLength5 from '../images/word_length_must_be_5.png';
 import wordLength6 from '../images/word_length_must_be_6.png';
@@ -34,6 +41,10 @@ const isLetterNextToVowel = (word: ShopLetter[], position: number): boolean => {
   }
 
   return false
+}
+
+const isLetterinLastPosition = (word: ShopLetter[], position: number): boolean => {
+  return position === word.length - 1
 }
 
 const isLetterNotNextToVowel = (word: ShopLetter[], position: number): boolean => {
@@ -64,6 +75,21 @@ const createIsMaxWordLength = (length: number) => (word: ShopLetter[]) => {
   return word.length <= length
 }
 
+const isWordHasVowels = (word: ShopLetter[]) => {
+  return word.some(letter => isCharacterVowel(letter.letter))
+}
+
+const createGetPointsPerVowel = (points: number) => (word: ShopLetter[]) => {
+  const numVowels = word.reduce((sum, letter) => {
+    if (isCharacterVowel(letter.letter)) {
+      return sum + 1
+    }
+    return sum
+  }, 0)
+
+  return numVowels * points
+}
+
 let nextAbilityId = 1;
 
 export const getNextToVowelAbility = (points: number): Ability => {
@@ -91,7 +117,7 @@ export const getNotNextToVowelAbility = (points: number): Ability => {
 }
 
 export const getDoubleOtherLetterAbility = (position: number): Ability => {
-  const images = [otherInPosition1, otherInPosition2, otherInPosition3]
+  const images = [otherInPosition1, otherInPosition2, otherInPosition3, otherInPosition4, otherInPosition5]
   return {
     id: String(nextAbilityId++),
     image: images[position],
@@ -103,7 +129,7 @@ export const getDoubleOtherLetterAbility = (position: number): Ability => {
 }
 
 export const getInPositionAbility = (points: number, position: number): Ability => {
-  const images = [inPosition1]
+  const images = [inPosition1, inPosition2, inPosition3, inPosition4]
   const text = points === 1 ? `scores 1 extra point if letter is in position ${position + 1}` : `scores ${points} extra points if letter is in position ${position + 1}`
   return {
     id: String(nextAbilityId++),
@@ -160,5 +186,28 @@ export const getMaxWordLengthAbility = (points: number, length: number): Ability
     points,
     getIsActive: createIsMaxWordLength(length),
     getPoints: () => points
+  }
+}
+
+export const getInLastPosition = (points: number): Ability => {
+  const text = points === 1 ? "scores 1 extra point if letter is last position" : "scores ${points} extra points if letter last position"
+  return {
+    id: String(nextAbilityId++),
+    image: inLastPosition,
+    text,
+    points,
+    getIsActive: isLetterinLastPosition,
+    getPoints: () => points
+  }
+}
+
+export const getPointsPerVowelAbility = (points: number): Ability => {
+  return {
+    id: String(nextAbilityId++),
+    image: vowel,
+    text: points === 1 ? "scores 1 point for every vowel" : `scores ${points} points for every vowel`,
+    points: 1,
+    getIsActive: isWordHasVowels,
+    getPoints: createGetPointsPerVowel(points)
   }
 }
