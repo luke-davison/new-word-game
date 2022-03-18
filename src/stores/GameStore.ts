@@ -13,6 +13,7 @@ export class GameStore {
       isValidWord: computed,
       wordPoints: computed,
       onDropLetter: action,
+      onDropLetterOutside: action,
       playerWord: computed
     })
   }
@@ -87,7 +88,6 @@ export class GameStore {
   }
 
   onQuickRemoveLetter = (letter: ShopLetter) => {
-    console.log(letter)
     this.onDropLetterOutside(letter)
   }
 }

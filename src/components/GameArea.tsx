@@ -13,7 +13,12 @@ export const GameArea: React.FC = observer(() => {
 
   const [dropOptions, drop] = useDrop({
     accept: ["letter"],
-    drop: (storeLetter: ShopLetter) => onDropLetterOutside(storeLetter),
+    drop: (storeLetter: ShopLetter, monitor) => {
+      if (monitor.didDrop()) {
+        return
+      }
+      onDropLetterOutside(storeLetter)
+    },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),

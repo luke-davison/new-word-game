@@ -1,9 +1,10 @@
 .shop-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
-.shop-letter-container:not(:first-child) {
-  margin-left: 20px;
+.shop-letter-container:not(:last-child) {
+  margin-right: 20px;
 }
 
 .shop-letter-price {

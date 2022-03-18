@@ -30,7 +30,7 @@ export const generateGame = () => {
 
   const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels"]
   const abilitiesShuffled: string[] = []
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < letters.length - 2; i++) {
     abilitiesShuffled.push(abilities.splice(Math.floor(Math.random() * abilities.length), 1)[0])
   }
 
@@ -87,7 +87,7 @@ export const generateGame = () => {
           ability: getNextToVowelAbility(2)
         })
       } else if (ability === "multiply") {
-        const possiblePositions = [0, 1, 2].filter((position) => letters[position] !== leastCommonLetter)
+        const possiblePositions = [0, 1, 2, 3].filter((position) => letters[position] !== leastCommonLetter)
         const position = possiblePositions[Math.floor(Math.random() * possiblePositions.length)]
         const frequencyFactor = Math.floor(frequencyIndex / 17)
         output.unshift({
@@ -129,7 +129,7 @@ export const getRandomWord = (): string => {
   const wordlistLength = wordlist.length;
   const index = Math.floor(r * wordlistLength);
   const word = wordlist[index];
-  if (word.length >= 6 && word.length <= 6) {
+  if (word.length >= 6 && word.length <= 7) {
     return word
   }
   
