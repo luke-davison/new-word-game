@@ -21,7 +21,7 @@ export class GameStore {
 
   shopLetters: ShopLetter[] = [
     ...generateGame(),
-    { id: "?", color: 8, letter: "", price: 1, points: 0 }
+    { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true }
   ]
   letterCount: number = 3
 
@@ -90,7 +90,7 @@ export class GameStore {
   }
 
   onClickLetter = (letter: ShopLetter) => {
-    if (letter.id === "?") {
+    if (letter.isWild) {
       const newValue = prompt("Enter a letter");
       runInAction(() => {
         letter.letter = newValue || ""

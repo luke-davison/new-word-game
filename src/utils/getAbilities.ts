@@ -19,6 +19,7 @@ import inPosition3 from '../images/position_3.png';
 import inPosition4 from '../images/position_4.png';
 import inLastPosition from '../images/position_last.png';
 import vowel from '../images/vowel.png';
+import wilds from '../images/wild.png';
 import wordLength4 from '../images/word_length_must_be_4.png';
 import wordLength5 from '../images/word_length_must_be_5.png';
 import wordLength6 from '../images/word_length_must_be_6.png';
@@ -79,6 +80,10 @@ const isWordHasVowels = (word: ShopLetter[]) => {
   return word.some(letter => isCharacterVowel(letter.letter))
 }
 
+const isWordHasWilds = (word: ShopLetter[]) => {
+  return word.some(letter => letter.isWild)
+}
+
 const createGetPointsPerVowel = (points: number) => (word: ShopLetter[]) => {
   const numVowels = word.reduce((sum, letter) => {
     if (isCharacterVowel(letter.letter)) {
@@ -88,6 +93,14 @@ const createGetPointsPerVowel = (points: number) => (word: ShopLetter[]) => {
   }, 0)
 
   return numVowels * points
+}
+
+const createGetPointsPerWild = (points: number) => (word: ShopLetter[]) => {
+  const numWilds = word.reduce((sum, letter) => {
+    return letter.isWild ? sum + 1 : sum
+  }, 0)
+
+  return numWilds * points
 }
 
 let nextAbilityId = 1;
@@ -206,8 +219,19 @@ export const getPointsPerVowelAbility = (points: number): Ability => {
     id: String(nextAbilityId++),
     image: vowel,
     text: points === 1 ? "scores 1 point for every vowel" : `scores ${points} points for every vowel`,
-    points: 1,
+    points,
     getIsActive: isWordHasVowels,
     getPoints: createGetPointsPerVowel(points)
+  }
+}
+
+export const getPointsPerWildAbility = (points: number): Ability => {
+  return {
+    id: String(nextAbilityId++),
+    image: wilds,
+    text: points === 1 ? "scores 1 point for every wild" : `scores ${points} points for every wild`,
+    points,
+    getIsActive: isWordHasWilds,
+    getPoints: createGetPointsPerWild(points)
   }
 }

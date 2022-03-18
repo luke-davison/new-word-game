@@ -5,6 +5,7 @@
   border-radius: 4px;
   border: 1px solid black;
   padding-bottom: 4px;
+  background-color: #b9bfc7;
 }
 
 .letter-container.letter-color-1 {
@@ -35,9 +36,7 @@
   background-color: #bcdbf2;
 }
 
-.letter-container.letter-color-8 {
-  background-color: #b9bfc7;
-}
+
 
 .letter-character {
   display: flex;

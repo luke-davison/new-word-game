@@ -1,7 +1,7 @@
 import { ShopLetter } from '../models';
 import {
     getDoubleOtherLetterAbility, getInLastPosition, getInPositionAbility, getMinWordLengthAbility,
-    getNextToVowelAbility, getPointsPerVowelAbility
+    getNextToVowelAbility, getPointsPerVowelAbility, getPointsPerWildAbility
 } from './getAbilities';
 import { wordlist } from './getWordlist';
 
@@ -18,7 +18,7 @@ export const generateGame = () => {
     price: 1,
     points: 1
   }
-
+  
   const leastCommonLetter = uniqueLetters.splice(uniqueLetters.length - 1, 1)[0]
   let leastCommonLetterOutput: ShopLetter | undefined = {
     id: String(2),
@@ -27,21 +27,22 @@ export const generateGame = () => {
     price: 5,
     points: 4
   }
-
-  const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels"]
+  
+  const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels", "wilds"]
   const abilitiesShuffled: string[] = []
   for (let i = 0; i < letters.length - 2; i++) {
     abilitiesShuffled.push(abilities.splice(Math.floor(Math.random() * abilities.length), 1)[0])
   }
+  let colorCount = letters.length
 
   letters.reverse().forEach((letter) => {
     if (letter === mostCommonLetterOutput?.letter) {
       mostCommonLetterOutput.color = 1
-      output.unshift(mostCommonLetterOutput)
+      output.unshift({...mostCommonLetterOutput, color: colorCount--})
       mostCommonLetterOutput = undefined
     } else if (letter === leastCommonLetterOutput?.letter) {
       leastCommonLetterOutput.color = 2
-      output.unshift(leastCommonLetterOutput)
+      output.unshift({...leastCommonLetterOutput, color: colorCount--})
       leastCommonLetterOutput = undefined
     } else {
       const frequencyIndex = letterFrequencies.findIndex((a) => a.letter === letter)
@@ -51,7 +52,7 @@ export const generateGame = () => {
         output.unshift({
           id: String(output.length + 1),
           letter,
-          color: output.length + 1,
+          color: colorCount--,
           price: 2,
           points: 2 + frequencyFactor
         })
@@ -60,7 +61,7 @@ export const generateGame = () => {
         output.unshift({
           id: String(output.length + 1),
           letter,
-          color: output.length + 1,
+          color: colorCount--,
           price: 3,
           points: 2 + frequencyFactor,
           ability: getInPositionAbility(2 - frequencyFactor, 0)
@@ -71,7 +72,7 @@ export const generateGame = () => {
         output.unshift({
           id: String(output.length + 1),
           letter,
-          color: output.length + 1,
+          color: colorCount--,
           price: 4,
           points: 2 + frequencyFactor,
           ability: getMinWordLengthAbility(2, minLength)
@@ -81,7 +82,7 @@ export const generateGame = () => {
         output.unshift({
           id: String(output.length + 1),
           letter,
-          color: output.length + 1,
+          color: colorCount--,
           price: 4 - frequencyFactor,
           points: 2,
           ability: getNextToVowelAbility(2)
@@ -93,7 +94,7 @@ export const generateGame = () => {
         output.unshift({
           id: String(output.length + 1),
           letter,
-          color: output.length + 1,
+          color: colorCount--,
           price: 5 - frequencyFactor,
           points: 2,
           ability: getDoubleOtherLetterAbility(position)
@@ -103,7 +104,7 @@ export const generateGame = () => {
         output.unshift({
           id: String(output.length + 1),
           letter,
-          color: output.length + 1,
+          color: colorCount--,
           price: 3,
           points: 2 + frequencyFactor,
           ability: getInLastPosition(2 - frequencyFactor)
@@ -112,10 +113,19 @@ export const generateGame = () => {
         output.unshift({
           id: String(output.length + 1),
           letter,
-          color: output.length + 1,
+          color: colorCount--,
           price: 4,
           points: 2,
           ability: getPointsPerVowelAbility(1)
+        })
+      } else if (ability === "wilds") {
+        output.unshift({
+          id: String(output.length + 1),
+          letter,
+          color: colorCount--,
+          price: 5,
+          points: 2,
+          ability: getPointsPerWildAbility(1)
         })
       }
     }

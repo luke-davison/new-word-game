@@ -5,7 +5,8 @@ export interface ShopLetter {
   letter: string;
   price: number;
   points: number;
-  ability?: Ability
+  ability?: Ability;
+  isWild?: boolean;
 }
 
 export interface Ability {
