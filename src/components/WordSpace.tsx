@@ -12,7 +12,7 @@ export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceInde
   const { playerWord, onDropLetter, onQuickRemoveLetter } = useContext(GameContext)
 
   const letter = playerWord.find((letter) => letter.position === spaceIndex)
-  const [dropOptions, drop] = useDrop({
+  const [{ isOver }, drop] = useDrop({
     accept: ["letter"],
     drop: (storeLetter: ShopLetter) => onDropLetter(storeLetter, spaceIndex),
     collect: (monitor) => ({
@@ -31,6 +31,9 @@ export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceInde
     <div ref={drop} className="player-area-space" onDoubleClick={onDoubleClick}>
       {letter && (
         <LetterShopLetter letter={letter}/>
+      )}
+      {isOver && (
+        <div className="player-space-drop-overlay"/>
       )}
     </div>
   )

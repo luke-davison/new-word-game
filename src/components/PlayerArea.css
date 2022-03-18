@@ -14,11 +14,6 @@
   z-index: -1;
 }
 
-.player-area-background-cell {
-  width: 40px;
-  height: 40px;
-}
-
 .player-area-word-cell {
   margin-top: -40px;
   display: flex;
@@ -28,6 +23,9 @@
 }
 
 .player-area-background-cell {
+  width: 40px;
+  height: 44px;
+  border-radius: 4px;
   border: 1px solid grey;
   background-color: lightgray;
 }
