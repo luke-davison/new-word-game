@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 
 import { GameContext } from '../stores/GameContext';
+import { WordBetweenSpace } from './WordBetweenSpace';
 import { WordSpace } from './WordSpace';
 
 export const PlayerArea: React.FC = observer(() => {
@@ -26,7 +27,8 @@ export const PlayerArea: React.FC = observer(() => {
       <div className="player-area-word-area">
         { spaces.map((space, index) => (
           <div key={index} className="player-area-word-cell">
-            <WordSpace key={index} spaceIndex={index}/>
+            <WordSpace spaceIndex={index}/>
+            <WordBetweenSpace spaceIndex={index}/>
           </div>
         ))}
       </div>

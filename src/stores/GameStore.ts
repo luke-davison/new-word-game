@@ -13,6 +13,7 @@ export class GameStore {
       isValidWord: computed,
       wordPoints: computed,
       onDropLetter: action,
+      onDropLetterBetween: action,
       onDropLetterOutside: action,
       playerWord: computed
     })
@@ -62,6 +63,24 @@ export class GameStore {
       ...this.playerWord.filter((otherLetter) => otherLetter.position !== position && (letter.position === undefined || otherLetter.position !== letter.position)),
       { ...letter, position }
     ]
+  }
+
+  onDropLetterBetween = (letter: ShopLetter, position: number) => {
+    const findNextEmpty = (nextPosition: number): number => {
+      if (this.playerWord.some(letter => letter.position === nextPosition)) {
+        return findNextEmpty(nextPosition + 1)
+      }
+      return nextPosition
+    }
+
+    const nextEmptyPosition = findNextEmpty(position)
+    for (let i = nextEmptyPosition - 1; i >= position; i--) {
+      const existingLetter = this.playerWord.find(letter => letter.position === i)
+      if (existingLetter) {
+        existingLetter.position = (existingLetter.position || 0) + 1
+      }
+    }
+    this.playerWordData.push({ ...letter, position })
   }
 
   onDropLetterOutside = (letter: ShopLetter) => {
