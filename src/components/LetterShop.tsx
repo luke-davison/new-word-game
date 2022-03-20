@@ -16,8 +16,8 @@ const [dragOptions, drag] = useDrag(
     type: "letter",
     item: letter,
     collect: (monitor) => ({
-      opacity: monitor.isDragging() ? 0.4 : 1,
-    }),
+      opacity: monitor.isDragging() ? 0.4 : 1
+    })
   }),
   [letter]
 )
