@@ -1,15 +1,21 @@
 import './App.css';
 
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Game } from './components/Game';
+import { Menu } from './components/Menu';
+import { AppContext } from './stores/AppContext';
+import { AppStore } from './stores/AppStore';
 
 const App: React.FC = observer(() => {
+  const [appStore] = useState<AppStore>(new AppStore())
+
   return (
-    <div className="App">
-      <Game/>
-    </div>
+    <AppContext.Provider value={appStore}>
+      <div className="App">
+        <Menu/>
+      </div>
+    </AppContext.Provider>
   );
 })
 

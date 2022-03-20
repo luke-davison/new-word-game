@@ -5,7 +5,13 @@ export class AppStore {
     makeObservable(this, {
       playerName: observable,
       playerId: observable,
-      loadPlayer: action
+      completedTutorial: observable,
+      loadPlayer: action,
+      isPlayingDailyGame: observable,
+      isPlayingRandomGame: observable,
+      startDailyGame: action,
+      startRandomGame: action,
+      returnToMenu: action
     })
 
     this.loadPlayer();
@@ -42,5 +48,21 @@ export class AppStore {
       window.localStorage.setItem("playerName", this.playerName)
       window.localStorage.setItem("playerId", this.playerId)
     })
+  }
+
+  isPlayingDailyGame: boolean = false
+  isPlayingRandomGame: boolean = false
+
+  startDailyGame = () => {
+    this.isPlayingDailyGame = true
+  }
+
+  startRandomGame = () => {
+    this.isPlayingRandomGame = true
+  }
+
+  returnToMenu = () => {
+    this.isPlayingDailyGame = false
+    this.isPlayingRandomGame = false
   }
 }

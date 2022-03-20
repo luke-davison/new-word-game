@@ -7,7 +7,7 @@ import { getLettersFromGame } from '../utils/getLettersFromGame';
 import { getIsValidWord } from '../utils/getWordlist';
 
 export class GameStore {
-  constructor() {
+  constructor(game: Game | undefined) {
     makeObservable(this, {
       shopLetters: observable,
       playerWordData: observable,
@@ -20,7 +20,7 @@ export class GameStore {
       playerWord: computed
     })
 
-    this.game = getDailyGame()
+    this.game = game
 
     if (this.game) {
       this.shopLetters = [
