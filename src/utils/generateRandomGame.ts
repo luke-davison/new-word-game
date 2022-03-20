@@ -1,7 +1,7 @@
 import { ShopLetter } from '../models';
 import {
     getDoubleOtherLetterAbility, getInLastPosition, getInPositionAbility, getMinWordLengthAbility,
-    getNextToVowelAbility, getPointsPerVowelAbility, getPointsPerWildAbility
+    getNextToVowelAbility, getNextToWildAbility, getPointsPerVowelAbility, getPointsPerWildAbility
 } from './getAbilities';
 import { wordlist } from './getWordlist';
 
@@ -16,21 +16,12 @@ export const generateGame = () => {
     letter: mostCommonLetter,
     color: 0,
     price: 1,
-    points: 1
+    points: 2
   }
   
-  const leastCommonLetter = uniqueLetters.splice(uniqueLetters.length - 1, 1)[0]
-  let leastCommonLetterOutput: ShopLetter | undefined = {
-    id: String(2),
-    letter: leastCommonLetter,
-    color: 1,
-    price: 5,
-    points: 4
-  }
-  
-  const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels", "wilds"]
+  const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels", "wilds", "next-to-wild", "other-position", "large"]
   const abilitiesShuffled: string[] = []
-  for (let i = 0; i < letters.length - 2; i++) {
+  for (let i = 0; i < letters.length - 1; i++) {
     abilitiesShuffled.push(abilities.splice(Math.floor(Math.random() * abilities.length), 1)[0])
   }
   let colorCount = letters.length
@@ -40,10 +31,10 @@ export const generateGame = () => {
       mostCommonLetterOutput.color = 1
       output.unshift({...mostCommonLetterOutput, color: colorCount--})
       mostCommonLetterOutput = undefined
-    } else if (letter === leastCommonLetterOutput?.letter) {
-      leastCommonLetterOutput.color = 2
-      output.unshift({...leastCommonLetterOutput, color: colorCount--})
-      leastCommonLetterOutput = undefined
+    // } else if (letter === leastCommonLetterOutput?.letter) {
+    //   leastCommonLetterOutput.color = 2
+    //   output.unshift({...leastCommonLetterOutput, color: colorCount--})
+    //   leastCommonLetterOutput = undefined
     } else {
       const frequencyIndex = letterFrequencies.findIndex((a) => a.letter === letter)
       const ability = abilitiesShuffled.pop()
@@ -54,7 +45,7 @@ export const generateGame = () => {
           letter,
           color: colorCount--,
           price: 2,
-          points: 2 + frequencyFactor
+          points: 3 + frequencyFactor
         })
       } else if (ability === "start") {
         const frequencyFactor = Math.floor(frequencyIndex / 14)
@@ -63,8 +54,8 @@ export const generateGame = () => {
           letter,
           color: colorCount--,
           price: 3,
-          points: 2 + frequencyFactor,
-          ability: getInPositionAbility(2 - frequencyFactor, 0)
+          points: 4 + frequencyFactor,
+          ability: getInPositionAbility(4 - frequencyFactor, 0)
         })
       } else if (ability === "word-length") {
         const minLength = Math.floor(Math.random() * 4) + 4
@@ -74,8 +65,8 @@ export const generateGame = () => {
           letter,
           color: colorCount--,
           price: 4,
-          points: 2 + frequencyFactor,
-          ability: getMinWordLengthAbility(2, minLength)
+          points: 4 + frequencyFactor,
+          ability: getMinWordLengthAbility(4, minLength)
         })
       } else if (ability === "vowel") {
         const frequencyFactor = Math.floor(frequencyIndex / 14)
@@ -84,11 +75,12 @@ export const generateGame = () => {
           letter,
           color: colorCount--,
           price: 4 - frequencyFactor,
-          points: 2,
-          ability: getNextToVowelAbility(2)
+          points: 4,
+          ability: getNextToVowelAbility(4)
         })
       } else if (ability === "multiply") {
-        const possiblePositions = [0, 1, 2, 3].filter((position) => letters[position] !== leastCommonLetter)
+        // const possiblePositions = [0, 1, 2, 3].filter((position) => letters[position] !== leastCommonLetter)
+        const possiblePositions = [0, 1, 2, 3]
         const position = possiblePositions[Math.floor(Math.random() * possiblePositions.length)]
         const frequencyFactor = Math.floor(frequencyIndex / 17)
         output.unshift({
@@ -96,7 +88,7 @@ export const generateGame = () => {
           letter,
           color: colorCount--,
           price: 5 - frequencyFactor,
-          points: 2,
+          points: 4,
           ability: getDoubleOtherLetterAbility(position)
         })
       } else if (ability === "last") {
@@ -106,8 +98,8 @@ export const generateGame = () => {
           letter,
           color: colorCount--,
           price: 3,
-          points: 2 + frequencyFactor,
-          ability: getInLastPosition(2 - frequencyFactor)
+          points: 4 + frequencyFactor,
+          ability: getInLastPosition(4 - frequencyFactor)
         })
       } else if (ability === "vowels") {
         output.unshift({
@@ -115,7 +107,7 @@ export const generateGame = () => {
           letter,
           color: colorCount--,
           price: 4,
-          points: 2,
+          points: 4,
           ability: getPointsPerVowelAbility(1)
         })
       } else if (ability === "wilds") {
@@ -123,9 +115,39 @@ export const generateGame = () => {
           id: String(output.length + 1),
           letter,
           color: colorCount--,
-          price: 5,
-          points: 2,
+          price: 4,
+          points: 4,
           ability: getPointsPerWildAbility(1)
+        })
+      } else if (ability === "next-to-wild") {
+        const frequencyFactor = Math.floor(frequencyIndex / 14)
+        output.unshift({
+          id: String(output.length + 1),
+          letter,
+          color: colorCount--,
+          price: 4 - frequencyFactor,
+          points: 4,
+          ability: getNextToWildAbility(4)
+        })
+      } else if (ability === "other-position") {
+        const positions = [1, 2, 3]
+        const position = positions[Math.floor(Math.random() * positions.length)]
+        const frequencyFactor = Math.floor(frequencyIndex / 14) + Math.floor(position / 2)
+        output.unshift({
+          id: String(output.length + 1),
+          letter,
+          color: colorCount--,
+          price: 3,
+          points: 4,
+          ability: getInPositionAbility(4 + frequencyFactor, position)
+        })
+      } else if (ability === "large") {
+        output.unshift({
+          id: String(output.length + 1),
+          letter,
+          color: colorCount--,
+          price: 5,
+          points: 8
         })
       }
     }

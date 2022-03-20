@@ -7,6 +7,7 @@ import minWordLength5 from '../images/min_word_length_5.png';
 import minWordLength6 from '../images/min_word_length_6.png';
 import minWordLength7 from '../images/min_word_length_7.png';
 import nextToVowel from '../images/next_to_vowel.png';
+import nextToWild from '../images/next_to_wild.png';
 import notNextToVowel from '../images/not_next_to_vowel.png';
 import otherInPosition1 from '../images/other_in_position_1.png';
 import otherInPosition2 from '../images/other_in_position_2.png';
@@ -102,6 +103,21 @@ const createGetPointsPerWild = (points: number) => (word: ShopLetter[]) => {
 
   return numWilds * points
 }
+
+const isLetterNextToWild = (word: ShopLetter[], position: number): boolean => {
+  const leftLetter = word.find((wordLetter) => wordLetter.position === position - 1)
+  if (leftLetter?.isWild) {
+    return true
+  }
+
+  const rightLetter = word.find((wordLetter) => wordLetter.position === position + 1)
+  if (rightLetter?.isWild) {
+    return true
+  }
+
+  return false
+}
+
 
 let nextAbilityId = 1;
 
@@ -233,5 +249,17 @@ export const getPointsPerWildAbility = (points: number): Ability => {
     points,
     getIsActive: isWordHasWilds,
     getPoints: createGetPointsPerWild(points)
+  }
+}
+
+export const getNextToWildAbility = (points: number): Ability => {
+  const text = points === 1 ? "scores 1 extra point if letter is next to a wild" : `scores ${points} extra points if letter is next to a wild`
+  return {
+    id: String(nextAbilityId++),
+    image: nextToWild,
+    text,
+    points,
+    getIsActive: isLetterNextToWild,
+    getPoints: () => points
   }
 }

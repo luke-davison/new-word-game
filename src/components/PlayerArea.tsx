@@ -13,7 +13,7 @@ export const PlayerArea: React.FC = observer(() => {
   const highestLetterPosition = playerWord.reduce((highest, letter) => {
     return Math.max(highest, letter.position || 0)
   }, 0)
-  const spacesToRender = Math.max(8, highestLetterPosition + 1)
+  const spacesToRender = Math.max(8, highestLetterPosition + 2)
   const spaces = [...Array(spacesToRender)]
 
   return (

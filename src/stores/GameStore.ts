@@ -1,7 +1,8 @@
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 
-import { ShopLetter } from '../models';
-import { generateGame } from '../utils/generateRandomGame';
+import { Game, ShopLetter } from '../models';
+import { getDailyGame } from '../utils/getDailyGame';
+import { getLettersFromGame } from '../utils/getLettersFromGame';
 import { getIsValidWord } from '../utils/getWordlist';
 
 export class GameStore {
@@ -17,12 +18,20 @@ export class GameStore {
       onDropLetterOutside: action,
       playerWord: computed
     })
+
+    this.game = getDailyGame()
+
+    if (this.game) {
+      this.shopLetters = [
+        ...getLettersFromGame(this.game),
+        { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true }
+      ]
+    }
   }
 
-  shopLetters: ShopLetter[] = [
-    ...generateGame(),
-    { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true }
-  ]
+  game: Game | undefined;
+
+  shopLetters: ShopLetter[] = []
   letterCount: number = 3
 
   playerWordData: ShopLetter[] = []
