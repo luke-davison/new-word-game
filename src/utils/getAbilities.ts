@@ -20,7 +20,8 @@ import inPosition3 from '../images/position_3.png';
 import inPosition4 from '../images/position_4.png';
 import inLastPosition from '../images/position_last.png';
 import vowel from '../images/vowel.png';
-import wilds from '../images/wild.png';
+import wild from '../images/wild.png';
+import wilds from '../images/wilds.png';
 import wordLength4 from '../images/word_length_must_be_4.png';
 import wordLength5 from '../images/word_length_must_be_5.png';
 import wordLength6 from '../images/word_length_must_be_6.png';
@@ -219,7 +220,7 @@ export const getMaxWordLengthAbility = (points: number, length: number): Ability
 }
 
 export const getInLastPosition = (points: number): Ability => {
-  const text = points === 1 ? "scores 1 extra point if letter is last position" : "scores ${points} extra points if letter last position"
+  const text = points === 1 ? "scores 1 extra point if letter is last position" : `scores ${points} extra points if letter last position`
   return {
     id: String(nextAbilityId++),
     image: inLastPosition,
@@ -261,5 +262,16 @@ export const getNextToWildAbility = (points: number): Ability => {
     points,
     getIsActive: isLetterNextToWild,
     getPoints: () => points
+  }
+}
+
+export const getWildAbility = (): Ability => {
+  const text = "Can be any letter";
+  return {
+    id: String(nextAbilityId++),
+    image: wild,
+    text,
+    getIsActive: () => true,
+    getPoints: () => 0
   }
 }

@@ -2,7 +2,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 
 import { Game, ShopLetter } from '../models';
 import { generateGame } from '../utils/generateRandomGame';
-import { getDailyGame } from '../utils/getDailyGame';
+import { getWildAbility } from '../utils/getAbilities';
 import { getLettersFromGame } from '../utils/getLettersFromGame';
 import { getIsValidWord } from '../utils/getWordlist';
 
@@ -25,12 +25,12 @@ export class GameStore {
     if (this.game) {
       this.shopLetters = [
         ...getLettersFromGame(this.game),
-        { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true }
+        { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() }
       ]
     } else {
       this.shopLetters = [
         ...generateGame(),
-        { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true }
+        { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() }
       ]
     }
   }
