@@ -7,6 +7,7 @@ import { useDrop } from 'react-dnd';
 import { ShopLetter } from '../models';
 import { GameContext } from '../stores/GameContext';
 import { LetterShopLetter } from './LetterShop';
+import { WordSpacePoints } from './WordSpacePoints';
 
 export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceIndex }) => {
   const { playerWord, onDropLetter, onQuickRemoveLetter } = useContext(GameContext)
@@ -35,6 +36,7 @@ export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceInde
       {isOver && (
         <div className="player-space-drop-overlay"/>
       )}
+      <WordSpacePoints spaceIndex={spaceIndex}/>
     </div>
   )
 })

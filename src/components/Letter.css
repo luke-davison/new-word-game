@@ -36,8 +36,6 @@
   background-color: #bcdbf2;
 }
 
-
-
 .letter-character {
   display: flex;
   width: 100%;
@@ -65,9 +63,17 @@
 }
 
 .letter-points, .letter-ability-points, .letter-ability-multiplier {
-  background: yellow;
   position: absolute;
 }
+
+.letter-ability-points, .letter-ability-multiplier {
+  background: lightgray;
+}
+
+.letter-points, .letter-ability.is-active .letter-ability-points, .letter-ability.is-active .letter-ability-multiplier {
+  background: yellow;
+}
+
 
 .letter-ability-points, .letter-ability-multiplier {
   font-size: 12px;

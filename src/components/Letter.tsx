@@ -7,7 +7,9 @@ import { ShopLetter } from '../models';
 import { GameContext } from '../stores/GameContext';
 
 export const Letter: React.FC<{ letter: ShopLetter }> = observer(({ letter }) => {
-  const { onClickLetter } = useContext(GameContext)
+  const { onClickLetter, playerWord } = useContext(GameContext)
+
+  const isAbilityActive = letter.position === undefined || letter.ability?.getIsActive(playerWord, letter.position)
 
   return (
     <div className={"letter-container letter-color-" + letter.color} onClick={() => onClickLetter(letter)}>
@@ -18,7 +20,7 @@ export const Letter: React.FC<{ letter: ShopLetter }> = observer(({ letter }) =>
         { letter.points }
       </div>
         { letter.ability && (
-          <div className="letter-ability">
+          <div className={`letter-ability${ isAbilityActive ? " is-active" : ""}` }>
             <img src={letter.ability.image}/>
             {letter.ability.points !== undefined && (
               <div className="letter-ability-points">
