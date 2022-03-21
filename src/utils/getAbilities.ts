@@ -47,7 +47,13 @@ const isLetterNextToVowel = (word: ShopLetter[], position: number): boolean => {
 }
 
 const isLetterinLastPosition = (word: ShopLetter[], position: number): boolean => {
-  return position === word.length - 1
+  const highestPostiion: number = word.reduce((highest, letter) => {
+    if ((letter.position || 0) > highest) {
+      return letter.position!
+    }
+    return highest
+  }, 0)
+  return position === highestPostiion
 }
 
 const isLetterNotNextToVowel = (word: ShopLetter[], position: number): boolean => {

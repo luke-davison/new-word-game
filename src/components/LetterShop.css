@@ -1,3 +1,8 @@
+.shop-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .shop-container {
   display: flex;
   flex-wrap: wrap;

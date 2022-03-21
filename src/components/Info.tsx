@@ -4,14 +4,10 @@ import React, { useContext } from 'react';
 import { GameContext } from '../stores/GameContext';
 
 export const Info: React.FC = observer(() => {
-  const { money, isValidWord, wordPoints } = useContext(GameContext)
+  const { isValidWord, wordPoints } = useContext(GameContext)
 
   return (
     <div className="info-area">
-      <div className="money-area">
-        <span>Money:</span>
-        <span>{'$' + money}</span>
-      </div>
       <div className="valid-area">
         <span>Word:</span>
         <span>{isValidWord ? "Valid" : "Invalid"}</span>
