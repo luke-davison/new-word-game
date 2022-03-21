@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/new-word-game/static/css/main.96cc6dd7.css",
-    "main.js": "/new-word-game/static/js/main.d76e54aa.js",
+    "main.css": "/new-word-game/static/css/main.4aac4b8d.css",
+    "main.js": "/new-word-game/static/js/main.56d34c35.js",
     "static/js/787.eeedacaf.chunk.js": "/new-word-game/static/js/787.eeedacaf.chunk.js",
     "index.html": "/new-word-game/index.html",
-    "main.96cc6dd7.css.map": "/new-word-game/static/css/main.96cc6dd7.css.map",
-    "main.d76e54aa.js.map": "/new-word-game/static/js/main.d76e54aa.js.map",
+    "main.4aac4b8d.css.map": "/new-word-game/static/css/main.4aac4b8d.css.map",
+    "main.56d34c35.js.map": "/new-word-game/static/js/main.56d34c35.js.map",
     "787.eeedacaf.chunk.js.map": "/new-word-game/static/js/787.eeedacaf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.96cc6dd7.css",
-    "static/js/main.d76e54aa.js"
+    "static/css/main.4aac4b8d.css",
+    "static/js/main.56d34c35.js"
   ]
 }
