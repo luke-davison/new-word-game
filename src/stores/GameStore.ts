@@ -17,7 +17,12 @@ export class GameStore {
       onDropLetter: action,
       onDropLetterBetween: action,
       onDropLetterOutside: action,
-      playerWord: computed
+      playerWord: computed,
+      target: computed,
+      bestWord: observable,
+      bestWordScore: observable,
+      onSubmit: action,
+      submitText: observable
     })
 
     this.game = game
@@ -73,7 +78,19 @@ export class GameStore {
     }, 0)
   }
 
+  get target(): number {
+    return this.game?.target || 25
+  }
+
+  get secretTarget(): number {
+    return this.game?.secretTarget || 30
+  }
+
+  bestWord: string | undefined
+  bestWordScore: number | undefined
+
   onDropLetter = (letter: ShopLetter, position: number) => {
+    this.submitText = ""
     this.playerWordData = [
       ...this.playerWord.filter((otherLetter) => otherLetter.position !== position && (letter.position === undefined || otherLetter.position !== letter.position)),
       { ...letter, position }
@@ -81,6 +98,8 @@ export class GameStore {
   }
 
   onDropLetterBetween = (letter: ShopLetter, position: number) => {
+    this.submitText = ""
+
     const findNextEmpty = (nextPosition: number): number => {
       if (this.playerWord.some(letter => letter.position === nextPosition)) {
         return findNextEmpty(nextPosition + 1)
@@ -100,6 +119,7 @@ export class GameStore {
 
   onDropLetterOutside = (letter: ShopLetter) => {
     if (letter.position !== undefined) {
+      this.submitText = ""
       this.playerWordData = this.playerWord.filter((otherLetter) => otherLetter.position !== letter.position)
     }
   }
@@ -123,5 +143,22 @@ export class GameStore {
 
   onQuickRemoveLetter = (letter: ShopLetter) => {
     this.onDropLetterOutside(letter)
+  }
+
+  submitText: string | undefined;
+
+  onSubmit = () => {
+    const isValid = getIsValidWord(this.playerWord) && this.money >= 0
+    if (isValid) {
+      this.submitText = "Valid word"
+      if (this.wordPoints > (this.bestWordScore || 0)) {
+        this.bestWordScore = this.wordPoints;
+        const str = this.playerWord.map((letter) => letter.letter).join("")
+        this.bestWord = str[0].toUpperCase() + str.slice(1)
+      }
+    } else {
+      this.submitText = "Invalid word"
+    }
+
   }
 }

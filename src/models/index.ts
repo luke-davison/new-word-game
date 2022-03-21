@@ -29,7 +29,9 @@ export interface Ability {
 
 export interface Game {
   date: string;
-  letters: RawLetter[]
+  letters: RawLetter[];
+  target: number;
+  secretTarget: number;
 }
 
 export enum Abilities {

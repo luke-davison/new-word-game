@@ -12,7 +12,7 @@ export const Menu: React.FC = observer(() => {
       <>
         <Game/>
         <div>
-          <button onClick={returnToMenu}></button>
+          <button onClick={returnToMenu}>Return to menu</button>
         </div>
       </>
     )
