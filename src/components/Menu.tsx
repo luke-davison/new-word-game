@@ -5,7 +5,7 @@ import { AppContext } from '../stores/AppContext';
 import { Game } from './Game';
 
 export const Menu: React.FC = observer(() => {
-  const { isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame } = useContext(AppContext)
+  const { isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame, goToNextDailyGame, goToPreviousDailyGame } = useContext(AppContext)
 
   if (isPlayingDailyGame || isPlayingRandomGame) {
     return (
@@ -13,6 +13,12 @@ export const Menu: React.FC = observer(() => {
         <Game/>
         <div>
           <button onClick={returnToMenu}>Return to menu</button>
+          { isPlayingDailyGame && (
+            <>
+              <button onClick={goToNextDailyGame}>Next</button>
+              <button onClick={goToPreviousDailyGame}>Previous</button>
+            </>
+          )}
         </div>
       </>
     )

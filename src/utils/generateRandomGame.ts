@@ -1,7 +1,8 @@
 import { ShopLetter } from '../models';
 import {
     getDoubleOtherLetterAbility, getInLastPosition, getInPositionAbility, getMinWordLengthAbility,
-    getNextToVowelAbility, getNextToWildAbility, getPointsPerVowelAbility, getPointsPerWildAbility
+    getNextToVowelAbility, getNextToWildAbility, getNotNextToVowelAbility, getPointsPerVowelAbility,
+    getPointsPerWildAbility
 } from './getAbilities';
 import { wordlist } from './getWordlist';
 
@@ -19,7 +20,7 @@ export const generateGame = () => {
     points: 2
   }
   
-  const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels", "wilds", "next-to-wild", "other-position", "large"]
+  const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels", "wilds", "next-to-wild", "other-position", "large", "notvowels"]
   const abilitiesShuffled: string[] = []
   for (let i = 0; i < letters.length - 1; i++) {
     abilitiesShuffled.push(abilities.splice(Math.floor(Math.random() * abilities.length), 1)[0])
@@ -148,6 +149,16 @@ export const generateGame = () => {
           color: colorCount--,
           price: 5,
           points: 8
+        })
+      } else if (ability === "notvowels") {
+        const frequencyFactor = Math.floor(frequencyIndex / 14)
+        output.unshift({
+          id: String(output.length + 1),
+          letter,
+          color: colorCount--,
+          price: 4 - frequencyFactor,
+          points: 4,
+          ability: getNotNextToVowelAbility(4)
         })
       }
     }

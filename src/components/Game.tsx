@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -12,14 +12,22 @@ import { getDailyGame } from '../utils/getDailyGame';
 import { GameArea } from './GameArea';
 
 export const Game: React.FC = observer(() => {
-  const { isPlayingDailyGame } = useContext(AppContext)
+  const { isPlayingDailyGame, dailyGameInProgress } = useContext(AppContext)
 
-  const [gameStore] = useState<GameStore>(new GameStore(isPlayingDailyGame ? getDailyGame() : undefined))
+  const [gameStore, setGameStore] = useState<GameStore | undefined>()
+
+  useEffect(() => {
+    setGameStore(new GameStore(isPlayingDailyGame ? getDailyGame(dailyGameInProgress) : undefined))
+  }, [dailyGameInProgress])
   
   const backend = isMobile ? TouchBackend : HTML5Backend
 
+  if (!gameStore) {
+    return null
+  }
+
   return (
-    <GameContext.Provider value={gameStore}>
+    <GameContext.Provider key={dailyGameInProgress?.toISOString()} value={gameStore}>
       <DndProvider backend={backend}>
         <GameArea/>
       </DndProvider>

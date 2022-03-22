@@ -3,8 +3,11 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { Game, ShopLetter } from '../models';
 import { generateGame } from '../utils/generateRandomGame';
 import { getWildAbility } from '../utils/getAbilities';
+import { getBestWords } from '../utils/getBestWords';
 import { getLettersFromGame } from '../utils/getLettersFromGame';
 import { getIsValidWord } from '../utils/getWordlist';
+
+let running = false
 
 export class GameStore {
   constructor(game: Game | undefined) {
@@ -27,7 +30,12 @@ export class GameStore {
 
     this.game = game
 
+    
     if (this.game) {
+      if (!running) {
+        running = true
+        // console.log(getBestWords(this.game))
+      }
       this.shopLetters = [
         ...getLettersFromGame(this.game),
         { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() }
@@ -53,7 +61,9 @@ export class GameStore {
     })
   }
 
-  totalMoney: number = 18
+  get totalMoney(): number {
+    return this.game?.money || 18
+  }
 
   get money() {
     return this.totalMoney - this.playerWord.reduce((sum, letter) => sum + letter.price, 0)

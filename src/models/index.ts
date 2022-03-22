@@ -32,6 +32,8 @@ export interface Game {
   letters: RawLetter[];
   target: number;
   secretTarget: number;
+  maxTarget: number;
+  money: number;
 }
 
 export enum Abilities {

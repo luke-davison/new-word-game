@@ -11,7 +11,10 @@ export class AppStore {
       isPlayingRandomGame: observable,
       startDailyGame: action,
       startRandomGame: action,
-      returnToMenu: action
+      returnToMenu: action,
+      dailyGameInProgress: observable,
+      goToPreviousDailyGame: action,
+      goToNextDailyGame: action
     })
 
     this.loadPlayer();
@@ -51,10 +54,12 @@ export class AppStore {
   }
 
   isPlayingDailyGame: boolean = false
+  dailyGameInProgress: Date | undefined = undefined
   isPlayingRandomGame: boolean = false
 
   startDailyGame = () => {
     this.isPlayingDailyGame = true
+    this.dailyGameInProgress = new Date();
   }
 
   startRandomGame = () => {
@@ -64,5 +69,17 @@ export class AppStore {
   returnToMenu = () => {
     this.isPlayingDailyGame = false
     this.isPlayingRandomGame = false
+  }
+
+  goToPreviousDailyGame = () => {
+    if (this.dailyGameInProgress) {
+      this.dailyGameInProgress = new Date(this.dailyGameInProgress.getFullYear(), this.dailyGameInProgress.getMonth(), this.dailyGameInProgress.getDate() - 1)
+    }
+  }
+
+  goToNextDailyGame = () => {
+    if (this.dailyGameInProgress) {
+      this.dailyGameInProgress = new Date(this.dailyGameInProgress.getFullYear(), this.dailyGameInProgress.getMonth(), this.dailyGameInProgress.getDate() + 1)
+    }
   }
 }
