@@ -1,7 +1,7 @@
 import './LetterPopup.css';
 
 import { runInAction } from 'mobx';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { ShopLetter } from '../models';
 import { Alphabet } from './Alphabet';
@@ -12,12 +12,16 @@ interface LetterPopupProps {
 }
 
 export const LetterPopup: React.FC<LetterPopupProps> = ({ letter, onClose }) => {
-  if (!letter.isWild) {
-    return null
-  }
+  useEffect(() => {
+    const listener = () => {
+      onClose()
+    }
+
+    document.body.addEventListener('click', listener);
+    return () => document.body.removeEventListener('click', listener)
+  }, [])
 
   const onSelect = (character: string) => {
-    console.log('on select')
     runInAction(() => {
       letter.letter = character
     })

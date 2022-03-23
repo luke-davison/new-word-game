@@ -2,17 +2,20 @@ import './Alphabet.css';
 
 import React, { KeyboardEvent, useEffect } from 'react';
 
-const alphabet = ["abcdefghi", "jklmnopqr", "stuvwxyz"]
+const alphabet = "abcdefghijklmnopqrstuvwxyz "
+const alphabetSplit = ["abcdefghi", "jklmnopqr", "stuvwxyz "]
 
 interface AlphabetProps {
   onSelect: (letter: string) => void
 }
 
 export const Alphabet: React.FC<AlphabetProps> = ({ onSelect }) => {
-
   useEffect(() => {
     const listener = (event: globalThis.KeyboardEvent) => {
-      onSelect(event.key)
+      const letters = alphabet.split("")
+      if (letters.indexOf(event.key.toLowerCase()) !== -1) {
+        onSelect(event.key)
+      }
     }
 
     document.body.addEventListener('keydown', listener);
@@ -26,7 +29,7 @@ export const Alphabet: React.FC<AlphabetProps> = ({ onSelect }) => {
 
   return (
     <div className="alphabet-container" onKeyDown={onKeyDown} tabIndex={0}>
-      {alphabet.map((row, index) => (
+      {alphabetSplit.map((row, index) => (
         <div key={index} className="alphabet-row">
           {row.split("").map((letter, index) => (
             <div key={index} className="alphabet-letter" onClick={() => onSelect(letter)}>

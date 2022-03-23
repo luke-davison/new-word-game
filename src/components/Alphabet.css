@@ -1,7 +1,7 @@
 .alphabet-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
   background-color: tan;
@@ -10,7 +10,7 @@
 .alphabet-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .alphabet-letter {

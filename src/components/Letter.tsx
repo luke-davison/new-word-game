@@ -14,7 +14,7 @@ export const Letter: React.FC<{ letter: ShopLetter }> = observer(({ letter }) =>
   const isAbilityActive = letter.position === undefined || letter.ability?.getIsActive(playerWord, letter.position)
 
   const onClick = () => {
-    if (letter.position) {
+    if (letter.position !== undefined) {
       setIsPopupOpen(!isPopupOpen)
     }
   }
@@ -44,7 +44,7 @@ export const Letter: React.FC<{ letter: ShopLetter }> = observer(({ letter }) =>
         </div>
           )}
       </div>
-      {isPopupOpen && <LetterPopup letter={letter} onClose={ () => setIsPopupOpen(false)}/>}
+      {isPopupOpen && letter.isWild && <LetterPopup letter={letter} onClose={ () => setIsPopupOpen(false)}/>}
     </div>
   )
 })
