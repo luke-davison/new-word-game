@@ -5,16 +5,15 @@ import { GameContext } from '../stores/GameContext';
 import { getBestWords } from '../utils/getBestWords';
 
 export const Submit: React.FC = observer(() => {
-  const { game, onClear, onSubmit, submitText } = useContext(GameContext)
+  const { game, onClear, isValidText } = useContext(GameContext)
 
   return (
-    <div className="submit-area">
-      <button className="submit-button" onClick={onSubmit}>Submit</button>
-      {submitText && (
-        <div className="submit-text">{submitText}</div>
-      )}
-      <button className="clear-button" onClick={onClear}>Clear</button>
+    <>
+      <div className="submit-area">
+        <button className="clear-button" onClick={onClear}>Clear</button>
+        {isValidText}
+      </div>
       <button onClick={() => getBestWords(game!)}>Solve</button>
-    </div>
+    </>
   )
 })

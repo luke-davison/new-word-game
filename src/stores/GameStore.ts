@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
 
 import { Game, ShopLetter } from '../models';
 import { generateGame } from '../utils/generateRandomGame';
@@ -21,21 +21,38 @@ export class GameStore {
       onDropLetterOutside: action,
       playerWord: computed,
       target: computed,
+      isValidText: observable,
       bestWord: observable,
       bestWordScore: observable,
-      onSubmit: action,
-      submitText: observable,
-      onClear: action
+      onClear: action,
+      wordLetters: computed
     })
 
     this.game = game
 
+    reaction(() => this.wordLetters, () => {
+      this.isValidText = undefined
+      window.clearTimeout(this.validWordTimeout)
+      this.validWordTimeout = window.setTimeout(() => {
+        if (this.isCompleteWord) {
+          if (this.isValidWord) {
+            this.isValidText = "Valid word"
+            if (this.wordPoints > (this.bestWordScore || 0)) {
+              this.bestWordScore = this.wordPoints;
+              const str = this.playerWord.map((letter) => letter.letter).join("")
+              this.bestWord = str[0].toUpperCase() + str.slice(1)
+            }
+          } else if (this.money < 0) {
+            this.isValidText = "Not enough money"
+          } else {
+            this.isValidText = "Not a word"
+          }
+        }
+      }, 1500)
+    })
+    
     
     if (this.game) {
-      if (!running) {
-        running = true
-        // console.log(getBestWords(this.game))
-      }
       this.shopLetters = [
         ...getLettersFromGame(this.game),
         { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() }
@@ -47,37 +64,51 @@ export class GameStore {
       ]
     }
   }
-
+  
   game: Game | undefined;
-
+  
   shopLetters: ShopLetter[] = []
   letterCount: number = 3
-
+  
   playerWordData: ShopLetter[] = []
-
+  
   get playerWord(): ShopLetter[] {
     return Array.from(this.playerWordData).sort((a, b) => {
       return (a.position || 0) - (b.position || 0)
     })
   }
-
+  
   get totalMoney(): number {
     return this.game?.money || 18
   }
-
+  
   get money() {
     return this.totalMoney - this.playerWord.reduce((sum, letter) => sum + letter.price, 0)
   }
-
+  
   get isValidWord() {
     return getIsValidWord(this.playerWord)
   }
-
+  
+  get isCompleteWord() {
+    const highestPosition = this.playerWord.reduce((high, letter) => {
+      const { position = 0 } = letter
+      return position > high ? position : high
+    }, 0)
+    if (highestPosition > this.playerWord.length - 1) {
+      return false
+    }
+    if (this.playerWord.some((letter) => letter.isWild && !letter.letter)) {
+      return false
+    }
+    return true
+  }
+  
   get wordPoints() {
     const sortedWord = Array.from(this.playerWord).sort((a, b) => {
       return (a.position || 0) - (b.position || 0)
     })
-
+    
     return sortedWord.reduce((sum, letter, index) => {
       const basePoints = letter.points
       let abilityPoints = 0;
@@ -88,19 +119,24 @@ export class GameStore {
     }, 0)
   }
 
+  get wordLetters() {
+    return this.playerWord.map((letter) => letter.letter)
+  }
+  
   get target(): number {
     return this.game?.target || 25
   }
-
+  
   get secretTarget(): number {
     return this.game?.secretTarget || 30
   }
-
+  
+  validWordTimeout: number | undefined
+  isValidText: string | undefined
   bestWord: string | undefined
   bestWordScore: number | undefined
-
+  
   onDropLetter = (letter: ShopLetter, position: number) => {
-    this.submitText = ""
     this.playerWordData = [
       ...this.playerWord.filter((otherLetter) => otherLetter.position !== position && (letter.position === undefined || otherLetter.position !== letter.position)),
       { ...letter, position }
@@ -108,8 +144,6 @@ export class GameStore {
   }
 
   onDropLetterBetween = (letter: ShopLetter, position: number) => {
-    this.submitText = ""
-
     const findNextEmpty = (nextPosition: number): number => {
       if (this.playerWord.some(letter => letter.position === nextPosition)) {
         return findNextEmpty(nextPosition + 1)
@@ -129,17 +163,21 @@ export class GameStore {
 
   onDropLetterOutside = (letter: ShopLetter) => {
     if (letter.position !== undefined) {
-      this.submitText = ""
       this.playerWordData = this.playerWord.filter((otherLetter) => otherLetter.position !== letter.position)
     }
   }
 
   onClickLetter = (letter: ShopLetter) => {
     if (letter.isWild) {
-      const newValue = prompt("Enter a letter");
-      runInAction(() => {
-        letter.letter = newValue || ""
-      })
+      setTimeout(() => {
+        // check whether letter has been removed
+        if (this.playerWord.some((otherLetter) => otherLetter.id === letter.id)) {
+          const newValue = prompt("Enter a letter");
+          runInAction(() => {
+            letter.letter = newValue || ""
+          })
+        }
+      }, 300)
     }
   }
 
@@ -153,22 +191,6 @@ export class GameStore {
 
   onQuickRemoveLetter = (letter: ShopLetter) => {
     this.onDropLetterOutside(letter)
-  }
-
-  submitText: string | undefined;
-
-  onSubmit = () => {
-    const isValid = getIsValidWord(this.playerWord) && this.money >= 0
-    if (isValid) {
-      this.submitText = "Valid word"
-      if (this.wordPoints > (this.bestWordScore || 0)) {
-        this.bestWordScore = this.wordPoints;
-        const str = this.playerWord.map((letter) => letter.letter).join("")
-        this.bestWord = str[0].toUpperCase() + str.slice(1)
-      }
-    } else {
-      this.submitText = "Invalid word"
-    }
   }
 
   onClear = () => {
