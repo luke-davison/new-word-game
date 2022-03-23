@@ -3,7 +3,6 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { Game, ShopLetter } from '../models';
 import { generateGame } from '../utils/generateRandomGame';
 import { getWildAbility } from '../utils/getAbilities';
-import { getBestWords } from '../utils/getBestWords';
 import { getLettersFromGame } from '../utils/getLettersFromGame';
 import { getIsValidWord } from '../utils/getWordlist';
 
@@ -25,7 +24,8 @@ export class GameStore {
       bestWord: observable,
       bestWordScore: observable,
       onSubmit: action,
-      submitText: observable
+      submitText: observable,
+      onClear: action
     })
 
     this.game = game
@@ -81,8 +81,8 @@ export class GameStore {
     return sortedWord.reduce((sum, letter, index) => {
       const basePoints = letter.points
       let abilityPoints = 0;
-      if (letter.ability?.getIsActive(this.playerWord, index)) {
-        abilityPoints = letter.ability.getPoints(this.playerWord, index)
+      if (letter.ability?.getIsActive(this.playerWord, letter.position!)) {
+        abilityPoints = letter.ability.getPoints(this.playerWord, letter.position!)
       }
       return sum + basePoints + abilityPoints
     }, 0)
@@ -169,6 +169,9 @@ export class GameStore {
     } else {
       this.submitText = "Invalid word"
     }
+  }
 
+  onClear = () => {
+    this.playerWordData = []
   }
 }

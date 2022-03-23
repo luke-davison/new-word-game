@@ -2,7 +2,7 @@ import { ShopLetter } from '../models';
 import {
     getDoubleOtherLetterAbility, getInLastPosition, getInPositionAbility, getMinWordLengthAbility,
     getNextToVowelAbility, getNextToWildAbility, getNotNextToVowelAbility, getPointsPerVowelAbility,
-    getPointsPerWildAbility
+    getPointsPerWildAbility, getWordLengthAbility
 } from './getAbilities';
 import { wordlist } from './getWordlist';
 
@@ -20,7 +20,7 @@ export const generateGame = () => {
     points: 2
   }
   
-  const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels", "wilds", "next-to-wild", "other-position", "large", "notvowels"]
+  const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels", "wilds", "next-to-wild", "other-position", "large", "notvowels", "set-length"]
   const abilitiesShuffled: string[] = []
   for (let i = 0; i < letters.length - 1; i++) {
     abilitiesShuffled.push(abilities.splice(Math.floor(Math.random() * abilities.length), 1)[0])
@@ -59,7 +59,7 @@ export const generateGame = () => {
           ability: getInPositionAbility(4 - frequencyFactor, 0)
         })
       } else if (ability === "word-length") {
-        const minLength = Math.floor(Math.random() * 4) + 4
+        const minLength = Math.floor(Math.random() * 2) + 6
         const frequencyFactor = Math.floor(frequencyIndex / 14) + Math.floor((minLength - 4) / 2) 
         output.unshift({
           id: String(output.length + 1),
@@ -159,6 +159,18 @@ export const generateGame = () => {
           price: 4 - frequencyFactor,
           points: 4,
           ability: getNotNextToVowelAbility(4)
+        })
+      } else if (ability === "set-length") {
+        const frequencyFactor1 = frequencyIndex > 7 ? 1 : 0
+        const frequencyFactor2 = Math.floor(frequencyIndex / 16)
+        const setLength = Math.floor(Math.random() * 3) + 5
+        output.unshift({
+          id: String(output.length + 1),
+          letter,
+          color: colorCount--,
+          price: 4,
+          points: 3 + frequencyFactor1,
+          ability: getWordLengthAbility(4 + frequencyFactor2, setLength)
         })
       }
     }

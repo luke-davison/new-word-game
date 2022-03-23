@@ -42,9 +42,9 @@ const games: Game[] = [
       { letter: "r", price: 4, points: 3, ability: Abilities.InPositionLast, abilityPoints: 4 },
       { letter: "s", price: 3, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 3 }
     ],
-    target: 26,
+    target: 24,
     secretTarget: 28,
-    maxTarget: 30,
+    maxTarget: 29, // checked
     money: 18
   },
   { 
@@ -74,9 +74,9 @@ const games: Game[] = [
       { letter: "e", price: 1, points: 2 },
       { letter: "r", price: 4, points: 3, ability: Abilities.InPosition4, abilityPoints: 4 }
     ],
-    target: 25,
-    secretTarget: 28,
-    maxTarget: 30,
+    target: 27,
+    secretTarget: 29,
+    maxTarget: 32, // checked
     money: 18
   },
   { 
@@ -90,9 +90,9 @@ const games: Game[] = [
       { letter: "e", price: 1, points: 2 },
       { letter: "d", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 5 }
     ],
-    target: 25,
-    secretTarget: 28,
-    maxTarget: 30,
+    target: 28,
+    secretTarget: 31,
+    maxTarget: 35, // checked
     money: 18
   },
   { 
@@ -124,6 +124,22 @@ const games: Game[] = [
     target: 29,
     secretTarget: 31,
     maxTarget: 32, // checked
+    money: 18
+  },
+  { 
+    date: "2022-03-28",
+    letters: [
+      { letter: "m", price: 3, points: 4, ability: Abilities.NextToVowel, abilityPoints: 3 },
+      { letter: "e", price: 5, points: 7 },
+      { letter: "l", price: 4, points: 3, ability: Abilities.OtherInPosition1 },
+      { letter: "a", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 2 },
+      { letter: "n", price: 3, points: 3, ability: Abilities.InPosition3, abilityPoints: 4 },
+      { letter: "g", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+      { letter: "e", price: 1, points: 2 }
+    ],
+    target: 27,
+    secretTarget: 32,
+    maxTarget: 34, // checked
     money: 18
   }
 ]
