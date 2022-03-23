@@ -4,6 +4,7 @@ import { useDrop } from 'react-dnd';
 
 import { ShopLetter } from '../models';
 import { GameContext } from '../stores/GameContext';
+import { Counters } from './Counters';
 import { LetterShop } from './LetterShop';
 import { PlayerArea } from './PlayerArea';
 import { Submit } from './Submit';
@@ -28,6 +29,7 @@ export const GameArea: React.FC = observer(() => {
   return (
     <div ref={drop} className="game-area">
       <LetterShop/>
+      <Counters/>
       <PlayerArea/>
       <Submit/>
     </div>

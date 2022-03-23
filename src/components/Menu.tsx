@@ -1,3 +1,5 @@
+import './Menu.css';
+
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 
@@ -9,7 +11,7 @@ export const Menu: React.FC = observer(() => {
 
   if (isPlayingDailyGame || isPlayingRandomGame) {
     return (
-      <>
+      <div className="game-container">
         <Game/>
         <div>
           <button onClick={returnToMenu}>Return to menu</button>
@@ -20,12 +22,12 @@ export const Menu: React.FC = observer(() => {
             </>
           )}
         </div>
-      </>
+      </div>
     )
   }
 
   return (
-    <div className="menu">
+    <div className="game-container">
       <div>
         <button onClick={startDailyGame}>Daily game</button>
       </div>
