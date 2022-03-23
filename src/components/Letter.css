@@ -1,3 +1,7 @@
+.letter-container-outer {
+  position: relative;
+}
+
 .letter-container {
   position: relative;
   width: 40px;
@@ -7,8 +11,6 @@
   padding-bottom: 4px;
   background-color: #b9bfc7;
 }
-
-
 
 .letter-container.letter-color-0 {
   background-color: #f7efe6;

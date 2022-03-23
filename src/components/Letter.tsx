@@ -1,39 +1,50 @@
 import './Letter.css';
 
 import { observer } from 'mobx-react-lite';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import { ShopLetter } from '../models';
 import { GameContext } from '../stores/GameContext';
+import { LetterPopup } from './LetterPopup';
 
 export const Letter: React.FC<{ letter: ShopLetter }> = observer(({ letter }) => {
-  const { onClickLetter, playerWord } = useContext(GameContext)
+  const { playerWord } = useContext(GameContext)
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
 
   const isAbilityActive = letter.position === undefined || letter.ability?.getIsActive(playerWord, letter.position)
 
+  const onClick = () => {
+    if (letter.position) {
+      setIsPopupOpen(!isPopupOpen)
+    }
+  }
+
   return (
-    <div className={"letter-container letter-color-" + letter.color} onClick={() => onClickLetter(letter)}>
-      <div className="letter-character">
-        { letter.letter }
+    <div className="letter-container-outer">
+      <div className={"letter-container letter-color-" + letter.color} onClick={onClick}>
+        <div className="letter-character">
+          { letter.letter }
+        </div>
+        <div className="letter-points">
+          { letter.points }
+        </div>
+          { letter.ability && (
+            <div className={`letter-ability${ isAbilityActive ? " is-active" : ""}` }>
+              <img src={letter.ability.image}/>
+              {letter.ability.points !== undefined && (
+                <div className="letter-ability-points">
+                  {letter.ability.points}
+                </div>
+              )}
+              {letter.ability.multiplier !== undefined && (
+                <div className="letter-ability-multiplier">
+                  {'x' + letter.ability.multiplier}
+                </div>
+              )}
+        </div>
+          )}
       </div>
-      <div className="letter-points">
-        { letter.points }
-      </div>
-        { letter.ability && (
-          <div className={`letter-ability${ isAbilityActive ? " is-active" : ""}` }>
-            <img src={letter.ability.image}/>
-            {letter.ability.points !== undefined && (
-              <div className="letter-ability-points">
-                {letter.ability.points}
-              </div>
-            )}
-            {letter.ability.multiplier !== undefined && (
-              <div className="letter-ability-multiplier">
-                {'x' + letter.ability.multiplier}
-              </div>
-            )}
-      </div>
-        )}
+      {isPopupOpen && <LetterPopup letter={letter} onClose={ () => setIsPopupOpen(false)}/>}
     </div>
   )
 })

@@ -9,11 +9,11 @@ export const Submit: React.FC = observer(() => {
 
   return (
     <>
-      <div className="submit-area">
+      <div className="submit-area" style={{marginBottom: 20 }}>
         <button className="clear-button" onClick={onClear}>Clear</button>
         {isValidText}
       </div>
-      <button onClick={() => getBestWords(game!)}>Solve</button>
+      <button onClick={() => getBestWords(game!)}>Compute possibilities</button>
     </>
   )
 })
