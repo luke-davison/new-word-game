@@ -1,13 +1,16 @@
 .player-area {
   position: relative;
   overflow-x: auto;
-  height: 140px;
+  height: 180px;
   max-width: calc(100vw - 40px);
-  padding-top: 40px;
 }
 
 .player-area-background, .player-area-word-area {
   display: flex;
+}
+
+.player-area-word-area {
+  padding-top: 40px;
 }
 
 .player-area-background {
