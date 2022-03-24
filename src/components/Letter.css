@@ -57,12 +57,13 @@
 .letter-points {
   right: -4px;
   top: -7px;
+  font-size: 18px;
 }
 
 .letter-ability {
   position: absolute;
   bottom: -13px;
-  left: -2px;
+  left: 4px;
   width: 46px;
 }
 
@@ -84,8 +85,8 @@
 
 
 .letter-ability-points, .letter-ability-multiplier {
-  font-size: 12px;
-  right: 0px;
+  font-size: 16px;
+  right: -7px;
   top: 0px;
 }
 

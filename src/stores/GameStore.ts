@@ -6,8 +6,6 @@ import { getWildAbility } from '../utils/getAbilities';
 import { getLettersFromGame } from '../utils/getLettersFromGame';
 import { getIsValidWord } from '../utils/getWordlist';
 
-let running = false
-
 export class GameStore {
   constructor(game: Game | undefined) {
     makeObservable(this, {
@@ -30,6 +28,11 @@ export class GameStore {
 
     this.game = game
 
+    runInAction(() => {
+      this.bestWord = window.localStorage.getItem(`${game?.date}-word`) || ""
+      this.bestWordScore = Number(window.localStorage.getItem(`${game?.date}-score`) || 0)
+    })
+
     reaction(() => this.wordLetters, () => {
       this.isValidText = undefined
       window.clearTimeout(this.validWordTimeout)
@@ -37,10 +40,13 @@ export class GameStore {
         if (this.isCompleteWord) {
           if (this.isValidWord) {
             this.isValidText = "Valid word"
-            if (this.wordPoints > (this.bestWordScore || 0)) {
+            if (this.wordPoints >= (this.bestWordScore || 0)) {
               this.bestWordScore = this.wordPoints;
               const str = this.playerWord.map((letter) => letter.letter).join("")
               this.bestWord = str[0].toUpperCase() + str.slice(1)
+              console.log('doling')
+              window.localStorage.setItem(`${this.game?.date}-word`, this.bestWord)
+              window.localStorage.setItem(`${this.game?.date}-score`, String(this.bestWordScore))
             }
           } else if (this.money < 0) {
             this.isValidText = "Not enough money"
