@@ -14,11 +14,15 @@ export class AppStore {
       returnToMenu: action,
       dailyGameInProgress: observable,
       goToPreviousDailyGame: action,
-      goToNextDailyGame: action
+      goToNextDailyGame: action,
+      isDevMode: observable,
+      toggleDevMode: action
     })
 
-    this.loadPlayer();
+    // this.loadPlayer();
   }
+
+  isDevMode: boolean = false;
 
   playerId: string = ""
   playerName: string = ""
@@ -81,5 +85,9 @@ export class AppStore {
     if (this.dailyGameInProgress) {
       this.dailyGameInProgress = new Date(this.dailyGameInProgress.getFullYear(), this.dailyGameInProgress.getMonth(), this.dailyGameInProgress.getDate() + 1)
     }
+  }
+
+  toggleDevMode = () => {
+    this.isDevMode = !this.isDevMode
   }
 }
