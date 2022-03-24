@@ -2,7 +2,7 @@ import { Abilities, Ability, Game, RawLetter, ShopLetter } from '../models';
 import {
     getDoubleOtherLetterAbility, getInLastPosition, getInPositionAbility, getMaxWordLengthAbility,
     getMinWordLengthAbility, getNextToVowelAbility, getNextToWildAbility, getNotNextToVowelAbility,
-    getPointsPerVowelAbility, getPointsPerWildAbility
+    getPointsPerVowelAbility, getPointsPerWildAbility, getWordLengthAbility
 } from './getAbilities';
 
 export const getLettersFromGame = (game: Game): ShopLetter[] => {
@@ -45,6 +45,10 @@ export const getAbilityFromRawLetter = (rawLetter: RawLetter): Ability | undefin
     case Abilities.OtherInPositionLast: return undefined; // todo
     case Abilities.Vowels: return getPointsPerVowelAbility(abilityPoints);
     case Abilities.Wilds: return getPointsPerWildAbility(abilityPoints);
+    case Abilities.WordLength4: return getWordLengthAbility(abilityPoints, 4);
+    case Abilities.WordLength5: return getWordLengthAbility(abilityPoints, 5);
+    case Abilities.WordLength6: return getWordLengthAbility(abilityPoints, 6);
+    case Abilities.WordLength7: return getWordLengthAbility(abilityPoints, 7);
     default: return undefined;
   }
 }

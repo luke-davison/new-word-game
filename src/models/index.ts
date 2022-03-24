@@ -60,5 +60,9 @@ export enum Abilities {
   OtherInPosition5,
   OtherInPositionLast,
   Vowels,
-  Wilds
+  Wilds,
+  WordLength4,
+  WordLength5,
+  WordLength6,
+  WordLength7
 }
