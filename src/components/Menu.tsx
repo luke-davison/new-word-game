@@ -30,7 +30,7 @@ export const Menu: React.FC = observer(() => {
     return (
       <div className="game-container">
         <Game/>
-        <div>
+        <div className="page-buttons">
           <button onClick={returnToMenu}>Return to menu</button>
           { isPlayingDailyGame && (
             <>
@@ -44,7 +44,7 @@ export const Menu: React.FC = observer(() => {
   }
 
   return (
-    <div className="game-container">
+    <div className="game-container menu-buttons">
       <div>
         <button onClick={startDailyGame}>Daily game</button>
       </div>

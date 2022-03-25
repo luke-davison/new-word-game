@@ -11,9 +11,9 @@ export const Submit: React.FC = observer(() => {
 
   return (
     <>
-      <div className="submit-area" style={{marginBottom: 20 }}>
+      <div className="submit-area" style={{marginBottom: 20, marginTop: 20, textAlign: "center" }}>
+        <div className="status-text" style={{height: 36}}>{isValidText || " "}</div>
         <button className="clear-button" onClick={onClear}>Clear</button>
-        {isValidText}
       </div>
       {isDevMode && <button onClick={() => getBestWords(game!)}>Compute possibilities</button>}
     </>

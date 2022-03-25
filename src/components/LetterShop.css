@@ -3,11 +3,21 @@
   flex-wrap: wrap;
 }
 
+.shop-letter-container {
+  position: relative;
+  margin-top: 30px;
+}
+
 .shop-letter-container:not(:last-child) {
   margin-right: 20px;
 }
 
 .shop-letter-price {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  top: -18px;
+  background-color: limegreen;
+  padding: 2px 5px;
   text-align: center;
-  margin-bottom: 10px;
 }

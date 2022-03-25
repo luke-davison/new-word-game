@@ -10,7 +10,7 @@
 }
 
 .player-area-word-area {
-  padding-top: 40px;
+  padding-top: 60px;
 }
 
 .player-area-background {
@@ -30,12 +30,14 @@
 }
 
 .player-area-background-cell {
-  margin-top: 40px;
-  width: 60px;
-  height: 64px;
+  margin-top: 60px;
+  width: 50px;
+  height: 60px;
   border-radius: 4px;
   border: 1px solid grey;
   background-color: lightgray;
+  padding: 2px 5px;
+  color:  #566573
 }
 
 .player-area-background-cell:not(:first-child) {
