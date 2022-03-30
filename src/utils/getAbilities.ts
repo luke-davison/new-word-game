@@ -28,7 +28,7 @@ import wordLength6 from '../images/word_length_must_be_6.png';
 import wordLength7 from '../images/word_length_must_be_7.png';
 import { Ability, ShopLetter } from '../models';
 
-const isCharacterVowel = (str: string) => {
+export const isCharacterVowel = (str: string) => {
   return str === "a" || str === "e" || str === "i" || str === "o" || str === "u"
 }
 

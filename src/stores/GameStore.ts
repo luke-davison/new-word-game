@@ -28,9 +28,22 @@ export class GameStore {
 
     this.game = game
 
+    if (!this.game) {
+      const money = 15 + Math.floor(Math.random() * 5)
+
+      this.game = {
+        date: String(Math.random()),
+        letters: generateGame(),
+        money: 15 + Math.floor(Math.random() * 5),
+        target: 11 + money,
+        secretTarget: 15 + money,
+        maxTarget: 16 + money
+      }
+    }
+
     runInAction(() => {
-      this.bestWord = window.localStorage.getItem(`${game?.date}-word`) || ""
-      this.bestWordScore = Number(window.localStorage.getItem(`${game?.date}-score`) || 0)
+      this.bestWord = window.localStorage.getItem(`${this.game?.date}-word`) || ""
+      this.bestWordScore = Number(window.localStorage.getItem(`${this.game?.date}-score`) || 0)
     })
 
     reaction(() => this.wordLetters, () => {
@@ -44,7 +57,6 @@ export class GameStore {
               this.bestWordScore = this.wordPoints;
               const str = this.playerWord.map((letter) => letter.letter).join("")
               this.bestWord = str[0].toUpperCase() + str.slice(1)
-              console.log('doling')
               window.localStorage.setItem(`${this.game?.date}-word`, this.bestWord)
               window.localStorage.setItem(`${this.game?.date}-score`, String(this.bestWordScore))
             }
@@ -56,19 +68,11 @@ export class GameStore {
         }
       }, 1500)
     })
-    
-    
-    if (this.game) {
-      this.shopLetters = [
-        ...getLettersFromGame(this.game),
-        { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() }
-      ]
-    } else {
-      this.shopLetters = [
-        ...generateGame(),
-        { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() }
-      ]
-    }
+
+    this.shopLetters = [
+      ...getLettersFromGame(this.game),
+      { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() }
+    ]
   }
   
   game: Game | undefined;

@@ -15,7 +15,7 @@ export const getBestWords = (game: Game) => {
       map.set(points, 1)
     }
     console.log(word, points)
-    if (points > 27) {
+    if (points > 20) {
       words.push({ word, points })
     }
   })

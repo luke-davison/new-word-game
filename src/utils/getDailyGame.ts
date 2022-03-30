@@ -204,6 +204,21 @@ const games: Game[] = [
     secretTarget: 30,
     maxTarget: 30, // checked
     money: 18
+  },
+  { 
+    date: "2022-04-02",
+    letters: [
+      { letter: "g", price: 3, points: 4, ability: Abilities.InPosition2, abilityPoints: 4 },
+      { letter: "r", price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { letter: "a", price: 3, points: 3, ability: Abilities.NextToVowel, abilityPoints: 4 },
+      { letter: "h", price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },
+      { letter: "a", price: 1, points: 2 },
+      { letter: "m", price: 4, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 3 },
+    ],
+    target: 22,
+    secretTarget: 24,
+    maxTarget: 25, // checked
+    money: 15
   }
 ]
 
