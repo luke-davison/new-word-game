@@ -38,7 +38,7 @@ export class GameStore {
       window.clearTimeout(this.validWordTimeout)
       this.validWordTimeout = window.setTimeout(() => {
         if (this.isCompleteWord) {
-          if (this.isValidWord) {
+          if (this.isValidWord && this.money >= 0) {
             this.isValidText = "Valid word"
             if (this.wordPoints >= (this.bestWordScore || 0)) {
               this.bestWordScore = this.wordPoints;
