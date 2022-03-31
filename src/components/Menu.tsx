@@ -4,10 +4,11 @@ import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect } from 'react';
 
 import { AppContext } from '../stores/AppContext';
+import { CalendarPopup } from './CalendarPopup';
 import { Game } from './Game';
 
 export const Menu: React.FC = observer(() => {
-  const { dailyGameInProgress, isDevMode, toggleDevMode, isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame, goToNextDailyGame, goToPreviousDailyGame } = useContext(AppContext)
+  const { isShowingCalendar, toggleIsShowingCalendar ,dailyGameInProgress, isDevMode, toggleDevMode, isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame, goToNextDailyGame, goToPreviousDailyGame } = useContext(AppContext)
 
   useEffect(() => {
     const listener = (event: globalThis.KeyboardEvent) => {
@@ -39,6 +40,9 @@ export const Menu: React.FC = observer(() => {
             </>
           )}
         </div>
+        {(isShowingCalendar || true) && (
+          <CalendarPopup onClose={toggleIsShowingCalendar}/>
+        )}
       </div>
     )
   }

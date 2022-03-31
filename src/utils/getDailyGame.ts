@@ -1,4 +1,5 @@
 import { Abilities, Game } from '../models';
+import { getDateString } from './getDateString';
 
 const games: Game[] = [
   { 
@@ -224,6 +225,6 @@ const games: Game[] = [
 
 export const getDailyGame = (gameDate?: Date): Game | undefined => {
   const date = gameDate || new Date();
-  const todayString = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
+  const todayString = getDateString(date)
   return games.find((game) => game.date === todayString)
 }

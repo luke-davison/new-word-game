@@ -1,5 +1,9 @@
 import { action, makeObservable, observable, runInAction } from 'mobx';
 
+import { ScoreInfo } from '../models';
+import { getDailyGame } from '../utils/getDailyGame';
+import { getDateString } from '../utils/getDateString';
+
 export class AppStore {
   constructor() {
     makeObservable(this, {
@@ -16,10 +20,12 @@ export class AppStore {
       goToPreviousDailyGame: action,
       goToNextDailyGame: action,
       isDevMode: observable,
-      toggleDevMode: action
+      toggleDevMode: action,
+      isShowingCalendar: observable,
+      toggleIsShowingCalendar: action,
+      scoreMap: observable,
+      loadMonthScores: action
     })
-
-    // this.loadPlayer();
   }
 
   isDevMode: boolean = false;
@@ -89,5 +95,38 @@ export class AppStore {
 
   toggleDevMode = () => {
     this.isDevMode = !this.isDevMode
+  }
+
+  isShowingCalendar: boolean = false;
+
+  toggleIsShowingCalendar = () => {
+    this.isShowingCalendar = !this.isShowingCalendar
+  }
+
+  scoreMap: Map<string, ScoreInfo> = new Map()
+
+  loadMonthScores = (date: Date) => {
+    const numDaysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    console.log(numDaysInMonth);
+    ([...Array(numDaysInMonth)]).forEach((x, index) => {
+      
+      const newDate = new Date(date.getFullYear(), date.getMonth(), index + 1)
+      const game = getDailyGame(newDate)
+      
+      console.log(newDate, !!game)
+      if (game) {
+        const dateString = getDateString(newDate)
+        const score = window.localStorage.getItem(`${dateString}-score`)
+        console.log('score', score)
+        console.log(dateString)
+
+        this.scoreMap.set(dateString, {
+          date: dateString,
+          attempted: !!score,
+          metTarget: Number(score) >= game.target,
+          metSecretTarget: Number(score) >= game.secretTarget
+        })
+      }
+    })
   }
 }

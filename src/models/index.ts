@@ -36,6 +36,13 @@ export interface Game {
   money: number;
 }
 
+export interface ScoreInfo {
+  date: string;
+  attempted: boolean;
+  metTarget: boolean;
+  metSecretTarget: boolean;
+}
+
 export enum Abilities {
   InPosition1,
   InPosition2,
