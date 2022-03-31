@@ -39,8 +39,9 @@ export const Menu: React.FC = observer(() => {
               {(!isTodaysGame || isDevMode) && <button onClick={goToNextDailyGame}>Next</button>}
             </>
           )}
+          <button onClick={toggleIsShowingCalendar}>Calendar</button>
         </div>
-        {(isShowingCalendar || true) && (
+        {isShowingCalendar && (
           <CalendarPopup onClose={toggleIsShowingCalendar}/>
         )}
       </div>

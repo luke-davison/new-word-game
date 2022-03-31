@@ -24,7 +24,6 @@ export const Alphabet: React.FC<AlphabetProps> = observer(({ onSelect }) => {
   }, [])
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    console.log(e)
     onSelect(e.key)
   }
 

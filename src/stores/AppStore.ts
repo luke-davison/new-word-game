@@ -107,24 +107,29 @@ export class AppStore {
 
   loadMonthScores = (date: Date) => {
     const numDaysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-    console.log(numDaysInMonth);
     ([...Array(numDaysInMonth)]).forEach((x, index) => {
       
       const newDate = new Date(date.getFullYear(), date.getMonth(), index + 1)
       const game = getDailyGame(newDate)
       
-      console.log(newDate, !!game)
+      const dateString = getDateString(newDate)
       if (game) {
-        const dateString = getDateString(newDate)
         const score = window.localStorage.getItem(`${dateString}-score`)
-        console.log('score', score)
-        console.log(dateString)
 
         this.scoreMap.set(dateString, {
           date: dateString,
+          exists: true,
           attempted: !!score,
           metTarget: Number(score) >= game.target,
           metSecretTarget: Number(score) >= game.secretTarget
+        })
+      } else {
+        this.scoreMap.set(dateString, {
+          date: dateString,
+          exists: false,
+          attempted: false,
+          metTarget: false,
+          metSecretTarget: false
         })
       }
     })

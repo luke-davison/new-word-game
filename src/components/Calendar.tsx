@@ -16,7 +16,6 @@ export const Calendar: React.FC = observer(() => {
   const [dayInCurrentMonth, setDayInCurrentMonth] = useState<Date>(today)
 
   useEffect(() => {
-    console.log('running', dayInCurrentMonth)
     loadMonthScores(dayInCurrentMonth)
   }, [dayInCurrentMonth])
 
@@ -77,7 +76,9 @@ export const Calendar: React.FC = observer(() => {
             const dayString = getDateString(new Date(year, month, index + 1))
             const scoreInfo = scoreMap.get(dayString)
 
-            if (scoreInfo?.metSecretTarget) {
+            if (!scoreInfo?.exists) {
+              className += " calendar-day-not-exists"
+            } else if (scoreInfo?.metSecretTarget) {
               className += " calendar-day-met-secret-target"
             } else if (scoreInfo?.metTarget) {
               className += " calendar-day-met-target"
