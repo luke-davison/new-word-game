@@ -1,7 +1,7 @@
 .calendar-popup {
   position: fixed;
   width: 300px;
-  height: 210px;
+  height: 260px;
   z-index: 10;
   padding: 10px;
   background-color: lightslategray;

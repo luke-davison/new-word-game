@@ -12,12 +12,13 @@ import { getDailyGame } from '../utils/getDailyGame';
 import { GameArea } from './GameArea';
 
 export const Game: React.FC = observer(() => {
-  const { isPlayingDailyGame, dailyGameInProgress } = useContext(AppContext)
+  const appStore = useContext(AppContext)
+  const { isPlayingDailyGame, dailyGameInProgress } = appStore
 
   const [gameStore, setGameStore] = useState<GameStore | undefined>()
 
   useEffect(() => {
-    setGameStore(new GameStore(isPlayingDailyGame ? getDailyGame(dailyGameInProgress) : undefined))
+    setGameStore(new GameStore(appStore, isPlayingDailyGame ? getDailyGame(dailyGameInProgress) : undefined))
   }, [dailyGameInProgress])
   
   const backend = isMobile ? TouchBackend : HTML5Backend

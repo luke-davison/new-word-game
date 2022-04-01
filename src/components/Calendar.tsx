@@ -88,7 +88,9 @@ export const Calendar: React.FC = observer(() => {
 
             return (
               <div key={index} className={className}>
-                <div/>
+                <div>
+                  { index + 1 }
+                </div>
               </div>
             )
           })}

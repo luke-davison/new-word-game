@@ -217,7 +217,7 @@ export const getMaxWordLengthAbility = (points: number, length: number): Ability
   const text = points === 1 ? `scores 1 extra point if word is no more than ${length} letters long` : `scores ${points} extra points if word is no more than ${length} letters long`
   return {
     id: String(nextAbilityId++),
-    image: images[length - 3],
+    image: images[length - 4],
     text,
     points,
     getIsActive: createIsMaxWordLength(length),

@@ -105,33 +105,60 @@ export class AppStore {
 
   scoreMap: Map<string, ScoreInfo> = new Map()
 
+  loadScore = (date: Date): ScoreInfo => {
+    const game = getDailyGame(date)
+      
+    const dateString = getDateString(date)
+    let scoreInfo: ScoreInfo
+
+    if (game) {
+      const score = window.localStorage.getItem(`${dateString}-score`)
+
+      scoreInfo = {
+        date: dateString,
+        exists: true,
+        attempted: !!score,
+        metTarget: Number(score) >= game.target,
+        metSecretTarget: Number(score) >= game.secretTarget
+      }
+    } else {
+      scoreInfo = {
+        date: dateString,
+        exists: false,
+        attempted: false,
+        metTarget: false,
+        metSecretTarget: false
+      }
+    }
+
+    this.scoreMap.set(dateString, scoreInfo)
+
+    return scoreInfo
+  }
+
   loadMonthScores = (date: Date) => {
     const numDaysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     ([...Array(numDaysInMonth)]).forEach((x, index) => {
-      
       const newDate = new Date(date.getFullYear(), date.getMonth(), index + 1)
-      const game = getDailyGame(newDate)
-      
-      const dateString = getDateString(newDate)
-      if (game) {
-        const score = window.localStorage.getItem(`${dateString}-score`)
-
-        this.scoreMap.set(dateString, {
-          date: dateString,
-          exists: true,
-          attempted: !!score,
-          metTarget: Number(score) >= game.target,
-          metSecretTarget: Number(score) >= game.secretTarget
-        })
-      } else {
-        this.scoreMap.set(dateString, {
-          date: dateString,
-          exists: false,
-          attempted: false,
-          metTarget: false,
-          metSecretTarget: false
-        })
-      }
+      this.loadScore(newDate)
     })
+  }
+
+  loadStreakScore = (date: Date = new Date()): number => {
+    let currentDate = date
+    let streak = 0;
+    let streakEnded = false;
+
+    while (!streakEnded) {
+      const scoreInfo = this.loadScore(currentDate)
+      if (scoreInfo.metTarget) {
+        streak++
+        currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - 1)
+      } else {
+        streakEnded = true
+      }
+    }
+
+    return streak
   }
 }

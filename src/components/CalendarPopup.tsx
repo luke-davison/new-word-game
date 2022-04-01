@@ -1,7 +1,8 @@
 import './CalendarPopup.css';
 
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
+import { AppContext } from '../stores/AppContext';
 import { Calendar } from './Calendar';
 
 interface CalendarPopupProps {
@@ -9,6 +10,14 @@ interface CalendarPopupProps {
 }
 
 export const CalendarPopup: React.FC<CalendarPopupProps> = ({ onClose }) => {
+  const { loadStreakScore } = useContext(AppContext)
+  const [streak, setStreak] = useState<number | undefined>()
+
+  useEffect(() => {
+    const streak = loadStreakScore();
+    setStreak(streak)
+  }, [])
+
   useEffect(() => {
     const listener = () => {
       onClose()
@@ -21,6 +30,7 @@ export const CalendarPopup: React.FC<CalendarPopupProps> = ({ onClose }) => {
   return (
     <div className="calendar-popup">
       <Calendar/>
+        <div>{`You have a streak of ${streak}`}</div>
     </div>
   )
 }

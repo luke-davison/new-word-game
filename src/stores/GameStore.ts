@@ -5,9 +5,10 @@ import { generateGame } from '../utils/generateRandomGame';
 import { getWildAbility } from '../utils/getAbilities';
 import { getLettersFromGame } from '../utils/getLettersFromGame';
 import { getIsValidWord } from '../utils/getWordlist';
+import { AppStore } from './AppStore';
 
 export class GameStore {
-  constructor(game: Game | undefined) {
+  constructor(private appStore: AppStore, game: Game | undefined) {
     makeObservable(this, {
       shopLetters: observable,
       playerWordData: observable,
@@ -49,16 +50,22 @@ export class GameStore {
     reaction(() => this.wordLetters, () => {
       this.isValidText = undefined
       window.clearTimeout(this.validWordTimeout)
-      this.validWordTimeout = window.setTimeout(() => {
+      this.validWordTimeout = window.setTimeout(action(() => {
         if (this.isCompleteWord) {
           if (this.isValidWord && this.money >= 0) {
             this.isValidText = "Valid word"
             if (this.wordPoints >= (this.bestWordScore || 0)) {
+              const openCalendar = appStore.isPlayingDailyGame && (this.bestWordScore || 0) < this.game!.target && this.wordPoints >= this.game!.target
+
               this.bestWordScore = this.wordPoints;
               const str = this.playerWord.map((letter) => letter.letter).join("")
               this.bestWord = str[0].toUpperCase() + str.slice(1)
               window.localStorage.setItem(`${this.game?.date}-word`, this.bestWord)
               window.localStorage.setItem(`${this.game?.date}-score`, String(this.bestWordScore))
+
+              if (openCalendar) {
+                appStore.toggleIsShowingCalendar()
+              }
             }
           } else if (this.money < 0) {
             this.isValidText = "Not enough money"
@@ -66,7 +73,7 @@ export class GameStore {
             this.isValidText = "Not a word"
           }
         }
-      }, 1500)
+      }), 1500)
     })
 
     this.shopLetters = [
