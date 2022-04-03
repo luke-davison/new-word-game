@@ -1,8 +1,9 @@
 import { Abilities, Ability, Game, RawLetter, ShopLetter } from '../models';
 import {
-    getDoubleOtherLetterAbility, getInLastPosition, getInPositionAbility, getMaxWordLengthAbility,
-    getMinWordLengthAbility, getNextToVowelAbility, getNextToWildAbility, getNotNextToVowelAbility,
-    getPointsPerVowelAbility, getPointsPerWildAbility, getWordLengthAbility
+    getClubAbility, getDoubleOtherLetterAbility, getFundingAbility, getInLastPosition,
+    getInPositionAbility, getMaxWordLengthAbility, getMinWordLengthAbility, getNextToVowelAbility,
+    getNextToWildAbility, getNotNextToVowelAbility, getPointsPerVowelAbility,
+    getPointsPerWildAbility, getRetainAbility, getWordLengthAbility
 } from './getAbilities';
 
 export const getLettersFromGame = (game: Game): ShopLetter[] => {
@@ -21,6 +22,9 @@ export const getLettersFromGame = (game: Game): ShopLetter[] => {
 export const getAbilityFromRawLetter = (rawLetter: RawLetter): Ability | undefined => {
   const { ability, abilityPoints = 1} = rawLetter
   switch (ability) {
+    case Abilities.Club: return getClubAbility();
+    case Abilities.Funding1: return getFundingAbility(1);
+    case Abilities.Funding2: return getFundingAbility(2);
     case Abilities.InPosition1: return getInPositionAbility(abilityPoints, 0);
     case Abilities.InPosition2: return getInPositionAbility(abilityPoints, 1);
     case Abilities.InPosition3: return getInPositionAbility(abilityPoints, 2);
@@ -43,6 +47,7 @@ export const getAbilityFromRawLetter = (rawLetter: RawLetter): Ability | undefin
     case Abilities.OtherInPosition4: return getDoubleOtherLetterAbility(3);
     case Abilities.OtherInPosition5: return getDoubleOtherLetterAbility(4);
     case Abilities.OtherInPositionLast: return undefined; // todo
+    case Abilities.Retain: return getRetainAbility();
     case Abilities.Vowels: return getPointsPerVowelAbility(abilityPoints);
     case Abilities.Wilds: return getPointsPerWildAbility(abilityPoints);
     case Abilities.WordLength4: return getWordLengthAbility(abilityPoints, 4);

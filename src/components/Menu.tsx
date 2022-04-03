@@ -8,7 +8,7 @@ import { CalendarPopup } from './CalendarPopup';
 import { Game } from './Game';
 
 export const Menu: React.FC = observer(() => {
-  const { isShowingCalendar, toggleIsShowingCalendar ,dailyGameInProgress, isDevMode, toggleDevMode, isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame, goToNextDailyGame, goToPreviousDailyGame } = useContext(AppContext)
+  const { startCampaignGame, isShowingCalendar, toggleIsShowingCalendar ,dailyGameInProgress, isDevMode, toggleDevMode, isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame, goToNextDailyGame, goToPreviousDailyGame } = useContext(AppContext)
 
   useEffect(() => {
     const listener = (event: globalThis.KeyboardEvent) => {
@@ -52,6 +52,9 @@ export const Menu: React.FC = observer(() => {
     <div className="game-container menu-buttons">
       <div>
         <button onClick={startDailyGame}>Daily game</button>
+      </div>
+      <div>
+        <button onClick={startCampaignGame}>Campaign game</button>
       </div>
       <div>
         <button onClick={startRandomGame}>Random game</button>

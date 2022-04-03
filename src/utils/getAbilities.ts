@@ -1,3 +1,6 @@
+import club from '../images/club.png';
+import funding1 from '../images/funding_1.png';
+import funding2 from '../images/funding_2.png';
 import maxWordLength4 from '../images/max_word_length_4.png';
 import maxWordLength5 from '../images/max_word_length_5.png';
 import maxWordLength6 from '../images/max_word_length_6.png';
@@ -19,6 +22,9 @@ import inPosition2 from '../images/position_2.png';
 import inPosition3 from '../images/position_3.png';
 import inPosition4 from '../images/position_4.png';
 import inLastPosition from '../images/position_last.png';
+import retain from '../images/retain.png';
+import retainLeft from '../images/retain_left.png';
+import retainRight from '../images/right.png';
 import vowel from '../images/vowel.png';
 import wild from '../images/wild.png';
 import wilds from '../images/wilds.png';
@@ -26,7 +32,7 @@ import wordLength4 from '../images/word_length_must_be_4.png';
 import wordLength5 from '../images/word_length_must_be_5.png';
 import wordLength6 from '../images/word_length_must_be_6.png';
 import wordLength7 from '../images/word_length_must_be_7.png';
-import { Ability, ShopLetter } from '../models';
+import { Ability, Player, ShopLetter } from '../models';
 
 export const isCharacterVowel = (str: string) => {
   return str === "a" || str === "e" || str === "i" || str === "o" || str === "u"
@@ -279,5 +285,134 @@ export const getWildAbility = (): Ability => {
     text,
     getIsActive: () => true,
     getPoints: () => 0
+  }
+}
+
+export const getRetainAbility = (): Ability => {
+  return {
+    id: String(nextAbilityId++),
+    image: retain,
+    text: "Retain this tile",
+    getIsActive: () => true,
+    getPoints: () => 0,
+    getEndOfGameEffect: (word: ShopLetter[], letter: ShopLetter, player: Player) => {
+      const existingLetter = player.inventory.find(otherLetter => otherLetter.id === letter.id)
+      if (existingLetter) {
+        existingLetter.limit = (existingLetter.limit || 0) + 1
+      } else {
+        const letterToRetain: ShopLetter = {
+          id: letter.id,
+          color: letter.color,
+          letter: letter.letter,
+          price: 0,
+          points: letter.points,
+          ability: letter.ability,
+          limit: 1
+        }
+  
+        player.inventory = [...player.inventory, letterToRetain]
+      }
+      return player
+    }
+  }
+}
+
+export const getRetainLeftAbility = (): Ability => {
+  return {
+    id: String(nextAbilityId++),
+    image: retainLeft,
+    text: "Retain the letter to the left",
+    getIsActive: (word: ShopLetter[], position: number) => {
+      if (position === 0) {
+        return false
+      }
+      return word.some(otherLetter => otherLetter.position === position - 1)
+    },
+    getPoints: () => 0,
+    getEndOfGameEffect: (word: ShopLetter[], letter: ShopLetter, player: Player) => {
+      const leftLetter = word.find(otherLetter => otherLetter.position === (letter.position || 0) - 1)
+      if (leftLetter) {
+        const existingLetter = player.inventory.find(otherLetter => otherLetter.id === leftLetter.id)
+        if (existingLetter) {
+          existingLetter.limit = (existingLetter.limit || 0) + 1
+        } else {
+          const letterToRetain: ShopLetter = {
+            id: leftLetter.id,
+            color: leftLetter.color,
+            letter: leftLetter.letter,
+            price: 0,
+            points: leftLetter.points,
+            ability: leftLetter.ability,
+            limit: 1
+          }
+          player.inventory = [...player.inventory, letterToRetain]
+        }
+      }
+
+      return player
+    }
+  }
+}
+
+export const getRetainRightAbility = (): Ability => {
+  return {
+    id: String(nextAbilityId++),
+    image: retainLeft,
+    text: "Retain the letter to the right",
+    getIsActive: (word: ShopLetter[], position: number) => {
+      return word.some(otherLetter => otherLetter.position === position + 1)
+    },
+    getPoints: () => 0,
+    getEndOfGameEffect: (word: ShopLetter[], letter: ShopLetter, player: Player) => {
+      const rightLetter = word.find(otherLetter => otherLetter.position === (letter.position || 0) + 1)
+      if (rightLetter) {
+        const existingLetter = player.inventory.find(otherLetter => otherLetter.id === rightLetter.id)
+        if (existingLetter) {
+          existingLetter.limit = (existingLetter.limit || 0) + 1
+        } else {
+          const letterToRetain: ShopLetter = {
+            id: rightLetter.id,
+            color: rightLetter.color,
+            letter: rightLetter.letter,
+            price: 0,
+            points: rightLetter.points,
+            ability: rightLetter.ability,
+            limit: 1
+          }
+          player.inventory = [...player.inventory, letterToRetain]
+        }
+      }
+
+      return player
+    }
+  }
+}
+
+export const getClubAbility = (): Ability => {
+  return {
+    id: String(nextAbilityId++),
+    image: club,
+    text: "Join the secret club to get access to rare letters",
+    getIsActive: () => true,
+    getPoints: () => 0,
+    getEndOfGameEffect: (word: ShopLetter[], letter: ShopLetter, player: Player) => {
+      player.isMember = true
+      return player
+    }
+  }
+}
+
+export const getFundingAbility = (funding: number): Ability => {
+  const images = [funding1, funding2]
+  return {
+    id: String(nextAbilityId++),
+    image: images[funding - 1],
+    text: `Gain an extra ${funding} funding each day`,
+    getIsActive: () => true,
+    getPoints: () => 0,
+    getEndOfGameEffect: (word: ShopLetter[], letter: ShopLetter, player: Player) => {
+      player.funding = player.funding + funding
+      return player
+    }
   }
 }

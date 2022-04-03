@@ -15,6 +15,7 @@ export interface ShopLetter {
   points: number;
   ability?: Ability;
   isWild?: boolean;
+  limit?: number;
 }
 
 export interface Ability {
@@ -24,15 +25,17 @@ export interface Ability {
   points?: number;
   multiplier?: number;
   getIsActive: (word: ShopLetter[], position: number) => boolean,
-  getPoints: (word: ShopLetter[], position: number) => number
+  getPoints: (word: ShopLetter[], position: number) => number,
+  getEndOfGameEffect?: (word: ShopLetter[], letter: ShopLetter, player: Player) => Player 
 }
 
 export interface Game {
   date: string;
   letters: RawLetter[];
-  target: number;
-  secretTarget: number;
-  maxTarget: number;
+  memberLetters?: RawLetter[];
+  target?: number;
+  secretTarget?: number;
+  maxTarget?: number;
   money: number;
 }
 
@@ -45,6 +48,9 @@ export interface ScoreInfo {
 }
 
 export enum Abilities {
+  Club,
+  Funding1,
+  Funding2,
   InPosition1,
   InPosition2,
   InPosition3,
@@ -67,10 +73,20 @@ export enum Abilities {
   OtherInPosition4,
   OtherInPosition5,
   OtherInPositionLast,
+  Retain,
+  RetainLeft,
+  RetainRight,
   Vowels,
   Wilds,
   WordLength4,
   WordLength5,
   WordLength6,
   WordLength7
+}
+
+export interface Player {
+  inventory: ShopLetter[],
+  funding: number,
+  isMember?: boolean,
+  points: number
 }

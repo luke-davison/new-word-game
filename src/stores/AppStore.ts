@@ -24,7 +24,11 @@ export class AppStore {
       isShowingCalendar: observable,
       toggleIsShowingCalendar: action,
       scoreMap: observable,
-      loadMonthScores: action
+      loadMonthScores: action,
+      isPlayingCampaignGame: observable,
+      campaignInProgress: observable,
+      campaignDayInProgress: observable,
+      startCampaignGame: action
     })
   }
 
@@ -66,10 +70,19 @@ export class AppStore {
   isPlayingDailyGame: boolean = false
   dailyGameInProgress: Date | undefined = undefined
   isPlayingRandomGame: boolean = false
+  isPlayingCampaignGame: boolean = false
+  campaignInProgress: string | undefined = undefined
+  campaignDayInProgress: number | undefined = undefined
 
   startDailyGame = () => {
     this.isPlayingDailyGame = true
     this.dailyGameInProgress = new Date();
+  }
+
+  startCampaignGame = () => {
+    this.isPlayingCampaignGame = true;
+    this.campaignInProgress = "1";
+    this.campaignDayInProgress = 0;
   }
 
   startRandomGame = () => {
@@ -79,6 +92,7 @@ export class AppStore {
   returnToMenu = () => {
     this.isPlayingDailyGame = false
     this.isPlayingRandomGame = false
+    this.isPlayingCampaignGame = false
   }
 
   goToPreviousDailyGame = () => {
@@ -105,6 +119,7 @@ export class AppStore {
 
   scoreMap: Map<string, ScoreInfo> = new Map()
 
+
   loadScore = (date: Date): ScoreInfo => {
     const game = getDailyGame(date)
       
@@ -118,8 +133,8 @@ export class AppStore {
         date: dateString,
         exists: true,
         attempted: !!score,
-        metTarget: Number(score) >= game.target,
-        metSecretTarget: Number(score) >= game.secretTarget
+        metTarget: Number(score) >= (game.target || 0),
+        metSecretTarget: Number(score) >= (game.secretTarget || 0)
       }
     } else {
       scoreInfo = {

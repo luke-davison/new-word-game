@@ -233,7 +233,7 @@ const games: Game[] = [
     ],
     target: 28,
     secretTarget: 31,
-    maxTarget: 22, // checked
+    maxTarget: 32, // checked
     money: 19
   }
 ]

@@ -55,7 +55,9 @@ export class GameStore {
           if (this.isValidWord && this.money >= 0) {
             this.isValidText = "Valid word"
             if (this.wordPoints >= (this.bestWordScore || 0)) {
-              const openCalendar = appStore.isPlayingDailyGame && (this.bestWordScore || 0) < this.game!.target && this.wordPoints >= this.game!.target
+              const openCalendar = appStore.isPlayingDailyGame
+                && (this.bestWordScore || 0) < (this.game?.target || 0)
+                && this.wordPoints >= (this.game?.target || 0)
 
               this.bestWordScore = this.wordPoints;
               const str = this.playerWord.map((letter) => letter.letter).join("")
