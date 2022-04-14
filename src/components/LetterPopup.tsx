@@ -3,11 +3,11 @@ import './LetterPopup.css';
 import { runInAction } from 'mobx';
 import React, { useEffect } from 'react';
 
-import { ShopLetter } from '../models';
+import { LetterInstance } from '../models/LetterInstance';
 import { Alphabet } from './Alphabet';
 
 interface LetterPopupProps {
-  letter: ShopLetter
+  letter: LetterInstance
   onClose: () => void
 }
 
@@ -22,9 +22,7 @@ export const LetterPopup: React.FC<LetterPopupProps> = ({ letter, onClose }) => 
   }, [])
 
   const onSelect = (character: string) => {
-    runInAction(() => {
-      letter.letter = character
-    })
+    letter.setWildLetter(character)
     onClose()
   }
 

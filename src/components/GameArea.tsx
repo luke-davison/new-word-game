@@ -4,23 +4,23 @@ import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import { useDrop } from 'react-dnd';
 
-import { ShopLetter } from '../models';
+import { LetterInstance } from '../models/LetterInstance';
 import { GameContext } from '../stores/GameContext';
 import { Counters } from './Counters';
+import { GameButtons } from './GameButtons';
 import { LetterShop } from './LetterShop';
 import { PlayerArea } from './PlayerArea';
-import { Submit } from './Submit';
 
 export const GameArea: React.FC = observer(() => {
   const { onDropLetterOutside } = useContext(GameContext)
 
   const [dropOptions, drop] = useDrop({
     accept: ["letter"],
-    drop: (storeLetter: ShopLetter, monitor) => {
+    drop: (letter: LetterInstance, monitor) => {
       if (monitor.didDrop()) {
         return
       }
-      onDropLetterOutside(storeLetter)
+      onDropLetterOutside(letter)
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -33,7 +33,7 @@ export const GameArea: React.FC = observer(() => {
       <LetterShop/>
       <Counters/>
       <PlayerArea/>
-      <Submit/>
+      <GameButtons/>
     </div>
   )
 })

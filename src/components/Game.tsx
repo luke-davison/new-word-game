@@ -6,20 +6,21 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
 
 import { AppContext } from '../stores/AppContext';
+import { CampaignContext } from '../stores/CampaignContext';
 import { GameContext } from '../stores/GameContext';
 import { GameStore } from '../stores/GameStore';
-import { getDailyGame } from '../utils/getDailyGame';
 import { GameArea } from './GameArea';
 
 export const Game: React.FC = observer(() => {
   const appStore = useContext(AppContext)
-  const { isPlayingDailyGame, dailyGameInProgress } = appStore
+  const { dailyGameInProgress } = appStore
+  const campaignStore = useContext(CampaignContext)
 
   const [gameStore, setGameStore] = useState<GameStore | undefined>()
 
   useEffect(() => {
-    setGameStore(new GameStore(appStore, isPlayingDailyGame ? getDailyGame(dailyGameInProgress) : undefined))
-  }, [dailyGameInProgress])
+    setGameStore(new GameStore({ appStore, campaignStore }))
+  }, [dailyGameInProgress, campaignStore.campaignId, campaignStore.campaignDay])
   
   const backend = isMobile ? TouchBackend : HTML5Backend
 

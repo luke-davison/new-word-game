@@ -1,4 +1,4 @@
-import { ShopLetter } from '../models';
+import { LetterInstance } from '../models/LetterInstance';
 
 export const wordlist: string[] = ['aardvark', 
 'aardwolf', 
@@ -58111,7 +58111,7 @@ export const wordlist: string[] = ['aardvark',
 'zulu', 
 'zulus'];
 
-export const getIsValidWord = (word: ShopLetter[]): boolean => {
+export const getIsValidWord = (word: LetterInstance[]): boolean => {
   const highestPosition = word.reduce((high, letter) => {
     const { position = 0 } = letter
     return position > high ? position : high

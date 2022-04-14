@@ -2,17 +2,22 @@ import './LetterShop.css';
 
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
-import { useDrag } from 'react-dnd';
 
+import { AppContext } from '../stores/AppContext';
 import { GameContext } from '../stores/GameContext';
 import { DraggableLetter } from './DraggableLetter';
 
-export const LetterShop: React.FC = observer(() => {
-  const { shopLetters, onQuickAddLetter } = useContext(GameContext)
+export const Inventory: React.FC = observer(() => {
+  const { isPlayingCampaignGame } = useContext(AppContext)
+  const { inventory, onQuickAddLetter } = useContext(GameContext)
+
+  if (!isPlayingCampaignGame) {
+    return null
+  }
 
   return (
     <div className="shop-container">
-      { shopLetters.map((shopLetter, index) => (
+      { inventory.map((shopLetter, index) => (
         <div key={index} className="shop-letter-container" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
           <div className="shop-letter-price">
             {"$" + shopLetter.price}

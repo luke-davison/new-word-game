@@ -1,4 +1,5 @@
-import { Abilities, Ability, Game, RawLetter, ShopLetter } from '../models';
+import { Abilities, Ability, Game, RawLetter } from '../models';
+import { Letter } from '../models/Letter';
 import {
     getClubAbility, getDoubleOtherLetterAbility, getFundingAbility, getInLastPosition,
     getInPositionAbility, getMaxWordLengthAbility, getMinWordLengthAbility, getNextToVowelAbility,
@@ -6,16 +7,15 @@ import {
     getPointsPerWildAbility, getRetainAbility, getWordLengthAbility
 } from './getAbilities';
 
-export const getLettersFromGame = (game: Game): ShopLetter[] => {
+export const getLettersFromGame = (game: Game): Letter[] => {
   return game.letters.map((letter, index) => {
-    return {
-      id: letter.letter + String(index),
+    return new Letter({
       letter: letter.letter,
       color: index + 1,
       price: letter.price,
       points: letter.points,
       ability: getAbilityFromRawLetter(letter)
-    }
+    })
   })
 }
 

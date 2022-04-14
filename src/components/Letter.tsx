@@ -3,11 +3,11 @@ import './Letter.css';
 import { observer } from 'mobx-react-lite';
 import { useContext, useState } from 'react';
 
-import { ShopLetter } from '../models';
+import { LetterInstance } from '../models/LetterInstance';
 import { GameContext } from '../stores/GameContext';
 import { LetterPopup } from './LetterPopup';
 
-export const Letter: React.FC<{ letter: ShopLetter }> = observer(({ letter }) => {
+export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }) => {
   const { playerWord } = useContext(GameContext)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
 

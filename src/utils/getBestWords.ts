@@ -1,4 +1,6 @@
-import { Game, ShopLetter } from '../models';
+import { Game } from '../models';
+import { Letter } from '../models/Letter';
+import { LetterInstance } from '../models/LetterInstance';
 import { getWildAbility } from './getAbilities';
 import { getLettersFromGame } from './getLettersFromGame';
 import { getIsValidWord, wordlist } from './getWordlist';
@@ -24,19 +26,21 @@ export const getBestWords = (game: Game) => {
 }
 
 export const calculateBestScoreForWord = (game: Game, word: string): number => {
+  const wild: Letter = new Letter({ color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() })
+
   const shop = getLettersFromGame(game)
 
   const letters = word.split("")
 
-  const doThing = (wordSoFar: ShopLetter[], lettersRemaining: string[]): number => {
+  const doThing = (wordSoFar: LetterInstance[], lettersRemaining: string[]): number => {
     const [nextLetter,  ...otherLetters] = lettersRemaining
     
-    const scoreIfNotWild = shop.reduce((highestScore: number, shopLetter: ShopLetter): number => {
+    const scoreIfNotWild = shop.reduce((highestScore: number, shopLetter: Letter): number => {
       if (nextLetter !== shopLetter.letter) {
         return highestScore
       }
 
-      const newWordSoFar = [...wordSoFar, {...shopLetter, position: wordSoFar.length }]
+      const newWordSoFar = [...wordSoFar, new LetterInstance(shopLetter, wordSoFar.length)]
 
       if (otherLetters.length === 0) {
         const score = scoreWord(newWordSoFar, game.money)
@@ -47,7 +51,9 @@ export const calculateBestScoreForWord = (game: Game, word: string): number => {
       return Math.max(thingScore, highestScore)
     }, 0)
 
-    const newWordSoFar: ShopLetter[] = [...wordSoFar, { id: "?", position: wordSoFar.length, color: 0, letter: nextLetter, price: 1, points: 0, isWild: true, ability: getWildAbility() }]
+    const wildInstance = new LetterInstance(wild, wordSoFar.length)
+    wildInstance.setWildLetter(nextLetter)
+    const newWordSoFar: LetterInstance[] = [...wordSoFar, wildInstance]
 
     if (otherLetters.length === 0) {
       const score = scoreWord(newWordSoFar, game.money)
@@ -61,7 +67,7 @@ export const calculateBestScoreForWord = (game: Game, word: string): number => {
   return doThing([], letters)
 }
 
-export const scoreWord = (word: ShopLetter[], money: number) => {
+export const scoreWord = (word: LetterInstance[], money: number) => {
   const isValid = getIsValidWord(word)
   const isUnderBudget = word.reduce((sum, letter) => sum + letter.price, 0) <= money
   if (!isValid || !isUnderBudget) {

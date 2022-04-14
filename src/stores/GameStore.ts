@@ -1,19 +1,38 @@
 import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
 
-import { Game, ShopLetter } from '../models';
+import { Game } from '../models';
+import { Letter } from '../models/Letter';
+import { LetterInstance } from '../models/LetterInstance';
 import { generateGame } from '../utils/generateRandomGame';
 import { getWildAbility } from '../utils/getAbilities';
+import { getCampaignGame } from '../utils/getCampaignGame';
+import { getDailyGame } from '../utils/getDailyGame';
 import { getLettersFromGame } from '../utils/getLettersFromGame';
 import { getIsValidWord } from '../utils/getWordlist';
 import { AppStore } from './AppStore';
+import { CampaignStore } from './CampaignStore';
+
+interface Stores {
+  appStore: AppStore,
+  campaignStore?: CampaignStore
+}
 
 export class GameStore {
-  constructor(private appStore: AppStore, game: Game | undefined) {
+  get appStore() {
+    return this.stores.appStore
+  }
+
+  get campaignStore() {
+    return this.stores.campaignStore
+  }
+
+  constructor(private stores: Stores) {
     makeObservable(this, {
-      shopLetters: observable,
+      _shopLetters: observable,
       playerWordData: observable,
       money: computed,
       isValidWord: computed,
+      isRealWord: computed,
       wordPoints: computed,
       onDropLetter: action,
       onDropLetterBetween: action,
@@ -27,9 +46,11 @@ export class GameStore {
       wordLetters: computed
     })
 
-    this.game = game
-
-    if (!this.game) {
+    if (this.appStore.isPlayingDailyGame) {
+      this.game = getDailyGame(this.appStore.dailyGameInProgress)
+    } else if (this.appStore.isPlayingCampaignGame && this.campaignStore) {
+      this.game = getCampaignGame(this.campaignStore.campaignId, this.campaignStore.campaignDay)
+    } else {
       const money = 15 + Math.floor(Math.random() * 5)
 
       this.game = {
@@ -52,10 +73,10 @@ export class GameStore {
       window.clearTimeout(this.validWordTimeout)
       this.validWordTimeout = window.setTimeout(action(() => {
         if (this.isCompleteWord) {
-          if (this.isValidWord && this.money >= 0) {
+          if (this.isValidWord) {
             this.isValidText = "Valid word"
             if (this.wordPoints >= (this.bestWordScore || 0)) {
-              const openCalendar = appStore.isPlayingDailyGame
+              const openCalendar = this.appStore.isPlayingDailyGame
                 && (this.bestWordScore || 0) < (this.game?.target || 0)
                 && this.wordPoints >= (this.game?.target || 0)
 
@@ -66,7 +87,7 @@ export class GameStore {
               window.localStorage.setItem(`${this.game?.date}-score`, String(this.bestWordScore))
 
               if (openCalendar) {
-                appStore.toggleIsShowingCalendar()
+                this.appStore.toggleIsShowingCalendar()
               }
             }
           } else if (this.money < 0) {
@@ -78,20 +99,32 @@ export class GameStore {
       }), 1500)
     })
 
-    this.shopLetters = [
-      ...getLettersFromGame(this.game),
-      { id: "?", color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() }
+    this._shopLetters = [
+      ...getLettersFromGame(this.game!),
+      new Letter({ color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility()})
     ]
   }
   
   game: Game | undefined;
   
-  shopLetters: ShopLetter[] = []
-  letterCount: number = 3
+  _shopLetters: Letter[] = []
+  get shopLetters(): LetterInstance[] {
+    return this._shopLetters.map((letter) => {
+      return new LetterInstance(letter)
+    })
+  }
+
+  get inventory(): LetterInstance[] {
+    const availableLetters = this.campaignStore?.player.inventory.filter(letter => letter.limit !== 0) || []
+
+    return availableLetters.map((letter) => {
+      return new LetterInstance(letter)
+    })
+  }
   
-  playerWordData: ShopLetter[] = []
+  playerWordData: LetterInstance[] = []
   
-  get playerWord(): ShopLetter[] {
+  get playerWord(): LetterInstance[] {
     return Array.from(this.playerWordData).sort((a, b) => {
       return (a.position || 0) - (b.position || 0)
     })
@@ -105,8 +138,12 @@ export class GameStore {
     return this.totalMoney - this.playerWord.reduce((sum, letter) => sum + letter.price, 0)
   }
   
-  get isValidWord() {
+  get isRealWord() {
     return getIsValidWord(this.playerWord)
+  }
+
+  get isValidWord() {
+    return this.isRealWord && this.money >= 0
   }
   
   get isCompleteWord() {
@@ -155,14 +192,18 @@ export class GameStore {
   bestWord: string | undefined
   bestWordScore: number | undefined
   
-  onDropLetter = (letter: ShopLetter, position: number) => {
+  onDropLetter = (letter: LetterInstance, position: number) => {
+    letter.setPosition(position)
+    letter.parent.onPlaceLetter()
+
+
     this.playerWordData = [
-      ...this.playerWord.filter((otherLetter) => otherLetter.position !== position && (letter.position === undefined || otherLetter.position !== letter.position)),
-      { ...letter, position }
+      ...this.playerWord.filter((otherLetter) => otherLetter.id !== letter.id && (letter.position === undefined || otherLetter.position !== letter.position)),
+      letter
     ]
   }
 
-  onDropLetterBetween = (letter: ShopLetter, position: number) => {
+  onDropLetterBetween = (letter: LetterInstance, position: number) => {
     const findNextEmpty = (nextPosition: number): number => {
       if (this.playerWord.some(letter => letter.position === nextPosition)) {
         return findNextEmpty(nextPosition + 1)
@@ -177,30 +218,30 @@ export class GameStore {
         existingLetter.position = (existingLetter.position || 0) + 1
       }
     }
-    this.playerWordData.push({ ...letter, position })
+
+    letter.setPosition(position) 
+    this.playerWordData.push(letter)
   }
 
-  onDropLetterOutside = (letter: ShopLetter) => {
+  onDropLetterOutside = (letter: LetterInstance) => {
     if (letter.position !== undefined) {
-      this.playerWordData = this.playerWord.filter((otherLetter) => otherLetter.position !== letter.position)
+      this.playerWordData = this.playerWord.filter((otherLetter) => otherLetter.id !== letter.id)
     }
   }
 
-  onClickLetter = (letter: ShopLetter) => {
+  onClickLetter = (letter: LetterInstance) => {
     if (letter.isWild) {
       setTimeout(() => {
         // check whether letter has been removed
         if (this.playerWord.some((otherLetter) => otherLetter.id === letter.id)) {
           const newValue = prompt("Enter a letter");
-          runInAction(() => {
-            letter.letter = newValue || ""
-          })
+          letter.setWildLetter(newValue || "")
         }
       }, 300)
     }
   }
 
-  onQuickAddLetter = (letter: ShopLetter) => {
+  onQuickAddLetter = (letter: LetterInstance) => {
     let nextPosition = 0;
     while (this.playerWord.some((otherLetter) => otherLetter.position === nextPosition)) {
       nextPosition++
@@ -208,7 +249,7 @@ export class GameStore {
     this.onDropLetter(letter, nextPosition)
   }
 
-  onQuickRemoveLetter = (letter: ShopLetter) => {
+  onQuickRemoveLetter = (letter: LetterInstance) => {
     this.onDropLetterOutside(letter)
   }
 

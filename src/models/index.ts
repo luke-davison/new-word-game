@@ -1,3 +1,6 @@
+import { Letter } from './Letter';
+import { LetterInstance } from './LetterInstance';
+
 export interface RawLetter {
   letter: string;
   price: number;
@@ -6,27 +9,15 @@ export interface RawLetter {
   abilityPoints?: number;
 }
 
-export interface ShopLetter {
-  id: string;
-  position?: number;
-  color: number;
-  letter: string;
-  price: number;
-  points: number;
-  ability?: Ability;
-  isWild?: boolean;
-  limit?: number;
-}
-
 export interface Ability {
   id: string;
   image: string;
   text: string;
   points?: number;
   multiplier?: number;
-  getIsActive: (word: ShopLetter[], position: number) => boolean,
-  getPoints: (word: ShopLetter[], position: number) => number,
-  getEndOfGameEffect?: (word: ShopLetter[], letter: ShopLetter, player: Player) => Player 
+  getIsActive: (word: LetterInstance[], position: number) => boolean,
+  getPoints: (word: LetterInstance[], position: number) => number,
+  getEndOfGameEffect?: (word: LetterInstance[], letter: LetterInstance, player: Player) => Player 
 }
 
 export interface Game {
@@ -85,7 +76,7 @@ export enum Abilities {
 }
 
 export interface Player {
-  inventory: ShopLetter[],
+  inventory: Letter[],
   funding: number,
   isMember?: boolean,
   points: number

@@ -4,9 +4,9 @@ import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 import { useDrop } from 'react-dnd';
 
-import { ShopLetter } from '../models';
+import { LetterInstance } from '../models/LetterInstance';
 import { GameContext } from '../stores/GameContext';
-import { LetterShopLetter } from './LetterShop';
+import { DraggableLetter } from './DraggableLetter';
 import { WordSpacePoints } from './WordSpacePoints';
 
 export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceIndex }) => {
@@ -15,7 +15,7 @@ export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceInde
   const letter = playerWord.find((letter) => letter.position === spaceIndex)
   const [{ isOver }, drop] = useDrop({
     accept: ["letter"],
-    drop: (storeLetter: ShopLetter) => onDropLetter(storeLetter, spaceIndex),
+    drop: (storeLetter: LetterInstance) => onDropLetter(storeLetter, spaceIndex),
     collect: (monitor) => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop(),
@@ -31,7 +31,7 @@ export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceInde
   return (
     <div ref={drop} className="player-area-space" onDoubleClick={onDoubleClick}>
       {letter && (
-        <LetterShopLetter letter={letter}/>
+        <DraggableLetter letter={letter}/>
       )}
       {isOver && (
         <div className="player-space-drop-overlay"/>
