@@ -7,8 +7,8 @@ import {
     getPointsPerWildAbility, getRetainAbility, getWordLengthAbility
 } from './getAbilities';
 
-export const getLettersFromGame = (game: Game): Letter[] => {
-  return game.letters.map((letter, index) => {
+export const getLettersFromRawLetters = (rawLetters: RawLetter[] = []): Letter[] => {
+  return rawLetters.map((letter, index) => {
     return new Letter({
       letter: letter.letter,
       color: index + 1,

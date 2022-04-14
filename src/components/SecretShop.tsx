@@ -8,19 +8,26 @@ import { CampaignContext } from '../stores/CampaignContext';
 import { GameContext } from '../stores/GameContext';
 import { DraggableLetter } from './DraggableLetter';
 
-export const Inventory: React.FC = observer(() => {
+export const SecretShop: React.FC = observer(() => {
   const { isPlayingCampaignGame } = useContext(AppContext)
   const campaignStore = useContext(CampaignContext)
-  const { inventory, onQuickAddLetter } = useContext(GameContext)
+  const { secretShopLetters, onQuickAddLetter } = useContext(GameContext)
 
   if (!isPlayingCampaignGame) {
     return null
   }
 
+  if (!campaignStore.player.isMember || secretShopLetters.length === 0) {
+    return null
+  }
+
   return (
     <div className="shop-container">
-      { inventory.map((shopLetter, index) => (
+      { secretShopLetters.map((shopLetter, index) => (
         <div key={index} className="shop-letter-container" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
+          <div className="shop-letter-price">
+            {"$" + shopLetter.price}
+          </div>
           <DraggableLetter letter={shopLetter}/>
         </div>
       ))}

@@ -12,7 +12,7 @@ export const getCampaignGame = (id: string, day: number): Game | undefined => {
               { letter: "e", price: 1, points: 2 },
               { letter: "r", price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
               { letter: "i", price: 4, points: 4, ability: Abilities.NextToVowel, abilityPoints: 3 },
-              { letter: "t", price: 3, points: 2, ability: Abilities.Retain },
+              { letter: "t", price: 4, points: 2, ability: Abilities.Retain },
             ],
             money: 15
           }
@@ -35,16 +35,28 @@ export const getCampaignGame = (id: string, day: number): Game | undefined => {
               { letter: "b", price: 4, points: 3, ability: Abilities.Funding2 },
               { letter: "u", price: 1, points: 2 },
               { letter: "l", price: 3, points: 3, ability: Abilities.InPosition4, abilityPoints: 4 },
-              { letter: "b", price: 3, points: 4, ability: Abilities.Retain },
+              { letter: "b", price: 3, points: 2, ability: Abilities.Retain },
               { letter: "s", price: 3, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
             ],
-            money: 15
+            money: 15,
+            memberLetters: [
+              { letter: "z", price: 1, points: 3 }
+            ]
           }
         case 3:
           return {
             date: "2022-04-06",
-            letters: [],
-            money: 15
+            letters: [
+              { letter: "s", price: 4, points: 2, ability: Abilities.RetainRight },
+              { letter: "a", price: 1, points: 2 },
+              { letter: "u", price: 5, points: 8 },
+              { letter: "n", price: 4, points: 3, ability: Abilities.MinWordLength7, abilityPoints: 4 },
+              { letter: "a", price: 4, points: 3, ability: Abilities.Funding2 },
+            ],
+            money: 15,
+            memberLetters: [
+              { letter: "q", price: 1, points: 3 }
+            ]
           }
         case 4:
           return {

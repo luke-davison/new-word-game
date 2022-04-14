@@ -7,7 +7,7 @@ import { generateGame } from '../utils/generateRandomGame';
 import { getWildAbility } from '../utils/getAbilities';
 import { getCampaignGame } from '../utils/getCampaignGame';
 import { getDailyGame } from '../utils/getDailyGame';
-import { getLettersFromGame } from '../utils/getLettersFromGame';
+import { getLettersFromRawLetters } from '../utils/getLettersFromRawLetters';
 import { getIsValidWord } from '../utils/getWordlist';
 import { AppStore } from './AppStore';
 import { CampaignStore } from './CampaignStore';
@@ -43,7 +43,11 @@ export class GameStore {
       bestWord: observable,
       bestWordScore: observable,
       onClear: action,
-      wordLetters: computed
+      wordLetters: computed,
+      inventory: computed,
+      _secretShopLetters: observable,
+      shopLetters: computed,
+      secretShopLetters: computed
     })
 
     if (this.appStore.isPlayingDailyGame) {
@@ -100,9 +104,11 @@ export class GameStore {
     })
 
     this._shopLetters = [
-      ...getLettersFromGame(this.game!),
+      ...getLettersFromRawLetters(this.game?.letters),
       new Letter({ color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility()})
     ]
+
+    this._secretShopLetters = getLettersFromRawLetters(this.game?.memberLetters)
   }
   
   game: Game | undefined;
@@ -121,6 +127,17 @@ export class GameStore {
       return new LetterInstance(letter)
     })
   }
+
+  _secretShopLetters: Letter[] = []
+  get secretShopLetters(): LetterInstance[] {
+    if (!this.campaignStore?.player.isMember) {
+      return []
+    }
+
+    return this._secretShopLetters.map((letter) => {
+      return new LetterInstance(letter)
+    })
+  }
   
   playerWordData: LetterInstance[] = []
   
@@ -131,7 +148,11 @@ export class GameStore {
   }
   
   get totalMoney(): number {
-    return this.game?.money || 18
+    let money = this.game?.money || 18
+    if (this.appStore.isPlayingCampaignGame && this.campaignStore) {
+      money += this.campaignStore.player.funding
+    }
+    return money
   }
   
   get money() {
@@ -192,10 +213,21 @@ export class GameStore {
   bestWord: string | undefined
   bestWordScore: number | undefined
   
-  onDropLetter = (letter: LetterInstance, position: number) => {
-    letter.setPosition(position)
-    letter.parent.onPlaceLetter()
+  onDropLetter = (droppedLetter: LetterInstance, position: number) => {
+    let letter: LetterInstance
+    if (droppedLetter.position === undefined) {
+      letter = new LetterInstance(droppedLetter.parent, position)
+      letter.parent.onPlaceLetter()
+    } else {
+      letter = droppedLetter
+      letter.setPosition(position)
+    }
 
+    if (letter.position === undefined) {
+      letter.parent.onPlaceLetter()
+    }
+
+    letter.setPosition(position)
 
     this.playerWordData = [
       ...this.playerWord.filter((otherLetter) => otherLetter.id !== letter.id && (letter.position === undefined || otherLetter.position !== letter.position)),
@@ -203,7 +235,7 @@ export class GameStore {
     ]
   }
 
-  onDropLetterBetween = (letter: LetterInstance, position: number) => {
+  onDropLetterBetween = (droppedLetter: LetterInstance, position: number) => {
     const findNextEmpty = (nextPosition: number): number => {
       if (this.playerWord.some(letter => letter.position === nextPosition)) {
         return findNextEmpty(nextPosition + 1)
@@ -219,13 +251,22 @@ export class GameStore {
       }
     }
 
-    letter.setPosition(position) 
+    let letter: LetterInstance
+    if (droppedLetter.position === undefined) {
+      letter = new LetterInstance(droppedLetter.parent, position)
+      letter.parent.onPlaceLetter()
+    } else {
+      letter = droppedLetter
+      letter.setPosition(position) 
+    }
+
     this.playerWordData.push(letter)
   }
 
   onDropLetterOutside = (letter: LetterInstance) => {
     if (letter.position !== undefined) {
       this.playerWordData = this.playerWord.filter((otherLetter) => otherLetter.id !== letter.id)
+      letter.parent.onUnplaceLetter()
     }
   }
 

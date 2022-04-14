@@ -11,10 +11,10 @@ import { getBestWords } from '../utils/getBestWords';
 export const GameButtons: React.FC = observer(() => {
   const { isDevMode } = useContext(AppContext)
   const campaignStore = useContext(CampaignContext)
-  const { game, playerWord, money, onClear, isValidText, isValidWord } = useContext(GameContext)
+  const { game, playerWord, wordPoints, onClear, isValidText, isValidWord } = useContext(GameContext)
 
   const onSubmit = () => {
-    campaignStore.onSubmit(playerWord, money)
+    campaignStore.onSubmit(playerWord, wordPoints)
   }
 
   return (

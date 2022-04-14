@@ -2,7 +2,7 @@ import { Game } from '../models';
 import { Letter } from '../models/Letter';
 import { LetterInstance } from '../models/LetterInstance';
 import { getWildAbility } from './getAbilities';
-import { getLettersFromGame } from './getLettersFromGame';
+import { getLettersFromRawLetters } from './getLettersFromRawLetters';
 import { getIsValidWord, wordlist } from './getWordlist';
 
 export const getBestWords = (game: Game) => {
@@ -28,7 +28,7 @@ export const getBestWords = (game: Game) => {
 export const calculateBestScoreForWord = (game: Game, word: string): number => {
   const wild: Letter = new Letter({ color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() })
 
-  const shop = getLettersFromGame(game)
+  const shop = getLettersFromRawLetters(game.letters)
 
   const letters = word.split("")
 

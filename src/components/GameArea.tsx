@@ -6,10 +6,13 @@ import { useDrop } from 'react-dnd';
 
 import { LetterInstance } from '../models/LetterInstance';
 import { GameContext } from '../stores/GameContext';
+import { CampaignCounters } from './CampaignCounters';
 import { Counters } from './Counters';
 import { GameButtons } from './GameButtons';
+import { Inventory } from './Inventory';
 import { LetterShop } from './LetterShop';
 import { PlayerArea } from './PlayerArea';
+import { SecretShop } from './SecretShop';
 
 export const GameArea: React.FC = observer(() => {
   const { onDropLetterOutside } = useContext(GameContext)
@@ -33,6 +36,9 @@ export const GameArea: React.FC = observer(() => {
       <LetterShop/>
       <Counters/>
       <PlayerArea/>
+      <CampaignCounters/>
+      <Inventory/>
+      <SecretShop/>
       <GameButtons/>
     </div>
   )

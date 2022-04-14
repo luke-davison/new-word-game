@@ -26,13 +26,14 @@ export class CampaignStore {
   campaignDay: number
   player: Player
 
-  onSubmit(word: LetterInstance[], money: number) {
-    console.log('submitting')
+  onSubmit(word: LetterInstance[], points: number) {
     word.forEach((letter) => {
       if (letter.ability?.getEndOfGameEffect) {
         letter.ability?.getEndOfGameEffect(word, letter, this.player)
       }
     })
+
+    this.player.points += points
 
     this.campaignDay++
   }
