@@ -1,25 +1,28 @@
-import { Abilities, Ability, Game, RawLetter } from '../models';
-import { Letter } from '../models/Letter';
+
+import { ILetter } from '../../common/datamodels';
+import { Abilities } from '../../common/enums';
+import { IGameAbility, Letter } from '../models';
 import {
     getClubAbility, getDoubleOtherLetterAbility, getFundingAbility, getInLastPosition,
     getInPositionAbility, getMaxWordLengthAbility, getMinWordLengthAbility, getNextToVowelAbility,
     getNextToWildAbility, getNotNextToVowelAbility, getPointsPerVowelAbility,
-    getPointsPerWildAbility, getRetainAbility, getWordLengthAbility
+    getPointsPerWildAbility, getRetainAbility, getRetainLeftAbility, getRetainRightAbility,
+    getWordLengthAbility
 } from './getAbilities';
 
-export const getLettersFromRawLetters = (rawLetters: RawLetter[] = []): Letter[] => {
-  return rawLetters.map((letter, index) => {
+export const setupLetters = (letters: ILetter[] = []): Letter[] => {
+  return letters.map((letter, index) => {
     return new Letter({
-      letter: letter.letter,
+      char: letter.char,
       color: index + 1,
       price: letter.price,
       points: letter.points,
-      ability: getAbilityFromRawLetter(letter)
+      ability: setupAbility(letter)
     })
   })
 }
 
-export const getAbilityFromRawLetter = (rawLetter: RawLetter): Ability | undefined => {
+export const setupAbility = (rawLetter: ILetter): IGameAbility | undefined => {
   const { ability, abilityPoints = 1} = rawLetter
   switch (ability) {
     case Abilities.Club: return getClubAbility();
@@ -41,13 +44,15 @@ export const getAbilityFromRawLetter = (rawLetter: RawLetter): Ability | undefin
     case Abilities.NextToVowel: return getNextToVowelAbility(abilityPoints);
     case Abilities.NextToWild: return getNextToWildAbility(abilityPoints);
     case Abilities.NotNextToVowel: return getNotNextToVowelAbility(abilityPoints);
+    case Abilities.NotNextToWild: return getNotNextToVowelAbility(abilityPoints);
     case Abilities.OtherInPosition1: return getDoubleOtherLetterAbility(0);
     case Abilities.OtherInPosition2: return getDoubleOtherLetterAbility(1);
     case Abilities.OtherInPosition3: return getDoubleOtherLetterAbility(2);
     case Abilities.OtherInPosition4: return getDoubleOtherLetterAbility(3);
     case Abilities.OtherInPosition5: return getDoubleOtherLetterAbility(4);
-    case Abilities.OtherInPositionLast: return undefined; // todo
     case Abilities.Retain: return getRetainAbility();
+    case Abilities.RetainLeft: return getRetainLeftAbility();
+    case Abilities.RetainRight: return getRetainRightAbility();
     case Abilities.Vowels: return getPointsPerVowelAbility(abilityPoints);
     case Abilities.Wilds: return getPointsPerWildAbility(abilityPoints);
     case Abilities.WordLength4: return getWordLengthAbility(abilityPoints, 4);

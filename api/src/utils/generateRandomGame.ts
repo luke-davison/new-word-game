@@ -1,15 +1,15 @@
-import { Abilities, RawLetter } from '../models';
-import { isCharacterVowel } from './getAbilities';
-import { wordlist } from './getWordlist';
+import { ILetter } from '../../../common/datamodels';
+import { Abilities } from '../../../common/enums';
+import { getIsCharacterVowel, wordlist } from '../../../common/utils';
 
-export const generateGame = () => {
+export const generateGame = (): ILetter[] => {
   const letters = getRandomWord().split("");
   const uniqueLetters = sortByFrequency(Array.from(new Set(letters)))
-  const output: RawLetter[] = []
+  const output: ILetter[] = []
   
   const mostCommonLetter = uniqueLetters.splice(0, 1)[0]
-  let mostCommonLetterOutput: RawLetter | undefined = {
-    letter: mostCommonLetter,
+  let mostCommonLetterOutput: ILetter | undefined = {
+    char: mostCommonLetter,
     price: 1,
     points: 2
   }
@@ -20,8 +20,8 @@ export const generateGame = () => {
     abilitiesShuffled.push(abilities.splice(Math.floor(Math.random() * abilities.length), 1)[0])
   }
 
-  letters.reverse().forEach((letter) => {
-    if (letter === mostCommonLetterOutput?.letter) {
+  letters.reverse().forEach((char) => {
+    if (char === mostCommonLetterOutput?.char) {
       output.unshift({...mostCommonLetterOutput})
       mostCommonLetterOutput = undefined
     // } else if (letter === leastCommonLetterOutput?.letter) {
@@ -29,12 +29,12 @@ export const generateGame = () => {
     //   output.unshift({...leastCommonLetterOutput, color: colorCount--})
     //   leastCommonLetterOutput = undefined
     } else {
-      const frequencyIndex = letterFrequencies.findIndex((a) => a.letter === letter)
+      const frequencyIndex = letterFrequencies.findIndex((a) => a.letter === char)
       const ability = abilitiesShuffled.pop()
       if (ability === "set-points") {
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
-          letter,
+          char,
           price: 2,
           points: 3 + frequencyFactor
         })
@@ -42,7 +42,7 @@ export const generateGame = () => {
         // TODO - cannot be letter at start of word
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
-          letter,
+          char,
           price: 3,
           points: 4 + frequencyFactor,
           abilityPoints: 4,
@@ -57,7 +57,7 @@ export const generateGame = () => {
         }
         const frequencyFactor = Math.floor(frequencyIndex / 14) + Math.floor((minLength - 4) / 2) 
         output.unshift({
-          letter,
+          char,
           price: 4,
           points: 4 + frequencyFactor,
           ability,
@@ -67,11 +67,11 @@ export const generateGame = () => {
         // TODO - cannot use for "hjklmnqrvxz"
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
-          letter,
+          char,
           price: 4,
           points: 3 + frequencyFactor,
           ability: Abilities.NextToVowel,
-          abilityPoints: isCharacterVowel(letter) ? 4 : 3
+          abilityPoints: getIsCharacterVowel(char) ? 4 : 3
         })
       } else if (ability === "multiply") {
         // TODO - more expensive if large letter exists
@@ -79,7 +79,7 @@ export const generateGame = () => {
         const randomIndex = Math.floor(Math.random() * possiblePositions.length)
         const frequencyFactor = Math.floor(frequencyIndex / 17)
         output.unshift({
-          letter,
+          char,
           price: 5 - frequencyFactor,
           points: 4,
           ability: possiblePositions[randomIndex],
@@ -88,7 +88,7 @@ export const generateGame = () => {
         // TODO - cannot be "dijqrsuvwxy"
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
-          letter,
+          char,
           price: 3,
           points: 4 + frequencyFactor,
           ability: Abilities.InPositionLast,
@@ -96,16 +96,16 @@ export const generateGame = () => {
         })
       } else if (ability === "vowels") {
         output.unshift({
-          letter,
+          char,
           price: 4,
-          points: isCharacterVowel(letter) ? 3 : 4,
+          points: getIsCharacterVowel(char) ? 3 : 4,
           ability: Abilities.Vowels,
           abilityPoints: 1
         })
       } else if (ability === "wilds") {
         // TODO - cannot be used if too much money
         output.unshift({
-          letter,
+          char,
           price: 4,
           points: 3,
           ability: Abilities.Wilds,
@@ -114,7 +114,7 @@ export const generateGame = () => {
       } else if (ability === "next-to-wild") {
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
-          letter,
+          char,
           price: 4,
           points: 3 + frequencyFactor,
           ability: Abilities.NextToWild,
@@ -126,7 +126,7 @@ export const generateGame = () => {
         const randomIndex = Math.floor(Math.random() * positions.length)
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
-          letter,
+          char,
           price: 3,
           points: 4 + frequencyFactor,
           ability: positions[randomIndex],
@@ -134,7 +134,7 @@ export const generateGame = () => {
         })
       } else if (ability === "large") {
         output.unshift({
-          letter,
+          char,
           price: 5,
           points: 8
         })
@@ -142,7 +142,7 @@ export const generateGame = () => {
         // TODO - cannot use for "aehijklmnoqruvxz"
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
-          letter,
+          char,
           price: 4 - frequencyFactor,
           points: 4,
           ability: Abilities.NotNextToVowel,
@@ -154,7 +154,7 @@ export const generateGame = () => {
         const lengths: Abilities[] = [Abilities.WordLength5, Abilities.WordLength6, Abilities.WordLength7]
         const randomIndex = Math.floor(Math.random() * lengths.length)
         output.unshift({
-          letter,
+          char,
           price: 4,
           points: 3 + frequencyFactor1,
           ability: lengths[randomIndex],

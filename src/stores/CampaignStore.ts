@@ -1,7 +1,7 @@
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 
-import { Player } from '../models';
-import { LetterInstance } from '../models/LetterInstance';
+import { Player } from '../../common/models';
+import { LetterInstance } from '../../common/models/LetterInstance';
 
 export class CampaignStore {
   constructor(campaignId: string, campaignDay: number) {
@@ -14,12 +14,14 @@ export class CampaignStore {
 
     this.campaignId = campaignId
     this.campaignDay = campaignDay
-    this.player = {
+    this.player = new Player({
+      userId: "1",
+      startDate: "2022-04-23",
       funding: 0,
       points: 0,
       isMember: false,
       inventory: []
-    }
+    })
   }
 
   campaignId: string

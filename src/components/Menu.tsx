@@ -6,10 +6,11 @@ import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../stores/AppContext';
 import { CalendarPopup } from './CalendarPopup';
 import { CampaignGame } from './CampaignGame';
+import { DatePickerInput } from './DatePickerInput';
 import { Game } from './Game';
 
 export const Menu: React.FC = observer(() => {
-  const { startCampaignGame, isShowingCalendar, isPlayingCampaignGame, toggleIsShowingCalendar ,dailyGameInProgress, isDevMode, toggleDevMode, isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame, goToNextDailyGame, goToPreviousDailyGame } = useContext(AppContext)
+  const { startCampaignGame, isShowingCalendar, isPlayingCampaignGame, toggleIsShowingCalendar, toggleDevMode, isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame } = useContext(AppContext)
 
   useEffect(() => {
     const listener = (event: globalThis.KeyboardEvent) => {
@@ -21,12 +22,6 @@ export const Menu: React.FC = observer(() => {
     document.body.addEventListener('keydown', listener);
     return () => document.body.removeEventListener('keydown', listener)
   }, [])
-
-  
-  const today = new Date();
-  const weekAgo = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7)
-  const isTodaysGame = today.getFullYear() === dailyGameInProgress?.getFullYear() && today.getMonth() === dailyGameInProgress?.getMonth() && today.getDate() === dailyGameInProgress?.getDate() 
-  const isWeekAgo  = today.getFullYear() === dailyGameInProgress?.getFullYear() && weekAgo.getMonth() === dailyGameInProgress?.getMonth() && weekAgo.getDate() === dailyGameInProgress?.getDate() 
 
   if (isPlayingCampaignGame) {
     return (
@@ -45,12 +40,6 @@ export const Menu: React.FC = observer(() => {
         <Game/>
         <div className="page-buttons">
           <button onClick={returnToMenu}>Return to menu</button>
-          { isPlayingDailyGame && (
-            <>
-              {(!isWeekAgo || isDevMode) && <button onClick={goToPreviousDailyGame}>Previous</button>}
-              {(!isTodaysGame || isDevMode) && <button onClick={goToNextDailyGame}>Next</button>}
-            </>
-          )}
           <button onClick={toggleIsShowingCalendar}>Calendar</button>
         </div>
         {isShowingCalendar && (
@@ -71,6 +60,7 @@ export const Menu: React.FC = observer(() => {
       <div>
         <button onClick={startRandomGame}>Random game</button>
       </div>
+      <DatePickerInput/>
     </div>
   );
 })

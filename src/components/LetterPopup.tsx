@@ -1,9 +1,8 @@
 import './LetterPopup.css';
 
-import { runInAction } from 'mobx';
 import React, { useEffect } from 'react';
 
-import { LetterInstance } from '../models/LetterInstance';
+import { LetterInstance } from '../../common/models/LetterInstance';
 import { Alphabet } from './Alphabet';
 
 interface LetterPopupProps {

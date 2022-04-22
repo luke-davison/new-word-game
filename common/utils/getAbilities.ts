@@ -1,3 +1,4 @@
+import { IPlayer } from '../datamodels';
 import club from '../images/club.png';
 import funding1 from '../images/funding_1.png';
 import funding2 from '../images/funding_2.png';
@@ -12,6 +13,7 @@ import minWordLength7 from '../images/min_word_length_7.png';
 import nextToVowel from '../images/next_to_vowel.png';
 import nextToWild from '../images/next_to_wild.png';
 import notNextToVowel from '../images/not_next_to_vowel.png';
+import notNextToWild from '../images/not_next_to_wild.png';
 import otherInPosition1 from '../images/other_in_position_1.png';
 import otherInPosition2 from '../images/other_in_position_2.png';
 import otherInPosition3 from '../images/other_in_position_3.png';
@@ -24,7 +26,7 @@ import inPosition4 from '../images/position_4.png';
 import inLastPosition from '../images/position_last.png';
 import retain from '../images/retain.png';
 import retainLeft from '../images/retain_left.png';
-import retainRight from '../images/right.png';
+import retainRight from '../images/retain_right.png';
 import vowel from '../images/vowel.png';
 import wild from '../images/wild.png';
 import wilds from '../images/wilds.png';
@@ -32,22 +34,19 @@ import wordLength4 from '../images/word_length_must_be_4.png';
 import wordLength5 from '../images/word_length_must_be_5.png';
 import wordLength6 from '../images/word_length_must_be_6.png';
 import wordLength7 from '../images/word_length_must_be_7.png';
-import { Ability, Player } from '../models';
+import { IGameAbility, Player } from '../models';
 import { Letter } from '../models/Letter';
 import { LetterInstance } from '../models/LetterInstance';
-
-export const isCharacterVowel = (str: string) => {
-  return str === "a" || str === "e" || str === "i" || str === "o" || str === "u"
-}
+import { getIsCharacterVowel } from './';
 
 const isLetterNextToVowel = (word: LetterInstance[], position: number): boolean => {
   const leftLetter = word.find((wordLetter) => wordLetter.position === position - 1)
-  if (leftLetter && isCharacterVowel(leftLetter.letter)) {
+  if (leftLetter && getIsCharacterVowel(leftLetter.char)) {
     return true
   }
 
   const rightLetter = word.find((wordLetter) => wordLetter.position === position + 1)
-  if (rightLetter && isCharacterVowel(rightLetter.letter)) {
+  if (rightLetter && getIsCharacterVowel(rightLetter.char)) {
     return true
   }
 
@@ -66,6 +65,10 @@ const isLetterinLastPosition = (word: LetterInstance[], position: number): boole
 
 const isLetterNotNextToVowel = (word: LetterInstance[], position: number): boolean => {
   return !isLetterNextToVowel(word, position)
+}
+
+const isLetterNotNextToWild = (word: LetterInstance[], position: number): boolean => {
+  return !isLetterNextToWild(word, position)
 }
 
 const createGetLetterPoints = (position: number) => (word: LetterInstance[]) => {
@@ -93,7 +96,7 @@ const createIsMaxWordLength = (length: number) => (word: LetterInstance[]) => {
 }
 
 const isWordHasVowels = (word: LetterInstance[]) => {
-  return word.some(letter => isCharacterVowel(letter.letter))
+  return word.some(letter => getIsCharacterVowel(letter.char))
 }
 
 const isWordHasWilds = (word: LetterInstance[]) => {
@@ -102,7 +105,7 @@ const isWordHasWilds = (word: LetterInstance[]) => {
 
 const createGetPointsPerVowel = (points: number) => (word: LetterInstance[]) => {
   const numVowels = word.reduce((sum, letter) => {
-    if (isCharacterVowel(letter.letter)) {
+    if (getIsCharacterVowel(letter.char)) {
       return sum + 1
     }
     return sum
@@ -136,7 +139,7 @@ const isLetterNextToWild = (word: LetterInstance[], position: number): boolean =
 
 let nextAbilityId = 1;
 
-export const getNextToVowelAbility = (points: number): Ability => {
+export const getNextToVowelAbility = (points: number): IGameAbility => {
   const text = points === 1 ? "scores 1 extra point if letter is next to a vowel" : `scores ${points} extra points if letter is next to a vowel`
   return {
     id: String(nextAbilityId++),
@@ -148,7 +151,7 @@ export const getNextToVowelAbility = (points: number): Ability => {
   }
 }
 
-export const getNotNextToVowelAbility = (points: number): Ability => {
+export const getNotNextToVowelAbility = (points: number): IGameAbility => {
   const text = points === 1 ? "scores 1 extra point if letter is not next to a vowel" : `scores ${points} extra points if letter is not next to a vowel`
   return {
     id: String(nextAbilityId++),
@@ -160,7 +163,7 @@ export const getNotNextToVowelAbility = (points: number): Ability => {
   }
 }
 
-export const getDoubleOtherLetterAbility = (position: number): Ability => {
+export const getDoubleOtherLetterAbility = (position: number): IGameAbility => {
   const images = [otherInPosition1, otherInPosition2, otherInPosition3, otherInPosition4, otherInPosition5]
   return {
     id: String(nextAbilityId++),
@@ -172,7 +175,7 @@ export const getDoubleOtherLetterAbility = (position: number): Ability => {
   }
 }
 
-export const getInPositionAbility = (points: number, position: number): Ability => {
+export const getInPositionAbility = (points: number, position: number): IGameAbility => {
   const images = [inPosition1, inPosition2, inPosition3, inPosition4]
   const text = points === 1 ? `scores 1 extra point if letter is in position ${position + 1}` : `scores ${points} extra points if letter is in position ${position + 1}`
   return {
@@ -185,7 +188,7 @@ export const getInPositionAbility = (points: number, position: number): Ability 
   }
 }
 
-export const getWordLengthAbility = (points: number, length: number): Ability => {
+export const getWordLengthAbility = (points: number, length: number): IGameAbility => {
   if (length < 4 || length > 7) {
     throw new Error("getWordLengthAbility length arg out of bounds " + length)
   }
@@ -201,7 +204,7 @@ export const getWordLengthAbility = (points: number, length: number): Ability =>
   }
 }
 
-export const getMinWordLengthAbility = (points: number, length: number): Ability => {
+export const getMinWordLengthAbility = (points: number, length: number): IGameAbility => {
   if (length < 4 || length > 7) {
     throw new Error("getMinWordLengthAbility length arg out of bounds " + length)
   }
@@ -217,7 +220,7 @@ export const getMinWordLengthAbility = (points: number, length: number): Ability
   }
 }
 
-export const getMaxWordLengthAbility = (points: number, length: number): Ability => {
+export const getMaxWordLengthAbility = (points: number, length: number): IGameAbility => {
   if (length < 4 || length > 7) {
     throw new Error("getMaxWordLengthAbility length arg out of bounds " + length)
   }
@@ -233,7 +236,7 @@ export const getMaxWordLengthAbility = (points: number, length: number): Ability
   }
 }
 
-export const getInLastPosition = (points: number): Ability => {
+export const getInLastPosition = (points: number): IGameAbility => {
   const text = points === 1 ? "scores 1 extra point if letter is last position" : `scores ${points} extra points if letter last position`
   return {
     id: String(nextAbilityId++),
@@ -245,7 +248,7 @@ export const getInLastPosition = (points: number): Ability => {
   }
 }
 
-export const getPointsPerVowelAbility = (points: number): Ability => {
+export const getPointsPerVowelAbility = (points: number): IGameAbility => {
   return {
     id: String(nextAbilityId++),
     image: vowel,
@@ -256,7 +259,7 @@ export const getPointsPerVowelAbility = (points: number): Ability => {
   }
 }
 
-export const getPointsPerWildAbility = (points: number): Ability => {
+export const getPointsPerWildAbility = (points: number): IGameAbility => {
   return {
     id: String(nextAbilityId++),
     image: wilds,
@@ -267,7 +270,7 @@ export const getPointsPerWildAbility = (points: number): Ability => {
   }
 }
 
-export const getNextToWildAbility = (points: number): Ability => {
+export const getNextToWildAbility = (points: number): IGameAbility => {
   const text = points === 1 ? "scores 1 extra point if letter is next to a wild" : `scores ${points} extra points if letter is next to a wild`
   return {
     id: String(nextAbilityId++),
@@ -279,7 +282,19 @@ export const getNextToWildAbility = (points: number): Ability => {
   }
 }
 
-export const getWildAbility = (): Ability => {
+export const getNotNextToWildAbility = (points: number): IGameAbility => {
+  const text = points === 1 ? "scores 1 extra point if letter is not next to a wild" : `scores ${points} extra points if letter is not next to a wild`
+  return {
+    id: String(nextAbilityId++),
+    image: notNextToWild,
+    text,
+    points,
+    getIsActive: isLetterNotNextToWild,
+    getPoints: () => points
+  }
+}
+
+export const getWildAbility = (): IGameAbility => {
   const text = "Can be any letter";
   return {
     id: String(nextAbilityId++),
@@ -290,7 +305,7 @@ export const getWildAbility = (): Ability => {
   }
 }
 
-export const getRetainAbility = (): Ability => {
+export const getRetainAbility = (): IGameAbility => {
   return {
     id: String(nextAbilityId++),
     image: retain,
@@ -304,7 +319,7 @@ export const getRetainAbility = (): Ability => {
       } else {
         const letterToRetain = new Letter({
           color: letter.color,
-          letter: letter.letter,
+          char: letter.char,
           price: 0,
           points: letter.points,
           ability: letter.ability,
@@ -317,7 +332,7 @@ export const getRetainAbility = (): Ability => {
   }
 }
 
-export const getRetainLeftAbility = (): Ability => {
+export const getRetainLeftAbility = (): IGameAbility => {
   return {
     id: String(nextAbilityId++),
     image: retainLeft,
@@ -338,7 +353,7 @@ export const getRetainLeftAbility = (): Ability => {
         } else {
           const letterToRetain = new Letter({
             color: leftLetter.color,
-            letter: leftLetter.letter,
+            char: leftLetter.char,
             price: 0,
             points: leftLetter.points,
             ability: leftLetter.ability,
@@ -352,10 +367,10 @@ export const getRetainLeftAbility = (): Ability => {
   }
 }
 
-export const getRetainRightAbility = (): Ability => {
+export const getRetainRightAbility = (): IGameAbility => {
   return {
     id: String(nextAbilityId++),
-    image: retainLeft,
+    image: retainRight,
     text: "Retain the letter to the right",
     getIsActive: (word: LetterInstance[], position: number) => {
       return word.some(otherLetter => otherLetter.position === position + 1)
@@ -370,7 +385,7 @@ export const getRetainRightAbility = (): Ability => {
         } else {
           const letterToRetain = new Letter({
             color: rightLetter.color,
-            letter: rightLetter.letter,
+            char: rightLetter.char,
             price: 0,
             points: rightLetter.points,
             ability: rightLetter.ability,
@@ -384,7 +399,7 @@ export const getRetainRightAbility = (): Ability => {
   }
 }
 
-export const getClubAbility = (): Ability => {
+export const getClubAbility = (): IGameAbility => {
   return {
     id: String(nextAbilityId++),
     image: club,
@@ -398,7 +413,7 @@ export const getClubAbility = (): Ability => {
   }
 }
 
-export const getFundingAbility = (funding: number): Ability => {
+export const getFundingAbility = (funding: number): IGameAbility => {
   const images = [funding1, funding2]
   return {
     id: String(nextAbilityId++),

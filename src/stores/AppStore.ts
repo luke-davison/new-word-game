@@ -1,8 +1,8 @@
 import { action, makeObservable, observable, runInAction } from 'mobx';
 
+import { getDailyGame } from '../../api/src/games/getDailyGame';
+import { getDateString } from '../../common/utils/getDateString';
 import { ScoreInfo } from '../models';
-import { getDailyGame } from '../utils/getDailyGame';
-import { getDateString } from '../utils/getDateString';
 
 export class AppStore {
   constructor() {
@@ -16,9 +16,6 @@ export class AppStore {
       startDailyGame: action,
       startRandomGame: action,
       returnToMenu: action,
-      dailyGameInProgress: observable,
-      goToPreviousDailyGame: action,
-      goToNextDailyGame: action,
       isDevMode: observable,
       toggleDevMode: action,
       isShowingCalendar: observable,
@@ -28,7 +25,9 @@ export class AppStore {
       isPlayingCampaignGame: observable,
       campaignInProgress: observable,
       campaignDayInProgress: observable,
-      startCampaignGame: action
+      startCampaignGame: action,
+      today: observable,
+      changeDate: action
     })
   }
 
@@ -37,6 +36,12 @@ export class AppStore {
   playerId: string = ""
   playerName: string = ""
   completedTutorial: boolean = false
+
+  today: Date = new Date();
+
+  changeDate = (newDate: Date) => {
+    this.today = newDate
+  }
 
   loadPlayer = () => {
     const playerId = window.localStorage.getItem("playerId")
@@ -68,7 +73,6 @@ export class AppStore {
   }
 
   isPlayingDailyGame: boolean = false
-  dailyGameInProgress: Date | undefined = undefined
   isPlayingRandomGame: boolean = false
   isPlayingCampaignGame: boolean = false
   campaignInProgress: string | undefined = undefined
@@ -76,7 +80,6 @@ export class AppStore {
 
   startDailyGame = () => {
     this.isPlayingDailyGame = true
-    this.dailyGameInProgress = new Date();
   }
 
   startCampaignGame = () => {
@@ -95,18 +98,6 @@ export class AppStore {
     this.isPlayingCampaignGame = false
   }
 
-  goToPreviousDailyGame = () => {
-    if (this.dailyGameInProgress) {
-      this.dailyGameInProgress = new Date(this.dailyGameInProgress.getFullYear(), this.dailyGameInProgress.getMonth(), this.dailyGameInProgress.getDate() - 1)
-    }
-  }
-
-  goToNextDailyGame = () => {
-    if (this.dailyGameInProgress) {
-      this.dailyGameInProgress = new Date(this.dailyGameInProgress.getFullYear(), this.dailyGameInProgress.getMonth(), this.dailyGameInProgress.getDate() + 1)
-    }
-  }
-
   toggleDevMode = () => {
     this.isDevMode = !this.isDevMode
   }
@@ -118,7 +109,6 @@ export class AppStore {
   }
 
   scoreMap: Map<string, ScoreInfo> = new Map()
-
 
   loadScore = (date: Date): ScoreInfo => {
     const game = getDailyGame(date)

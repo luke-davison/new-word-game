@@ -3,16 +3,15 @@ import './Calendar.css';
 import { observer } from 'mobx-react-lite';
 import React, { MouseEvent, useContext, useEffect, useState } from 'react';
 
+import { getDateString } from '../../common/utils/getDateString';
 import { AppContext } from '../stores/AppContext';
-import { getDateString } from '../utils/getDateString';
 
 const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const dayHeadings: string[] = ["M", "T", "W", "T", "F", "S", "S"]
 
 export const Calendar: React.FC = observer(() => {
-  const { scoreMap, loadMonthScores} = useContext(AppContext)
+  const { today, scoreMap, loadMonthScores} = useContext(AppContext)
 
-  const today = new Date();
   const [dayInCurrentMonth, setDayInCurrentMonth] = useState<Date>(today)
 
   useEffect(() => {

@@ -3,10 +3,10 @@ import './GameButtons.css';
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 
+import { getBestWords } from '../../api/src/utils/getBestWords';
 import { AppContext } from '../stores/AppContext';
 import { CampaignContext } from '../stores/CampaignContext';
 import { GameContext } from '../stores/GameContext';
-import { getBestWords } from '../utils/getBestWords';
 
 export const GameButtons: React.FC = observer(() => {
   const { isDevMode } = useContext(AppContext)

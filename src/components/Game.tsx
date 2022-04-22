@@ -13,14 +13,14 @@ import { GameArea } from './GameArea';
 
 export const Game: React.FC = observer(() => {
   const appStore = useContext(AppContext)
-  const { dailyGameInProgress } = appStore
+  const { today } = appStore
   const campaignStore = useContext(CampaignContext)
 
   const [gameStore, setGameStore] = useState<GameStore | undefined>()
 
   useEffect(() => {
     setGameStore(new GameStore({ appStore, campaignStore }))
-  }, [dailyGameInProgress, campaignStore.campaignId, campaignStore.campaignDay])
+  }, [today, campaignStore.campaignId, campaignStore.campaignDay])
   
   const backend = isMobile ? TouchBackend : HTML5Backend
 
@@ -29,7 +29,7 @@ export const Game: React.FC = observer(() => {
   }
 
   return (
-    <GameContext.Provider key={dailyGameInProgress?.toISOString()} value={gameStore}>
+    <GameContext.Provider key={today.toISOString()} value={gameStore}>
       <DndProvider backend={backend}>
         <GameArea/>
       </DndProvider>

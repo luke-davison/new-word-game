@@ -10,19 +10,20 @@ export const WordPoints: React.FC = observer(() => {
   const { isPlayingCampaignGame } = useContext(AppContext)
   const { target, secretTarget, wordPoints, bestWord, bestWordScore, isValidWord } = useContext(GameContext)
 
-  const isSecretTargetMet = !isPlayingCampaignGame && wordPoints >= secretTarget && (bestWordScore || 0) >= secretTarget && isValidWord
+  const isShowTargets = !isPlayingCampaignGame
+  const isSecretTargetMet = isShowTargets && wordPoints >= (secretTarget || 0) && (bestWordScore || 0) >= (secretTarget || 0) && isValidWord
 
   return (
       <div className="word-points-area">
         <div className={`word-points ${isSecretTargetMet ? "secret-target-met" : ""}`}>
           <span>{wordPoints}</span>
         </div>
-        {!isPlayingCampaignGame && (
+        {isShowTargets && (
           <>
             <div className="word-target">
               {`Target: ` + target}
             </div>
-            { (bestWordScore || 0) >= secretTarget && (
+            { (bestWordScore || 0) >= (secretTarget || 0) && (
               <div className="secret-target">
                 {`Secret Target: ` + secretTarget}
               </div>

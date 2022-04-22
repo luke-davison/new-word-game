@@ -9,10 +9,10 @@ export class LetterInstance {
   id: string;
   parent: Letter
   position: number | undefined
-  _letter: string | undefined
+  _char: string | undefined
   
   get color() { return this.parent.color }
-  get letter() { return this._letter === undefined ? this.parent.letter : this._letter }
+  get char() { return this._char === undefined ? this.parent.char : this._char }
   get price() { return this.parent.price }
   get points() { return this.parent.points }
   get ability() { return this.parent.ability }
@@ -20,7 +20,7 @@ export class LetterInstance {
 
   constructor(parent: Letter, position?: number) {
     makeObservable(this, {
-      _letter: observable,
+      _char: observable,
       position: observable,
       setPosition: action,
       setWildLetter: action
@@ -35,7 +35,7 @@ export class LetterInstance {
     this.position = position
   }
 
-  setWildLetter = (letter: string) => {
-    this._letter = letter
+  setWildLetter = (char: string) => {
+    this._char = char
   }
 }

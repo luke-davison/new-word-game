@@ -1,33 +1,33 @@
 import { action, makeObservable, observable } from 'mobx';
 
-import { Ability } from './';
+import { IGameAbility } from './IGameAbility';
 
 let nextLetterId = 1;
 
-export interface ILetter {
+export interface IGameLetter {
   color: number;
-  letter: string;
+  char: string;
   price: number;
   points: number;
-  ability?: Ability;
+  ability?: IGameAbility;
   isWild?: boolean;
 }
 
 export class Letter {
 
   id: string;
-  data: ILetter
+  data: IGameLetter
   limit: number | undefined
 
   get color() { return this.data.color }
-  get letter() { return this.data.letter }
+  get char() { return this.data.char }
   get price() { return this.data.price }
   get points() { return this.data.points }
   get ability() { return this.data.ability }
   get isWild() { return this.data.isWild }
 
 
-  constructor(data: ILetter, limit?: number) {
+  constructor(data: IGameLetter, limit?: number) {
     makeObservable(this, {
       limit: observable,
       onPlaceLetter: action,

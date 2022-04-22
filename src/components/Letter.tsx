@@ -3,7 +3,7 @@ import './Letter.css';
 import { observer } from 'mobx-react-lite';
 import { useContext, useState } from 'react';
 
-import { LetterInstance } from '../models/LetterInstance';
+import { LetterInstance } from '../../common/models/LetterInstance';
 import { GameContext } from '../stores/GameContext';
 import { LetterPopup } from './LetterPopup';
 
@@ -23,7 +23,7 @@ export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }
     <div className="letter-container-outer">
       <div className={"letter-container letter-color-" + letter.color} onClick={onClick}>
         <div className="letter-character">
-          { letter.letter }
+          { letter.char }
         </div>
         <div className="letter-points">
           { letter.points }

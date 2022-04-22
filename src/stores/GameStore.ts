@@ -1,14 +1,13 @@
 import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
 
-import { Game } from '../models';
-import { Letter } from '../models/Letter';
-import { LetterInstance } from '../models/LetterInstance';
-import { generateGame } from '../utils/generateRandomGame';
-import { getWildAbility } from '../utils/getAbilities';
-import { getCampaignGame } from '../utils/getCampaignGame';
-import { getDailyGame } from '../utils/getDailyGame';
-import { getLettersFromRawLetters } from '../utils/getLettersFromRawLetters';
-import { getIsValidWord } from '../utils/getWordlist';
+import { getCampaignGame } from '../../api/src/games/getCampaignGame';
+import { getDailyGame } from '../../api/src/games/getDailyGame';
+import { generateGame } from '../../api/src/utils/generateRandomGame';
+import { ICampaignGame, IDailyGame, IGame } from '../../common/datamodels';
+import { Letter } from '../../common/models/Letter';
+import { LetterInstance } from '../../common/models/LetterInstance';
+import { getIsValidWord, setupLetters } from '../../common/utils';
+import { getWildAbility } from '../../common/utils/getAbilities';
 import { AppStore } from './AppStore';
 import { CampaignStore } from './CampaignStore';
 
@@ -51,19 +50,18 @@ export class GameStore {
     })
 
     if (this.appStore.isPlayingDailyGame) {
-      this.game = getDailyGame(this.appStore.dailyGameInProgress)
+      this._dailyGame = getDailyGame(this.appStore.today)
     } else if (this.appStore.isPlayingCampaignGame && this.campaignStore) {
-      this.game = getCampaignGame(this.campaignStore.campaignId, this.campaignStore.campaignDay)
+      this._campaignGame = getCampaignGame(this.campaignStore.campaignId, this.campaignStore.campaignDay)
     } else {
       const money = 15 + Math.floor(Math.random() * 5)
 
-      this.game = {
+      this._dailyGame = {
         date: String(Math.random()),
         letters: generateGame(),
         money: 15 + Math.floor(Math.random() * 5),
         target: 11 + money,
-        secretTarget: 15 + money,
-        maxTarget: 16 + money
+        secretTarget: 15 + money
       }
     }
 
@@ -81,11 +79,11 @@ export class GameStore {
             this.isValidText = "Valid word"
             if (this.wordPoints >= (this.bestWordScore || 0)) {
               const openCalendar = this.appStore.isPlayingDailyGame
-                && (this.bestWordScore || 0) < (this.game?.target || 0)
-                && this.wordPoints >= (this.game?.target || 0)
+                && (this.bestWordScore || 0) < (this._dailyGame?.target || 0)
+                && this.wordPoints >= (this._dailyGame?.target || 0)
 
               this.bestWordScore = this.wordPoints;
-              const str = this.playerWord.map((letter) => letter.letter).join("")
+              const str = this.playerWord.map((letter) => letter.char).join("")
               this.bestWord = str[0].toUpperCase() + str.slice(1)
               window.localStorage.setItem(`${this.game?.date}-word`, this.bestWord)
               window.localStorage.setItem(`${this.game?.date}-score`, String(this.bestWordScore))
@@ -104,14 +102,19 @@ export class GameStore {
     })
 
     this._shopLetters = [
-      ...getLettersFromRawLetters(this.game?.letters),
-      new Letter({ color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility()})
+      ...setupLetters(this.game?.letters),
+      new Letter({ color: 0, char: "", price: 1, points: 0, isWild: true, ability: getWildAbility()})
     ]
 
-    this._secretShopLetters = getLettersFromRawLetters(this.game?.memberLetters)
+    this._secretShopLetters = setupLetters(this._campaignGame?.memberLetters)
   }
   
-  game: Game | undefined;
+  _dailyGame: IDailyGame | undefined;
+  _campaignGame: ICampaignGame | undefined
+
+  get game(): IGame | undefined {
+    return this._dailyGame || this._campaignGame
+  }
   
   _shopLetters: Letter[] = []
   get shopLetters(): LetterInstance[] {
@@ -175,7 +178,7 @@ export class GameStore {
     if (highestPosition > this.playerWord.length - 1) {
       return false
     }
-    if (this.playerWord.some((letter) => letter.isWild && !letter.letter)) {
+    if (this.playerWord.some((letter) => letter.isWild && !letter.char)) {
       return false
     }
     return true
@@ -197,15 +200,15 @@ export class GameStore {
   }
 
   get wordLetters() {
-    return this.playerWord.map((letter) => letter.letter)
+    return this.playerWord.map((letter) => letter.char)
   }
   
-  get target(): number {
-    return this.game?.target || 25
+  get target(): number | undefined {
+    return this._dailyGame?.target
   }
   
-  get secretTarget(): number {
-    return this.game?.secretTarget || 30
+  get secretTarget(): number | undefined {
+    return this._dailyGame?.secretTarget
   }
   
   validWordTimeout: number | undefined

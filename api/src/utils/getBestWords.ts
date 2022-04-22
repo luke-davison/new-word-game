@@ -1,11 +1,8 @@
-import { Game } from '../models';
-import { Letter } from '../models/Letter';
-import { LetterInstance } from '../models/LetterInstance';
-import { getWildAbility } from './getAbilities';
-import { getLettersFromRawLetters } from './getLettersFromRawLetters';
-import { getIsValidWord, wordlist } from './getWordlist';
+import { IGame } from '../../../common/datamodels';
+import { Letter, LetterInstance } from '../../../common/models';
+import { getIsValidWord, getWildAbility, setupLetters, wordlist } from '../../../common/utils';
 
-export const getBestWords = (game: Game) => {
+export const getBestWords = (game: IGame) => {
   const map = new Map()
   const words: Array<{ word: string, points: number }> = []
 
@@ -25,10 +22,10 @@ export const getBestWords = (game: Game) => {
   console.log(Array.from(words).sort((a, b) => b.points - a.points))
 }
 
-export const calculateBestScoreForWord = (game: Game, word: string): number => {
-  const wild: Letter = new Letter({ color: 0, letter: "", price: 1, points: 0, isWild: true, ability: getWildAbility() })
+export const calculateBestScoreForWord = (game: IGame, word: string): number => {
+  const wild: Letter = new Letter({ color: 0, char: "", price: 1, points: 0, isWild: true, ability: getWildAbility() })
 
-  const shop = getLettersFromRawLetters(game.letters)
+  const shop = setupLetters(game.letters)
 
   const letters = word.split("")
 
@@ -36,7 +33,7 @@ export const calculateBestScoreForWord = (game: Game, word: string): number => {
     const [nextLetter,  ...otherLetters] = lettersRemaining
     
     const scoreIfNotWild = shop.reduce((highestScore: number, shopLetter: Letter): number => {
-      if (nextLetter !== shopLetter.letter) {
+      if (nextLetter !== shopLetter.char) {
         return highestScore
       }
 
