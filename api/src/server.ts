@@ -1,7 +1,13 @@
+import bodyParser from 'body-parser';
 import express from 'express';
 
-const app = express();
+import router from './routes';
+
 const port = 3001;
+
+const app = express();
+app.use(bodyParser.json())
+app.use('/api', router)
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
