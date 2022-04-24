@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "common/models/LetterInstance.ts", "api/src/models/Letter.ts", "common/utils/getAbilities.ts", "api/src/utils/generateRandomGame.ts", "api/src/getBestWords.ts", "api/src/games/getCampaignGame.ts", "api/src/games/getDailyGame.ts", "common/utils/getDateString.ts", "common/utils/getWordlist.ts"  ]
+  ]
 }

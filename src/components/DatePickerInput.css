@@ -1,9 +1,0 @@
-.date-picker-input-container.invalid-date {
-  color: red;
-}
-
-.date-picker-input-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}

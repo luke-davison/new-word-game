@@ -3,9 +3,9 @@ import './App.css';
 import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 
-import { Menu } from './components/Menu';
-import { AppContext } from './stores/AppContext';
-import { AppStore } from './stores/AppStore';
+import { Menu } from './Menu';
+import { AppContext } from '../stores/AppContext';
+import { AppStore } from '../stores/AppStore';
 
 const App: React.FC = observer(() => {
   const [appStore] = useState<AppStore>(new AppStore())

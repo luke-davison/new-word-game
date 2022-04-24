@@ -1,4 +1,4 @@
-import { wordlist } from '../../common/utils/getWordlist';
+import { getIsWordInWordlist } from './getIsWordInWordlist';
 import { LetterInstance } from '../models/LetterInstance';
 
 export const getIsValidWord = (word: LetterInstance[]): boolean => {
@@ -15,5 +15,5 @@ export const getIsValidWord = (word: LetterInstance[]): boolean => {
   }
 
   const str = word.reduce((str: string, letter) => str + letter.char, "")
-  return wordlist.indexOf(str) !== -1
+  return getIsWordInWordlist(str)
 }

@@ -1,7 +1,7 @@
 import { makeObservable, observable } from 'mobx';
 
 import { IPlayer } from '../datamodels';
-import { setupLetters } from '../utils';
+import { setupLetters } from '../utils/setupLetters';
 import { Letter } from './Letter';
 
 export class Player {

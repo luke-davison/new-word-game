@@ -1,10 +1,14 @@
 
 
-import { IDailyGame, IGame } from '../../../common/datamodels';
+import { IDailyGame, ILetter } from '../../../common/datamodels';
 import { Abilities } from '../../../common/enums';
 import { getDateString } from '../../../common/utils/getDateString';
 
-const games: IDailyGame[] = [
+interface IDailyGameNoIds extends Omit<IDailyGame, "letters"> {
+  letters: Array<Omit<ILetter, "id">>
+}
+
+const games: IDailyGameNoIds[] = [
   { 
     date: "2022-03-20",
     letters: [
@@ -241,8 +245,19 @@ const games: IDailyGame[] = [
   }
 ]
 
-export const getDailyGame = (gameDate?: Date): IDailyGame | undefined => {
-  const date = gameDate || new Date();
-  const todayString = getDateString(date)
-  return games.find((game) => game.date === todayString)
+export const getDailyGame = (date: Date): IDailyGame | undefined => {
+  const dateString = getDateString(date)
+  const game = games.find((game) => game.date === dateString)
+
+  if (!game) {
+    return undefined
+  }
+
+  const letters: ILetter[] = game.letters.map((letter, index) => {
+    return {
+      ...letter,
+      id: 'd' + game.date + (index + 1)
+    }
+  })
+  return {...game, letters }
 }

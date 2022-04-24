@@ -8,7 +8,8 @@
     "dev": "nodemon",
     "start:prod": "npm run build && node ./dist/src/server.js",
     "build": "npx tsc",
-    "knexinit": "knex migrate:make create_campaign_users_table --esm --migrations-directory ./src/db/migrations"
+    "knexinit": "knex migrate:make create_campaign_users_table --esm --migrations-directory ./src/db/migrations",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
     "@types/node": "^17.0.24",
     "@types/sequelize": "^4.28.11",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
@@ -29,8 +31,23 @@
     "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "jest": "^27.5.1",
+    "jest-transform-stub": "^2.0.0",
     "nodemon": "^2.0.15",
+    "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.ts?$": "ts-jest",
+      ".+\\.(css|scss|png|jpg|svg)$": "jest-transform-stub"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }

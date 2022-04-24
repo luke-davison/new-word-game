@@ -9,6 +9,7 @@ export const generateGame = (): ILetter[] => {
   
   const mostCommonLetter = uniqueLetters.splice(0, 1)[0]
   let mostCommonLetterOutput: ILetter | undefined = {
+    id: "mcl",
     char: mostCommonLetter,
     price: 1,
     points: 2
@@ -20,7 +21,7 @@ export const generateGame = (): ILetter[] => {
     abilitiesShuffled.push(abilities.splice(Math.floor(Math.random() * abilities.length), 1)[0])
   }
 
-  letters.reverse().forEach((char) => {
+  letters.reverse().forEach((char, index) => {
     if (char === mostCommonLetterOutput?.char) {
       output.unshift({...mostCommonLetterOutput})
       mostCommonLetterOutput = undefined
@@ -34,6 +35,7 @@ export const generateGame = (): ILetter[] => {
       if (ability === "set-points") {
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
+          id: String(index),
           char,
           price: 2,
           points: 3 + frequencyFactor
@@ -42,6 +44,7 @@ export const generateGame = (): ILetter[] => {
         // TODO - cannot be letter at start of word
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
+          id: String(index),
           char,
           price: 3,
           points: 4 + frequencyFactor,
@@ -57,6 +60,7 @@ export const generateGame = (): ILetter[] => {
         }
         const frequencyFactor = Math.floor(frequencyIndex / 14) + Math.floor((minLength - 4) / 2) 
         output.unshift({
+          id: String(index),
           char,
           price: 4,
           points: 4 + frequencyFactor,
@@ -67,6 +71,7 @@ export const generateGame = (): ILetter[] => {
         // TODO - cannot use for "hjklmnqrvxz"
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
+          id: String(index),
           char,
           price: 4,
           points: 3 + frequencyFactor,
@@ -79,6 +84,7 @@ export const generateGame = (): ILetter[] => {
         const randomIndex = Math.floor(Math.random() * possiblePositions.length)
         const frequencyFactor = Math.floor(frequencyIndex / 17)
         output.unshift({
+          id: String(index),
           char,
           price: 5 - frequencyFactor,
           points: 4,
@@ -88,6 +94,7 @@ export const generateGame = (): ILetter[] => {
         // TODO - cannot be "dijqrsuvwxy"
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
+          id: String(index),
           char,
           price: 3,
           points: 4 + frequencyFactor,
@@ -96,6 +103,7 @@ export const generateGame = (): ILetter[] => {
         })
       } else if (ability === "vowels") {
         output.unshift({
+          id: String(index),
           char,
           price: 4,
           points: getIsCharacterVowel(char) ? 3 : 4,
@@ -105,6 +113,7 @@ export const generateGame = (): ILetter[] => {
       } else if (ability === "wilds") {
         // TODO - cannot be used if too much money
         output.unshift({
+          id: String(index),
           char,
           price: 4,
           points: 3,
@@ -114,6 +123,7 @@ export const generateGame = (): ILetter[] => {
       } else if (ability === "next-to-wild") {
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
+          id: String(index),
           char,
           price: 4,
           points: 3 + frequencyFactor,
@@ -126,6 +136,7 @@ export const generateGame = (): ILetter[] => {
         const randomIndex = Math.floor(Math.random() * positions.length)
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
+          id: String(index),
           char,
           price: 3,
           points: 4 + frequencyFactor,
@@ -134,6 +145,7 @@ export const generateGame = (): ILetter[] => {
         })
       } else if (ability === "large") {
         output.unshift({
+          id: String(index),
           char,
           price: 5,
           points: 8
@@ -142,6 +154,7 @@ export const generateGame = (): ILetter[] => {
         // TODO - cannot use for "aehijklmnoqruvxz"
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
+          id: String(index),
           char,
           price: 4 - frequencyFactor,
           points: 4,
@@ -154,6 +167,7 @@ export const generateGame = (): ILetter[] => {
         const lengths: Abilities[] = [Abilities.WordLength5, Abilities.WordLength6, Abilities.WordLength7]
         const randomIndex = Math.floor(Math.random() * lengths.length)
         output.unshift({
+          id: String(index),
           char,
           price: 4,
           points: 3 + frequencyFactor1,
@@ -232,34 +246,34 @@ const letterFrequencies = [
   {letter: "z", count: 715}
 ]
 
-const firstLetterFrequencies = [
-  {"letter":"s","count":6670},
-  {"letter":"c","count":5493},
-  {"letter":"p","count":4563},
-  {"letter":"d","count":3776},
-  {"letter":"r","count":3634},
-  {"letter":"a","count":3479},
-  {"letter":"b","count":3210},
-  {"letter":"m","count":2944},
-  {"letter":"t","count":2881},
-  {"letter":"i","count":2673},
-  {"letter":"e","count":2588},
-  {"letter":"f","count":2557},
-  {"letter":"h","count":2026},
-  {"letter":"u","count":1921},
-  {"letter":"l","count":1837},
-  {"letter":"g","count":1836},
-  {"letter":"w","count":1542},
-  {"letter":"o","count":1388},
-  {"letter":"n","count":919},
-  {"letter":"v","count":811},
-  {"letter":"j","count":473},
-  {"letter":"k","count":354},
-  {"letter":"q","count":290},
-  {"letter":"y","count":144},
-  {"letter":"z","count":86},
-  {"letter":"x","count":14}
-]
+// const firstLetterFrequencies = [
+//   {"letter":"s","count":6670},
+//   {"letter":"c","count":5493},
+//   {"letter":"p","count":4563},
+//   {"letter":"d","count":3776},
+//   {"letter":"r","count":3634},
+//   {"letter":"a","count":3479},
+//   {"letter":"b","count":3210},
+//   {"letter":"m","count":2944},
+//   {"letter":"t","count":2881},
+//   {"letter":"i","count":2673},
+//   {"letter":"e","count":2588},
+//   {"letter":"f","count":2557},
+//   {"letter":"h","count":2026},
+//   {"letter":"u","count":1921},
+//   {"letter":"l","count":1837},
+//   {"letter":"g","count":1836},
+//   {"letter":"w","count":1542},
+//   {"letter":"o","count":1388},
+//   {"letter":"n","count":919},
+//   {"letter":"v","count":811},
+//   {"letter":"j","count":473},
+//   {"letter":"k","count":354},
+//   {"letter":"q","count":290},
+//   {"letter":"y","count":144},
+//   {"letter":"z","count":86},
+//   {"letter":"x","count":14}
+// ]
 
 // most common letter will be price 1, points 1
 // least common letter is high value, high-ish price

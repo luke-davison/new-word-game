@@ -1,27 +1,15 @@
 import './Menu.css';
 
 import { observer } from 'mobx-react-lite';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { AppContext } from '../stores/AppContext';
 import { CalendarPopup } from './CalendarPopup';
 import { CampaignGame } from './CampaignGame';
-import { DatePickerInput } from './DatePickerInput';
 import { Game } from './Game';
 
 export const Menu: React.FC = observer(() => {
-  const { startCampaignGame, isShowingCalendar, isPlayingCampaignGame, toggleIsShowingCalendar, toggleDevMode, isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame } = useContext(AppContext)
-
-  useEffect(() => {
-    const listener = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "F3") {
-        toggleDevMode()
-      }
-    }
-
-    document.body.addEventListener('keydown', listener);
-    return () => document.body.removeEventListener('keydown', listener)
-  }, [])
+  const { startCampaignGame, isShowingCalendar, isPlayingCampaignGame, toggleIsShowingCalendar, isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame } = useContext(AppContext)
 
   if (isPlayingCampaignGame) {
     return (
@@ -60,7 +48,6 @@ export const Menu: React.FC = observer(() => {
       <div>
         <button onClick={startRandomGame}>Random game</button>
       </div>
-      <DatePickerInput/>
     </div>
   );
 })
