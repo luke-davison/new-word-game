@@ -1,11 +1,13 @@
 import express, { Request } from 'express';
-import { IAppData, ISubmitCampaignWord } from '../../../common/datamodels';
+import { IAppData } from '../../../common/datamodels';
 
 import { Database } from '../db/Database';
 import { FakeDatabaseConnection } from '../db/FakeDatabaseConnection';
 import { getCampaignGame } from '../games/getCampaignGame';
 
 import { getDailyGame } from '../games/getDailyGame';
+import { checkCampaignWord } from '../middleware/checkCampaignWord';
+import { submitCampaignGame } from './submitCampaignGame';
 
 const router = express.Router()
 
@@ -32,9 +34,10 @@ router.get("/start", async (request: Request<{}, {}, {}, { userId: string }>, re
   response.json(appData)
 })
 
-router.post("/submit", async (request: Request<{}, {}, { body: ISubmitCampaignWord }>, response) => {
-  const { body } = request.body
-})
+router.route("/submit").post(
+  checkCampaignWord,
+  submitCampaignGame
+)
 
 export default router
 

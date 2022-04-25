@@ -1,11 +1,9 @@
 import { ICampaignGame, IPlayer, ISubmitCampaignWord } from "../../../common/datamodels"
 import { Abilities } from "../../../common/enums"
-import { Database } from "../db/Database"
-import { IDatabaseConnection } from "../db/IDatabaseConnection"
-import { getValidateCampaignWordError } from "./validateCampaignWord"
+import { validateCampaignWord } from "./validateCampaignWord"
 
-describe("getValidateCampaignWordError", () => {
-  let db: Database, testInput: ISubmitCampaignWord, game: ICampaignGame, player: IPlayer
+describe("validateCampaignWord", () => {
+  let testInput: ISubmitCampaignWord, game: ICampaignGame, player: IPlayer
 
   beforeEach(() => {
     testInput = {
@@ -26,7 +24,7 @@ describe("getValidateCampaignWordError", () => {
       ],
       money: 13,
       memberLetters: [
-        { id: "7", char: "v", price: 1, points: 4 }
+        { id: "7", char: "n", price: 1, points: 4 }
       ]
     }
 
@@ -39,89 +37,90 @@ describe("getValidateCampaignWordError", () => {
       isMember: false,
       points: 0
     }
-
-    const testDatabaseConnection: Pick<IDatabaseConnection, "getCampaignGame" | "getPlayer"> = {
-      getCampaignGame: (dateString: string) => Promise.resolve(dateString === game.date ? game : undefined),
-      getPlayer: (userId: string) => Promise.resolve(userId === player.userId ? player : undefined)
-    }
-
-    db = new Database(testDatabaseConnection as IDatabaseConnection)
   })
 
 
-  it("doesn't return error if everything is okay", async () => {
-    const result = await getValidateCampaignWordError(testInput, db)
+  it("doesn't return error if everything is okay", () => {
+    const result = validateCampaignWord(testInput, game, player)
     expect(result).toBe(undefined)
   })
 
-  it("returns error if game cannot be found", async () => {
-    testInput.date = "2022-04-08"
-    const result = await getValidateCampaignWordError(testInput, db)
-    expect(result).toBe("Unable to validate - could not find game")
-  })
-
-  it("doesn't return error if player cannot be found", async () => {
-    testInput.userId = "-1"
-    const result = await getValidateCampaignWordError(testInput, db)
+  it("doesn't return error if player cannot be found", () => {
+    const result = validateCampaignWord(testInput, game, undefined)
     expect(result).toBe(undefined)
   })
 
-  it("returns error if unknown letter ID", async () => {
+  it("returns error if unknown letter ID", () => {
     testInput.word[0].id = "wrong"
-    const result = await getValidateCampaignWordError(testInput, db)
+    const result = validateCampaignWord(testInput, game, player)
     expect(result).toBe("Unable to validate - letter not available or could not find letter")
   })
 
-  it("returns error if letter character does not match", async () => {
+  it("returns error if letter character does not match", () => {
     testInput.word[1].char = "a"
-    const result = await getValidateCampaignWordError(testInput, db)
+    const result = validateCampaignWord(testInput, game, player)
     expect(result).toBe("Unable to validate - letter character is incorrect")
   })
 
-  it("doesn't return error if letter character does not match but letter is wild", async () => {
+  it("doesn't return error if letter character does not match but letter is wild", () => {
     testInput.word[2].id = "6"
-    const result = await getValidateCampaignWordError(testInput, db)
+    const result = validateCampaignWord(testInput, game, player)
     expect(result).toBe(undefined)
   })
 
-  it("returns error if wild has is more than one character", async () => {
+  it("returns error if wild has is more than one character", () => {
     testInput.word[2].id = "6"
     testInput.word[2].char = "gs"
-    const result = await getValidateCampaignWordError(testInput, db)
+    const result = validateCampaignWord(testInput, game, player)
     expect(result).toBe("Unable to validate - letter character is incorrect")
   })
 
-  it("returns error if money used is greater than money available", async () => {
+  it("returns error if money used is greater than money available", () => {
     game.money = 2
-    const result = await getValidateCampaignWordError(testInput, db)
+    const result = validateCampaignWord(testInput, game, player)
     expect(result).toBe("Unable to validate - insufficient money")
   })
 
-  it("doesn't return error if funding used", async () => {
+  it("doesn't return error if funding used", () => {
     game.money = 6
     player.funding = 7
-    const result = await getValidateCampaignWordError(testInput, db)
+    const result = validateCampaignWord(testInput, game, player)
     expect(result).toBe(undefined)
   })
 
-  it("doesn't return error if inventory letter is used", async () => {
+  it("doesn't return error if inventory letter is used", () => {
     testInput.word[1].id = "8"
     player.inventory = [{ id: "8", char: "i", price: 0, points: 3 }]
-    const result = await getValidateCampaignWordError(testInput, db)
+    const result = validateCampaignWord(testInput, game, player)
     expect(result).toBe(undefined)
   })
 
-  it("returns error if inventory letter is used more than once", async () => {
+  it("returns error if inventory letter is used more than once", () => {
     testInput.word[0].id = "8"
     testInput.word[2].id = "8"
     player.inventory = [{ id: "8", char: "g", price: 0, points: 3 }]
-    const result = await getValidateCampaignWordError(testInput, db)
+    const result = validateCampaignWord(testInput, game, player)
     expect(result).toBe("Unable to validate - inventory letter used more than once")
   })
 
-  it("return error if word is not in wordlist", async () => {
+  it("returns error if member letter is used but player is not a member", () => {
+    testInput.word[2].id = "7"
+    player.isMember = false
+    const result = validateCampaignWord(testInput, game, player)
+    expect(result).toBe("Unable to validate - letter not available or could not find letter")
+  })
+
+  it("doesn't return an error if member letter is used and player is a member", () => {
+    testInput.word[2].id = "7"
+    testInput.word[2].char = "n"
+    player.isMember = true
+    const result = validateCampaignWord(testInput, game, player)
+    expect(result).toBe(undefined)
+  })
+
+  it("return error if word is not in wordlist", () => {
     testInput.word.push({ id: "1", char: "g" })
-    const result = await getValidateCampaignWordError(testInput, db)
+    const result = validateCampaignWord(testInput, game, player)
     expect(result).toBe("Unable to validate - word is not in wordlist")
   })
 })

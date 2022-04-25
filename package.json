@@ -21,6 +21,7 @@
     "react-dnd-touch-backend": "^15.1.1",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "ts-jest": "^27.1.4",
     "typescript": "^4.6.2",
     "web-vitals": "^2.1.4"
   },
@@ -28,6 +29,7 @@
     "build": "react-scripts build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
+    "jest": "jest",
     "predeploy": "npm run build",
     "start": "react-scripts start",
     "tsc": "tsc",
@@ -53,5 +55,18 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.ts?$": "ts-jest"
+    },
+    "testMatch": [
+      "<rootDir>/src/**/*.test.{js,jsx,ts,tsx}",
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}",
+      "<rootDir>/common/**/*.test.{js,jsx,ts,tsx}",
+      "<rootDir>/common/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+    ]
   }
 }

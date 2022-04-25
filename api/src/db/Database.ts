@@ -44,5 +44,3 @@ export class Database {
     return this.databaseConnection.getCampaignGame(dateString)
   }
 }
-
-export const db = new Database(new FakeDatabaseConnection())
