@@ -1,10 +1,10 @@
 import { Abilities } from "../../enums"
-import { getIsActive } from "./getIsActive"
+import { getAbilityIsActive } from "./getAbilityIsActive"
 
-describe("getIsActive", () => {
+describe("getAbilityIsActive", () => {
   describe("Abilities.Club", () => {
     it("should always be true", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "1", char: "a", price: 1, points: 1, ability: Abilities.Club },
       ], 0)
       expect(result).toBe(true)
@@ -13,7 +13,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.Funding1", () => {
     it("should always be true", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "1", char: "a", price: 1, points: 1, ability: Abilities.Funding1 },
       ], 0)
       expect(result).toBe(true)
@@ -22,7 +22,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.Funding2", () => {
     it("should always be true", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "1", char: "a", price: 1, points: 1, ability: Abilities.Funding2 },
       ], 0)
       expect(result).toBe(true)
@@ -31,14 +31,14 @@ describe("getIsActive", () => {
 
   describe("Abilities.InPosition1", () => {
     it("should be true if in the first position", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "1", char: "a", price: 1, points: 1, ability: Abilities.InPosition1 },
       ], 0)
       expect(result).toBe(true)
     })
 
     it("should be false if in a different position", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "2", char: "t", price: 1, points: 1, ability: Abilities.InPosition1 },
       ], 1)
@@ -48,7 +48,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.InPosition2", () => {
     it("should be true if in the seond position", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "2", char: "t", price: 1, points: 1, ability: Abilities.InPosition2 },
       ], 1)
@@ -56,7 +56,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if in a different position", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "1", char: "a", price: 1, points: 1, ability: Abilities.InPosition2 },
         { id: "2", char: "t", price: 1, points: 1 },
       ], 0)
@@ -66,7 +66,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.InPosition3", () => {
     it("should be true if in the third position", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "2", char: "n", price: 1, points: 1 },
         { id: "3", char: "d", price: 1, points: 1, ability: Abilities.InPosition3 },
@@ -75,7 +75,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if in a different position", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "2", char: "n", price: 1, points: 1, ability: Abilities.InPosition3 },
         { id: "3", char: "d", price: 1, points: 1 },
@@ -86,7 +86,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.InPosition4", () => {
     it("should be true if in the fourth position", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "2", char: "n", price: 1, points: 1 },
@@ -96,7 +96,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if in a different position", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "2", char: "n", price: 1, points: 1, ability: Abilities.InPosition4 },
@@ -108,7 +108,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.InPositionLast", () => {
     it("should be true if in the last position", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "2", char: "n", price: 1, points: 1 },
@@ -118,7 +118,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if in a different position", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1, ability: Abilities.InPositionLast },
         { id: "2", char: "d", price: 1, points: 1 }
@@ -129,7 +129,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.MaxWordLength4", () => {
     it("should be true if the word is fewer letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength4 },
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "2", char: "d", price: 1, points: 1 }
@@ -138,7 +138,7 @@ describe("getIsActive", () => {
     })
 
     it("should be true if the word is four letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength4 },
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "3", char: "n", price: 1, points: 1 },
@@ -148,7 +148,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if the word is greater letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength4 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -161,7 +161,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.MaxWordLength5", () => {
     it("should be true if the word is fewer letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength5 },
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "3", char: "n", price: 1, points: 1 },
@@ -171,7 +171,7 @@ describe("getIsActive", () => {
     })
 
     it("should be true if the word is five letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength5 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -182,7 +182,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if the word is greater letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength5 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -196,7 +196,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.MaxWordLength6", () => {
     it("should be true if the word is fewer letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength6 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -207,7 +207,7 @@ describe("getIsActive", () => {
     })
 
     it("should be true if the word is six letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength6 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -219,7 +219,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if the word is greater letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength6 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -234,7 +234,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.MaxWordLength7", () => {
     it("should be true if the word is fewer letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength7 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -246,7 +246,7 @@ describe("getIsActive", () => {
     })
 
     it("should be true if the word is seven letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength7 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -259,7 +259,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if the word is greater letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MaxWordLength7 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -275,7 +275,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.MinWordLength4", () => {
     it("should be true if the word is greater letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength4 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -286,7 +286,7 @@ describe("getIsActive", () => {
     })
 
     it("should be true if the word is four letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength4 },
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "3", char: "n", price: 1, points: 1 },
@@ -296,7 +296,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if the word is fewer letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength4 },
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "2", char: "d", price: 1, points: 1 }
@@ -307,7 +307,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.MinWordLength5", () => {
     it("should be true if the word is greater letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength5 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -319,7 +319,7 @@ describe("getIsActive", () => {
     })
 
     it("should be true if the word is five letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength5 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -330,7 +330,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if the word is fewer letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength5 },
         { id: "1", char: "a", price: 1, points: 1 },
         { id: "3", char: "n", price: 1, points: 1 },
@@ -342,7 +342,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.MinWordLength6", () => {
     it("should be true if the word is greater letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength6 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -355,7 +355,7 @@ describe("getIsActive", () => {
     })
 
     it("should be true if the word is six letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength6 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -367,7 +367,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if the word is fewer letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength6 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -380,7 +380,7 @@ describe("getIsActive", () => {
 
   describe("Abilities.MinWordLength7", () => {
     it("should be true if the word is greater letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength7 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -394,7 +394,7 @@ describe("getIsActive", () => {
     })
 
     it("should be true if the word is seven letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength7 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },
@@ -407,7 +407,7 @@ describe("getIsActive", () => {
     })
 
     it("should be false if the word is fewer letters long", () => {
-      const result = getIsActive([
+      const result = getAbilityIsActive([
         { id: "4", char: "s", price: 1, points: 1, ability: Abilities.MinWordLength7 },
         { id: "5", char: "t", price: 1, points: 1 },
         { id: "1", char: "a", price: 1, points: 1 },

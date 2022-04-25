@@ -1,9 +1,8 @@
 import { ISubmitCampaignWord } from "../../../common/datamodels";
-import { Database } from "../db/Database";
 import { Request, Response } from "express"
 import { db } from "../db"
 import { validateCampaignWord } from "../middleware/validateCampaignWord";
-import { convertWordToLetters } from "../utils/convertWordToLetters";
+import { getPlayerAfterSubmit } from "../utils/getPlayerAfterSubmit";
 
 export const submitCampaignWord = async (request: Request<{}, {}, ISubmitCampaignWord>, response: Response) => {
   const { body } = request
@@ -21,20 +20,9 @@ export const submitCampaignWord = async (request: Request<{}, {}, ISubmitCampaig
     return response.status(400).send(message)
   }
 
-  const letters = convertWordToLetters(body.word, campaignGame, player)
+  const newPlayer = getPlayerAfterSubmit(body, campaignGame, player)
+  
+  const newPlayerResult = await db.submitPlayer(newPlayer)
 
-
-}
-
-export const submitCampaignGame = async (body: ISubmitCampaignWord, db: Database) => {
-
-
-
-  // increase score
-
-  // increase funding
-
-  // retain letters
-
-  // 
+  response.status(200).json(newPlayerResult)
 }

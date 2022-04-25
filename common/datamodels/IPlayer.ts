@@ -8,4 +8,5 @@ export interface IPlayer {
   funding: number;
   isMember: boolean;
   points: number;
+  lastSubmit: string;
 }

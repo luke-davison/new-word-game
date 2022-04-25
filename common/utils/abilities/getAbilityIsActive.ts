@@ -5,7 +5,7 @@ import { getIsNextToWildActive } from "./getNextToWildActive"
 import { getVowelsActive } from "./getVowelsActive"
 import { getWildsActive } from "./getWildsActive"
 
-export const getIsActive = (word: ILetter[], position: number, player?: IPlayer): boolean => {
+export const getAbilityIsActive = (word: ILetter[], position: number, player?: IPlayer): boolean => {
   const letter = word[position]
   if (!letter) {
     return false

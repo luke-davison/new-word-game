@@ -28,7 +28,7 @@ export enum Abilities {
   RetainLeft = "27",
   RetainRight = "28",
   Vowels = "29",
-  Wild = "31",
+  Wild = "35",
   Wilds = "30",
   WordLength4 = "31",
   WordLength5 = "32",
