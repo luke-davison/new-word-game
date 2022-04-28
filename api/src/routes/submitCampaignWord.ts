@@ -1,10 +1,10 @@
-import { ISubmitCampaignWord } from "../../../common/datamodels";
+import { ISubmitWord } from "../../../common/datamodels";
 import { Request, Response } from "express"
 import { db } from "../db"
-import { validateCampaignWord } from "../middleware/validateCampaignWord";
+import { validateSubmitWord } from "../middleware/validateSubmitWord";
 import { getPlayerAfterSubmit } from "../utils/getPlayerAfterSubmit";
 
-export const submitCampaignWord = async (request: Request<{}, {}, ISubmitCampaignWord>, response: Response) => {
+export const submitCampaignWord = async (request: Request<{}, {}, ISubmitWord>, response: Response) => {
   const { body } = request
   const campaignGame = await db.getCampaignGame(request.body.date)
 
@@ -14,7 +14,7 @@ export const submitCampaignWord = async (request: Request<{}, {}, ISubmitCampaig
 
   const player = await db.getPlayer(body.userId, body.date)
 
-  const message = validateCampaignWord(request.body, campaignGame, player)
+  const message = validateSubmitWord(request.body, campaignGame, player)
 
   if (message) {
     return response.status(400).send(message)

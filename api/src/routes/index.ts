@@ -5,7 +5,7 @@ import { getDateString } from '../../../common/utils';
 import { db } from '../db';
 import { getCampaignGame } from '../games/getCampaignGame';
 import { getDailyGame } from '../games/getDailyGame';
-import { checkCampaignWord } from '../middleware/checkCampaignWord';
+import { checkSubmitWord } from '../middleware/checkSubmitWord';
 import { submitCampaignWord } from './submitCampaignWord';
 
 const router = express.Router()
@@ -33,7 +33,7 @@ router.get("/start", async (request: Request<{}, {}, {}, { userId: string }>, re
 })
 
 router.route("/submit").post(
-  checkCampaignWord,
+  checkSubmitWord,
   submitCampaignWord
 )
 

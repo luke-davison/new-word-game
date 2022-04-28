@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express"
-import { ISubmitCampaignWord } from "../../../common/datamodels"
+import { ISubmitWord } from "../../../common/datamodels"
 import { getDateFromString } from "../../../common/utils"
 
-export const checkCampaignWord = (request: Request<{}, {}, ISubmitCampaignWord>, response: Response, next: NextFunction) => {
-  const message = getCheckCampaignWordError(request.body)
+export const checkSubmitWord = (request: Request<{}, {}, ISubmitWord>, response: Response, next: NextFunction) => {
+  const message = getCheckSubmitWordError(request.body)
 
   if (message) {
     return response.status(400).send(message)
@@ -12,7 +12,7 @@ export const checkCampaignWord = (request: Request<{}, {}, ISubmitCampaignWord>,
   return next()
 }
 
-export const getCheckCampaignWordError = (body: ISubmitCampaignWord): string | undefined => {
+export const getCheckSubmitWordError = (body: ISubmitWord): string | undefined => {
   const wordIsArray = Array.isArray(body.word)
   if (!wordIsArray) {
     return "Unable to validate - invalid word"

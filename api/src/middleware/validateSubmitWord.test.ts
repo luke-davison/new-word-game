@@ -1,9 +1,9 @@
-import { ICampaignGame, IPlayer, ISubmitCampaignWord } from "../../../common/datamodels"
+import { ICampaignGame, IPlayer, ISubmitWord } from "../../../common/datamodels"
 import { Abilities } from "../../../common/enums"
-import { validateCampaignWord } from "./validateCampaignWord"
+import { validateSubmitWord } from "./validateSubmitWord"
 
-describe("validateCampaignWord", () => {
-  let testInput: ISubmitCampaignWord, game: ICampaignGame, player: IPlayer
+describe("validateSubmitWord", () => {
+  let testInput: ISubmitWord, game: ICampaignGame, player: IPlayer
 
   beforeEach(() => {
     testInput = {
@@ -35,63 +35,64 @@ describe("validateCampaignWord", () => {
       inventory: [],
       funding: 0,
       isMember: false,
-      points: 0
+      points: 0,
+      lastSubmit: ""
     }
   })
 
 
   it("doesn't return error if everything is okay", () => {
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe(undefined)
   })
 
   it("doesn't return error if player cannot be found", () => {
-    const result = validateCampaignWord(testInput, game, undefined)
+    const result = validateSubmitWord(testInput, game, undefined)
     expect(result).toBe(undefined)
   })
 
   it("returns error if unknown letter ID", () => {
     testInput.word[0].id = "wrong"
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe("Unable to validate - letter not available or could not find letter")
   })
 
   it("returns error if letter character does not match", () => {
     testInput.word[1].char = "a"
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe("Unable to validate - letter character is incorrect")
   })
 
   it("doesn't return error if letter character does not match but letter is wild", () => {
     testInput.word[2].id = "6"
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe(undefined)
   })
 
   it("returns error if wild has is more than one character", () => {
     testInput.word[2].id = "6"
     testInput.word[2].char = "gs"
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe("Unable to validate - letter character is incorrect")
   })
 
   it("returns error if money used is greater than money available", () => {
     game.money = 2
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe("Unable to validate - insufficient money")
   })
 
   it("doesn't return error if funding used", () => {
     game.money = 6
     player.funding = 7
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe(undefined)
   })
 
   it("doesn't return error if inventory letter is used", () => {
     testInput.word[1].id = "8"
     player.inventory = [{ id: "8", char: "i", price: 0, points: 3 }]
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe(undefined)
   })
 
@@ -99,14 +100,14 @@ describe("validateCampaignWord", () => {
     testInput.word[0].id = "8"
     testInput.word[2].id = "8"
     player.inventory = [{ id: "8", char: "g", price: 0, points: 3 }]
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe("Unable to validate - inventory letter used more than once")
   })
 
   it("returns error if member letter is used but player is not a member", () => {
     testInput.word[2].id = "7"
     player.isMember = false
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe("Unable to validate - letter not available or could not find letter")
   })
 
@@ -114,13 +115,13 @@ describe("validateCampaignWord", () => {
     testInput.word[2].id = "7"
     testInput.word[2].char = "n"
     player.isMember = true
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe(undefined)
   })
 
   it("return error if word is not in wordlist", () => {
     testInput.word.push({ id: "1", char: "g" })
-    const result = validateCampaignWord(testInput, game, player)
+    const result = validateSubmitWord(testInput, game, player)
     expect(result).toBe("Unable to validate - word is not in wordlist")
   })
 })

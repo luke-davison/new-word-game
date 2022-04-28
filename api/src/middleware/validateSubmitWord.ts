@@ -1,10 +1,10 @@
-import { ICampaignGame, IPlayer, ISubmitCampaignWord } from "../../../common/datamodels"
+import { ICampaignGame, IDailyGame, IPlayer, ISubmitWord } from "../../../common/datamodels"
 import { getIsWordInWordlist } from "../../../common/utils"
 import { Abilities } from "../../../common/enums"
 import { convertWordToLetters } from "../utils/convertWordToLetters"
 
-export const validateCampaignWord = (body: ISubmitCampaignWord, campaignGame: ICampaignGame, player: IPlayer | undefined): string | undefined => {
-  const letters = convertWordToLetters(body.word, campaignGame, player)
+export const validateSubmitWord = (body: ISubmitWord, game: ICampaignGame | IDailyGame, player: IPlayer | undefined): string | undefined => {
+  const letters = convertWordToLetters(body.word, game, player)
 
   if (letters.length !== body.word.length) {
     return "Unable to validate - letter not available or could not find letter"
@@ -27,7 +27,7 @@ export const validateCampaignWord = (body: ISubmitCampaignWord, campaignGame: IC
     return "Unable to validate - letter character is incorrect"
   }
 
-  const money = campaignGame.money + (player?.funding || 0)
+  const money = game.money + (player?.funding || 0)
 
   const moneyUsed = letters.reduce((sum, letter) => {
     return sum + letter!.price
