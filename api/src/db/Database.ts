@@ -1,6 +1,7 @@
-import { ICampaignGame, IDailyGame, IPlayer } from "../../../common/datamodels";
-import { FakeDatabaseConnection } from "./FakeDatabaseConnection";
-import { IDatabaseConnection } from "./IDatabaseConnection";
+import { ICampaignGame, IDailyGame, IPlayer } from '../../../common/datamodels';
+import { generateNickname } from '../utils/generateNickname';
+import { FakeDatabaseConnection } from './FakeDatabaseConnection';
+import { IDatabaseConnection } from './IDatabaseConnection';
 
 export class Database {
   constructor(public databaseConnection: IDatabaseConnection) {}
@@ -29,6 +30,7 @@ export class Database {
   }
 
   createPlayer = async (userId: string): Promise<IPlayer> => {
+    const nickname = generateNickname();
     return this.databaseConnection.createPlayer(userId)
   }
 

@@ -104,8 +104,7 @@ const games: ICampaignGameNoIds[] = [
   }
 ]
 
-export const getCampaignGame = (date: Date): ICampaignGame | undefined => {
-  const dateString = getDateString(date)
+export const getCampaignGame = (dateString: string): ICampaignGame | undefined => {
   const game = games.find((game) => game.date === dateString)
 
   if (!game) {

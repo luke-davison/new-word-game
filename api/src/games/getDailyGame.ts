@@ -245,8 +245,7 @@ const games: IDailyGameNoIds[] = [
   }
 ]
 
-export const getDailyGame = (date: Date): IDailyGame | undefined => {
-  const dateString = getDateString(date)
+export const getDailyGame = (dateString: string): IDailyGame | undefined => {
   const game = games.find((game) => game.date === dateString)
 
   if (!game) {

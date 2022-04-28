@@ -1,10 +1,15 @@
-import { ICampaignGame, IDailyGame, IPlayer } from "../../../common/datamodels"
-import { getDateString } from "../../../common/utils"
-import { getNextEndOfCampaignDateString } from "../utils/getNextEndOfCampaignDateString"
-import { IDatabaseConnection } from "./IDatabaseConnection"
+import { ICampaignGame, IDailyGame, IPlayer } from '../../../common/datamodels';
+import { getDateString } from '../../../common/utils';
+import { IUser } from '../datamodels';
+import { getCampaignGame } from '../games/getCampaignGame';
+import { getDailyGame } from '../games/getDailyGame';
+import { generateNickname } from '../utils/generateNickname';
+import { getNextEndOfCampaignDateString } from '../utils/getNextEndOfCampaignDateString';
+import { IDatabaseConnection } from './IDatabaseConnection';
 
 export class FakeDatabaseConnection implements IDatabaseConnection {
   players: Map<string, IPlayer> = new Map()
+  users: Map<string, IUser> = new Map()
 
   getPlayer = (userId: string): Promise<IPlayer | undefined> => {
     return Promise.resolve(this.players.get(userId))
@@ -21,7 +26,8 @@ export class FakeDatabaseConnection implements IDatabaseConnection {
       inventory: [],
       funding: 0,
       isMember: false,
-      points: 0
+      points: 0,
+      lastSubmit: ""
     }
 
     this.players.set(userId, player)
@@ -36,10 +42,24 @@ export class FakeDatabaseConnection implements IDatabaseConnection {
   }
 
   getDailyGame = (dateString: string): Promise<IDailyGame | undefined> => {
-    return Promise.resolve(this.getDailyGame(dateString))
+    return Promise.resolve(getDailyGame(dateString))
   }
 
   getCampaignGame = (dateString: string): Promise<ICampaignGame | undefined> => {
-    return Promise.resolve(this.getCampaignGame(dateString))
+    return Promise.resolve(getCampaignGame(dateString))
+  }
+
+  getUser = (userId: string): Promise<IUser | undefined> => {
+    return Promise.resolve(this.users.get(userId))
+  }
+
+  createUser = (): Promise<IUser> => {
+    const id = String(Math.random()).slice(2)
+    const nickname = generateNickname();
+    const user: IUser = { id, nickname, campaignRating: 1000 }
+
+    this.users.set(id, user)
+
+    return Promise.resolve(user)
   }
 }
