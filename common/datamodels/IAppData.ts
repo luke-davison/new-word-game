@@ -5,6 +5,7 @@ import { IDailyGame } from './index';
 import { IPlayer } from './IPlayer';
 
 export interface IAppData {
+  date: string;
   userId: string;
   dailyGame: IDailyGame;
   campaignGame: ICampaignGame;

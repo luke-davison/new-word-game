@@ -86,9 +86,9 @@ export class AppStore {
   scoreMap: Map<string, ScoreInfo> = new Map()
 
   loadScore = (date: Date): ScoreInfo => {
-    const game = getDailyGame(date)
-      
     const dateString = getDateString(date)
+    const game = getDailyGame(dateString)
+      
     let scoreInfo: ScoreInfo
 
     if (game) {

@@ -22,6 +22,7 @@ export const submitDailyWord = async (request: Request<{}, {}, ISubmitWord>, res
 
   const user = await db.getUser(body.userId)
   if (user) {
+    user.previousDailyGameSubmit = user.lastDailyGameSubmit
     user.lastDailyGameSubmit = body.date
     await db.updateUser(user)
   } else {

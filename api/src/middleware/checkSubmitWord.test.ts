@@ -1,9 +1,10 @@
-import { ISubmitWord } from "../../../common/datamodels"
-import { getDateString } from "../../../common/utils";
-import { getCheckSubmitWordError } from "./checkSubmitWord"
+import { ISubmitWord } from '../../../common/datamodels';
+import { getDateString } from '../../../common/utils';
+import { getTodayDateString } from '../utils/getTodayDateString';
+import { getCheckSubmitWordError } from './checkSubmitWord';
 
 const testInput: ISubmitWord = {
-  date: getDateString(new Date()),
+  date: getTodayDateString(),
   userId: '0',
   word: [{ id: '1', char: 'p' }, { id: '2', char: 'i' }, { id: '3', char: 'g' }]
 }

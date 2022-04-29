@@ -4,4 +4,5 @@ export interface IUser extends CommonIUser {
   nickname: string;
   campaignRating: number;
   lastDailyGameSubmit?: string;
+  previousDailyGameSubmit?: string;
 }

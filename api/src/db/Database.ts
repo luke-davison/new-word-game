@@ -1,8 +1,8 @@
 import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../common/datamodels';
-import { getDateString } from '../../../common/utils';
 import { IUser } from '../datamodels';
 import { generateNickname } from '../utils/generateNickname';
 import { getNextEndOfCampaignDateString } from '../utils/getNextEndOfCampaignDateString';
+import { getTodayDateString } from '../utils/getTodayDateString';
 import { IDatabaseConnection } from './IDatabaseConnection';
 
 export class Database {
@@ -32,7 +32,7 @@ export class Database {
   }
 
   createPlayer = async (userId: string): Promise<IPlayer> => {
-    const startDate = getDateString(new Date())
+    const startDate = getTodayDateString();
     const endDate = getNextEndOfCampaignDateString(new Date())
 
     const player: IPlayer = {
@@ -64,7 +64,7 @@ export class Database {
   getUser = async (userId: string): Promise<IUser | undefined> => {
     return await this.databaseConnection.getUser(userId)
   }
-  
+
   createUser = async (): Promise<IUser> => {
     const id = String(Math.random()).slice(2)
     const generatedNickname = generateNickname();

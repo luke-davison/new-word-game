@@ -1,16 +1,17 @@
 import { Request, Response } from 'express';
 
-import { IAppData } from '../../../common/datamodels';
-import { getDateString } from '../../../common/utils';
+import { IAppData, IGameStats } from '../../../common/datamodels';
 import { db } from '../db';
+import { getTodayDateString } from '../utils/getTodayDateString';
 
 export const getAppData = async (request: Request<{}, {}, {}, { userId?: string }>, response: Response) => {
-  const today = getDateString(new Date())
+  const date = getTodayDateString()
 
-  const [dailyGame, campaignGame, player] = await Promise.all([
-    db.getDailyGame(today),
-    db.getCampaignGame(today),
-    request.query.userId ? await db.getPlayer(request.query.userId, today) : undefined
+  const [dailyGame, campaignGame, player, user] = await Promise.all([
+    db.getDailyGame(date),
+    db.getCampaignGame(date),
+    request.query.userId ? await db.getPlayer(request.query.userId, date) : undefined,
+    request.query.userId ? await db.getUser(request.query.userId) : undefined
   ])
 
   if (!dailyGame) {
@@ -21,14 +22,56 @@ export const getAppData = async (request: Request<{}, {}, {}, { userId?: string 
     return response.status(500).send("Could not load data - unable to find campaign game")
   }
 
+  let currentGameStats: IGameStats | undefined = undefined
+  let previousGameStats: IGameStats | undefined = undefined
+
+  if (user?.lastDailyGameSubmit) {
+    if (user.lastDailyGameSubmit === date) {
+      currentGameStats = await db.getGameStats(user.lastDailyGameSubmit)
+      if (user.previousDailyGameSubmit) {
+        previousGameStats = await db.getGameStats(user.previousDailyGameSubmit)
+      }
+    } else {
+      previousGameStats = await db.getGameStats(user.lastDailyGameSubmit)
+    }
+  }
+
   const userId = request.query.userId || String(Math.random()).slice(2)
 
   const appData: IAppData = {
+    date,
     userId,
     dailyGame,
     campaignGame,
-    player
+    player,
+    currentGameStats,
+    previousGameStats
   }
 
   response.json(appData)
+}
+
+export const getGameStats = async (userId: string | undefined): Promise<{ currentGameStats?: IGameStats, previousGameStats?: IGameStats }> => {
+  if (!userId) {
+    return {}
+  }
+
+  const user = await db.getUser(userId)
+
+  const date = getTodayDateString()
+
+  const currentGameDate = user?.lastDailyGameSubmit === date
+    ? user?.lastDailyGameSubmit
+    : undefined
+
+  const previousGameDate = user?.lastDailyGameSubmit === date
+  ? user?.previousDailyGameSubmit
+  : user?.lastDailyGameSubmit
+
+  const [ currentGameStats, previousGameStats ] = await Promise.all([
+    currentGameDate ? db.getGameStats(currentGameDate) : undefined,
+    previousGameDate ? db.getGameStats(previousGameDate) : undefined
+  ])
+
+  return { currentGameStats, previousGameStats }
 }
