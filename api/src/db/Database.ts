@@ -1,9 +1,8 @@
-import { ICampaignGame, IDailyGame, IGameStats, IPlayer, IUser as CommonIUser } from '../../../common/datamodels';
+import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../common/datamodels';
 import { getDateString } from '../../../common/utils';
 import { IUser } from '../datamodels';
 import { generateNickname } from '../utils/generateNickname';
 import { getNextEndOfCampaignDateString } from '../utils/getNextEndOfCampaignDateString';
-import { removeInternalUserProperties } from '../utils/removeInternalUserProperties';
 import { IDatabaseConnection } from './IDatabaseConnection';
 
 export class Database {
@@ -62,23 +61,20 @@ export class Database {
     return this.databaseConnection.getCampaignGame(dateString)
   }
 
-  getUser = async (userId: string): Promise<CommonIUser | undefined> => {
-    const user = await this.databaseConnection.getUser(userId)
-    if (user) {
-      return removeInternalUserProperties(user)
-    }
-
-    return undefined
+  getUser = async (userId: string): Promise<IUser | undefined> => {
+    return await this.databaseConnection.getUser(userId)
   }
-
-  createUser = async (): Promise<CommonIUser> => {
+  
+  createUser = async (): Promise<IUser> => {
     const id = String(Math.random()).slice(2)
     const generatedNickname = generateNickname();
     const user: IUser = { id, nickname: generatedNickname, campaignRating: 1000 }
 
-    await this.databaseConnection.createUser(user)
+    return this.databaseConnection.createUser(user)
+  }
 
-    return removeInternalUserProperties(user)
+  updateUser = async (user: IUser): Promise<IUser | undefined> => {
+    return await this.databaseConnection.updateUser(user)
   }
 
   getGameStats = (dateString: string): Promise<IGameStats | undefined> => {

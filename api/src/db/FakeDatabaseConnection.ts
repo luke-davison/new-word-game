@@ -2,7 +2,6 @@ import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../common/
 import { IUser } from '../datamodels';
 import { getCampaignGame } from '../games/getCampaignGame';
 import { getDailyGame } from '../games/getDailyGame';
-import { generateNickname } from '../utils/generateNickname';
 import { IDatabaseConnection } from './IDatabaseConnection';
 
 export class FakeDatabaseConnection implements IDatabaseConnection {
@@ -37,6 +36,11 @@ export class FakeDatabaseConnection implements IDatabaseConnection {
   }
 
   createUser = (user: IUser): Promise<IUser> => {
+    this.users.set(user.id, user)
+    return Promise.resolve(user)
+  }
+
+  updateUser = (user: IUser): Promise<IUser> => {
     this.users.set(user.id, user)
     return Promise.resolve(user)
   }

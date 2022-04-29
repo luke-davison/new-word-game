@@ -5,9 +5,10 @@ import { IDailyGame } from './index';
 import { IPlayer } from './IPlayer';
 
 export interface IAppData {
+  userId: string;
   dailyGame: IDailyGame;
   campaignGame: ICampaignGame;
-  player: IPlayer;
+  player?: IPlayer;
   previousLeague?: ILeague;
   previousGameStats?: IGameStats;
   currentGameStats?: IGameStats;
