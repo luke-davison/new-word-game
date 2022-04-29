@@ -1,7 +1,7 @@
 
 
-import { IDailyGame, ILetter } from '../../../common/datamodels';
-import { Abilities } from '../../../common/enums';
+import { IDailyGame, ILetter } from '../../../shared/datamodels';
+import { Abilities } from '../../../shared/enums';
 
 interface IDailyGameNoIds extends Omit<IDailyGame, "letters"> {
   letters: Array<Omit<ILetter, "id">>

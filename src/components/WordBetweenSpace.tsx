@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 import { useDrop } from 'react-dnd';
 
-import { LetterInstance } from '../../common/models/LetterInstance';
+import { LetterInstance } from '../../shared/models/LetterInstance';
 import { GameContext } from '../stores/GameContext';
 
 export const WordBetweenSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceIndex }) => {

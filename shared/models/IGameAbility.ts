@@ -1,4 +1,3 @@
-import { IPlayer } from '../datamodels';
 import { LetterInstance } from './LetterInstance';
 import { Player } from './Player';
 

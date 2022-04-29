@@ -1,4 +1,4 @@
-import { getDateString } from "../../../common/utils"
+import { getDateString } from '../../../shared/utils';
 
 export const getNextEndOfCampaignDateString = (date: Date) => {
   const dayOfWeek = date.getDay()

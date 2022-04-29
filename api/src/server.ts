@@ -3,7 +3,7 @@ import express from 'express';
 
 import router from './routes';
 
-const port = 3001;
+const port = 3002;
 
 const app = express();
 app.use(bodyParser.json())

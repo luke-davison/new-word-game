@@ -1,6 +1,6 @@
-import { IGame } from '../../../common/datamodels';
-import { Letter, LetterInstance } from '../../../common/models';
-import { getIsValidWord, getWildAbility, setupLetters, wordlist } from '../../../common/utils';
+import { IGame } from '../../../shared/datamodels';
+import { Letter, LetterInstance } from '../../../shared/models';
+import { getIsValidWord, getWildAbility, setupLetters, wordlist } from '../../../shared/utils';
 
 export const getBestWords = (game: IGame) => {
   const map = new Map()

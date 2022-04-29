@@ -1,13 +1,10 @@
 import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
+import { ICampaignGame, IDailyGame, IGame } from 'shared/datamodels';
+import { Letter } from 'shared/models/Letter';
+import { LetterInstance } from 'shared/models/LetterInstance';
+import { getIsValidWord } from 'shared/utils';
+import { getWildAbility } from 'shared/utils/getAbilities';
 
-import { getCampaignGame } from '../../api/src/games/getCampaignGame';
-import { getDailyGame } from '../../api/src/games/getDailyGame';
-import { generateGame } from '../../api/src/utils/generateRandomGame';
-import { ICampaignGame, IDailyGame, IGame } from '../../common/datamodels';
-import { Letter } from '../../common/models/Letter';
-import { LetterInstance } from '../../common/models/LetterInstance';
-import { getIsValidWord, setupLetters } from '../../common/utils';
-import { getWildAbility } from '../../common/utils/getAbilities';
 import { AppStore } from './AppStore';
 import { CampaignStore } from './CampaignStore';
 
@@ -50,15 +47,15 @@ export class GameStore {
     })
 
     if (this.appStore.isPlayingDailyGame) {
-      this._dailyGame = getDailyGame(this.appStore.today)
+      // this._dailyGame = getDailyGame(this.appStore.today)
     } else if (this.appStore.isPlayingCampaignGame && this.campaignStore) {
-      this._campaignGame = getCampaignGame(this.campaignStore.campaignId, this.campaignStore.campaignDay)
+      // this._campaignGame = getCampaignGame(this.campaignStore.campaignId, this.campaignStore.campaignDay)
     } else {
       const money = 15 + Math.floor(Math.random() * 5)
 
       this._dailyGame = {
         date: String(Math.random()),
-        letters: generateGame(),
+        letters: [],
         money: 15 + Math.floor(Math.random() * 5),
         target: 11 + money,
         secretTarget: 15 + money
@@ -102,11 +99,11 @@ export class GameStore {
     })
 
     this._shopLetters = [
-      ...setupLetters(this.game?.letters),
+      // ...setupLetters(this.game?.letters),
       new Letter({ color: 0, char: "", price: 1, points: 0, isWild: true, ability: getWildAbility()})
     ]
 
-    this._secretShopLetters = setupLetters(this._campaignGame?.memberLetters)
+    // this._secretShopLetters = setupLetters(this._campaignGame?.memberLetters)
   }
   
   _dailyGame: IDailyGame | undefined;

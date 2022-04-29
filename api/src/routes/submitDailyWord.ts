@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
-import { ISubmitWord } from '../../../common/datamodels';
-import { getWordPoints } from '../../../common/utils/getWordPoints';
+import { ISubmitWord } from '../../../shared/datamodels';
+import { getWordPoints } from '../../../shared/utils/getWordPoints';
 import { db } from '../db';
 import { validateSubmitWord } from '../middleware/validateSubmitWord';
 import { convertWordToLetters } from '../utils/convertWordToLetters';

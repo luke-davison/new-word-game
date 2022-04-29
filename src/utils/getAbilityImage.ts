@@ -1,3 +1,4 @@
+import { Abilities } from '../../shared/enums';
 import clubImage from '../images/club.png';
 import funding1Image from '../images/funding_1.png';
 import funding2Image from '../images/funding_2.png';
@@ -33,7 +34,6 @@ import wordLength4Image from '../images/word_length_must_be_4.png';
 import wordLength5Image from '../images/word_length_must_be_5.png';
 import wordLength6Image from '../images/word_length_must_be_6.png';
 import wordLength7Image from '../images/word_length_must_be_7.png';
-import { Abilities } from "../../common/enums"
 
 export const getAbilityImage = (ability: Abilities): string | undefined => {
   switch (ability) {

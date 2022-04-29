@@ -1,6 +1,6 @@
-import { ICampaignGame, IPlayer, ISubmitWord } from "../../../common/datamodels"
-import { Abilities } from "../../../common/enums"
-import { validateSubmitWord } from "./validateSubmitWord"
+import { ICampaignGame, IPlayer, ISubmitWord } from '../../../shared/datamodels';
+import { Abilities } from '../../../shared/enums';
+import { validateSubmitWord } from './validateSubmitWord';
 
 describe("validateSubmitWord", () => {
   let testInput: ISubmitWord, game: ICampaignGame, player: IPlayer

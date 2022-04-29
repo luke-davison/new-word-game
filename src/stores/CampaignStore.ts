@@ -1,7 +1,6 @@
 import { action, makeObservable, observable } from 'mobx';
-
-import { Player } from '../../common/models';
-import { LetterInstance } from '../../common/models/LetterInstance';
+import { Player } from 'shared/models';
+import { LetterInstance } from 'shared/models/LetterInstance';
 
 export class CampaignStore {
   constructor(campaignId: string, campaignDay: number) {
@@ -20,7 +19,9 @@ export class CampaignStore {
       funding: 0,
       points: 0,
       isMember: false,
-      inventory: []
+      inventory: [],
+      endDate: "",
+      lastSubmit: ""
     })
   }
 

@@ -1,8 +1,7 @@
 import './CalendarPopup.css';
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { AppContext } from '../stores/AppContext';
 import { Calendar } from './Calendar';
 
 interface CalendarPopupProps {
@@ -10,13 +9,7 @@ interface CalendarPopupProps {
 }
 
 export const CalendarPopup: React.FC<CalendarPopupProps> = ({ onClose }) => {
-  const { loadStreakScore } = useContext(AppContext)
-  const [streak, setStreak] = useState<number | undefined>()
-
-  useEffect(() => {
-    const streak = loadStreakScore();
-    setStreak(streak)
-  }, [])
+  const [streak] = useState<number | undefined>()
 
   useEffect(() => {
     const listener = () => {

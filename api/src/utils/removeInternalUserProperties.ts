@@ -1,7 +1,7 @@
-import { IUser } from "../datamodels";
-import { IUser as CommonIUser } from "../../../common/datamodels/IUser"
+import { IUser as SharedIUser } from '../../../shared/datamodels/IUser';
+import { IUser } from '../datamodels';
 
-export const removeInternalUserProperties = (user: IUser): CommonIUser => {
+export const removeInternalUserProperties = (user: IUser): SharedIUser => {
   const { nickname, campaignRating, lastDailyGameSubmit, ...restUser } = user
   return restUser
 }

@@ -1,6 +1,6 @@
-import { ILetter } from '../../../common/datamodels';
-import { Abilities } from '../../../common/enums';
-import { getIsCharacterVowel, wordlist } from '../../../common/utils';
+import { ILetter } from '../../../shared/datamodels';
+import { Abilities } from '../../../shared/enums';
+import { getIsCharacterVowel, wordlist } from '../../../shared/utils';
 
 export const generateGame = (): ILetter[] => {
   const letters = getRandomWord().split("");

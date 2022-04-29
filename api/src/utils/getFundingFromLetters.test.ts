@@ -1,6 +1,6 @@
-import { ILetter } from "../../../common/datamodels"
-import { Abilities } from "../../../common/enums"
-import { getFundingFromLetters } from "./getFundingFromLetters"
+import { ILetter } from '../../../shared/datamodels';
+import { Abilities } from '../../../shared/enums';
+import { getFundingFromLetters } from './getFundingFromLetters';
 
 describe("getFundingFromLetters", () => {
   it("returns 0 if no letters", () => {

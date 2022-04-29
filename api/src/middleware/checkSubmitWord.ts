@@ -1,6 +1,7 @@
-import { Request, Response, NextFunction } from "express"
-import { ISubmitWord } from "../../../common/datamodels"
-import { getDateFromString } from "../../../common/utils"
+import { NextFunction, Request, Response } from 'express';
+
+import { ISubmitWord } from '../../../shared/datamodels';
+import { getDateFromString } from '../../../shared/utils';
 
 export const checkSubmitWord = (request: Request<{}, {}, ISubmitWord>, response: Response, next: NextFunction) => {
   const message = getCheckSubmitWordError(request.body)

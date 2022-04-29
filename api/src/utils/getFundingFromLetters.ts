@@ -1,5 +1,5 @@
-import { ILetter } from "../../../common/datamodels"
-import { Abilities } from "../../../common/enums/Abilities";
+import { ILetter } from '../../../shared/datamodels';
+import { Abilities } from '../../../shared/enums/Abilities';
 
 export const getFundingFromLetters = (letters: ILetter[]): number => {
   let funding: number = 0;

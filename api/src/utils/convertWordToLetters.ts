@@ -1,4 +1,6 @@
-import { ICampaignGame, IDailyGame, ILetter, IPlayer, ISubmitWord } from "../../../common/datamodels";
+import {
+    ICampaignGame, IDailyGame, ILetter, IPlayer, ISubmitWord
+} from '../../../shared/datamodels';
 
 export const convertWordToLetters = (word: ISubmitWord["word"], game: ICampaignGame | IDailyGame, player: IPlayer | undefined): ILetter[] => {
   const inventory: ILetter[] = player?.inventory || []

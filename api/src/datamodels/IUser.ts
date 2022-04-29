@@ -1,6 +1,6 @@
-import { IUser as CommonIUser } from '../../../common/datamodels/IUser';
+import { IUser as SharedIUser } from '../../../shared/datamodels/IUser';
 
-export interface IUser extends CommonIUser {
+export interface IUser extends SharedIUser {
   nickname: string;
   campaignRating: number;
   lastDailyGameSubmit?: string;

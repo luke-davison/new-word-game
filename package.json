@@ -23,7 +23,9 @@
     "react-scripts": "5.0.0",
     "ts-jest": "^27.1.4",
     "typescript": "^4.6.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "shared": "file:./shared"
+    
   },
   "scripts": {
     "build": "react-scripts build",
@@ -65,8 +67,8 @@
     "testMatch": [
       "<rootDir>/src/**/*.test.{js,jsx,ts,tsx}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}",
-      "<rootDir>/common/**/*.test.{js,jsx,ts,tsx}",
-      "<rootDir>/common/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+      "<rootDir>/shared/**/*.test.{js,jsx,ts,tsx}",
+      "<rootDir>/shared/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
     ]
   }
 }

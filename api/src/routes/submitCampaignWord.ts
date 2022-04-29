@@ -1,8 +1,9 @@
-import { ISubmitWord } from "../../../common/datamodels";
-import { Request, Response } from "express"
-import { db } from "../db"
-import { validateSubmitWord } from "../middleware/validateSubmitWord";
-import { getPlayerAfterSubmit } from "../utils/getPlayerAfterSubmit";
+import { Request, Response } from 'express';
+
+import { ISubmitWord } from '../../../shared/datamodels';
+import { db } from '../db';
+import { validateSubmitWord } from '../middleware/validateSubmitWord';
+import { getPlayerAfterSubmit } from '../utils/getPlayerAfterSubmit';
 
 export const submitCampaignWord = async (request: Request<{}, {}, ISubmitWord>, response: Response) => {
   const { body } = request
