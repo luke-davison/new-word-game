@@ -51,6 +51,24 @@ describe("validateSubmitWord", () => {
     expect(result).toBe(undefined)
   })
 
+  it("return an error if last submitted date matches game date", () => {
+    player.lastSubmit = game.date
+    const result = validateSubmitWord(testInput, game, player)
+    expect(result).tobe("Unable to validate - game already submitted")
+  })
+
+  it("doesn't return an error if last submitted date is in the past", () => {
+    player.lastSubmit = "2020-01-01"
+    const result = validateSubmitWord(testInput, game, player)
+    expect(result).tobe(undefined)
+  })
+
+  it("doesn't return an error if no last submitted", () => {
+    player.lastSubmit = ""
+    const result = validateSubmitWord(testInput, game, player)
+    expect(result).tobe(undefined)
+  })
+
   it("returns error if unknown letter ID", () => {
     testInput.word[0].id = "wrong"
     const result = validateSubmitWord(testInput, game, player)

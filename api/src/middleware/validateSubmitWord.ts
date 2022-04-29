@@ -1,9 +1,19 @@
 import { ICampaignGame, IDailyGame, IPlayer, ISubmitWord } from "../../../common/datamodels"
-import { getIsWordInWordlist } from "../../../common/utils"
+import { getDateFromString, getIsWordInWordlist } from "../../../common/utils"
 import { Abilities } from "../../../common/enums"
 import { convertWordToLetters } from "../utils/convertWordToLetters"
 
 export const validateSubmitWord = (body: ISubmitWord, game: ICampaignGame | IDailyGame, player: IPlayer | undefined): string | undefined => {
+
+  if (player?.lastSubmit) {
+    const gameDate = getDateFromString(game.date)
+    const lastSubmitDate = getDateFromString(player.lastSubmit)
+
+    if (gameDate <= lastSubmitDate) {
+      return "Unable to validate - game already submitted"
+    }
+  }
+
   const letters = convertWordToLetters(body.word, game, player)
 
   if (letters.length !== body.word.length) {
