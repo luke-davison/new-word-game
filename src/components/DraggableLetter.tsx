@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useDrag } from 'react-dnd';
 
-import { LetterInstance } from '../shared/models/LetterInstance';
+import { LetterInstance } from '../models/LetterInstance';
 import { Letter } from './Letter';
 
 export const DraggableLetter: React.FC<{ letter: LetterInstance }> = observer(({ letter }) => {

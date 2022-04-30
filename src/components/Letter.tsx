@@ -3,15 +3,19 @@ import './Letter.css';
 import { observer } from 'mobx-react-lite';
 import { useContext, useState } from 'react';
 
-import { LetterInstance } from '../shared/models/LetterInstance';
+import { LetterInstance } from '../models/LetterInstance';
+import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive';
+import { AppContext } from '../stores/AppContext';
 import { GameContext } from '../stores/GameContext';
+import { getAbilityImage } from '../utils/getAbilityImage';
 import { LetterPopup } from './LetterPopup';
 
 export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }) => {
+  const { player } = useContext(AppContext)
   const { playerWord } = useContext(GameContext)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
 
-  const isAbilityActive = letter.position === undefined || letter.ability?.getIsActive(playerWord, letter.position)
+  const isAbilityActive = letter.position === undefined || getAbilityIsActive(playerWord, letter.position, player)
 
   const onClick = () => {
     if (letter.position !== undefined) {
@@ -30,15 +34,10 @@ export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }
         </div>
           { letter.ability && (
             <div className={`letter-ability${ isAbilityActive ? " is-active" : ""}` }>
-              <img src={letter.ability.image}/>
-              {letter.ability.points !== undefined && (
+              <img src={getAbilityImage(letter.ability)}/>
+              {letter.abilityPoints !== undefined && (
                 <div className="letter-ability-points">
-                  {letter.ability.points}
-                </div>
-              )}
-              {letter.ability.multiplier !== undefined && (
-                <div className="letter-ability-multiplier">
-                  {'x' + letter.ability.multiplier}
+                  {letter.abilityPoints}
                 </div>
               )}
         </div>

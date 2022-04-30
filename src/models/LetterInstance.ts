@@ -1,6 +1,7 @@
 import { action, makeObservable, observable } from 'mobx';
 
-import { Letter } from './Letter';
+import { Abilities } from '../shared';
+import { Letter } from '../shared/models/Letter';
 
 let nextLetterInstanceId = 1
 
@@ -16,7 +17,8 @@ export class LetterInstance {
   get price() { return this.parent.price }
   get points() { return this.parent.points }
   get ability() { return this.parent.ability }
-  get isWild() { return this.parent.isWild }
+  get abilityPoints() { return this.parent.abilityPoints }
+  get isWild() { return this.ability === Abilities.Wild }
 
   constructor(parent: Letter, position?: number) {
     makeObservable(this, {

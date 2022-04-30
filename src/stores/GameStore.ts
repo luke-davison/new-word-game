@@ -1,10 +1,12 @@
 import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
 
+import { LetterInstance } from '../models/LetterInstance';
 import { ICampaignGame, IDailyGame, IGame } from '../shared/datamodels';
 import { Letter } from '../shared/models/Letter';
-import { LetterInstance } from '../shared/models/LetterInstance';
 import { getIsValidWord } from '../shared/utils';
-import { getWildAbility } from '../shared/utils/getAbilities';
+import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive';
+import { getAbilityPoints } from '../shared/utils/abilities/getAbilityPoints';
+import { setupLetters } from '../shared/utils/setupLetters';
 import { AppStore } from './AppStore';
 
 export class GameStore {
@@ -68,12 +70,9 @@ export class GameStore {
       }), 1500)
     })
 
-    this._shopLetters = [
-      // ...setupLetters(this.game?.letters),
-      new Letter({ color: 0, char: "", price: 1, points: 0, isWild: true, ability: getWildAbility()})
-    ]
+    this._shopLetters = setupLetters(this.game?.letters)
 
-    // this._secretShopLetters = setupLetters(this._campaignGame?.memberLetters)
+    this._secretShopLetters = setupLetters(this._campaignGame?.memberLetters)
   }
   
   _dailyGame: IDailyGame | undefined;
@@ -160,8 +159,8 @@ export class GameStore {
     return sortedWord.reduce((sum, letter, index) => {
       const basePoints = letter.points
       let abilityPoints = 0;
-      if (letter.ability?.getIsActive(this.playerWord, letter.position!)) {
-        abilityPoints = letter.ability.getPoints(this.playerWord, letter.position!)
+      if (getAbilityIsActive(this.playerWord, letter.position!, this.appStore.player)) {
+        abilityPoints = getAbilityPoints(this.playerWord, letter.position!, this.appStore.player)
       }
       return sum + basePoints + abilityPoints
     }, 0)

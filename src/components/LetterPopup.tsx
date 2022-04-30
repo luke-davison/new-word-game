@@ -2,7 +2,7 @@ import './LetterPopup.css';
 
 import React, { useEffect } from 'react';
 
-import { LetterInstance } from '../shared/models/LetterInstance';
+import { LetterInstance } from '../models/LetterInstance';
 import { Alphabet } from './Alphabet';
 
 interface LetterPopupProps {

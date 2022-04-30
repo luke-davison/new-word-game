@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from 'mobx';
 
-import { IGameAbility } from './IGameAbility';
+import { Abilities } from '../enums';
 
 let nextLetterId = 1;
 
@@ -9,8 +9,9 @@ export interface IGameLetter {
   char: string;
   price: number;
   points: number;
-  ability?: IGameAbility;
   isWild?: boolean;
+  ability?: Abilities;
+  abilityPoints?: number;
 }
 
 export class Letter {
@@ -23,8 +24,9 @@ export class Letter {
   get char() { return this.data.char }
   get price() { return this.data.price }
   get points() { return this.data.points }
-  get ability() { return this.data.ability }
   get isWild() { return this.data.isWild }
+  get ability() { return this.data.ability }
+  get abilityPoints() { return this.data.abilityPoints}
 
 
   constructor(data: IGameLetter, limit?: number) {

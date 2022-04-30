@@ -1,5 +1,3 @@
-import { LetterInstance } from '../models/LetterInstance';
-
 export const wordlist: string[] = [
   'aardvark', 
   'aardwolf', 

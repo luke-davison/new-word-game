@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import { useDrop } from 'react-dnd';
 
-import { LetterInstance } from '../shared/models/LetterInstance';
+import { LetterInstance } from '../models/LetterInstance';
 import { GameContext } from '../stores/GameContext';
 import { CampaignCounters } from './CampaignCounters';
 import { Counters } from './Counters';
