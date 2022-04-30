@@ -1,6 +1,6 @@
 import { ICampaignGame, ILetter } from '../../../src/shared/datamodels';
 import { Abilities } from '../../../src/shared/enums';
-import { getDateString } from '../../../src/shared/utils';
+import { getWildLetter } from './getWildLetter';
 
 interface ICampaignGameNoIds extends Omit<ICampaignGame, "letters" | "memberLetters"> {
   letters: Array<Omit<ILetter, "id">>
@@ -205,12 +205,16 @@ export const getCampaignGame = (dateString: string): ICampaignGame | undefined =
     return undefined
   }
 
-  const letters: ILetter[] = game.letters.map((letter, index) => {
+  const letters: ILetter[] = [
+    ...game.letters,
+    getWildLetter()
+  ].map((letter, index) => {
     return {
       ...letter,
       id: 'd' + game.date + (index + 1)
     }
   })
+
   const memberLetters: ILetter[] = game.memberLetters.map((letter, index) => {
     return {
       ...letter,

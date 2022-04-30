@@ -2,6 +2,7 @@
 
 import { IDailyGame, ILetter } from '../../../src/shared/datamodels';
 import { Abilities } from '../../../src/shared/enums';
+import { getWildLetter } from './getWildLetter';
 
 interface IDailyGameNoIds extends Omit<IDailyGame, "letters"> {
   letters: Array<Omit<ILetter, "id">>
@@ -251,11 +252,17 @@ export const getDailyGame = (dateString: string): IDailyGame | undefined => {
     return undefined
   }
 
-  const letters: ILetter[] = game.letters.map((letter, index) => {
+  const letters: ILetter[] = [
+    ...game.letters,
+    getWildLetter(),
+  ].map((letter, index) => {
     return {
       ...letter,
       id: 'd' + game.date + (index + 1)
     }
   })
+
+  letters.push()
+
   return {...game, letters }
 }
