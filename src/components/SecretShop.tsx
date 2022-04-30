@@ -4,20 +4,18 @@ import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 
 import { AppContext } from '../stores/AppContext';
-import { CampaignContext } from '../stores/CampaignContext';
 import { GameContext } from '../stores/GameContext';
 import { DraggableLetter } from './DraggableLetter';
 
 export const SecretShop: React.FC = observer(() => {
-  const { isPlayingCampaignGame } = useContext(AppContext)
-  const campaignStore = useContext(CampaignContext)
+  const { isPlayingCampaignGame, player } = useContext(AppContext)
   const { secretShopLetters, onQuickAddLetter } = useContext(GameContext)
 
   if (!isPlayingCampaignGame) {
     return null
   }
 
-  if (!campaignStore.player.isMember || secretShopLetters.length === 0) {
+  if (!player?.isMember || secretShopLetters.length === 0) {
     return null
   }
 

@@ -6,23 +6,9 @@ import { LetterInstance } from '../shared/models/LetterInstance';
 import { getIsValidWord } from '../shared/utils';
 import { getWildAbility } from '../shared/utils/getAbilities';
 import { AppStore } from './AppStore';
-import { CampaignStore } from './CampaignStore';
-
-interface Stores {
-  appStore: AppStore,
-  campaignStore?: CampaignStore
-}
 
 export class GameStore {
-  get appStore() {
-    return this.stores.appStore
-  }
-
-  get campaignStore() {
-    return this.stores.campaignStore
-  }
-
-  constructor(private stores: Stores) {
+  constructor(private appStore: AppStore) {
     makeObservable(this, {
       _shopLetters: observable,
       playerWordData: observable,
@@ -45,22 +31,6 @@ export class GameStore {
       shopLetters: computed,
       secretShopLetters: computed
     })
-
-    if (this.appStore.isPlayingDailyGame) {
-      // this._dailyGame = getDailyGame(this.appStore.today)
-    } else if (this.appStore.isPlayingCampaignGame && this.campaignStore) {
-      // this._campaignGame = getCampaignGame(this.campaignStore.campaignId, this.campaignStore.campaignDay)
-    } else {
-      const money = 15 + Math.floor(Math.random() * 5)
-
-      this._dailyGame = {
-        date: String(Math.random()),
-        letters: [],
-        money: 15 + Math.floor(Math.random() * 5),
-        target: 11 + money,
-        secretTarget: 15 + money
-      }
-    }
 
     runInAction(() => {
       this.bestWord = window.localStorage.getItem(`${this.game?.date}-word`) || ""
@@ -110,7 +80,7 @@ export class GameStore {
   _campaignGame: ICampaignGame | undefined
 
   get game(): IGame | undefined {
-    return this._dailyGame || this._campaignGame
+    return this.appStore.isPlayingDailyGame ? this.appStore.dailyGame : this.appStore.campaignGame
   }
   
   _shopLetters: Letter[] = []
@@ -121,16 +91,17 @@ export class GameStore {
   }
 
   get inventory(): LetterInstance[] {
-    const availableLetters = this.campaignStore?.player.inventory.filter(letter => letter.limit !== 0) || []
+    return [] 
+    // const availableLetters = this.appStore.player?.inventory.filter(letter => letter.limit !== 0) || []
 
-    return availableLetters.map((letter) => {
-      return new LetterInstance(letter)
-    })
+    // return availableLetters.map((letter) => {
+    //   return new LetterInstance(letter)
+    // })
   }
 
   _secretShopLetters: Letter[] = []
   get secretShopLetters(): LetterInstance[] {
-    if (!this.campaignStore?.player.isMember) {
+    if (!this.appStore.player?.isMember) {
       return []
     }
 
@@ -148,9 +119,9 @@ export class GameStore {
   }
   
   get totalMoney(): number {
-    let money = this.game?.money || 18
-    if (this.appStore.isPlayingCampaignGame && this.campaignStore) {
-      money += this.campaignStore.player.funding
+    let money = this.game?.money || 0
+    if (this.appStore.isPlayingCampaignGame && this.appStore.player?.funding) {
+      money += this.appStore.player.funding
     }
     return money
   }

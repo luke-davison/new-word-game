@@ -1,7 +1,8 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 
 import { getAppData } from '../api/getAppData';
 import { ScoreInfo } from '../models';
+import { getDateFromString, IAppData } from '../shared';
 
 export class AppStore {
   constructor() {
@@ -17,20 +18,47 @@ export class AppStore {
       scoreMap: observable,
       isPlayingCampaignGame: observable,
       startCampaignGame: action,
-      today: observable
+      _appData: observable
     })
 
     this.loadAppData();
   }
 
-  today: Date = new Date();
+  _appData: IAppData | undefined
 
-  userId: string = ""
+  get userId() {
+    return this._appData?.userId
+  }
+
+  get dateString() {
+    return this._appData?.date
+  }
+
+  get today() {
+    return this.dateString ? getDateFromString(this.dateString) : new Date()
+  }
+
+  get dailyGame() {
+    return this._appData?.dailyGame
+  }
+
+  get campaignGame() {
+    return this._appData?.campaignGame
+  }
+
+  get player() {
+    return this._appData?.player
+  }
+
   fetchingAppData: boolean = true
 
-  loadAppData = () => {
+  loadAppData = async () => {
     const userId = window.localStorage.getItem("userId")
-    getAppData(userId || undefined)
+    const appData = await getAppData(userId || undefined)
+    runInAction(() => {
+      this._appData = appData
+      this.fetchingAppData = false
+    })
   }
 
   isPlayingDailyGame: boolean = false

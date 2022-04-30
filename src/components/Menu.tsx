@@ -5,7 +5,6 @@ import React, { useContext } from 'react';
 
 import { AppContext } from '../stores/AppContext';
 import { CalendarPopup } from './CalendarPopup';
-import { CampaignGame } from './CampaignGame';
 import { Game } from './Game';
 
 export const Menu: React.FC = observer(() => {
@@ -14,7 +13,7 @@ export const Menu: React.FC = observer(() => {
   if (isPlayingCampaignGame) {
     return (
       <div className="game-container">
-        <CampaignGame/>
+        <Game/>
         <div className="page-buttons">
           <button onClick={returnToMenu}>Quit</button>
         </div>
