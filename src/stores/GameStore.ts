@@ -276,7 +276,7 @@ export class GameStore {
     const submitWord: ISubmitWord = {
       date: this.appStore.dateString || "",
       userId: this.appStore.userId || "",
-      word: word.map(({ id, char }) => ({ id, char }))
+      word: word.map(({ parent, char }) => ({ id: parent.id, char }))
     }
 
     await submitDailyWord(submitWord)

@@ -65,10 +65,18 @@ export class Database {
     return await this.databaseConnection.getUser(userId)
   }
 
-  createUser = async (): Promise<IUser> => {
-    const id = String(Math.random()).slice(2)
+  getOrCreateUser = async (userId: string): Promise<IUser> => {
+    const user = await this.getUser(userId)
+    if (user) {
+      return Promise.resolve(user)
+    }
+
+    return this.createUser(userId)
+  }
+
+  createUser = async (userId: string): Promise<IUser> => {
     const generatedNickname = generateNickname();
-    const user: IUser = { id, nickname: generatedNickname, campaignRating: 1000 }
+    const user: IUser = { id: userId, nickname: generatedNickname, campaignRating: 1000 }
 
     return this.databaseConnection.createUser(user)
   }

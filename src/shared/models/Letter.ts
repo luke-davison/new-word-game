@@ -1,33 +1,26 @@
 import { action, makeObservable, observable } from 'mobx';
 
+import { ILetter } from '../datamodels';
 import { Abilities } from '../enums';
 
 let nextLetterId = 1;
 
-export interface IGameLetter {
+export interface IGameLetter extends ILetter {
   color: number;
-  char: string;
-  price: number;
-  points: number;
-  isWild?: boolean;
-  ability?: Abilities;
-  abilityPoints?: number;
 }
 
 export class Letter {
 
-  id: string;
   data: IGameLetter
   limit: number | undefined
 
+  get id() { return this.data.id }
   get color() { return this.data.color }
   get char() { return this.data.char }
   get price() { return this.data.price }
   get points() { return this.data.points }
-  get isWild() { return this.data.isWild }
   get ability() { return this.data.ability }
   get abilityPoints() { return this.data.abilityPoints}
-
 
   constructor(data: IGameLetter, limit?: number) {
     makeObservable(this, {
@@ -36,7 +29,6 @@ export class Letter {
       onUnplaceLetter: action
     })
 
-    this.id = String(nextLetterId++)
     this.data = data
     this.limit = limit
   }

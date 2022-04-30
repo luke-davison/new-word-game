@@ -20,14 +20,15 @@ export const submitDailyWord = async (request: Request<{}, {}, ISubmitWord>, res
     return response.status(400).send(message)
   }
 
-  const user = await db.getUser(body.userId)
-  if (user) {
-    user.previousDailyGameSubmit = user.lastDailyGameSubmit
-    user.lastDailyGameSubmit = body.date
-    await db.updateUser(user)
-  } else {
-    return response.status(400).send("Unable to validate - unknown user")
+  const user = await db.getOrCreateUser(body.userId)
+
+  if (user.lastDailyGameSubmit === body.date) {
+    return response.status(400).send("Unable to validate - score already submitted")
   }
+
+  user.previousDailyGameSubmit = user.lastDailyGameSubmit
+  user.lastDailyGameSubmit = body.date
+  await db.updateUser(user)
 
   const letters = convertWordToLetters(body.word, dailyGame, undefined)
   const points = getWordPoints(letters)

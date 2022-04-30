@@ -19,8 +19,6 @@ export class AppStore {
       startCampaignGame: action,
       _appData: observable
     })
-
-    this.loadAppData();
   }
 
   _appData: IAppData | undefined
@@ -58,6 +56,7 @@ export class AppStore {
       this._appData = appData
       this.fetchingAppData = false
     })
+    window.localStorage.setItem("userId", appData.userId)
   }
 
   isPlayingDailyGame: boolean = false
