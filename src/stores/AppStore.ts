@@ -19,6 +19,8 @@ export class AppStore {
       startCampaignGame: action,
       today: observable
     })
+
+    this.loadAppData();
   }
 
   today: Date = new Date();

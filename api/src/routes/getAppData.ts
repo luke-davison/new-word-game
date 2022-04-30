@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { IAppData, IGameStats } from '../../../shared/datamodels';
+import { IAppData, IGameStats } from '../../../src/shared/datamodels';
 import { db } from '../db';
 import { getTodayDateString } from '../utils/getTodayDateString';
 

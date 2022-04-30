@@ -1,10 +1,10 @@
 import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
-import { ICampaignGame, IDailyGame, IGame } from 'shared/datamodels';
-import { Letter } from 'shared/models/Letter';
-import { LetterInstance } from 'shared/models/LetterInstance';
-import { getIsValidWord } from 'shared/utils';
-import { getWildAbility } from 'shared/utils/getAbilities';
 
+import { ICampaignGame, IDailyGame, IGame } from '../shared/datamodels';
+import { Letter } from '../shared/models/Letter';
+import { LetterInstance } from '../shared/models/LetterInstance';
+import { getIsValidWord } from '../shared/utils';
+import { getWildAbility } from '../shared/utils/getAbilities';
 import { AppStore } from './AppStore';
 import { CampaignStore } from './CampaignStore';
 

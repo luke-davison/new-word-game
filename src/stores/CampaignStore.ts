@@ -1,6 +1,7 @@
 import { action, makeObservable, observable } from 'mobx';
-import { Player } from 'shared/models';
-import { LetterInstance } from 'shared/models/LetterInstance';
+
+import { Player } from '../shared/models';
+import { LetterInstance } from '../shared/models/LetterInstance';
 
 export class CampaignStore {
   constructor(campaignId: string, campaignDay: number) {

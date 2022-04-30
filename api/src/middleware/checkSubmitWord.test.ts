@@ -1,5 +1,5 @@
-import { ISubmitWord } from '../../../shared/datamodels';
-import { getDateString } from '../../../shared/utils';
+import { ISubmitWord } from '../../../src/shared/datamodels';
+import { getDateString } from '../../../src/shared/utils';
 import { getTodayDateString } from '../utils/getTodayDateString';
 import { getCheckSubmitWordError } from './checkSubmitWord';
 

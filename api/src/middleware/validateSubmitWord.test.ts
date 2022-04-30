@@ -1,5 +1,5 @@
-import { ICampaignGame, IPlayer, ISubmitWord } from '../../../shared/datamodels';
-import { Abilities } from '../../../shared/enums';
+import { ICampaignGame, IPlayer, ISubmitWord } from '../../../src/shared/datamodels';
+import { Abilities } from '../../../src/shared/enums';
 import { validateSubmitWord } from './validateSubmitWord';
 
 describe("validateSubmitWord", () => {

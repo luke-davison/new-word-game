@@ -1,7 +1,7 @@
-import { ICampaignGame, IPlayer, ISubmitWord } from '../../../shared/datamodels';
-import { Abilities } from '../../../shared/enums';
-import { getDateFromString } from '../../../shared/utils';
-import { getWordPoints } from '../../../shared/utils/getWordPoints';
+import { ICampaignGame, IPlayer, ISubmitWord } from '../../../src/shared/datamodels';
+import { Abilities } from '../../../src/shared/enums';
+import { getDateFromString } from '../../../src/shared/utils';
+import { getWordPoints } from '../../../src/shared/utils/getWordPoints';
 import { convertWordToLetters } from '../utils/convertWordToLetters';
 import { getFundingFromLetters } from '../utils/getFundingFromLetters';
 import { getInventoryAfterSubmit } from '../utils/getInventoryAfterSubmit';

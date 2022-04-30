@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { ISubmitWord } from '../../../shared/datamodels';
+import { ISubmitWord } from '../../../src/shared/datamodels';
 import { db } from '../db';
 import { validateSubmitWord } from '../middleware/validateSubmitWord';
 import { getPlayerAfterSubmit } from '../utils/getPlayerAfterSubmit';

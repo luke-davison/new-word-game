@@ -1,4 +1,4 @@
-import { wordlist } from '../../../shared/utils';
+import { wordlist } from '../../../src/shared/utils';
 
 const titles: string[] = [
   "Mr",

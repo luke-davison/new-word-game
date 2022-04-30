@@ -1,4 +1,4 @@
-import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../shared/datamodels';
+import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../src/shared/datamodels';
 import { IUser } from '../datamodels';
 import { generateNickname } from '../utils/generateNickname';
 import { getNextEndOfCampaignDateString } from '../utils/getNextEndOfCampaignDateString';

@@ -1,4 +1,4 @@
-import { IUser as SharedIUser } from '../../../shared/datamodels/IUser';
+import { IUser as SharedIUser } from '../../../src/shared/datamodels/IUser';
 
 export interface IUser extends SharedIUser {
   nickname: string;

@@ -1,5 +1,5 @@
-import { ILetter } from '../../../shared/datamodels';
-import { Abilities } from '../../../shared/enums';
+import { ILetter } from '../../../src/shared/datamodels';
+import { Abilities } from '../../../src/shared/enums';
 import { getFundingFromLetters } from './getFundingFromLetters';
 
 describe("getFundingFromLetters", () => {

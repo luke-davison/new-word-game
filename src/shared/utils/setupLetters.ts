@@ -1,6 +1,6 @@
 
-import { ILetter } from '../../shared/datamodels';
-import { Abilities } from '../../shared/enums';
+import { ILetter } from '../datamodels';
+import { Abilities } from '../enums';
 import { IGameAbility, Letter } from '../models';
 import {
     getClubAbility, getDoubleOtherLetterAbility, getFundingAbility, getInLastPosition,

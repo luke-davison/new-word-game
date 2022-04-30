@@ -3,7 +3,7 @@ import './Letter.css';
 import { observer } from 'mobx-react-lite';
 import { useContext, useState } from 'react';
 
-import { LetterInstance } from '../../shared/models/LetterInstance';
+import { LetterInstance } from '../shared/models/LetterInstance';
 import { GameContext } from '../stores/GameContext';
 import { LetterPopup } from './LetterPopup';
 

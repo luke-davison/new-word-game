@@ -1,6 +1,6 @@
-import { ICampaignGame, IDailyGame, IPlayer, ISubmitWord } from '../../../shared/datamodels';
-import { Abilities } from '../../../shared/enums';
-import { getDateFromString, getIsWordInWordlist } from '../../../shared/utils';
+import { ICampaignGame, IDailyGame, IPlayer, ISubmitWord } from '../../../src/shared/datamodels';
+import { Abilities } from '../../../src/shared/enums';
+import { getDateFromString, getIsWordInWordlist } from '../../../src/shared/utils';
 import { convertWordToLetters } from '../utils/convertWordToLetters';
 
 export const validateSubmitWord = (body: ISubmitWord, game: ICampaignGame | IDailyGame, player: IPlayer | undefined): string | undefined => {
