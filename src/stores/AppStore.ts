@@ -7,7 +7,6 @@ import { getDateFromString, IAppData } from '../shared';
 export class AppStore {
   constructor() {
     makeObservable(this, {
-      userId: observable,
       isPlayingDailyGame: observable,
       isPlayingRandomGame: observable,
       startDailyGame: action,
