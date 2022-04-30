@@ -1,4 +1,3 @@
-import bodyParser from 'body-parser';
 import express from 'express';
 
 import router from './routes';
@@ -6,7 +5,7 @@ import router from './routes';
 const port = 3002;
 
 const app = express();
-app.use(bodyParser.json())
+app.use(express.json())
 app.use('/api', router)
 
 app.listen(port, () => {

@@ -1,7 +1,8 @@
 import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
 
+import { submitDailyWord } from '../api/submitDailyWord';
 import { LetterInstance } from '../models/LetterInstance';
-import { ICampaignGame, IDailyGame, IGame } from '../shared/datamodels';
+import { ICampaignGame, IDailyGame, IGame, ISubmitWord } from '../shared/datamodels';
 import { Letter } from '../shared/models/Letter';
 import { getIsValidWord } from '../shared/utils';
 import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive';
@@ -266,5 +267,18 @@ export class GameStore {
 
   onClear = () => {
     this.playerWordData = []
+  }
+
+  submitWord = async () => {
+    const word = Array.from(this.playerWord)
+    word.sort((a, b) => (a.position || 0) - (b.position || 0))
+
+    const submitWord: ISubmitWord = {
+      date: this.appStore.dateString || "",
+      userId: this.appStore.userId || "",
+      word: word.map(({ id, char }) => ({ id, char }))
+    }
+
+    await submitDailyWord(submitWord)
   }
 }
