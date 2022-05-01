@@ -38,6 +38,9 @@ export const Menu: React.FC = observer(() => {
 
   return (
     <div className="game-container menu-buttons">
+      <div className="game-title">
+        Lettermonger
+      </div>
       <div>
         <button onClick={startDailyGame}>Daily game</button>
       </div>

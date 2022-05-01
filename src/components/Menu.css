@@ -23,3 +23,9 @@
 .page-buttons button {
   margin-bottom: 20px;
 }
+
+.game-title {
+  font-family: 'Caesar Dressing', cursive;
+  font-size: 64px;
+  text-transform: uppercase;
+}
