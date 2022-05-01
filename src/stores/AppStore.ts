@@ -8,9 +8,7 @@ export class AppStore {
   constructor() {
     makeObservable(this, {
       isPlayingDailyGame: observable,
-      isPlayingRandomGame: observable,
       startDailyGame: action,
-      startRandomGame: action,
       returnToMenu: action,
       isShowingCalendar: observable,
       toggleIsShowingCalendar: action,
@@ -60,7 +58,6 @@ export class AppStore {
   }
 
   isPlayingDailyGame: boolean = false
-  isPlayingRandomGame: boolean = false
   isPlayingCampaignGame: boolean = false
 
   startDailyGame = () => {
@@ -71,13 +68,8 @@ export class AppStore {
     this.isPlayingCampaignGame = true;
   }
 
-  startRandomGame = () => {
-    this.isPlayingRandomGame = true
-  }
-
   returnToMenu = () => {
     this.isPlayingDailyGame = false
-    this.isPlayingRandomGame = false
     this.isPlayingCampaignGame = false
   }
 

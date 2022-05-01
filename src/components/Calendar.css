@@ -26,6 +26,7 @@
   width: calc(14.2857% - 8px);
   height: 25px;
   padding: 4px;
+  text-align: center;
 }
 
 .calendar-day-offset-1 {

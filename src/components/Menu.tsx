@@ -8,7 +8,7 @@ import { CalendarPopup } from './CalendarPopup';
 import { Game } from './Game';
 
 export const Menu: React.FC = observer(() => {
-  const { startCampaignGame, isShowingCalendar, isPlayingCampaignGame, toggleIsShowingCalendar, isPlayingDailyGame, isPlayingRandomGame, returnToMenu, startDailyGame, startRandomGame } = useContext(AppContext)
+  const { startCampaignGame, isShowingCalendar, isPlayingCampaignGame, toggleIsShowingCalendar, isPlayingDailyGame, returnToMenu, startDailyGame } = useContext(AppContext)
 
   if (isPlayingCampaignGame) {
     return (
@@ -21,7 +21,7 @@ export const Menu: React.FC = observer(() => {
     )
   }
 
-  if (isPlayingDailyGame || isPlayingRandomGame) {
+  if (isPlayingDailyGame) {
     return (
       <div className="game-container">
         <Game/>
@@ -43,9 +43,6 @@ export const Menu: React.FC = observer(() => {
       </div>
       <div>
         <button onClick={startCampaignGame}>Campaign game</button>
-      </div>
-      <div>
-        <button onClick={startRandomGame}>Random game</button>
       </div>
     </div>
   );

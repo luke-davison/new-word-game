@@ -28,7 +28,7 @@ export class GameStore {
       playerWord: computed,
       target: computed,
       isValidText: observable,
-      bestWord: observable,
+      _bestWord: observable,
       bestWordScore: observable,
       bestLetters: observable,
       onClear: action,
@@ -45,7 +45,7 @@ export class GameStore {
       if (bestWord) {
         const letters = JSON.parse(bestWord) as IRawLetter[]
         if (letters) {
-          this.bestWord = letters.map(({ char }) => char).join("")
+          this._bestWord = letters.map(({ char }) => char).join("")
           this.bestWordScore = Number(window.localStorage.getItem(`${this.game?.date}-score`) || 0)
           this.bestLetters = letters
         }
@@ -65,8 +65,7 @@ export class GameStore {
                 && this.wordPoints >= (this.dailyGame?.target || 0)
 
               this.bestWordScore = this.wordPoints;
-              const str = this.playerWord.map((letter) => letter.char).join("")
-              this.bestWord = str[0].toUpperCase() + str.slice(1)
+              this._bestWord = this.playerWord.map((letter) => letter.char).join("")
               this.bestLetters = convertLetterInstancesToWord(this.playerWord)
               window.localStorage.setItem(`${this.game?.date}-word`, JSON.stringify(this.bestLetters))
               window.localStorage.setItem(`${this.game?.date}-score`, String(this.bestWordScore))
@@ -205,9 +204,17 @@ export class GameStore {
   
   validWordTimeout: number | undefined
   isValidText: string | undefined
-  bestWord: string | undefined
+  _bestWord: string | undefined
   bestWordScore: number | undefined
   bestLetters: IRawLetter[] | undefined
+
+  get bestWord() {
+    if (!this._bestWord) {
+      return ""
+    }
+
+    return this._bestWord.slice(0, 1).toUpperCase() + this._bestWord.slice(1) 
+  }
   
   onDropLetter = (droppedLetter: LetterInstance, position: number) => {
     let letter: LetterInstance
