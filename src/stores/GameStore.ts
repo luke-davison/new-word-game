@@ -3,11 +3,14 @@ import { action, computed, makeObservable, observable, reaction, runInAction } f
 import { submitDailyWord } from '../api/submitDailyWord';
 import { LetterInstance } from '../models/LetterInstance';
 import { ICampaignGame, IDailyGame, IGame, ISubmitWord } from '../shared/datamodels';
+import { IRawLetter } from '../shared/datamodels/IRawLetter';
 import { Letter } from '../shared/models/Letter';
 import { getIsValidWord } from '../shared/utils';
 import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive';
 import { getAbilityPoints } from '../shared/utils/abilities/getAbilityPoints';
 import { setupLetters } from '../shared/utils/setupLetters';
+import { convertLetterInstancesToWord, convertLettersToWord } from '../utils/convertLettersToWord';
+import { convertWordToLetterInstances } from '../utils/convertWordToLetterInstances';
 import { AppStore } from './AppStore';
 
 export class GameStore {
@@ -27,17 +30,26 @@ export class GameStore {
       isValidText: observable,
       bestWord: observable,
       bestWordScore: observable,
+      bestLetters: observable,
       onClear: action,
       wordLetters: computed,
       inventory: computed,
       _secretShopLetters: observable,
       shopLetters: computed,
-      secretShopLetters: computed
+      secretShopLetters: computed,
+      reinstateBestWord: action
     })
 
     runInAction(() => {
-      this.bestWord = window.localStorage.getItem(`${this.game?.date}-word`) || ""
-      this.bestWordScore = Number(window.localStorage.getItem(`${this.game?.date}-score`) || 0)
+      const bestWord = window.localStorage.getItem(`${this.game?.date}-word`) || ""
+      if (bestWord) {
+        const letters = JSON.parse(bestWord) as IRawLetter[]
+        if (letters) {
+          this.bestWord = letters.map(({ char }) => char).join("")
+          this.bestWordScore = Number(window.localStorage.getItem(`${this.game?.date}-score`) || 0)
+          this.bestLetters = letters
+        }
+      }
     })
 
     reaction(() => this.wordLetters, () => {
@@ -49,13 +61,14 @@ export class GameStore {
             this.isValidText = "Valid word"
             if (this.wordPoints >= (this.bestWordScore || 0)) {
               const openCalendar = this.appStore.isPlayingDailyGame
-                && (this.bestWordScore || 0) < (this._dailyGame?.target || 0)
-                && this.wordPoints >= (this._dailyGame?.target || 0)
+                && (this.bestWordScore || 0) < (this.dailyGame?.target || 0)
+                && this.wordPoints >= (this.dailyGame?.target || 0)
 
               this.bestWordScore = this.wordPoints;
               const str = this.playerWord.map((letter) => letter.char).join("")
               this.bestWord = str[0].toUpperCase() + str.slice(1)
-              window.localStorage.setItem(`${this.game?.date}-word`, this.bestWord)
+              this.bestLetters = convertLetterInstancesToWord(this.playerWord)
+              window.localStorage.setItem(`${this.game?.date}-word`, JSON.stringify(this.bestLetters))
               window.localStorage.setItem(`${this.game?.date}-score`, String(this.bestWordScore))
 
               if (openCalendar) {
@@ -72,12 +85,21 @@ export class GameStore {
     })
 
     this._shopLetters = setupLetters(this.game?.letters)
+    if (appStore.player?.inventory) {
+      this._inventory = setupLetters(appStore.player.inventory)
+    }
 
-    this._secretShopLetters = setupLetters(this._campaignGame?.memberLetters)
+    this._secretShopLetters = setupLetters(this.campaignGame?.memberLetters)
   }
-  
-  _dailyGame: IDailyGame | undefined;
-  _campaignGame: ICampaignGame | undefined
+
+  get dailyGame(): IDailyGame | undefined {
+    return this.appStore.dailyGame
+  }
+
+  get campaignGame(): ICampaignGame | undefined {
+    return this.appStore.campaignGame
+  }
+
 
   get game(): IGame | undefined {
     return this.appStore.isPlayingDailyGame ? this.appStore.dailyGame : this.appStore.campaignGame
@@ -90,13 +112,15 @@ export class GameStore {
     })
   }
 
-  get inventory(): LetterInstance[] {
-    return [] 
-    // const availableLetters = this.appStore.player?.inventory.filter(letter => letter.limit !== 0) || []
+  _inventory: Letter[] = []
+  get inventory(): LetterInstance[] { 
+    const availableLetters = this._inventory.filter(letter => {
+      return this.playerWord.every(wordLetter => wordLetter.parent.id !== letter.id)
+    })
 
-    // return availableLetters.map((letter) => {
-    //   return new LetterInstance(letter)
-    // })
+    return availableLetters.map((letter) => {
+      return new LetterInstance(letter)
+    })
   }
 
   _secretShopLetters: Letter[] = []
@@ -172,17 +196,18 @@ export class GameStore {
   }
   
   get target(): number | undefined {
-    return this._dailyGame?.target
+    return this.dailyGame?.target
   }
   
   get secretTarget(): number | undefined {
-    return this._dailyGame?.secretTarget
+    return this.dailyGame?.secretTarget
   }
   
   validWordTimeout: number | undefined
   isValidText: string | undefined
   bestWord: string | undefined
   bestWordScore: number | undefined
+  bestLetters: IRawLetter[] | undefined
   
   onDropLetter = (droppedLetter: LetterInstance, position: number) => {
     let letter: LetterInstance
@@ -280,5 +305,17 @@ export class GameStore {
     }
 
     await submitDailyWord(submitWord)
+  }
+
+  reinstateBestWord = () => {
+    if (this.bestLetters) {
+      const letters = [
+        ...this._shopLetters,
+        ...this._inventory,
+        ...this._secretShopLetters
+      ]
+
+      this.playerWordData = convertWordToLetterInstances(this.bestLetters, letters)
+    }
   }
 }
