@@ -42,7 +42,8 @@ export const Menu: React.FC = observer(() => {
         Lettermonger
       </div>
       <div className="game-description">
-        The daily game of buying and arranging letters, just like the wordsmiths of old.
+        <div>The daily game of buying and arranging letters.</div>
+        <div>Just like the wordsmiths of old.</div>
       </div>
       <div>
         <button onClick={startDailyGame}>Daily game</button>

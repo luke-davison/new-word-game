@@ -1,0 +1,68 @@
+The aim of Lettermonger is to buy and arrange letters to make the highest scoring word.
+
+Each game you have a set amount of money and you can buy as many letters as you want - and can afford.
+
+Letters can be bought by dragging the letter into the word area, or by double clicking on the letter in the shop to quick add.  Usually each letter can be bought multiple times.
+
+Once purchased, letters can be freely rearranged by dragging them to the new position.
+
+Purchased letters can also be returned by dragging them out of the word area or by double clicking.  There is no penalty for returning a bought letter - you always get a full refund.
+
+Each letter is worth a certain number of points.
+
+Additionally, many letters also have an effect which can grant extra points, depending on how they are arranged in your word.
+
+For example, this letter gains extra points if it is next to a vowel.
+
+This letter gains extra points if it is in position 2.
+
+If you are unsure what an ability does - click / tap on the letter once to see more detail.
+
+Usually you will be allowed to buy wild letters, which don't score but can be any letter.  To set / change a wild - click / tap on the letter once after it has been placed to choose a letter.
+
+Daily games have a target to beat.  In addition, return the following day see how well you did compared to everyone else.
+
+Just remember to submit your word before the end of the day.  But don't worry - if you come up with a better word then you can always resubmit.
+
+The start and end of the day is midnight UTC (X:00AM/PM your time).
+
+
+In League mode you will compete against a group of other players over a series of games.  Your position in the league will be based on ALL words you score throughout the week.
+
+Letters in Extended games can have abilities not seen in Daily games that allow you to gain bonuses for future games, such as extra money or being able to reuse letters from previous games.
+
+Each League will finish at midnight Sunday morning UTC (X:00AM/PM Saturday/Sunday your time), at which point a new season of leagues will start.
+
+
+
+FAQ
+
+Why do the other players in League mode have such unusual names?
+
+Each player is assigned a random title and surname word.  This allows you to track how you do against other players while keeping the interaction relatively anonymous.
+
+
+I've figured out what my name is and I don't like it.  Can I change it?
+
+Lettermonger stores your player information in your browser.  Clearing this information or using a different browser will allow you to change your name at the expense of all your stats.
+
+
+Can I play from the same account on different devices?
+
+No - to keep things simple your account is linked to your browser.
+
+
+Can more than one person play Lettermonger on the same device?
+
+Again, to keep these simple there is no log-in system.  There is a way for more than one person to play Lettermonger on a single device - have each person use a different internet browser.  We know that's not ideal but at least it is possible.
+
+Some common internet browsers are Firefox, Chrome, Edge, Safari, Opera
+
+
+This particular word is invalid but I think it should be valid.
+
+Assuming you have spelled it correctly, that particular word is probably a bit obscure or specific.  We cannot allow every combination of letters that has ever been spoken - a line has to be drawn somewhere, and unfortunately your word must have ended up on the wrong side of that line.
+
+
+
+
