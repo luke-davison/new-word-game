@@ -9,6 +9,48 @@ interface IDailyGameNoIds extends Omit<IDailyGame, "letters"> {
 }
 
 const games: IDailyGameNoIds[] = [
+  {
+    date: "intro-1",
+    letters: [
+      { char: "p", price: 1, points: 2 },
+      { char: "l", price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: "a", price: 4, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: "y", price: 4, points: 6 }
+    ],
+    target: 15,
+    secretTarget: 17,
+    // maxTarget: 17,
+    money: 11
+  },
+  {
+    date: "intro-2",
+    letters: [
+      { char: "l", price: 3, points: 3, ability: Abilities.WordLength5, abilityPoints: 4 },
+      { char: "e", price: 1, points: 2 },
+      { char: "a", price: 5, points: 3, ability: Abilities.OtherInPosition1 },
+      { char: "r", price: 5, points: 7 },
+      { char: "n", price: 3, points: 3, ability: Abilities.Vowels, abilityPoints: 1 }
+    ],
+    target: 23,
+    secretTarget: 26,
+    // maxTarget: 27,
+    money: 15
+  },
+  {
+  date: "intro-3",
+  letters: [
+    { char: "m", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
+    { char: "a", price: 1, points: 2 },
+    { char: "s", price: 3, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+    { char: "t", price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 2 },
+    { char: "e", price: 4, points: 3, ability: Abilities.InPosition3, abilityPoints: 4 },
+    { char: "r", price: 4, points: 3, ability: Abilities.MinWordLength7, abilityPoints: 4 }
+  ],
+  target: 27,
+  secretTarget: 31,
+  // maxTarget: 32,
+  money: 18
+  },
   { 
     date: "2022-04-30",
     letters: [

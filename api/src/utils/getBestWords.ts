@@ -1,84 +1,87 @@
-import { IGame } from '../../../src/shared/datamodels';
-import { Letter, LetterInstance } from '../../../src/shared/models';
-import { getIsValidWord, wordlist } from '../../../src/shared/utils';
-import { getWildAbility } from '../../../src/shared/utils/getAbilities';
+import { Abilities } from '../../../src/shared';
+import { IGame, ILetter } from '../../../src/shared/datamodels';
+import { Letter } from '../../../src/shared/models';
+import { wordlist } from '../../../src/shared/utils';
+import { getWordPoints } from '../../../src/shared/utils/getWordPoints';
 import { setupLetters } from '../../../src/shared/utils/setupLetters';
 
-export const getBestWords = (game: IGame) => {
-  const map = new Map()
-  const words: Array<{ word: string, points: number }> = []
+export const getBestWords = (game: IGame, printScore: number) => {
+  const map = new Map<number, number>()
+  const words = new Map<number, string[]>()
 
   wordlist.forEach((word) => {
     const points = calculateBestScoreForWord(game, word)
+    // console.log(word, points)
     if (map.has(points)) {
-      map.set(points, map.get(points) + 1)
+      map.set(points, map.get(points)! + 1)
     } else {
       map.set(points, 1)
     }
-    console.log(word, points)
-    if (points > 20) {
-      words.push({ word, points })
+    if (points >= printScore) {
+      if (words.has(points)) {
+        words.get(points)?.push(word)
+      } else {
+        words.set(points, [word])
+      }
+    }
+
+  })
+  const pointsArray = Array.from(map).sort((a, b) => a[0] - b[0])
+  pointsArray.forEach(([points, num]) => {
+    if (points >= printScore) {
+      console.log()
+      console.log(points)
+
+      const wordsArray = words.get(points)
+      wordsArray?.forEach(word => {
+        console.log(word)
+      })
     }
   })
-  console.log(Array.from(map).sort((a, b) => b[0] - a[0]))
-  console.log(Array.from(words).sort((a, b) => b.points - a.points))
+
+  console.log()
+
+  pointsArray.forEach(([points, num]) => {
+    console.log(points, "-", num)
+  })
+
+  console.log()
 }
 
 export const calculateBestScoreForWord = (game: IGame, word: string): number => {
-  const wild: Letter = new Letter({ color: 0, char: "", price: 1, points: 0, isWild: true, ability: getWildAbility() })
-
   const shop = setupLetters(game.letters)
+  // console.log(word)
 
   const letters = word.split("")
 
-  const doThing = (wordSoFar: LetterInstance[], lettersRemaining: string[]): number => {
+  const doThing = (wordSoFar: ILetter[], lettersRemaining: string[]): number => {
     const [nextLetter,  ...otherLetters] = lettersRemaining
     
-    const scoreIfNotWild = shop.reduce((highestScore: number, shopLetter: Letter): number => {
-      if (nextLetter !== shopLetter.char) {
+    return shop.reduce((highestScore: number, shopLetter: Letter): number => {
+      if (nextLetter !== shopLetter.char && shopLetter.ability !== Abilities.Wild) {
         return highestScore
       }
 
-      const newWordSoFar = [...wordSoFar, new LetterInstance(shopLetter, wordSoFar.length)]
+      const newLetter = shopLetter.ability == Abilities.Wild
+        ? { ...shopLetter.data, char: nextLetter } as Letter
+        : shopLetter
+
+      const newWordSoFar = [...wordSoFar, newLetter]
 
       if (otherLetters.length === 0) {
-        const score = scoreWord(newWordSoFar, game.money)
+        const spent = newWordSoFar.reduce((sum, letter) => sum + letter.price, 0)
+        if (spent > game.money) {
+          return highestScore
+        }
+
+        const score = getWordPoints(newWordSoFar)
         return Math.max(score, highestScore)
       }
 
       const thingScore = doThing(newWordSoFar, otherLetters)
       return Math.max(thingScore, highestScore)
     }, 0)
-
-    const wildInstance = new LetterInstance(wild, wordSoFar.length)
-    wildInstance.setWildLetter(nextLetter)
-    const newWordSoFar: LetterInstance[] = [...wordSoFar, wildInstance]
-
-    if (otherLetters.length === 0) {
-      const score = scoreWord(newWordSoFar, game.money)
-      return Math.max(score, scoreIfNotWild)
-    }
-
-    const scoreIfWild = doThing(newWordSoFar, otherLetters)
-    return Math.max(scoreIfWild, scoreIfNotWild)
   }
 
   return doThing([], letters)
-}
-
-export const scoreWord = (word: LetterInstance[], money: number) => {
-  const isValid = getIsValidWord(word)
-  const isUnderBudget = word.reduce((sum, letter) => sum + letter.price, 0) <= money
-  if (!isValid || !isUnderBudget) {
-    return 0
-  }
-
-  return word.reduce((sum, letter) => {
-    const basePoints = letter.points
-    let abilityPoints = 0;
-    if (letter.ability?.getIsActive(word, letter.position || 0)) {
-      abilityPoints = letter.ability.getPoints(word, letter.position || 0)
-    }
-    return sum + basePoints + abilityPoints
-  }, 0)
 }
