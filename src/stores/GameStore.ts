@@ -11,6 +11,7 @@ import { getAbilityPoints } from '../shared/utils/abilities/getAbilityPoints';
 import { setupLetters } from '../shared/utils/setupLetters';
 import { convertLetterInstancesToWord } from '../utils/convertLettersToWord';
 import { convertWordToLetterInstances } from '../utils/convertWordToLetterInstances';
+import { getIntroductoryGame } from '../utils/getIntroductoryGame';
 import { AppStore } from './AppStore';
 
 export class GameStore {
@@ -100,9 +101,24 @@ export class GameStore {
     return this.appStore.campaignGame
   }
 
+  get tutorialGame(): IDailyGame | undefined {
+    return getIntroductoryGame(this.appStore.tutorialGameInProgress)
+  }
 
   get game(): IGame | undefined {
-    return this.appStore.isPlayingDailyGame ? this.appStore.dailyGame : this.appStore.campaignGame
+    if (this.appStore.isPlayingDailyGame) {
+      return this.dailyGame
+    }
+
+    if (this.appStore.isPlayingCampaignGame) {
+      return this.campaignGame
+    }
+
+    if (this.appStore.isPlayingTutorialGame) {
+      return this.tutorialGame
+    }
+
+    return undefined
   }
   
   _shopLetters: Letter[] = []
@@ -203,7 +219,7 @@ export class GameStore {
   }
   
   get target(): number | undefined {
-    return this.dailyGame?.target
+    return this.appStore.isPlayingTutorialGame ? this.tutorialGame?.target : this.dailyGame?.target
   }
   
   get secretTarget(): number | undefined {

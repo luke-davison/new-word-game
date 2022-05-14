@@ -1,4 +1,4 @@
-import { Abilities, IDailyGame, IGame } from '../shared';
+import { Abilities, IDailyGame } from '../shared';
 
 export const getIntroductoryGame = (num: number): IDailyGame => {
   if (num === 1) {
@@ -11,9 +11,9 @@ export const getIntroductoryGame = (num: number): IDailyGame => {
         { id: "14", char: "y", price: 4, points: 6 },
         { id: "15", char: "", price: 1, points: 0, ability: Abilities.Wild }
       ],
-      target: 25,
-      secretTarget: 30,
-      // maxTarget: 34,
+      target: 15,
+      secretTarget: 17,
+      // maxTarget: 17,
       money: 11
     }
   }

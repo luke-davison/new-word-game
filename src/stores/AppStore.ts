@@ -1,4 +1,4 @@
-import { action, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 
 import { getAppData } from '../api/getAppData';
 import { ScoreInfo } from '../models';
@@ -15,7 +15,12 @@ export class AppStore {
       scoreMap: observable,
       isPlayingCampaignGame: observable,
       startCampaignGame: action,
-      _appData: observable
+      _appData: observable,
+      isPlayingTutorialGame: observable,
+      startTutorialGame: action,
+      setTutorialGame: action,
+      gameId: computed,
+      tutorialGameInProgress: observable
     })
   }
 
@@ -27,6 +32,22 @@ export class AppStore {
 
   get dateString() {
     return this._appData?.date
+  }
+
+  get gameId(): string | undefined {
+    if (this.isPlayingDailyGame) {
+      return this.dateString
+    }
+
+    if (this.isPlayingCampaignGame) {
+      return this.dateString
+    }
+
+    if (this.isPlayingTutorialGame) {
+      return "intro-" + this.tutorialGameInProgress
+    }
+
+    return undefined;
   }
 
   get today() {
@@ -59,6 +80,8 @@ export class AppStore {
 
   isPlayingDailyGame: boolean = false
   isPlayingCampaignGame: boolean = false
+  isPlayingTutorialGame: boolean = false
+  tutorialGameInProgress: number = 0
 
   startDailyGame = () => {
     this.isPlayingDailyGame = true
@@ -68,9 +91,20 @@ export class AppStore {
     this.isPlayingCampaignGame = true;
   }
 
+  startTutorialGame = () => {
+    this.isPlayingTutorialGame = true
+    this.tutorialGameInProgress = 1
+  }
+
+  setTutorialGame = (num: number) => {
+    this.tutorialGameInProgress = num
+  }
+
   returnToMenu = () => {
     this.isPlayingDailyGame = false
     this.isPlayingCampaignGame = false
+    this.isPlayingTutorialGame = false
+    this.tutorialGameInProgress = 0
   }
 
   isShowingCalendar: boolean = false;
