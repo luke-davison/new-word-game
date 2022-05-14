@@ -11,7 +11,7 @@ const copyAbilities: Abilities[] = [
   Abilities.CopyAbilityInPosition5,
 ]
 
-export const getAbilityPoints = (word: ILetter[], position: number, player?: IPlayer): number => {
+export const getAbilityPoints = (word: Array<ILetter | undefined>, position: number, player?: IPlayer): number => {
   const letter = word[position]
   if (!letter) {
     return 0
@@ -31,9 +31,9 @@ export const getAbilityPoints = (word: ILetter[], position: number, player?: IPl
 
   switch (letter.ability) {
     case Abilities.Vowels:
-      return word.reduce((sum, otherLetter) => getIsCharacterVowel(otherLetter.char) ? sum + (letter.abilityPoints || 0) : sum, 0);
+      return word.reduce((sum, otherLetter) => otherLetter && getIsCharacterVowel(otherLetter.char) ? sum + (letter.abilityPoints || 0) : sum, 0);
     case Abilities.Wilds:
-      return word.reduce((sum, otherLetter) => otherLetter.ability === Abilities.Wild ? sum + (letter.abilityPoints || 0) : sum, 0);
+      return word.reduce((sum, otherLetter) => otherLetter?.ability === Abilities.Wild ? sum + (letter.abilityPoints || 0) : sum, 0);
   }
 
   if (copyAbilities.some(ability => ability === letter.ability)) {
@@ -47,11 +47,14 @@ export const getAbilityPoints = (word: ILetter[], position: number, player?: IPl
       case Abilities.CopyAbilityInPosition5: positionToCopy = 4; break;
     }
 
-    modifiedWord[position] = {
-      ...word[position],
-      ability: word[positionToCopy].ability,
-      abilityPoints: word[positionToCopy].abilityPoints
-    }
+    const letterToUpdate = word[position] 
+    const updatedLetter = letterToUpdate ? {
+      ...letterToUpdate,
+      ability: word[positionToCopy]?.ability,
+      abilityPoints: word[positionToCopy]?.abilityPoints
+    } : undefined
+
+    modifiedWord[position] = updatedLetter
 
     return getAbilityPoints(modifiedWord, position, player)
   }

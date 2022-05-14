@@ -12,10 +12,10 @@ import { AbilityImage } from './AbilityImage';
 
 export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }) => {
   const { player } = useContext(AppContext)
-  const { playerWord } = useContext(GameContext)
+  const { playerWordFull } = useContext(GameContext)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
 
-  const isAbilityActive = letter.position === undefined || getAbilityIsActive(playerWord, letter.position, player)
+  const isAbilityActive = letter.position === undefined || getAbilityIsActive(playerWordFull, letter.position, player)
 
   const onClick = () => {
     setIsPopupOpen(!isPopupOpen)

@@ -11,14 +11,14 @@ const abilitiesThatCannotBeCopied: Abilities[] = [
   Abilities.Wild
 ]
 
-export const getIsAnotherAbilityInPosition = (word: ILetter[], otherPosition: number): boolean => {
+export const getIsAnotherAbilityInPosition = (word: Array<ILetter | undefined>, otherPosition: number): boolean => {
   if (word.length <= otherPosition) {
     return false
   }
 
   const letterInPosition = word[otherPosition]
 
-  if (!letterInPosition.ability) {
+  if (!letterInPosition || !letterInPosition.ability) {
     return false
   }
 

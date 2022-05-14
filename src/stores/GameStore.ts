@@ -26,6 +26,7 @@ export class GameStore {
       onDropLetterBetween: action,
       onDropLetterOutside: action,
       playerWord: computed,
+      playerWordFull: computed,
       target: computed,
       isValidText: observable,
       _bestWord: observable,
@@ -140,6 +141,13 @@ export class GameStore {
       return (a.position || 0) - (b.position || 0)
     })
   }
+
+  get playerWordFull(): Array<LetterInstance | undefined> {
+    const lastLetter = this.playerWord[this.playerWord.length - 1]
+    return [...new Array(lastLetter?.position === undefined ? 0 : lastLetter.position + 1)].map((_, index) => {
+      return this.playerWord.find(letter => letter.position === index)
+    })
+  }
   
   get totalMoney(): number {
     let money = this.game?.money || 0
@@ -183,8 +191,8 @@ export class GameStore {
     return sortedWord.reduce((sum, letter, index) => {
       const basePoints = letter.points
       let abilityPoints = 0;
-      if (getAbilityIsActive(this.playerWord, letter.position!, this.appStore.player)) {
-        abilityPoints = getAbilityPoints(this.playerWord, letter.position!, this.appStore.player)
+      if (getAbilityIsActive(this.playerWordFull, letter.position!, this.appStore.player)) {
+        abilityPoints = getAbilityPoints(this.playerWordFull, letter.position!, this.appStore.player)
       }
       return sum + basePoints + abilityPoints
     }, 0)
