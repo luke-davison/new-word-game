@@ -9,7 +9,7 @@ import { getIsValidWord } from '../shared/utils';
 import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive';
 import { getAbilityPoints } from '../shared/utils/abilities/getAbilityPoints';
 import { setupLetters } from '../shared/utils/setupLetters';
-import { convertLetterInstancesToWord, convertLettersToWord } from '../utils/convertLettersToWord';
+import { convertLetterInstancesToWord } from '../utils/convertLettersToWord';
 import { convertWordToLetterInstances } from '../utils/convertWordToLetterInstances';
 import { AppStore } from './AppStore';
 

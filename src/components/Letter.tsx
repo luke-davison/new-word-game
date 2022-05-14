@@ -7,8 +7,8 @@ import { LetterInstance } from '../models/LetterInstance';
 import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive';
 import { AppContext } from '../stores/AppContext';
 import { GameContext } from '../stores/GameContext';
-import { getAbilityImage } from '../utils/getAbilityImage';
 import { LetterPopup } from './LetterPopup';
+import { AbilityImage } from './AbilityImage';
 
 export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }) => {
   const { player } = useContext(AppContext)
@@ -18,9 +18,7 @@ export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }
   const isAbilityActive = letter.position === undefined || getAbilityIsActive(playerWord, letter.position, player)
 
   const onClick = () => {
-    if (letter.position !== undefined) {
-      setIsPopupOpen(!isPopupOpen)
-    }
+    setIsPopupOpen(!isPopupOpen)
   }
 
   return (
@@ -34,7 +32,7 @@ export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }
         </div>
           { letter.ability && (
             <div className={`letter-ability${ isAbilityActive ? " is-active" : ""}` }>
-              <img src={getAbilityImage(letter.ability)}/>
+              <AbilityImage ability={letter.ability}/>
               {letter.abilityPoints !== undefined && (
                 <div className="letter-ability-points">
                   {letter.abilityPoints}
@@ -43,7 +41,7 @@ export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }
         </div>
           )}
       </div>
-      {isPopupOpen && letter.isWild && <LetterPopup letter={letter} onClose={ () => setIsPopupOpen(false)}/>}
+      {isPopupOpen && <LetterPopup letter={letter} onClose={ () => setIsPopupOpen(false)}/>}
     </div>
   )
 })

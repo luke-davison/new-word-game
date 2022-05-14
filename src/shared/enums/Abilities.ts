@@ -28,10 +28,15 @@ export enum Abilities {
   RetainLeft = "27",
   RetainRight = "28",
   Vowels = "29",
-  Wild = "35",
   Wilds = "30",
   WordLength4 = "31",
   WordLength5 = "32",
   WordLength6 = "33",
-  WordLength7 = "34"
+  WordLength7 = "34",
+  Wild = "35",
+  CopyAbilityInPosition1 = "36",
+  CopyAbilityInPosition2 = "37",
+  CopyAbilityInPosition3 = "38",
+  CopyAbilityInPosition4 = "39",
+  CopyAbilityInPosition5 = "40",
 }

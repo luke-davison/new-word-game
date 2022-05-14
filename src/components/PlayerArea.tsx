@@ -5,7 +5,6 @@ import { useContext } from 'react';
 
 import { GameContext } from '../stores/GameContext';
 import { WordBetweenSpace } from './WordBetweenSpace';
-import { WordPoints } from './WordPoints';
 import { WordSpace } from './WordSpace';
 
 export const PlayerArea: React.FC = observer(() => {

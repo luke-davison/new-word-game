@@ -3,6 +3,14 @@ import { Abilities } from '../../enums';
 import { getIsCharacterVowel } from '../getIsChararacterVowel';
 import { getAbilityIsActive } from './getAbilityIsActive';
 
+const copyAbilities: Abilities[] = [
+  Abilities.CopyAbilityInPosition1,
+  Abilities.CopyAbilityInPosition2,
+  Abilities.CopyAbilityInPosition3,
+  Abilities.CopyAbilityInPosition4,
+  Abilities.CopyAbilityInPosition5,
+]
+
 export const getAbilityPoints = (word: ILetter[], position: number, player?: IPlayer): number => {
   const letter = word[position]
   if (!letter) {
@@ -26,6 +34,26 @@ export const getAbilityPoints = (word: ILetter[], position: number, player?: IPl
       return word.reduce((sum, otherLetter) => getIsCharacterVowel(otherLetter.char) ? sum + (letter.abilityPoints || 0) : sum, 0);
     case Abilities.Wilds:
       return word.reduce((sum, otherLetter) => otherLetter.ability === Abilities.Wild ? sum + (letter.abilityPoints || 0) : sum, 0);
+  }
+
+  if (copyAbilities.some(ability => ability === letter.ability)) {
+    let modifiedWord = Array.from(word)
+    let positionToCopy = 0
+    switch (letter.ability) {
+      case Abilities.CopyAbilityInPosition1: positionToCopy = 0; break;
+      case Abilities.CopyAbilityInPosition2: positionToCopy = 1; break;
+      case Abilities.CopyAbilityInPosition3: positionToCopy = 2; break;
+      case Abilities.CopyAbilityInPosition4: positionToCopy = 3; break;
+      case Abilities.CopyAbilityInPosition5: positionToCopy = 4; break;
+    }
+
+    modifiedWord[position] = {
+      ...word[position],
+      ability: word[positionToCopy].ability,
+      abilityPoints: word[positionToCopy].abilityPoints
+    }
+
+    return getAbilityPoints(modifiedWord, position, player)
   }
 
   return letter.abilityPoints || 0;

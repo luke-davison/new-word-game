@@ -169,7 +169,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: "2022-04-29",
+    date: "2022-05-13",
     letters: [
       { char: "t", price: 3, points: 4, ability: Abilities.MaxWordLength5 },
       { char: "i", price: 3, points: 4, ability: Abilities.RetainLeft },
@@ -183,7 +183,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: "2022-04-30",
+    date: "2022-05-14",
     letters: [
       { char: "h", price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
       { char: "a", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },

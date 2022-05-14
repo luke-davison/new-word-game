@@ -2,7 +2,6 @@ import './LetterShop.css';
 
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
-import { useDrag } from 'react-dnd';
 
 import { GameContext } from '../stores/GameContext';
 import { DraggableLetter } from './DraggableLetter';
