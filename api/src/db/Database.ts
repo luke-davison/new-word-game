@@ -89,7 +89,7 @@ export class Database {
     return this.databaseConnection.getGameStats(dateString)
   }
 
-  submitGameStats = async (dateString: string, score: number): Promise<IGameStats> => {
+  submitGameStats = async (dateString: string, score: number, previousScore?: number): Promise<IGameStats> => {
     let gameStats: IGameStats | undefined = await this.getGameStats(dateString);
 
     if (gameStats) {
@@ -104,6 +104,15 @@ export class Database {
       gameStats = {
         date: dateString,
         results: [[score, 1]]
+      }
+    }
+
+    if (previousScore !== undefined) {
+      let scoreStat = gameStats.results.find((stat => stat[0] === previousScore))
+      if (scoreStat) {
+        scoreStat[1] = scoreStat[1] - 1
+      } else {
+        console.log("Unable to adjust previous score") // should never happen
       }
     }
 

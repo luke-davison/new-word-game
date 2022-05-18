@@ -3,6 +3,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import { getAppData } from '../api/getAppData';
 import { ScoreInfo } from '../models';
 import { getDateFromString, IAppData } from '../shared';
+import { cacheAppData } from '../utils/cacheAppData';
 
 export class AppStore {
   constructor() {
@@ -76,7 +77,9 @@ export class AppStore {
       this.fetchingAppData = false
     })
     window.localStorage.setItem("userId", appData.userId)
+    cacheAppData(appData)
   }
+
 
   isPlayingDailyGame: boolean = false
   isPlayingCampaignGame: boolean = false

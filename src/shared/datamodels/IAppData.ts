@@ -11,6 +11,7 @@ export interface IAppData {
   campaignGame: ICampaignGame;
   player?: IPlayer;
   previousLeague?: ILeague;
-  previousGameStats?: IGameStats;
-  currentGameStats?: IGameStats;
+  previousDailyGameDate?: string;
+  previousDailyGameStats?: IGameStats;
+  currentDailyGameStats?: IGameStats;
 }

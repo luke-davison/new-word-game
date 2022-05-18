@@ -22,17 +22,19 @@ export const getAppData = async (request: Request<{}, {}, {}, { userId?: string 
     return response.status(500).send("Could not load data - unable to find campaign game")
   }
 
-  let currentGameStats: IGameStats | undefined = undefined
-  let previousGameStats: IGameStats | undefined = undefined
+  let currentDailyGameStats: IGameStats | undefined = undefined
+  let previousDailyGameDate: string | undefined = undefined
+  let previousDailyGameStats: IGameStats | undefined = undefined
 
   if (user?.lastDailyGameSubmit) {
     if (user.lastDailyGameSubmit === date) {
-      currentGameStats = await db.getGameStats(user.lastDailyGameSubmit)
+      currentDailyGameStats = await db.getGameStats(user.lastDailyGameSubmit)
       if (user.previousDailyGameSubmit) {
-        previousGameStats = await db.getGameStats(user.previousDailyGameSubmit)
+        previousDailyGameDate = user.previousDailyGameSubmit
+        previousDailyGameStats = await db.getGameStats(user.previousDailyGameSubmit)
       }
     } else {
-      previousGameStats = await db.getGameStats(user.lastDailyGameSubmit)
+      previousDailyGameStats = await db.getGameStats(user.lastDailyGameSubmit)
     }
   }
 
@@ -44,8 +46,9 @@ export const getAppData = async (request: Request<{}, {}, {}, { userId?: string 
     dailyGame,
     campaignGame,
     player,
-    currentGameStats,
-    previousGameStats
+    currentDailyGameStats,
+    previousDailyGameDate,
+    previousDailyGameStats
   }
 
   response.json(appData)
