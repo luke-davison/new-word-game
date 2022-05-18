@@ -4,5 +4,6 @@ export interface IUser extends SharedIUser {
   nickname: string;
   campaignRating: number;
   lastDailyGameSubmit?: string;
+  lastDailyGameSubmitScore?: number;
   previousDailyGameSubmit?: string;
 }

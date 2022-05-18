@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { ISubmitWord } from '../../../src/shared/datamodels';
+import { IGameStats, ISubmitWord } from '../../../src/shared/datamodels';
 import { getWordPoints } from '../../../src/shared/utils/getWordPoints';
 import { db } from '../db';
 import { validateSubmitWord } from '../middleware/validateSubmitWord';
@@ -20,20 +20,24 @@ export const submitDailyWord = async (request: Request<{}, {}, ISubmitWord>, res
     return response.status(400).send(message)
   }
 
-  const user = await db.getOrCreateUser(body.userId)
-
-  if (user.lastDailyGameSubmit === body.date) {
-    return response.status(400).send("Unable to validate - score already submitted")
-  }
-
-  user.previousDailyGameSubmit = user.lastDailyGameSubmit
-  user.lastDailyGameSubmit = body.date
-  await db.updateUser(user)
-
   const letters = convertWordToLetters(body.word, dailyGame, undefined)
   const points = getWordPoints(letters)
 
-  const gameStats = await db.submitGameStats(body.date, points)
+  const user = await db.getOrCreateUser(body.userId)
+
+  let gameStats: IGameStats
+
+  if (user.lastDailyGameSubmit === body.date) {
+    gameStats = await db.submitGameStats(body.date, points, user.lastDailyGameSubmitScore)
+  } else {
+    gameStats = await db.submitGameStats(body.date, points)
+    user.previousDailyGameSubmit = user.lastDailyGameSubmit
+    user.lastDailyGameSubmit = body.date
+  }
+
+  user.lastDailyGameSubmitScore = points
+
+  await db.updateUser(user)
 
   response.status(200).json(gameStats)
 }

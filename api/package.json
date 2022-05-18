@@ -10,7 +10,8 @@
     "start:prod": "npm run build && node ./dist/src/server.js",
     "build": "npx tsc",
     "knexinit": "knex migrate:make create_campaign_users_table --esm --migrations-directory ./src/db/migrations",
-    "test": "jest"
+    "test": "jest",
+    "tsc": "tsc"
   },
   "keywords": [],
   "author": "",
