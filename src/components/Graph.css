@@ -1,0 +1,47 @@
+.graph {
+  align-items: center;
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  width: 300px;
+}
+
+.graph-inner {
+  display: flex;
+  flex-direction: row;
+  height: 180px;
+  width: 270px;
+}
+
+.x-column {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.x-column-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.x-column:first-child .x-column-inner {
+  border-left: 1px solid black;
+}
+
+.x-column-axe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 12px;
+  font-size: 8px;
+  border-top: 1px solid black;
+}
+
+.graph-bar {
+  background-color: navy;
+}
