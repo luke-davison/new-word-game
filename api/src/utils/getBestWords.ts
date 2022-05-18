@@ -50,7 +50,6 @@ export const getBestWords = (game: IGame, printScore: number) => {
 
 export const calculateBestScoreForWord = (game: IGame, word: string): number => {
   const shop = setupLetters(game.letters)
-  // console.log(word)
 
   const letters = word.split("")
 

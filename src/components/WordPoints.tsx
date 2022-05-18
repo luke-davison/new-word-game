@@ -31,7 +31,7 @@ export const WordPoints: React.FC = observer(() => {
             {bestWord && (
               <div className="best-word">
                 <span>{"Best: "}</span>
-                <a onClick={reinstateBestWord}>{`${bestWord} (${bestWordScore})`}</a>
+                <button onClick={reinstateBestWord}>{`${bestWord} (${bestWordScore})`}</button>
               </div>
             )}
           </>

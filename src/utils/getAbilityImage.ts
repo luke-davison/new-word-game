@@ -9,6 +9,11 @@ import minWordLength4Image from '../images/min_word_length_4.png';
 import minWordLength5Image from '../images/min_word_length_5.png';
 import minWordLength6Image from '../images/min_word_length_6.png';
 import minWordLength7Image from '../images/min_word_length_7.png';
+import copyAbiliytInPosition1Image from '../images/copy_ability_in_position_1.png'
+import copyAbiliytInPosition2Image from '../images/copy_ability_in_position_2.png'
+import copyAbiliytInPosition3Image from '../images/copy_ability_in_position_3.png'
+import copyAbiliytInPosition4Image from '../images/copy_ability_in_position_4.png'
+import copyAbiliytInPosition5Image from '../images/copy_ability_in_position_5.png'
 import nextToVowelImage from '../images/next_to_vowel.png';
 import nextToWildImage from '../images/next_to_wild.png';
 import notNextToVowelImage from '../images/not_next_to_vowel.png';
@@ -38,6 +43,11 @@ import { Abilities } from '../shared/enums';
 export const getAbilityImage = (ability: Abilities): string | undefined => {
   switch (ability) {
     case Abilities.Club: return clubImage;
+    case Abilities.CopyAbilityInPosition1: return copyAbiliytInPosition1Image;
+    case Abilities.CopyAbilityInPosition2: return copyAbiliytInPosition2Image;
+    case Abilities.CopyAbilityInPosition3: return copyAbiliytInPosition3Image;
+    case Abilities.CopyAbilityInPosition4: return copyAbiliytInPosition4Image;
+    case Abilities.CopyAbilityInPosition5: return copyAbiliytInPosition5Image;
     case Abilities.Funding1: return funding1Image;
     case Abilities.Funding2: return funding2Image;
     case Abilities.InPosition1: return inPosition1Image;

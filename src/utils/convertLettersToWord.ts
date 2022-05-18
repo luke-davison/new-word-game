@@ -1,5 +1,5 @@
 import { LetterInstance } from '../models/LetterInstance';
-import { ISubmitWord, Letter } from '../shared';
+import { Letter } from '../shared';
 import { IRawLetter } from '../shared/datamodels/IRawLetter';
 
 export const convertLettersToWord = (letters: Letter[]): IRawLetter[] => {

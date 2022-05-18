@@ -1,11 +1,20 @@
 .letter-popup {
   position: fixed;
   width: 300px;
-  height: 110px;
   z-index: 10;
   padding: 10px;
   background-color: tan;
   border-radius: 5px;
   top: 150px;
   left: calc(50vw - 150px);
+}
+
+.letter-popup-ability-image {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.letter-popup-ability-text {
+  text-align: center;
+  margin-bottom: 10px;
 }

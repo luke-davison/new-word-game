@@ -1,10 +1,10 @@
 import { ILetter } from "../../datamodels"
 import { getIsCharacterVowel } from "../getIsChararacterVowel"
 
-export const getIsNextToVowelActive = (word: ILetter[], position: number): boolean => {
+export const getIsNextToVowelActive = (word: Array<ILetter | undefined>, position: number): boolean => {
   if (position > 0) {
     const letterBefore = word[position - 1]
-    if (getIsCharacterVowel(letterBefore.char)) {
+    if (letterBefore && getIsCharacterVowel(letterBefore.char)) {
       return true
     }
 
@@ -12,7 +12,7 @@ export const getIsNextToVowelActive = (word: ILetter[], position: number): boole
 
   if (position < word.length - 1) {
     const letterAfter = word[position + 1]
-    if (getIsCharacterVowel(letterAfter.char)) {
+    if (letterAfter && getIsCharacterVowel(letterAfter.char)) {
       return true
     }
   }

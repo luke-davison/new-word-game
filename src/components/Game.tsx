@@ -9,6 +9,7 @@ import { AppContext } from '../stores/AppContext';
 import { GameContext } from '../stores/GameContext';
 import { GameStore } from '../stores/GameStore';
 import { GameArea } from './GameArea';
+import { PageButtons } from './PageButtons';
 
 export const Game: React.FC = observer(() => {
   const appStore = useContext(AppContext)
@@ -20,7 +21,10 @@ export const Game: React.FC = observer(() => {
   return (
     <GameContext.Provider value={gameStore}>
       <DndProvider backend={backend}>
-        <GameArea/>
+        <div>
+          <GameArea/>
+          <PageButtons/>
+        </div>
       </DndProvider>
     </GameContext.Provider>
   )

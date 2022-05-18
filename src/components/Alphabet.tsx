@@ -21,7 +21,7 @@ export const Alphabet: React.FC<AlphabetProps> = observer(({ onSelect }) => {
 
     document.body.addEventListener('keydown', listener);
     return () => document.body.removeEventListener('keydown', listener)
-  }, [])
+  }, [onSelect])
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     onSelect(e.key)

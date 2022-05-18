@@ -4,8 +4,9 @@ import { getIsNextToVowelActive } from "./getIsNextToVowelActive"
 import { getIsNextToWildActive } from "./getNextToWildActive"
 import { getVowelsActive } from "./getVowelsActive"
 import { getWildsActive } from "./getWildsActive"
+import { getIsAnotherAbilityInPosition } from "./getIsAnotherAbilityInPosition"
 
-export const getAbilityIsActive = (word: ILetter[], position: number, player?: IPlayer): boolean => {
+export const getAbilityIsActive = (word: Array<ILetter | undefined>, position: number, player?: IPlayer): boolean => {
   const letter = word[position]
   if (!letter) {
     return false
@@ -13,6 +14,11 @@ export const getAbilityIsActive = (word: ILetter[], position: number, player?: I
 
   switch (letter.ability) {
     case Abilities.Club: return !player?.isMember;
+    case Abilities.CopyAbilityInPosition1: return getIsAnotherAbilityInPosition(word, 0);
+    case Abilities.CopyAbilityInPosition2: return getIsAnotherAbilityInPosition(word, 1);
+    case Abilities.CopyAbilityInPosition3: return getIsAnotherAbilityInPosition(word, 2);
+    case Abilities.CopyAbilityInPosition4: return getIsAnotherAbilityInPosition(word, 3);
+    case Abilities.CopyAbilityInPosition5: return getIsAnotherAbilityInPosition(word, 4);
     case Abilities.Funding1: return true;
     case Abilities.Funding2: return true;
     case Abilities.InPosition1: return position === 0;
@@ -31,7 +37,7 @@ export const getAbilityIsActive = (word: ILetter[], position: number, player?: I
     case Abilities.NextToVowel: return getIsNextToVowelActive(word, position);
     case Abilities.NextToWild: return getIsNextToWildActive(word, position)
     case Abilities.NotNextToVowel: return !getIsNextToVowelActive(word, position);
-    case Abilities.NotNextToWild: return !getIsNextToWildActive(word, position)
+    case Abilities.NotNextToWild: return !getIsNextToWildActive(word, position);
     case Abilities.OtherInPosition1: return word.length >= 1;
     case Abilities.OtherInPosition2: return word.length >= 2;
     case Abilities.OtherInPosition3: return word.length >= 3;

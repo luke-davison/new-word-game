@@ -10,14 +10,14 @@ import { GameContext } from '../stores/GameContext';
 
 export const WordSpacePoints: React.FC<{ spaceIndex: number }> = observer(({ spaceIndex }) => {
   const { player } = useContext(AppContext)
-  const { playerWord } = useContext(GameContext)
+  const { playerWord, playerWordFull } = useContext(GameContext)
 
   const letter = playerWord.find((letter) => letter.position === spaceIndex)
   
   if (letter) {
     let points = letter.points
-    if (!letter.isWild && getAbilityIsActive(playerWord, spaceIndex, player)) {
-      points += getAbilityPoints(playerWord, spaceIndex, player)
+    if (!letter.isWild && getAbilityIsActive(playerWordFull, spaceIndex, player)) {
+      points += getAbilityPoints(playerWordFull, spaceIndex, player)
     }
     return (
       <div className="word-space-points">
