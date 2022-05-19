@@ -41,7 +41,7 @@ export const Menu: React.FC = observer(() => {
       <div>
         <button onClick={startTutorialGame}>Tutorial</button>
       </div>
-      <Graph stats={dummyStats}/>
+      <Graph stats={dummyStats} selected={29}/>
     </div>
   );
 })

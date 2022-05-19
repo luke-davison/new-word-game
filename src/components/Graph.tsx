@@ -6,6 +6,7 @@ import { IGameStats } from "../shared";
 
 interface IGraphProps {
   stats: IGameStats;
+  selected?: number;
 }
 
 export const Graph: FunctionComponent<IGraphProps> = observer(props => {
@@ -41,6 +42,9 @@ export const Graph: FunctionComponent<IGraphProps> = observer(props => {
                 { value > 0 && (
                   <div className="graph-bar" style={{height: (barHeight * 100).toFixed(0) + "%" }} />
                 )}
+                { xAxe === props.selected && (
+                  <div className="selected-bar"/>
+                ) }
               </div>
               <div className="x-column-axe">
                 <span>

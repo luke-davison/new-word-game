@@ -27,6 +27,7 @@
   align-items: stretch;
   justify-content: flex-end;
   flex-grow: 1;
+  position: relative;
 }
 
 .x-column:first-child .x-column-inner {
@@ -44,4 +45,19 @@
 
 .graph-bar {
   background-color: navy;
+}
+
+.selected-bar {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.selected-bar:before {
+  content: "";
+  width: 4px;
+  background-color: orange;
+  height: 100%;
 }
