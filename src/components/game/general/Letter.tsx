@@ -3,10 +3,10 @@ import './Letter.css';
 import { observer } from 'mobx-react-lite';
 import { useContext, useState } from 'react';
 
-import { LetterInstance } from '../models/LetterInstance';
-import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive';
-import { AppContext } from '../stores/AppContext';
-import { GameContext } from '../stores/GameContext';
+import { LetterInstance } from '../../../models/LetterInstance';
+import { getAbilityIsActive } from '../../../shared/utils/abilities/getAbilityIsActive';
+import { AppContext } from '../../../stores/AppContext';
+import { GameContext } from '../../../stores/GameContext';
 import { LetterPopup } from './LetterPopup';
 import { AbilityImage } from './AbilityImage';
 

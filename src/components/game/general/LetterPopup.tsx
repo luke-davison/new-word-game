@@ -2,11 +2,11 @@ import './LetterPopup.css';
 
 import React, { useEffect } from 'react';
 
-import { LetterInstance } from '../models/LetterInstance';
+import { LetterInstance } from '../../../models/LetterInstance';
 import { Alphabet } from './Alphabet';
 import { AbilityImage } from './AbilityImage';
-import { getAbilityText } from '../utils/getAbilityText';
-import { Abilities } from '../shared';
+import { getAbilityText } from '../../../utils/getAbilityText';
+import { Abilities } from '../../../shared';
 
 interface LetterPopupProps {
   letter: LetterInstance

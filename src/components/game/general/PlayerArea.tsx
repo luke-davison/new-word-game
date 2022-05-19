@@ -3,7 +3,7 @@ import './PlayerArea.css';
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 
-import { GameContext } from '../stores/GameContext';
+import { GameContext } from '../../../stores/GameContext';
 import { WordBetweenSpace } from './WordBetweenSpace';
 import { WordSpace } from './WordSpace';
 

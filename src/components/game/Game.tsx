@@ -5,11 +5,11 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
 
-import { AppContext } from '../stores/AppContext';
-import { GameContext } from '../stores/GameContext';
-import { GameStore } from '../stores/GameStore';
-import { GameArea } from './GameArea';
-import { PageButtons } from './PageButtons';
+import { AppContext } from '../../stores/AppContext';
+import { GameContext } from '../../stores/GameContext';
+import { GameStore } from '../../stores/GameStore';
+import { GameArea } from './general/GameArea';
+import { PageButtons } from '../menu/PageButtons';
 
 export const Game: React.FC = observer(() => {
   const appStore = useContext(AppContext)

@@ -1,11 +1,9 @@
-import './LetterShop.css';
-
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 
-import { AppContext } from '../stores/AppContext';
-import { GameContext } from '../stores/GameContext';
-import { DraggableLetter } from './DraggableLetter';
+import { AppContext } from '../../../stores/AppContext';
+import { GameContext } from '../../../stores/GameContext';
+import { DraggableLetter } from '../general/DraggableLetter';
 
 export const Inventory: React.FC = observer(() => {
   const { isPlayingCampaignGame } = useContext(AppContext)

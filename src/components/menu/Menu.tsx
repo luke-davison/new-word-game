@@ -3,10 +3,10 @@ import './Menu.css';
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 
-import { AppContext } from '../stores/AppContext';
-import { Game } from './Game';
-import { Graph } from './Graph';
-import { IGameStats } from '../shared';
+import { AppContext } from '../../stores/AppContext';
+import { Game } from '../game/Game';
+import { Graph } from '../general/Graph';
+import { IGameStats } from '../../shared';
 
 const dummyStats: IGameStats = {
   date: "2022-05-18",

@@ -21,11 +21,14 @@ export class AppStore {
       startTutorialGame: action,
       setTutorialGame: action,
       gameId: computed,
-      tutorialGameInProgress: observable
+      tutorialGameInProgress: observable,
+      offlineMode: observable
     })
   }
 
   _appData: IAppData | undefined
+
+  offlineMode: boolean = false
 
   get userId() {
     return this._appData?.userId
@@ -71,15 +74,20 @@ export class AppStore {
 
   loadAppData = async () => {
     const userId = window.localStorage.getItem("userId")
-    const appData = await getAppData(userId || undefined)
-    runInAction(() => {
-      this._appData = appData
-      this.fetchingAppData = false
-    })
-    window.localStorage.setItem("userId", appData.userId)
-    cacheAppData(appData)
+    try {
+      const appData = await getAppData(userId || undefined)
+      runInAction(() => {
+        this._appData = appData
+        this.fetchingAppData = false
+      })
+      window.localStorage.setItem("userId", appData.userId)
+      cacheAppData(appData)
+    } catch (error) {
+      runInAction(() => {
+        this.offlineMode = true
+      })
+    }
   }
-
 
   isPlayingDailyGame: boolean = false
   isPlayingCampaignGame: boolean = false

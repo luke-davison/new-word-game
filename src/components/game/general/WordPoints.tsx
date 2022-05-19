@@ -3,8 +3,8 @@ import './WordPoints.css';
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 
-import { AppContext } from '../stores/AppContext';
-import { GameContext } from '../stores/GameContext';
+import { AppContext } from '../../../stores/AppContext';
+import { GameContext } from '../../../stores/GameContext';
 
 export const WordPoints: React.FC = observer(() => {
   const { isPlayingDailyGame } = useContext(AppContext)

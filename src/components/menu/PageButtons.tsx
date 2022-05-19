@@ -1,8 +1,8 @@
 import { observer } from "mobx-react-lite";
 import { FunctionComponent, useContext } from "react";
-import { AppContext } from "../stores/AppContext";
-import { GameContext } from "../stores/GameContext";
-import { CalendarPopup } from "./CalendarPopup";
+import { AppContext } from "../../stores/AppContext";
+import { GameContext } from "../../stores/GameContext";
+import { CalendarPopup } from "../general/CalendarPopup";
 
 export const PageButtons: FunctionComponent = observer(() => {
   const { isShowingCalendar, isPlayingCampaignGame, toggleIsShowingCalendar, isPlayingDailyGame, returnToMenu, isPlayingTutorialGame, tutorialGameInProgress, setTutorialGame } = useContext(AppContext)

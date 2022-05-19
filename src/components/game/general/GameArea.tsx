@@ -4,15 +4,15 @@ import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import { useDrop } from 'react-dnd';
 
-import { LetterInstance } from '../models/LetterInstance';
-import { GameContext } from '../stores/GameContext';
-import { CampaignCounters } from './CampaignCounters';
+import { LetterInstance } from '../../../models/LetterInstance';
+import { GameContext } from '../../../stores/GameContext';
+import { CampaignCounters } from '../campaign/CampaignCounters';
 import { Counters } from './Counters';
 import { GameButtons } from './GameButtons';
-import { Inventory } from './Inventory';
+import { Inventory } from '../campaign/Inventory';
 import { LetterShop } from './LetterShop';
 import { PlayerArea } from './PlayerArea';
-import { SecretShop } from './SecretShop';
+import { SecretShop } from '../campaign/SecretShop';
 
 export const GameArea: React.FC = observer(() => {
   const { onDropLetterOutside } = useContext(GameContext)

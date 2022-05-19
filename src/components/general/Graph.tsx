@@ -2,7 +2,7 @@ import "./Graph.css"
 
 import { observer } from "mobx-react-lite";
 import { FunctionComponent } from "react";
-import { IGameStats } from "../shared";
+import { IGameStats } from "../../shared";
 
 interface IGraphProps {
   stats: IGameStats;
@@ -34,7 +34,6 @@ export const Graph: FunctionComponent<IGraphProps> = observer(props => {
           const value = result ? result[1] : 0
 
           const barHeight = (value - yMin)  / yRange
-          console.log(value, yRange)
 
           return (
             <div key={xAxe} className="x-column">

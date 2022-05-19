@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 
 import { AppContext } from '../stores/AppContext';
 import { AppStore } from '../stores/AppStore';
-import { Menu } from './Menu';
+import { Menu } from './menu/Menu';
 
 const App: React.FC = observer(() => {
   const [appStore] = useState<AppStore>(new AppStore())

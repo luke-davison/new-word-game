@@ -3,8 +3,8 @@ import './Calendar.css';
 import { observer } from 'mobx-react-lite';
 import React, { MouseEvent, useContext, useState } from 'react';
 
-import { getDateString } from '../shared/utils/getDateString';
-import { AppContext } from '../stores/AppContext';
+import { getDateString } from '../../shared/utils/getDateString';
+import { AppContext } from '../../stores/AppContext';
 
 const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const dayHeadings: string[] = ["M", "T", "W", "T", "F", "S", "S"]
