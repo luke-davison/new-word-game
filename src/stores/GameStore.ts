@@ -43,12 +43,12 @@ export class GameStore {
     })
 
     runInAction(() => {
-      const bestWord = window.localStorage.getItem(`${this.game?.date}-word`) || ""
+      const bestWord = window.localStorage.getItem(`daily-${this.game?.date}-word`) || ""
       if (bestWord) {
         const letters = JSON.parse(bestWord) as IRawLetter[]
         if (letters) {
           this._bestWord = letters.map(({ char }) => char).join("")
-          this.bestWordScore = Number(window.localStorage.getItem(`${this.game?.date}-score`) || 0)
+          this.bestWordScore = Number(window.localStorage.getItem(`daily-${this.game?.date}-score`) || 0)
           this.bestLetters = letters
         }
       }
@@ -69,8 +69,8 @@ export class GameStore {
               this.bestWordScore = this.wordPoints;
               this._bestWord = this.playerWord.map((letter) => letter.char).join("")
               this.bestLetters = convertLetterInstancesToWord(this.playerWord)
-              window.localStorage.setItem(`${this.game?.date}-word`, JSON.stringify(this.bestLetters))
-              window.localStorage.setItem(`${this.game?.date}-score`, String(this.bestWordScore))
+              window.localStorage.setItem(`daily-${this.game?.date}-word`, JSON.stringify(this.bestLetters))
+              window.localStorage.setItem(`daily-${this.game?.date}-score`, String(this.bestWordScore))
 
               if (openCalendar) {
                 this.appStore.toggleIsShowingCalendar()
