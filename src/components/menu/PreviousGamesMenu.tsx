@@ -10,7 +10,7 @@ import { Calendar } from '../general/Calendar';
 import { MenuWrapper } from './MenuWrapper';
 
 export const PreviousGamesMenu: FunctionComponent = observer(() => {
-  const { dateString, startPreviousGame } = useContext(AppContext)
+  const { dateString, startPreviousGame, returnToMenu } = useContext(AppContext)
 
   const [games, setGames] = useState<IDailyGame[]>([])
 
@@ -48,12 +48,26 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
 
   return (
     <MenuWrapper>
-      <Calendar
-        startDate={new Date()}
-        minDate={earliestGame ? getDateFromString(earliestGame.date) : new Date()}
-        maxDate={latestGame ? getDateFromString(latestGame.date) : new Date()}
-        renderDate={renderDate}
-      />
+      { games.length > 1 ? (
+        <Calendar
+          startDate={new Date()}
+          minDate={earliestGame ? getDateFromString(earliestGame.date) : new Date()}
+          maxDate={latestGame ? getDateFromString(latestGame.date) : new Date()}
+          renderDate={renderDate}
+        />
+      ): (
+        <div>
+          <div>
+            Looks like this is your first day.
+          </div>
+          <div>
+            Return back here in the future to view past results and revisit games that you feel like you could improve on.
+          </div>
+        </div>
+      )}
+      <div>
+        <button onClick={returnToMenu}>Return to Menu</button>
+      </div>
     </MenuWrapper>
   );
 })

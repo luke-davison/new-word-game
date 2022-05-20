@@ -127,6 +127,7 @@ export class AppStore {
     this.isPlayingCampaignGame = false
     this.isPlayingTutorialGame = false
     this.isPlayingPreviousGame = false
+    this.isPreviousGamesMenuOpen = false
     this.tutorialGameInProgress = 0
   }
 
