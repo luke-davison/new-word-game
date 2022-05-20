@@ -105,6 +105,10 @@ export class GameStore {
     return getIntroductoryGame(this.appStore.tutorialGameInProgress)
   }
 
+  get previousGame(): IDailyGame | undefined {
+    return this.appStore.previousGame
+  }
+
   get game(): IGame | undefined {
     if (this.appStore.isPlayingDailyGame) {
       return this.dailyGame
@@ -116,6 +120,10 @@ export class GameStore {
 
     if (this.appStore.isPlayingTutorialGame) {
       return this.tutorialGame
+    }
+
+    if (this.appStore.isPlayingPreviousGame) {
+      return this.previousGame
     }
 
     return undefined

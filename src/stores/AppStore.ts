@@ -2,7 +2,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 
 import { getAppData } from '../api/getAppData';
 import { ScoreInfo } from '../models';
-import { getDateFromString, IAppData } from '../shared';
+import { getDateFromString, IAppData, IDailyGame } from '../shared';
 import { cacheAppData } from '../utils/cacheAppData';
 
 export class AppStore {
@@ -24,7 +24,9 @@ export class AppStore {
       tutorialGameInProgress: observable,
       offlineMode: observable,
       isPreviousGamesMenuOpen: observable,
-      togglePreviousGamesMenu: action
+      togglePreviousGamesMenu: action,
+      startPreviousGame: action,
+      previousGame: observable
     })
   }
 
@@ -53,6 +55,10 @@ export class AppStore {
       return "intro-" + this.tutorialGameInProgress
     }
 
+    if (this.isPlayingPreviousGame) {
+      return this.previousGame?.date
+    }
+
     return undefined;
   }
 
@@ -67,6 +73,8 @@ export class AppStore {
   get campaignGame() {
     return this._appData?.campaignGame
   }
+
+  previousGame: IDailyGame | undefined = undefined
 
   get player() {
     return this._appData?.player
@@ -94,6 +102,7 @@ export class AppStore {
   isPlayingDailyGame: boolean = false
   isPlayingCampaignGame: boolean = false
   isPlayingTutorialGame: boolean = false
+  isPlayingPreviousGame: boolean = false
   tutorialGameInProgress: number = 0
 
   startDailyGame = () => {
@@ -117,6 +126,7 @@ export class AppStore {
     this.isPlayingDailyGame = false
     this.isPlayingCampaignGame = false
     this.isPlayingTutorialGame = false
+    this.isPlayingPreviousGame = false
     this.tutorialGameInProgress = 0
   }
 
@@ -133,4 +143,10 @@ export class AppStore {
   togglePreviousGamesMenu = () => {
     this.isPreviousGamesMenuOpen = !this.isPreviousGamesMenuOpen
   }
+
+  startPreviousGame = (game: IDailyGame) => {
+    this.previousGame = game
+    this.isPlayingPreviousGame = true
+    this.isPreviousGamesMenuOpen = false
+  } 
 }
