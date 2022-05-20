@@ -61,5 +61,5 @@
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
     ]
   },
-  "proxy": "http://localhost:3002"
+  "proxy": "http://localhost:3004"
 }

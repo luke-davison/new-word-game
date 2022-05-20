@@ -1,4 +1,4 @@
-import './WordSpacePoints.css';
+import './styles/WordSpacePoints.css';
 
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';

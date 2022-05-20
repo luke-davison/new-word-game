@@ -1,4 +1,4 @@
-import './Alphabet.css';
+import './styles/Alphabet.css';
 
 import { observer } from 'mobx-react-lite';
 import React, { KeyboardEvent, useEffect } from 'react';

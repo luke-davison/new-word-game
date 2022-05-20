@@ -1,4 +1,4 @@
-import "./Graph.css"
+import "./styles/Graph.css"
 
 import { observer } from "mobx-react-lite";
 import { FunctionComponent } from "react";

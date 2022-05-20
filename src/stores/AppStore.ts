@@ -22,7 +22,9 @@ export class AppStore {
       setTutorialGame: action,
       gameId: computed,
       tutorialGameInProgress: observable,
-      offlineMode: observable
+      offlineMode: observable,
+      isPreviousGamesMenuOpen: observable,
+      togglePreviousGamesMenu: action
     })
   }
 
@@ -125,4 +127,10 @@ export class AppStore {
   }
 
   scoreMap: Map<string, ScoreInfo> = new Map()
+
+  isPreviousGamesMenuOpen: boolean = false
+
+  togglePreviousGamesMenu = () => {
+    this.isPreviousGamesMenuOpen = !this.isPreviousGamesMenuOpen
+  }
 }

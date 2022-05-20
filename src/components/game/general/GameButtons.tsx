@@ -1,4 +1,4 @@
-import './GameButtons.css';
+import './styles/GameButtons.css';
 
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';

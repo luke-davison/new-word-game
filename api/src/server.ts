@@ -2,7 +2,7 @@ import express from 'express';
 
 import router from './routes';
 
-const port = 3002;
+const port = 3004;
 
 const app = express();
 app.use(express.json())

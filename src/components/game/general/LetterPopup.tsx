@@ -1,4 +1,4 @@
-import './LetterPopup.css';
+import './styles/LetterPopup.css';
 
 import React, { useEffect } from 'react';
 

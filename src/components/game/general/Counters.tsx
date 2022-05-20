@@ -1,4 +1,4 @@
-import './Counters.css';
+import './styles/Counters.css';
 
 import { observer } from 'mobx-react-lite';
 

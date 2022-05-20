@@ -1,4 +1,4 @@
-import './Menu.css';
+import './styles/Menu.css';
 
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
@@ -7,6 +7,7 @@ import { AppContext } from '../../stores/AppContext';
 import { Game } from '../game/Game';
 import { Graph } from '../general/Graph';
 import { IGameStats } from '../../shared';
+import { AppTitle } from './AppTitle';
 
 const dummyStats: IGameStats = {
   date: "2022-05-18",
@@ -14,9 +15,15 @@ const dummyStats: IGameStats = {
 }
 
 export const Menu: React.FC = observer(() => {
-  const { startCampaignGame, isPlayingCampaignGame, isPlayingDailyGame, startDailyGame, startTutorialGame, isPlayingTutorialGame, gameId } = useContext(AppContext)
+  const { startCampaignGame, isPlayingCampaignGame, isPlayingDailyGame, startDailyGame, startTutorialGame, isPlayingTutorialGame, gameId, togglePreviousGamesMenu, isPreviousGamesMenuOpen } = useContext(AppContext)
 
-  console.log(gameId)
+  if (isPreviousGamesMenuOpen) {
+    return (
+      <div/>
+    )
+  }
+
+
   if (isPlayingCampaignGame || isPlayingTutorialGame || isPlayingDailyGame) {
     return (
       <Game key={gameId}/>
@@ -25,9 +32,7 @@ export const Menu: React.FC = observer(() => {
 
   return (
     <div className="game-container menu-buttons">
-      <div className="game-title">
-        Lettermonger
-      </div>
+      <AppTitle/>
       <div className="game-description">
         <div>The daily game of buying and arranging letters.</div>
         <div>Just like the wordsmiths of old.</div>
@@ -40,6 +45,9 @@ export const Menu: React.FC = observer(() => {
       </div>
       <div>
         <button onClick={startTutorialGame}>Tutorial</button>
+      </div>
+      <div>
+        <button onClick={togglePreviousGamesMenu}>Previous games</button>
       </div>
       <Graph stats={dummyStats} selected={29}/>
     </div>

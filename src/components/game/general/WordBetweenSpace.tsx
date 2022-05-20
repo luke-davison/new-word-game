@@ -1,4 +1,4 @@
-import './WordBetweenSpace.css';
+import './styles/WordBetweenSpace.css';
 
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';

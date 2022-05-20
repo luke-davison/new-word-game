@@ -1,4 +1,4 @@
-import './WordPoints.css';
+import './styles/WordPoints.css';
 
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';

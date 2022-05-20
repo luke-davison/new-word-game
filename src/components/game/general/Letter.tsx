@@ -1,4 +1,4 @@
-import './Letter.css';
+import './styles/Letter.css';
 
 import { observer } from 'mobx-react-lite';
 import { useContext, useState } from 'react';

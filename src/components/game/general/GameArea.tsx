@@ -1,4 +1,4 @@
-import './GameArea.css';
+import './styles/GameArea.css';
 
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';

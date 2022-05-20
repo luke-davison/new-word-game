@@ -1,4 +1,4 @@
-import './Calendar.css';
+import './styles/Calendar.css';
 
 import { observer } from 'mobx-react-lite';
 import React, { MouseEvent, useContext, useState } from 'react';

@@ -1,4 +1,4 @@
-import './PlayerArea.css';
+import './styles/PlayerArea.css';
 
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';

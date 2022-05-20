@@ -1,4 +1,4 @@
-import './CalendarPopup.css';
+import './styles/CalendarPopup.css';
 
 import React, { useEffect, useState } from 'react';
 

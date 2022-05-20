@@ -1,4 +1,4 @@
-import './Money.css';
+import './styles/Money.css';
 
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';

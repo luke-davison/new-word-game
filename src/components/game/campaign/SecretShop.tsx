@@ -1,4 +1,4 @@
-import '../general/LetterShop.css';
+import '../general/styles/LetterShop.css';
 
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
