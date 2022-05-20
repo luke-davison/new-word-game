@@ -17,7 +17,7 @@ export const cacheAppData = (appData: IAppData) => {
 
 const cacheDate = (dateString: string) => {
   const gameIdsString = window.localStorage.getItem(GAME_IDS)
-  const gameIds: Set<string> = new Set(gameIdsString === null ? [] : gameIdsString.split(","))
+  const gameIds: Set<string> = new Set(gameIdsString ? gameIdsString.split(",") : [])
   gameIds.add(dateString)
   window.localStorage.setItem(GAME_IDS, Array.from(gameIds).join(","))
 }

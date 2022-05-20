@@ -1,22 +1,23 @@
 import './styles/Calendar.css';
 
 import { observer } from 'mobx-react-lite';
-import React, { MouseEvent, useContext, useState } from 'react';
-
-import { getDateString } from '../../shared/utils/getDateString';
-import { AppContext } from '../../stores/AppContext';
+import { FunctionComponent, MouseEvent, useState } from 'react';
 
 const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const dayHeadings: string[] = ["M", "T", "W", "T", "F", "S", "S"]
 
-export const Calendar: React.FC = observer(() => {
-  const { today, scoreMap} = useContext(AppContext)
+interface CalendarProps {
+  startDate: Date;
+  minDate: Date;
+  maxDate: Date;
+  renderDate?: (date: Date) => JSX.Element
+}
 
-  const [dayInCurrentMonth, setDayInCurrentMonth] = useState<Date>(today)
+export const Calendar: FunctionComponent<CalendarProps> = observer(({ startDate, minDate, maxDate, renderDate }) => {
+  const [dayInCurrentMonth, setDayInCurrentMonth] = useState<Date>(startDate)
 
   const year = dayInCurrentMonth.getFullYear();
   const month = dayInCurrentMonth.getMonth();
-
 
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDayOfWeek = (new Date(year, month, 1).getDay() + 6) % 7
@@ -25,6 +26,14 @@ export const Calendar: React.FC = observer(() => {
   const onClickCalendar = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   }
+
+  const showPreviousMonthButton: boolean = 
+    year > minDate.getFullYear() ||
+    (year === minDate.getFullYear() && month > minDate.getMonth())
+
+  const showNextMonthButton: boolean = 
+    year < maxDate.getFullYear() ||
+    (year === maxDate.getFullYear() && month < maxDate.getMonth())
 
   const goToPreviousMonth = () => {
     const newDate = new Date(year, month - 1, 1)
@@ -39,14 +48,22 @@ export const Calendar: React.FC = observer(() => {
   return (
     <div className="calendar" onClick={onClickCalendar}>
       <div className="calendar-header">
-        <div className="calendar-navigation" onClick={goToPreviousMonth}>
-          &lt;
+        <div className="calendar-navigation">
+          { showPreviousMonthButton && (
+            <button onClick={goToPreviousMonth}>
+              &lt;
+            </button>
+          )}
         </div>
         <div className="calendar-title">
           {`${months[month]} ${year}` }
         </div>
-        <div className="calendar-navigation" onClick={goToNextMonth}>
-          &gt;
+        <div className="calendar-navigation">
+          { showNextMonthButton && (
+            <button onClick={goToNextMonth}>
+              &gt;
+            </button>
+          )}
         </div>
       </div>
       <div className="calendar-container">
@@ -64,28 +81,17 @@ export const Calendar: React.FC = observer(() => {
             if (index === 0) {
               className += " calendar-day-offset-" + firstDayOfWeek
             }
-            if (month === today.getMonth() && year === today.getFullYear() && index + 1 === today.getDate()) {
+            if (month === startDate.getMonth() && year === startDate.getFullYear() && index + 1 === startDate.getDate()) {
               className += " calendar-day-today"
-            }
-            
-            const dayString = getDateString(new Date(year, month, index + 1))
-            const scoreInfo = scoreMap.get(dayString)
-
-            if (!scoreInfo?.exists) {
-              className += " calendar-day-not-exists"
-            } else if (scoreInfo?.metSecretTarget) {
-              className += " calendar-day-met-secret-target"
-            } else if (scoreInfo?.metTarget) {
-              className += " calendar-day-met-target"
-            } else if (scoreInfo?.attempted) {
-              className += " calendar-day-attempted"
             }
 
             return (
               <div key={index} className={className}>
-                <div>
-                  { index + 1 }
-                </div>
+                { renderDate ? renderDate(new Date(year, month, index + 1)) : (
+                  <div>
+                    { index + 1 }
+                  </div>
+                )}
               </div>
             )
           })}
