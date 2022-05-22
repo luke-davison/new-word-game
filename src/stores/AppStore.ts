@@ -1,32 +1,32 @@
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 
 import { getAppData } from '../api/getAppData';
-import { ScoreInfo } from '../models';
+import { Pages, ScoreInfo } from '../models';
 import { getDateFromString, IAppData, IDailyGame } from '../shared';
 import { cacheAppData } from '../utils/cacheAppData';
 
 export class AppStore {
   constructor() {
     makeObservable(this, {
-      isPlayingDailyGame: observable,
+      currentPage: observable,
+      isPlayingDailyGame: computed,
       startDailyGame: action,
       returnToMenu: action,
-      isShowingCalendar: observable,
-      toggleIsShowingCalendar: action,
       scoreMap: observable,
-      isPlayingCampaignGame: observable,
+      isPlayingCampaignGame: computed,
       startCampaignGame: action,
       _appData: observable,
-      isPlayingTutorialGame: observable,
+      isPlayingTutorialGame: computed,
       startTutorialGame: action,
       setTutorialGame: action,
       gameId: computed,
       tutorialGameInProgress: observable,
       offlineMode: observable,
-      isPreviousGamesMenuOpen: observable,
-      togglePreviousGamesMenu: action,
+      isPreviousGamesMenuOpen: computed,
+      openPreviousGamesMenu: action,
       startPreviousGame: action,
-      previousGame: observable
+      previousGame: observable,
+      isPlayingPreviousGame: computed
     })
   }
 
@@ -99,55 +99,66 @@ export class AppStore {
     }
   }
 
-  isPlayingDailyGame: boolean = false
-  isPlayingCampaignGame: boolean = false
-  isPlayingTutorialGame: boolean = false
-  isPlayingPreviousGame: boolean = false
+  currentPage: Pages = Pages.menu
+
+  get isPlayingDailyGame() {
+    return this.currentPage === Pages.dailyGame
+  }
+
+  get isPlayingCampaignGame() {
+    return this.currentPage === Pages.campaignGame
+  }
+
+  get isPlayingTutorialGame() {
+    return this.currentPage === Pages.tutorialGame1
+      || this.currentPage === Pages.tutorialGame2
+      || this.currentPage === Pages.tutorialGame3
+  }
+
+  get isPlayingPreviousGame() {
+    return this.currentPage === Pages.previousGame
+  }
+
   tutorialGameInProgress: number = 0
 
   startDailyGame = () => {
-    this.isPlayingDailyGame = true
+    this.currentPage = Pages.dailyGame
   }
 
   startCampaignGame = () => {
-    this.isPlayingCampaignGame = true;
+    this.currentPage = Pages.campaignGame;
   }
 
   startTutorialGame = () => {
-    this.isPlayingTutorialGame = true
-    this.tutorialGameInProgress = 1
+    this.currentPage = Pages.tutorialGame1
   }
 
   setTutorialGame = (num: number) => {
-    this.tutorialGameInProgress = num
+    if (num === 1) {
+      this.currentPage = Pages.tutorialGame1
+    } else if (num === 2) {
+      this.currentPage = Pages.tutorialGame2
+    } else if (num === 3) {
+      this.currentPage = Pages.tutorialGame3
+    }
   }
 
   returnToMenu = () => {
-    this.isPlayingDailyGame = false
-    this.isPlayingCampaignGame = false
-    this.isPlayingTutorialGame = false
-    this.isPlayingPreviousGame = false
-    this.isPreviousGamesMenuOpen = false
-    this.tutorialGameInProgress = 0
-  }
-
-  isShowingCalendar: boolean = false;
-
-  toggleIsShowingCalendar = () => {
-    this.isShowingCalendar = !this.isShowingCalendar
+    this.currentPage = Pages.menu
   }
 
   scoreMap: Map<string, ScoreInfo> = new Map()
 
-  isPreviousGamesMenuOpen: boolean = false
+  get isPreviousGamesMenuOpen() {
+    return this.currentPage === Pages.previousGamesMenu
+  }
 
-  togglePreviousGamesMenu = () => {
-    this.isPreviousGamesMenuOpen = !this.isPreviousGamesMenuOpen
+  openPreviousGamesMenu = () => {
+    this.currentPage = Pages.previousGamesMenu
   }
 
   startPreviousGame = (game: IDailyGame) => {
     this.previousGame = game
-    this.isPlayingPreviousGame = true
-    this.isPreviousGamesMenuOpen = false
+    this.currentPage = Pages.previousGame
   } 
 }

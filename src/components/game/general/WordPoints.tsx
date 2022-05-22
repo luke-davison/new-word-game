@@ -7,10 +7,10 @@ import { AppContext } from '../../../stores/AppContext';
 import { GameContext } from '../../../stores/GameContext';
 
 export const WordPoints: React.FC = observer(() => {
-  const { isPlayingDailyGame } = useContext(AppContext)
+  const { isPlayingDailyGame, isPlayingPreviousGame } = useContext(AppContext)
   const { target, secretTarget, wordPoints, bestWord, bestWordScore, isValidWord, reinstateBestWord } = useContext(GameContext)
 
-  const isShowTargets = !!isPlayingDailyGame
+  const isShowTargets = !!isPlayingDailyGame || !!isPlayingPreviousGame
   const isSecretTargetMet = isShowTargets && wordPoints >= (secretTarget || 0) && (bestWordScore || 0) >= (secretTarget || 0) && isValidWord
 
   return (
@@ -31,7 +31,11 @@ export const WordPoints: React.FC = observer(() => {
             {bestWord && (
               <div className="best-word">
                 <span>{"Best: "}</span>
-                <button onClick={reinstateBestWord}>{`${bestWord} (${bestWordScore})`}</button>
+                { wordPoints < (bestWordScore || 0) ? (
+                  <button onClick={reinstateBestWord}>{`${bestWord} (${bestWordScore})`}</button>
+                ) : (
+                  <span>{`${bestWord} (${bestWordScore})`}</span>
+                )} 
               </div>
             )}
           </>

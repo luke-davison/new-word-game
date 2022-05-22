@@ -9,7 +9,7 @@ import { MenuWrapper } from './MenuWrapper';
 import { PreviousGamesMenu } from './PreviousGamesMenu';
 
 export const Menu: FunctionComponent = observer(() => {
-  const { startCampaignGame, isPlayingCampaignGame, isPlayingDailyGame, startDailyGame, startTutorialGame, isPlayingTutorialGame, gameId, togglePreviousGamesMenu, isPreviousGamesMenuOpen, isPlayingPreviousGame } = useContext(AppContext)
+  const { startCampaignGame, isPlayingCampaignGame, isPlayingDailyGame, startDailyGame, startTutorialGame, isPlayingTutorialGame, gameId, openPreviousGamesMenu, isPreviousGamesMenuOpen, isPlayingPreviousGame } = useContext(AppContext)
 
   if (isPreviousGamesMenuOpen) {
     return (
@@ -41,7 +41,7 @@ export const Menu: FunctionComponent = observer(() => {
           <button onClick={startTutorialGame}>Tutorial</button>
         </div>
         <div>
-          <button onClick={togglePreviousGamesMenu}>Previous games</button>
+          <button onClick={openPreviousGamesMenu}>Previous games</button>
         </div>
       </div>
     </MenuWrapper>

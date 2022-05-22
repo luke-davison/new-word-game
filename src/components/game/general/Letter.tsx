@@ -7,8 +7,8 @@ import { LetterInstance } from '../../../models/LetterInstance';
 import { getAbilityIsActive } from '../../../shared/utils/abilities/getAbilityIsActive';
 import { AppContext } from '../../../stores/AppContext';
 import { GameContext } from '../../../stores/GameContext';
-import { LetterPopup } from './LetterPopup';
 import { AbilityImage } from './AbilityImage';
+import { LetterPopup } from './LetterPopup';
 
 export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }) => {
   const { player } = useContext(AppContext)
@@ -27,9 +27,11 @@ export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }
         <div className="letter-character">
           { letter.char }
         </div>
-        <div className="letter-points">
-          { letter.points }
-        </div>
+        {letter.points > 0 && (
+          <div className="letter-points">
+            { letter.points }
+          </div>
+        )}
           { letter.ability && (
             <div className={`letter-ability${ isAbilityActive ? " is-active" : ""}` }>
               <AbilityImage ability={letter.ability}/>

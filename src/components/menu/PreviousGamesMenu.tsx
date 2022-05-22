@@ -10,7 +10,7 @@ import { Calendar } from '../general/Calendar';
 import { MenuWrapper } from './MenuWrapper';
 
 export const PreviousGamesMenu: FunctionComponent = observer(() => {
-  const { dateString, startPreviousGame, returnToMenu } = useContext(AppContext)
+  const { dateString, startPreviousGame, returnToMenu, startDailyGame } = useContext(AppContext)
 
   const [games, setGames] = useState<IDailyGame[]>([])
 
@@ -25,12 +25,23 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
   const renderDate = (date: Date) => {
     const game = games.find(game => game.date === getDateString(date))
 
-    if (game && game.date !== dateString) {
+    if (game) {
       const onClick = () => {
-        startPreviousGame(game)
+        if (game.date === dateString) {
+          startDailyGame()
+        } else {
+          startPreviousGame(game)
+        }
       }
 
-      const className: string = "previous-game-link"
+      let className: string = "game-link"
+
+      if (game.date === dateString) {
+        className += " current-game"
+      } else {
+        className += " previous-game"
+      }
+
 
       return (
         <div onClick={onClick} className={className}>

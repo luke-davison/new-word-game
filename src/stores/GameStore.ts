@@ -62,19 +62,14 @@ export class GameStore {
           if (this.isValidWord) {
             this.isValidText = "Valid word"
             if (this.wordPoints >= (this.bestWordScore || 0)) {
-              const openCalendar = this.appStore.isPlayingDailyGame
-                && (this.bestWordScore || 0) < (this.dailyGame?.target || 0)
-                && this.wordPoints >= (this.dailyGame?.target || 0)
-
+              if (this.appStore.isPlayingDailyGame) {
+                this.submitWord()
+              }
               this.bestWordScore = this.wordPoints;
               this._bestWord = this.playerWord.map((letter) => letter.char).join("")
               this.bestLetters = convertLetterInstancesToWord(this.playerWord)
               window.localStorage.setItem(`daily-${this.game?.date}-word`, JSON.stringify(this.bestLetters))
               window.localStorage.setItem(`daily-${this.game?.date}-score`, String(this.bestWordScore))
-
-              if (openCalendar) {
-                this.appStore.toggleIsShowingCalendar()
-              }
             }
           } else if (this.money < 0) {
             this.isValidText = "Not enough money"
