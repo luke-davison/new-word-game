@@ -12,7 +12,6 @@ export class AppStore {
       isPlayingDailyGame: computed,
       startDailyGame: action,
       returnToMenu: action,
-      scoreMap: observable,
       isPlayingCampaignGame: computed,
       startCampaignGame: action,
       _appData: observable,
@@ -146,8 +145,6 @@ export class AppStore {
   returnToMenu = () => {
     this.currentPage = Pages.menu
   }
-
-  scoreMap: Map<string, ScoreInfo> = new Map()
 
   get isPreviousGamesMenuOpen() {
     return this.currentPage === Pages.previousGamesMenu

@@ -5,21 +5,23 @@ import { FunctionComponent, useContext, useEffect, useState } from 'react';
 
 import { getDateFromString, getDateString, IDailyGame } from '../../shared';
 import { AppContext } from '../../stores/AppContext';
-import { loadCachedGames } from '../../utils/loadCachedGames';
+import { loadCachedGameData } from '../../utils/loadCachedGameData';
 import { Calendar } from '../general/Calendar';
 import { MenuWrapper } from './MenuWrapper';
 
 export const PreviousGamesMenu: FunctionComponent = observer(() => {
   const { dateString, startPreviousGame, returnToMenu, startDailyGame } = useContext(AppContext)
 
-  const [games, setGames] = useState<IDailyGame[]>([])
+  const [games, setGames] = useState<Map<string, IDailyGame>>([])
 
   useEffect(() => {
-    const gamesFromCache = loadCachedGames()
-    setGames(gamesFromCache)
+    const cachedGameData = loadCachedGameData()
+    if (cachedGameData) {
+      setGames(cachedGameData.games)
+    }
   }, [])
 
-  const earliestGame = games.length > 0 ? games[0] : undefined
+  const earliestGame = games.size > 0 ? games[0] : undefined
   const latestGame = games.length > 0 ? games[games.length - 1] : undefined
 
   const renderDate = (date: Date) => {
@@ -41,7 +43,6 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
       } else {
         className += " previous-game"
       }
-
 
       return (
         <div onClick={onClick} className={className}>

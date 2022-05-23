@@ -9,6 +9,7 @@ import { getIsValidWord } from '../shared/utils';
 import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive';
 import { getAbilityPoints } from '../shared/utils/abilities/getAbilityPoints';
 import { setupLetters } from '../shared/utils/setupLetters';
+import { DAILY_PREFIX, SCORE_SUFFIX, WORD_SUFFIX } from '../utils/cacheAppData';
 import { convertLetterInstancesToWord } from '../utils/convertLettersToWord';
 import { convertWordToLetterInstances } from '../utils/convertWordToLetterInstances';
 import { getIntroductoryGame } from '../utils/getIntroductoryGame';
@@ -43,12 +44,12 @@ export class GameStore {
     })
 
     runInAction(() => {
-      const bestWord = window.localStorage.getItem(`daily-${this.game?.date}-word`) || ""
+      const bestWord = window.localStorage.getItem(DAILY_PREFIX + this.game?.date + WORD_SUFFIX) || ""
       if (bestWord) {
         const letters = JSON.parse(bestWord) as IRawLetter[]
         if (letters) {
           this._bestWord = letters.map(({ char }) => char).join("")
-          this.bestWordScore = Number(window.localStorage.getItem(`daily-${this.game?.date}-score`) || 0)
+          this.bestWordScore = Number(window.localStorage.getItem(DAILY_PREFIX + this.game?.date + SCORE_SUFFIX) || 0)
           this.bestLetters = letters
         }
       }
@@ -68,8 +69,8 @@ export class GameStore {
               this.bestWordScore = this.wordPoints;
               this._bestWord = this.playerWord.map((letter) => letter.char).join("")
               this.bestLetters = convertLetterInstancesToWord(this.playerWord)
-              window.localStorage.setItem(`daily-${this.game?.date}-word`, JSON.stringify(this.bestLetters))
-              window.localStorage.setItem(`daily-${this.game?.date}-score`, String(this.bestWordScore))
+              window.localStorage.setItem(DAILY_PREFIX + this.game?.date + WORD_SUFFIX, JSON.stringify(this.bestLetters))
+              window.localStorage.setItem(DAILY_PREFIX + this.game?.date + SCORE_SUFFIX, String(this.bestWordScore))
             }
           } else if (this.money < 0) {
             this.isValidText = "Not enough money"

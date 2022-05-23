@@ -4,6 +4,8 @@ export const GAME_IDS = "gameIds"
 export const DAILY_PREFIX = "daily-"
 export const DAILY_STATS_PREVIX = "dailystats-"
 export const CAMPAIGN_PREFIX = "campaign-"
+export const WORD_SUFFIX = "-word"
+export const SCORE_SUFFIX = "-score"
 
 export const cacheAppData = (appData: IAppData) => {
   cacheDate(appData.date)
