@@ -8,6 +8,7 @@ To do list
 * -Ability to play previous games-
 * -Remove submit button from daily modes (should only be in campaign games)-
 * Ability to view history
+* Get random game generator working
 * Allow to resubmit daily and campaign games
 * Handle API errors on frontend
 * Update player if they miss a campaign game

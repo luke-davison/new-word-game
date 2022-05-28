@@ -3,29 +3,29 @@ import './styles/PreviousGamesMenu.css';
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useContext, useEffect, useState } from 'react';
 
-import { getDateFromString, getDateString, IDailyGame } from '../../shared';
+import { getDateFromString, getDateString } from '../../shared';
 import { AppContext } from '../../stores/AppContext';
 import { loadCachedGameData } from '../../utils/loadCachedGameData';
 import { Calendar } from '../general/Calendar';
 import { MenuWrapper } from './MenuWrapper';
 
 export const PreviousGamesMenu: FunctionComponent = observer(() => {
-  const { dateString, startPreviousGame, returnToMenu, startDailyGame } = useContext(AppContext)
+  const { dateString, startPreviousGame, returnToMenu, startDailyGame, cachedGames } = useContext(AppContext)
 
-  const [games, setGames] = useState<Map<string, IDailyGame>>([])
+  const [dates, setDates] = useState<string[]>([])
 
   useEffect(() => {
     const cachedGameData = loadCachedGameData()
     if (cachedGameData) {
-      setGames(cachedGameData.games)
+      setDates(cachedGameData.dates)
     }
   }, [])
 
-  const earliestGame = games.size > 0 ? games[0] : undefined
-  const latestGame = games.length > 0 ? games[games.length - 1] : undefined
+  const earliestGame = dates.length > 0 ? cachedGames.get(dates[0]) : undefined
+  const latestGame = dates.length > 0 ? cachedGames.get(dates[dates.length - 1]) : undefined
 
   const renderDate = (date: Date) => {
-    const game = games.find(game => game.date === getDateString(date))
+    const game = cachedGames.get(getDateString(date))
 
     if (game) {
       const onClick = () => {
@@ -60,7 +60,7 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
 
   return (
     <MenuWrapper>
-      { games.length > 1 ? (
+      { dates.length > 1 ? (
         <Calendar
           startDate={new Date()}
           minDate={earliestGame ? getDateFromString(earliestGame.date) : new Date()}

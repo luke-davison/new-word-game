@@ -3,6 +3,7 @@ import { IRawLetter } from '../shared/datamodels/IRawLetter';
 import { DAILY_PREFIX, GAME_IDS, SCORE_SUFFIX, WORD_SUFFIX } from './cacheAppData';
 
 interface ICachedData {
+  dates: string[]
   games: Map<string, IDailyGame>;
   scores: Map<string, number>;
   words: Map<string, IRawLetter[]>
@@ -20,10 +21,10 @@ export const loadCachedGameData = (): ICachedData | undefined => {
 
   const dateStrings = gameIdsString.split(",")
 
-  dateStrings.forEach(dateString => {
+  const filteredDates = dateStrings.filter(dateString => {
     const gameString = window.localStorage.getItem(DAILY_PREFIX + dateString)
     if (!gameString) {
-      return
+      return false
     }
 
     try {
@@ -52,8 +53,11 @@ export const loadCachedGameData = (): ICachedData | undefined => {
     if (!scores.has(dateString) || !words.has(dateString)) {
       scores.delete(dateString);
       words.delete(dateString)
+      return false
     }
+
+    return true
   })
 
-  return { games, scores, words }
+  return { dates: filteredDates, games, scores, words }
 }

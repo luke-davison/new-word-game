@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node ./src/server.ts",
     "bestwords": "ts-node ./src/getDailyGameBestWords.ts",
+    "randomgame": "ts-node ./src/getRandomGame.ts",
     "dev": "nodemon",
     "start:prod": "npm run build && node ./dist/src/server.js",
     "build": "npx tsc",

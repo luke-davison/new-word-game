@@ -265,7 +265,7 @@ const games: IDailyGameNoIds[] = [
       { char: "a", price: 1, points: 2 },
       { char: "m", price: 4, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 3 },
     ],
-    target: 22,
+    target: 21,
     secretTarget: 24,
     // maxTarget: 25, // checked
     money: 15
@@ -284,6 +284,85 @@ const games: IDailyGameNoIds[] = [
     secretTarget: 31,
     // maxTarget: 32, // checked
     money: 19
+  },
+  {
+    date: "2022-05-30",
+    letters:   [
+      { char: 'w', price: 3, points: 5, ability: Abilities.InPosition2, abilityPoints: 4 },
+      { char: 'o', price: 4, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'r', price: 4, points: 3, ability: Abilities.CopyAbilityInPosition4 },
+      { char: 'k', price: 4, points: 4, ability: Abilities.WordLength5, abilityPoints: 5 },
+      { char: 'm', price: 4, points: 5, ability: Abilities.InPositionLast, abilityPoints: 4 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 'n', price: 5, points: 4, ability: Abilities.OtherInPosition1 }
+    ],
+    target: 25,
+    secretTarget: 27,
+    // maxTarget: 30, // checked
+    money: 17
+  },
+  {
+    date: "2022-05-31",
+    letters:   [
+      { char: 'l', price: 4, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'o', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 5 },
+      { char: 'n', price: 4, points: 4, ability: Abilities.WordLength5, abilityPoints: 4 },
+      { char: 'g', price: 3, points: 4, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 'r', price: 3, points: 4, ability: Abilities.InPosition4, abilityPoints: 4 }
+    ],
+    target: 25,
+    secretTarget: 28,
+    // maxTarget: 29, // checked
+    money: 16
+  },
+  {
+    date: "2022-06-01",
+    letters:   [
+      { char: 'c', price: 3, points: 4, ability: Abilities.InPosition2, abilityPoints: 4 },
+      { char: 'r', price: 4, points: 3, ability: Abilities.WordLength6, abilityPoints: 4 },
+      { char: 'u', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 's', price: 5, points: 4, ability: Abilities.OtherInPosition3 },
+      { char: 'h', price: 5, points: 8 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 'd', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 }
+    ],
+    target: 25,
+    secretTarget: 30,
+    // maxTarget: 31, // checked
+    money: 16
+  },
+  {
+    date: "2022-06-02",
+    letters: [
+      { char: 's', price: 4, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 3 },
+      { char: 'a', price: 5, points: 8 },
+      { char: 'm', price: 4, points: 4, ability: Abilities.WordLength5, abilityPoints: 3 },
+      { char: 'u', price: 3, points: 3, ability: Abilities.NextToVowel, abilityPoints: 3 },
+      { char: 'r', price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
+      { char: 'a', price: 1, points: 2 },
+      { char: 'i', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 }
+    ],
+    target: 26,
+    secretTarget: 30,
+    // maxTarget: 30, // checked
+    money: 17
+  },
+  {
+    date: "2022-06-03",
+    letters: [
+      { char: 'b', price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
+      { char: 'l', price: 4, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'o', price: 5, points: 9 },
+      { char: 'a', price: 4, points: 3, ability: Abilities.CopyAbilityInPosition1 },
+      { char: 't', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 'd', price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 3 }
+    ],
+    target: 27,
+    secretTarget: 32,
+    // maxTarget: 32, // checked
+    money: 18
   }
 ]
 

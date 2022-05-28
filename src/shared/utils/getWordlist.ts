@@ -16463,7 +16463,7 @@ export const wordlist: string[] = [
   'elf', 
   'elfin', 
   'elflike', 
-  'elgreco', 
+  // 'elgreco', 
   'elicit', 
   'elicitation', 
   'elicited', 

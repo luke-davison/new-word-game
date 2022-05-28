@@ -1,9 +1,11 @@
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
 
 import { getAppData } from '../api/getAppData';
-import { Pages, ScoreInfo } from '../models';
+import { Pages } from '../models';
 import { getDateFromString, IAppData, IDailyGame } from '../shared';
+import { IRawLetter } from '../shared/datamodels/IRawLetter';
 import { cacheAppData } from '../utils/cacheAppData';
+import { loadCachedGameData } from '../utils/loadCachedGameData';
 
 export class AppStore {
   constructor() {
@@ -25,7 +27,12 @@ export class AppStore {
       openPreviousGamesMenu: action,
       startPreviousGame: action,
       previousGame: observable,
-      isPlayingPreviousGame: computed
+      isPlayingPreviousGame: computed,
+      cachedGameDates: observable,
+      cachedGames: observable,
+      cachedScores: observable,
+      cachedWords: observable,
+      loadCachedGameData: action
     })
   }
 
@@ -157,5 +164,23 @@ export class AppStore {
   startPreviousGame = (game: IDailyGame) => {
     this.previousGame = game
     this.currentPage = Pages.previousGame
-  } 
+  }
+
+  cachedGameDates: string[] | undefined = undefined
+  cachedGames: Map<string, IDailyGame> = new Map()
+  cachedWords: Map<string, IRawLetter[]> = new Map()
+  cachedScores: Map<string, number> = new Map()
+
+  loadCachedGameData = () => {
+    this.cachedGameDates = undefined
+    const cachedGameData = loadCachedGameData()
+    if (cachedGameData) {
+      runInAction(() => {
+        this.cachedGameDates = cachedGameData.dates
+        this.cachedGames = cachedGameData.games
+        this.cachedWords = cachedGameData.words
+        this.cachedScores = cachedGameData.scores
+      })
+    }
+  }
 }
