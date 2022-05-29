@@ -1,0 +1,32 @@
+.previous-games-menu-key {
+  display: flex;
+  justify-content: space-around;
+}
+
+.previous-games-menu-key-item {
+  display: flex;
+}
+
+.previous-games-menu-key-item .key-item {
+  display: block;
+  width: 30px;
+  height: 20px;
+  border: 1px solid grey;
+  margin-right: 8px;
+}
+
+.previous-games-menu-key-item .key-item.day-attempted {
+  background-color: lightblue;
+}
+
+.previous-games-menu-key-item .key-item.day-attempted {
+  background-color: lightblue;
+}
+
+.previous-games-menu-key-item .key-item.day-met-target {
+  background-color: yellow;
+}
+
+.previous-games-menu-key-item .key-item.day-secret-target {
+  background-color: gold;
+}

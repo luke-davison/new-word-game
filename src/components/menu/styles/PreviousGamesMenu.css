@@ -2,3 +2,11 @@
   cursor: pointer;
   background-color: lightblue;
 }
+
+.calendar-day .game-link.met-target {
+  background-color: yellow;
+}
+
+.calendar-day .game-link.met-secret-target {
+  background-color: gold;
+}

@@ -7,9 +7,10 @@ import { getDateFromString, getDateString } from '../../shared';
 import { AppContext } from '../../stores/AppContext';
 import { Calendar } from '../general/Calendar';
 import { MenuWrapper } from './MenuWrapper';
+import { PreviousGamesMenuKey } from './PreviousGamesMenuKey';
 
 export const PreviousGamesMenu: FunctionComponent = observer(() => {
-  const { dateString, startPreviousGame, returnToMenu, startDailyGame, cachedGameDates = [], cachedGames, loadCachedGameData } = useContext(AppContext)
+  const { dateString, startPreviousGame, returnToMenu, startDailyGame, cachedGameDates = [], cachedGames, cachedScores,  loadCachedGameData } = useContext(AppContext)
 
   useEffect(() => {
     loadCachedGameData()
@@ -19,7 +20,8 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
   const latestGame = cachedGameDates.length > 0 ? cachedGames.get(cachedGameDates[cachedGameDates.length - 1]) : undefined
 
   const renderDate = (date: Date) => {
-    const game = cachedGames.get(getDateString(date))
+    const gameDateString = getDateString(date)
+    const game = cachedGames.get(gameDateString)
 
     if (game) {
       const onClick = () => {
@@ -36,6 +38,14 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
         className += " current-game"
       } else {
         className += " previous-game"
+      }
+
+      const points = cachedScores.get(gameDateString) || 0
+
+      if (points >= game.secretTarget) {
+        className += " met-secret-target"
+      } else if (points >= game.target) {
+        className += " met-target"
       }
 
       return (
@@ -55,12 +65,15 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
   return (
     <MenuWrapper>
       { cachedGameDates.length > 1 ? (
-        <Calendar
-          startDate={new Date()}
-          minDate={earliestGame ? getDateFromString(earliestGame.date) : new Date()}
-          maxDate={latestGame ? getDateFromString(latestGame.date) : new Date()}
-          renderDate={renderDate}
-        />
+        <div>
+          <Calendar
+            startDate={new Date()}
+            minDate={earliestGame ? getDateFromString(earliestGame.date) : new Date()}
+            maxDate={latestGame ? getDateFromString(latestGame.date) : new Date()}
+            renderDate={renderDate}
+          />
+          <PreviousGamesMenuKey/>
+        </div>
       ): (
         <div>
           <div>
