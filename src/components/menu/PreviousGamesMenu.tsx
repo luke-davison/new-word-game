@@ -5,24 +5,18 @@ import { FunctionComponent, useContext, useEffect, useState } from 'react';
 
 import { getDateFromString, getDateString } from '../../shared';
 import { AppContext } from '../../stores/AppContext';
-import { loadCachedGameData } from '../../utils/loadCachedGameData';
 import { Calendar } from '../general/Calendar';
 import { MenuWrapper } from './MenuWrapper';
 
 export const PreviousGamesMenu: FunctionComponent = observer(() => {
-  const { dateString, startPreviousGame, returnToMenu, startDailyGame, cachedGames } = useContext(AppContext)
-
-  const [dates, setDates] = useState<string[]>([])
+  const { dateString, startPreviousGame, returnToMenu, startDailyGame, cachedGameDates = [], cachedGames, loadCachedGameData } = useContext(AppContext)
 
   useEffect(() => {
-    const cachedGameData = loadCachedGameData()
-    if (cachedGameData) {
-      setDates(cachedGameData.dates)
-    }
+    loadCachedGameData()
   }, [])
 
-  const earliestGame = dates.length > 0 ? cachedGames.get(dates[0]) : undefined
-  const latestGame = dates.length > 0 ? cachedGames.get(dates[dates.length - 1]) : undefined
+  const earliestGame = cachedGameDates.length > 0 ? cachedGames.get(cachedGameDates[0]) : undefined
+  const latestGame = cachedGameDates.length > 0 ? cachedGames.get(cachedGameDates[cachedGameDates.length - 1]) : undefined
 
   const renderDate = (date: Date) => {
     const game = cachedGames.get(getDateString(date))
@@ -60,7 +54,7 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
 
   return (
     <MenuWrapper>
-      { dates.length > 1 ? (
+      { cachedGameDates.length > 1 ? (
         <Calendar
           startDate={new Date()}
           minDate={earliestGame ? getDateFromString(earliestGame.date) : new Date()}
