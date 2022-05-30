@@ -1,4 +1,9 @@
 .word-space-points {
+  padding-top: 55px;
+  padding-left: 6px;
+}
+
+/* .word-space-points {
   padding-top: 15px;
   text-align: center;
-}
+} */

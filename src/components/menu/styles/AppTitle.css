@@ -1,6 +1,16 @@
 .app-title {
   font-family: 'Caesar Dressing', cursive;
+  font-size: 48px;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+/* 
+.app-title {
+  font-family: 'Caesar Dressing', cursive;
   font-size: 64px;
   text-transform: uppercase;
   margin-bottom: 50px;
-}
+  text-align: center;
+} */

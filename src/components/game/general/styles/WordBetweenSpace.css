@@ -1,6 +1,6 @@
 .player-area-between-space {
   position: absolute;
-  width: 10px;
+  width: 0px;
   height: 112px;
 }
 
@@ -12,3 +12,18 @@
   height: 75px;
   border-radius: 2px;
 }
+
+/* .player-area-between-space {
+  position: absolute;
+  width: 10px;
+  height: 112px;
+}
+
+.player-between-drop-overlay {
+  margin-left: 2px;
+  margin-top: 25px;
+  width: 6px;
+  background-color: lightgray;
+  height: 75px;
+  border-radius: 2px;
+} */

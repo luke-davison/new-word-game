@@ -20,7 +20,9 @@ export const Menu: FunctionComponent = observer(() => {
 
   if (isPlayingCampaignGame || isPlayingTutorialGame || isPlayingDailyGame || isPlayingPreviousGame) {
     return (
-      <Game key={gameId}/>
+      <MenuWrapper>
+        <Game key={gameId}/>
+      </MenuWrapper>
     )
   }
 

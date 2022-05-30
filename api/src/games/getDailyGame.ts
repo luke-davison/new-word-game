@@ -363,6 +363,21 @@ const games: IDailyGameNoIds[] = [
     secretTarget: 32,
     // maxTarget: 32, // checked
     money: 18
+  },
+  {
+    date: "2022-06-04",
+    letters: [
+      { char: 't', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },
+      { char: 'r', price: 5, points: 8 },
+      { char: 'u', price: 4, points: 4, ability: Abilities.WordLength6, abilityPoints: 4 },
+      { char: 'i', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 's', price: 1, points: 2 },
+      { char: 'm', price: 3, points: 4, ability: Abilities.CopyAbilityInPosition1 }
+    ],
+    target: 24,
+    secretTarget: 28,
+    // maxTarget: 29, // checked
+    money: 15
   }
 ]
 
