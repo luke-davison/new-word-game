@@ -30,7 +30,7 @@ export const Menu: FunctionComponent = observer(() => {
     <MenuWrapper>
       <div className="game-description">
         <div>The daily game of buying and arranging letters.</div>
-        <div>Just like the wordsmiths of old.</div>
+        <div>Just like the lettersmiths of old.</div>
       </div>
       <div className="menu-buttons">
         <div>

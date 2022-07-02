@@ -52,7 +52,7 @@ const games: IDailyGameNoIds[] = [
   money: 18
   },
   { 
-    date: "2022-05-15",
+    date: "2022-07-02",
     letters: [
       { char: "t", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
       { char: "i", price: 5, points: 3, ability: Abilities.OtherInPosition1 },
