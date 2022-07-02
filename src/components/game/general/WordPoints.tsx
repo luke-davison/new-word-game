@@ -19,7 +19,7 @@ export const WordPoints: React.FC = observer(() => {
           <span>{wordPoints}</span>
         </div>
         {isShowTargets && (
-          <>
+          <div className="word-points-targets">
             <div className="word-target">
               {`Target: ` + target}
             </div>
@@ -38,7 +38,7 @@ export const WordPoints: React.FC = observer(() => {
                 )} 
               </div>
             )}
-          </>
+          </div>
         )}
       </div>
   )

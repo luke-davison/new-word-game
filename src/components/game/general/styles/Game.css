@@ -1,0 +1,35 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.game-container-inner {
+  flex-grow: 1;
+  margin-left: 30px;
+}
+
+.game-container-title {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-height:500px) {
+  .game-container {
+    flex-direction: row;
+  }
+
+  .game-container-title {
+    height: 100vh;
+    flex-direction: column;
+  }
+
+  .game-container .app-title {
+    writing-mode: vertical-rl;
+    transform:scale(-1);
+    text-align: right;
+  }
+}

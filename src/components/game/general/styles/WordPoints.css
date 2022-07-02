@@ -1,3 +1,8 @@
+.word-points-area {
+  display: flex;
+  align-items: center;
+}
+
 .word-points {
   width: 70px;
   background-color: yellow;
@@ -8,6 +13,10 @@
   justify-content: center;
   position: relative;
   font-size: 28px;
+}
+
+.word-points-targets {
+  margin-left: 15px;
 }
 
 .word-points.target-met {

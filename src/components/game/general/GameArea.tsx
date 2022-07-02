@@ -8,7 +8,6 @@ import { LetterInstance } from '../../../models/LetterInstance';
 import { GameContext } from '../../../stores/GameContext';
 import { CampaignCounters } from '../campaign/CampaignCounters';
 import { Counters } from './Counters';
-import { GameButtons } from './GameButtons';
 import { Inventory } from '../campaign/Inventory';
 import { LetterShop } from './LetterShop';
 import { PlayerArea } from './PlayerArea';
@@ -39,7 +38,6 @@ export const GameArea: React.FC = observer(() => {
       <CampaignCounters/>
       <Inventory/>
       <SecretShop/>
-      <GameButtons/>
     </div>
   )
 })

@@ -1,0 +1,25 @@
+.page-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.page-buttons-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.page-buttons-right > *:not(:first-child) {
+  margin-left: 10px;
+}
+
+@media screen and (max-height: 600px) {
+  .page-buttons {
+    padding: 10px 20px;
+    width: calc(100vw - 40px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+}

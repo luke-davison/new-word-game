@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useContext } from 'react';
 
 import { AppContext } from '../../stores/AppContext';
-import { Game } from '../game/Game';
+import { Game } from '../game/general/Game';
 import { MenuWrapper } from './MenuWrapper';
 import { PreviousGamesMenu } from './PreviousGamesMenu';
 
@@ -17,12 +17,9 @@ export const Menu: FunctionComponent = observer(() => {
     )
   }
 
-
   if (isPlayingCampaignGame || isPlayingTutorialGame || isPlayingDailyGame || isPlayingPreviousGame) {
     return (
-      <MenuWrapper>
-        <Game key={gameId}/>
-      </MenuWrapper>
+      <Game key={gameId}/>
     )
   }
 
