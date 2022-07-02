@@ -13,6 +13,7 @@ import { GameStore } from '../../../stores/GameStore';
 import { GameArea } from './GameArea';
 import { PageButtons } from './PageButtons';
 import { AppTitle } from '../../menu/AppTitle';
+import { DragPreviewLayer } from "./DragPreviewLayer";
 
 export const Game: React.FC = observer(() => {
   const appStore = useContext(AppContext)
@@ -23,6 +24,7 @@ export const Game: React.FC = observer(() => {
   return (
     <GameContext.Provider value={gameStore}>
       <DndProvider backend={backend}>
+        <DragPreviewLayer/>
         <div className="game-container">
           <div className="game-container-title">
             <AppTitle/>
