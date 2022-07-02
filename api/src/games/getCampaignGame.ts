@@ -21,7 +21,7 @@ const games: ICampaignGameNoIds[] = [
     memberLetters: []
   },
   {
-    date: "2022-05-31",
+    date: "2022-07-03",
     letters: [
       { char: "e", price: 3, points: 3, ability: Abilities.RetainLeft },
       { char: "n", price: 1, points: 2 },

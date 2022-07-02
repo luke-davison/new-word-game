@@ -9,7 +9,7 @@
 }
 
 .shop-letter-container:not(:last-child) {
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .shop-letter-price {
