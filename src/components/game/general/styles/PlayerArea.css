@@ -22,79 +22,6 @@
 .player-area-word-cell {
   margin-top: -40px;
   display: flex;
-  width: 39px;
-  height: 112px;
-  margin-bottom: 25px;
-  flex-shrink: 0;
-}
-
-.player-area-background-cell {
-  margin-top: 60px;
-  width: 22px;
-  height: 28px;
-  border-radius: 4px;
-  border: 1px solid grey;
-  background-color: lightgray;
-  padding: 2px 5px;
-  color:  #566573
-}
-
-.player-area-background-cell:not(:first-child) {
-  margin-left: 5px;
-}
-
-.player-area-background-cell:nth-child(2) {
-  opacity: 0.875
-}
-
-.player-area-background-cell:nth-child(3) {
-  opacity: 0.75
-}
-
-.player-area-background-cell:nth-child(4) {
-  opacity: 0.625
-}
-
-.player-area-background-cell:nth-child(5) {
-  opacity: 0.5
-}
-
-.player-area-background-cell:nth-child(6) {
-  opacity: 0.375
-}
-
-.player-area-background-cell:nth-child(7) {
-  opacity: 0.25
-}
-
-.player-area-background-cell:nth-child(8) {
-  opacity: 0.125
-}
-
-/* .player-area {
-  position: relative;
-  overflow-x: auto;
-  height: 180px;
-  max-width: calc(100vw - 40px);
-}
-
-.player-area-background, .player-area-word-area {
-  display: flex;
-}
-
-.player-area-word-area {
-  padding-top: 60px;
-}
-
-.player-area-background {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.player-area-word-cell {
-  margin-top: -40px;
-  display: flex;
   margin-left: -10px;
   width: 82px;
   height: 112px;
@@ -143,4 +70,4 @@
 
 .player-area-background-cell:nth-child(8) {
   opacity: 0.125
-} */
+}

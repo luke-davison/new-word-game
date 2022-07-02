@@ -5,28 +5,6 @@
 
 .shop-letter-container {
   position: relative;
-}
-
-.shop-letter-container:not(:last-child) {
-  margin-right: 9px;
-}
-
-.shop-letter-price {
-  position: absolute;
-  z-index: 2;
-  left: 5px;
-  top: -30px;
-  padding: 2px 5px;
-  text-align: center;
-}
-
-/* .shop-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.shop-letter-container {
-  position: relative;
   margin-top: 30px;
 }
 
@@ -42,4 +20,4 @@
   background-color: limegreen;
   padding: 2px 5px;
   text-align: center;
-} */
+}
