@@ -8,12 +8,12 @@ import { Letter } from './Letter';
 
 export const DraggableLetter: React.FC<{ letter: LetterInstance }> = observer(({ letter }) => {
 
-  const [dragOptions, drag, preview] = useDrag(
+  const [{ isDragging }, drag, preview] = useDrag(
     () => ({
       type: "letter",
       item: letter,
       collect: (monitor) => ({
-        opacity: monitor.isDragging()
+        isDragging: monitor.isDragging()
       })
     }),
     [letter]
@@ -22,9 +22,11 @@ export const DraggableLetter: React.FC<{ letter: LetterInstance }> = observer(({
   useEffect(() => {
     preview(getEmptyImage(), { captureDraggingState: true });
   }, [preview]);
+
+  const style = isDragging && letter.position !== undefined ? { opacity: 0 } : undefined
   
   return (
-    <div ref={drag} className="letter-drag-container">
+    <div ref={drag} className="letter-drag-container" style={style}>
       <Letter letter={letter}/>
     </div>
   )

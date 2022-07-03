@@ -4,3 +4,8 @@
   justify-content: space-around;
   margin-top: 30px;
 }
+
+.status-text {
+  text-align: center;
+  flex-grow: 1;
+}
