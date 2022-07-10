@@ -1,4 +1,4 @@
-import "./styles/PageButtons.css"
+import './styles/PageButtons.css';
 
 import { observer } from 'mobx-react-lite';
 import { FunctionComponent, useContext } from 'react';
@@ -8,7 +8,7 @@ import { GameContext } from '../../../stores/GameContext';
 
 export const PageButtons: FunctionComponent = observer(() => {
   const { isPlayingCampaignGame, returnToMenu, isPlayingTutorialGame, tutorialGameInProgress, setTutorialGame } = useContext(AppContext)
-  const { onClear, target, bestWordScore, submitWord, isValidWord } = useContext(GameContext)
+  const { onClear, target, bestWordScore, submitWord, isValidWord, playerWord } = useContext(GameContext)
 
   const tutorialButtons = isPlayingTutorialGame ? (
     <>
@@ -27,9 +27,9 @@ export const PageButtons: FunctionComponent = observer(() => {
 
   return (
     <div className="page-buttons">
-      <button onClick={returnToMenu} title="Return to menu">{"<"}</button>
+      <button className="return-to-menu-button" onClick={returnToMenu} title="Return to menu"/>
       <div className="page-buttons-right">
-      <button className="clear-button" onClick={onClear}>Clear</button>
+      <button className="clear-button" onClick={onClear} disabled={playerWord.length === 0}>Clear</button>
         {tutorialButtons}
         {submitButton}
       </div>

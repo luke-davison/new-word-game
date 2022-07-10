@@ -32,7 +32,7 @@ export const WordPoints: React.FC = observer(() => {
               <div className="best-word">
                 <span>{"Best: "}</span>
                 { wordPoints < (bestWordScore || 0) ? (
-                  <button onClick={reinstateBestWord}>{`${bestWord} (${bestWordScore})`}</button>
+                  <button className="link" onClick={reinstateBestWord}>{`${bestWord} (${bestWordScore})`}</button>
                 ) : (
                   <span>{`${bestWord} (${bestWordScore})`}</span>
                 )} 

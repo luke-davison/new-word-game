@@ -33,7 +33,7 @@ const games: ICampaignGameNoIds[] = [
     memberLetters: []
   },
   {
-    date: "2022-05-18",
+    date: "2022-07-09",
     letters: [
       { char: "b", price: 4, points: 3, ability: Abilities.Funding2 },
       { char: "u", price: 1, points: 2 },
@@ -47,7 +47,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: "2022-05-19",
+    date: "2022-07-10",
     letters: [
       { char: "s", price: 4, points: 2, ability: Abilities.RetainRight },
       { char: "a", price: 1, points: 2 },
