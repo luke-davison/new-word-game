@@ -14,6 +14,7 @@ To do list
 * Allow to resubmit daily and campaign games
 * Handle API errors on frontend
 * Clearly identify secret shop letters and inventory letters
+* Use graphs on history page
 * Ensure inventory letters disappear when dragging (like placed letters but unlike shop letters)
 * Create icon for return to menu button
 * Style buttons nicer
