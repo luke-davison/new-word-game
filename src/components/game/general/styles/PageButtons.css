@@ -8,10 +8,15 @@
   flex-direction: row;
   justify-content: flex-end;
   flex-grow: 1;
+  margin-left: 10px;
 }
 
 .page-buttons-right > *:not(:first-child) {
   margin-left: 10px;
+}
+
+.return-to-menu-button:before {
+  content: "Return to menu"
 }
 
 @media screen and (max-height: 600px) {
@@ -21,5 +26,9 @@
     position: fixed;
     bottom: 0;
     left: 0;
+  }
+
+  .return-to-menu-button:before {
+    content: "<"
   }
 }
