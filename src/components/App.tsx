@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { AppContext } from '../stores/AppContext';
 import { AppStore } from '../stores/AppStore';
 import { Menu } from './menu/Menu';
+import { LoadingOverlay } from './general/LoadingOverlay';
 
 const App: React.FC = observer(() => {
   const [appStore] = useState<AppStore>(new AppStore())
@@ -17,6 +18,7 @@ const App: React.FC = observer(() => {
   return (
     <AppContext.Provider value={appStore}>
       <div className="App">
+        <LoadingOverlay/>
         <Menu/>
       </div>
     </AppContext.Provider>

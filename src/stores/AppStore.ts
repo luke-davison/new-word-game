@@ -17,6 +17,8 @@ export class AppStore {
       isPlayingCampaignGame: computed,
       startCampaignGame: action,
       _appData: observable,
+      isLoading: observable,
+      isError: observable,
       isPlayingTutorialGame: computed,
       startTutorialGame: action,
       setTutorialGame: action,
@@ -37,6 +39,9 @@ export class AppStore {
   }
 
   _appData: IAppData | undefined
+
+  isLoading: boolean = true
+  isError: boolean = false
 
   offlineMode: boolean = false
 
@@ -100,7 +105,12 @@ export class AppStore {
       cacheAppData(appData)
     } catch (error) {
       runInAction(() => {
+        this.isError = true
         this.offlineMode = true
+      })
+    } finally {
+      runInAction(() => {
+        this.isLoading = false
       })
     }
   }

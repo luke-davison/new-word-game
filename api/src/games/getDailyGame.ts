@@ -114,7 +114,7 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-05-19",
+    date: "2022-07-29",
     letters: [
       { char: "s", price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
       { char: "l", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
@@ -378,7 +378,40 @@ const games: IDailyGameNoIds[] = [
     secretTarget: 28,
     // maxTarget: 29, // checked
     money: 15
-  }
+  },
+  {
+    date: "2022-07-31",
+    letters: [
+      { char: 's', price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 3 },
+      { char: 't', price: 3, points: 4, ability: Abilities.InPosition4, abilityPoints: 4 },
+      { char: 'y', price: 4, points: 4, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'r', price: 4, points: 3, ability: Abilities.CopyAbilityInPosition5 },
+      { char: 'e', price: 4, points: 3, ability: Abilities.MinWordLength6, abilityPoints: 3 },
+      { char: 'n', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },
+      { char: 'e', price: 1, points: 2 }
+    ],
+    target: 25,
+    secretTarget: 28,
+    // maxTarget: 30, // checked
+    money: 17
+  },
+  {
+    date: "2022-07-31",
+    letters: [
+      { char: 't', price: 4, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+      { char: 'a', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },
+      { char: 'n', price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'n', price: 3, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 'r', price: 5, points: 8 },
+      { char: 's', price: 5, points: 4, ability: Abilities.OtherInPosition2 }
+    ],
+    target: 30,
+    secretTarget: 36,
+    // maxTarget: 38, // checked
+    money: 19
+  },
+  
 ]
 
 export const getDailyGame = (dateString: string): IDailyGame | undefined => {

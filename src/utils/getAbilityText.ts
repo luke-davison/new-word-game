@@ -32,9 +32,9 @@ export const getAbilityText = (ability: Abilities): string => {
     case Abilities.OtherInPosition3: return "Re-score the base points of the letter in position three";
     case Abilities.OtherInPosition4: return "Re-score the base points of the letter in position four";
     case Abilities.OtherInPosition5: return "Re-score the base points of the letter in position five";
-    case Abilities.Retain: return "Retain this letter so it may be used in a following game";
-    case Abilities.RetainLeft: return "Retain the letter to this letter's left so it may be used in a following game";
-    case Abilities.RetainRight: return "Retain the letter to this letter's right so it may be used in a following game";
+    case Abilities.Retain: return "Retain this letter to use in every following game";
+    case Abilities.RetainLeft: return "Retain the letter to this letter's left to use in a following game";
+    case Abilities.RetainRight: return "Retain the letter to this letter's right to use in a following game";
     case Abilities.Vowels: return "Score extra points for every vowel in the word";
     case Abilities.Wild: return "Can be set as any letter";
     case Abilities.Wilds: return "Score extra points for every wild in the word";
