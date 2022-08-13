@@ -1,4 +1,4 @@
-import '../general/styles/LetterShop.css';
+import './styles/SecretShop.css';
 
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
@@ -20,15 +20,19 @@ export const SecretShop: React.FC = observer(() => {
   }
 
   return (
-    <div className="shop-container">
-      { secretShopLetters.map((shopLetter, index) => (
-        <div key={index} className="shop-letter-container" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
-          <div className="shop-letter-price">
-            {"$" + shopLetter.price}
-          </div>
-          <DraggableLetter letter={shopLetter}/>
+    <div className="secret-shop-container">
+      <div className="secret-shop">
+        <div className="shop-container">
+          { secretShopLetters.map((shopLetter, index) => (
+            <div key={index} className="shop-letter-container" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
+              <div className="shop-letter-price">
+                {"$" + shopLetter.price}
+              </div>
+              <DraggableLetter letter={shopLetter} label="Secret"/>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   )
 })

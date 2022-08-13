@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { useDrag } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
-import { LetterInstance } from '../../../models/LetterInstance';
-import { Letter } from './Letter';
+import { Letter, LetterProps } from './Letter';
 
-export const DraggableLetter: React.FC<{ letter: LetterInstance }> = observer(({ letter }) => {
+export const DraggableLetter: React.FC<LetterProps> = observer(props => {
+  const { letter } = props
 
   const [{ isDragging }, drag, preview] = useDrag(
     () => ({
@@ -27,7 +27,7 @@ export const DraggableLetter: React.FC<{ letter: LetterInstance }> = observer(({
   
   return (
     <div ref={drag} className="letter-drag-container" style={style}>
-      <Letter letter={letter}/>
+      <Letter {...props}/>
     </div>
   )
   })

@@ -16,8 +16,8 @@
   position: absolute;
   z-index: 2;
   left: 20px;
-  top: -18px;
-  background-color: limegreen;
-  padding: 2px 5px;
+  top: -15px;
+  background-color: #92e78f;
+  padding: 0px 5px;
   text-align: center;
 }

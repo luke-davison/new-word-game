@@ -107,5 +107,14 @@
   top: 0px;
 }
 
+.letter-label {
+  top: 47px;
+  left: -14px;
+  z-index: 4;
+  color: red;
+  transform: rotate(15deg);
+  position: absolute;
+}
+
 
 

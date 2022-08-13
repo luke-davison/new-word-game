@@ -19,16 +19,13 @@ export const Inventory: React.FC = observer(() => {
   return (
     <div className="inventory-container">
       <div className="inventory">
-        <div className="inventory-title">
-          Saved
-        </div>
         <div className="shop-container">
           { inventory.map((inventoryLetter, index) => (
             <div key={index} className="inventory-letter-container" onDoubleClick={() => onQuickAddLetter(inventoryLetter)}>
               { getIsLetterUsed(inventoryLetter) ? (
                 <Letter letter={inventoryLetter} disabled/>
               ) :(
-                <DraggableLetter letter={inventoryLetter}/>
+                <DraggableLetter letter={inventoryLetter} label="Saved"/>
               )}
             </div>
           ))}

@@ -10,12 +10,13 @@ import { GameContext } from '../../../stores/GameContext';
 import { AbilityImage } from './AbilityImage';
 import { LetterPopup } from './LetterPopup';
 
-interface LetterProps {
+export interface LetterProps {
   letter: LetterInstance;
   disabled?: boolean;
+  label?: string;
 }
 
-export const Letter: React.FC<LetterProps> = observer(({ disabled, letter }) => {
+export const Letter: React.FC<LetterProps> = observer(({ disabled, label, letter }) => {
   const { player } = useContext(AppContext)
   const { playerWordFull } = useContext(GameContext)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
@@ -54,6 +55,11 @@ export const Letter: React.FC<LetterProps> = observer(({ disabled, letter }) => 
                 </div>
               )}
         </div>
+          )}
+          {label && (
+            <div className="letter-label">
+              {label}
+            </div>
           )}
       </div>
       {isPopupOpen && <LetterPopup letter={letter} onClose={ () => setIsPopupOpen(false)}/>}
