@@ -134,11 +134,7 @@ export class GameStore {
 
   _inventory: Letter[] = []
   get inventory(): LetterInstance[] { 
-    const availableLetters = this._inventory.filter(letter => {
-      return this.playerWord.every(wordLetter => wordLetter.parent.id !== letter.id)
-    })
-
-    return availableLetters.map((letter) => {
+    return this._inventory.map((letter) => {
       return new LetterInstance(letter)
     })
   }
@@ -352,5 +348,9 @@ export class GameStore {
 
       this.playerWordData = convertWordToLetterInstances(this.bestLetters, letters)
     }
+  }
+
+  getIsLetterUsed = (letter: LetterInstance) => {
+    return this.playerWord.some(wordLetter => wordLetter.parent.id === letter.parent.id)
   }
 }

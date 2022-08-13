@@ -9,7 +9,7 @@ import { DraggableLetter } from '../general/DraggableLetter';
 
 export const Inventory: React.FC = observer(() => {
   const { isPlayingCampaignGame } = useContext(AppContext)
-  const { inventory, onQuickAddLetter } = useContext(GameContext)
+  const { inventory, onQuickAddLetter, getIsLetterUsed } = useContext(GameContext)
 
   if (!isPlayingCampaignGame) {
     return null
@@ -22,9 +22,11 @@ export const Inventory: React.FC = observer(() => {
           Saved
         </div>
         <div className="shop-container">
-          { inventory.map((shopLetter, index) => (
-            <div key={index} className="shop-letter-container" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
-              <DraggableLetter letter={shopLetter}/>
+          { inventory.map((inventoryLetter, index) => (
+            <div key={index} className="inventory-letter-container" onDoubleClick={() => onQuickAddLetter(inventoryLetter)}>
+              { !getIsLetterUsed(inventoryLetter) && (
+                <DraggableLetter letter={inventoryLetter}/>
+              )}
             </div>
           ))}
         </div>

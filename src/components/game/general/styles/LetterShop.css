@@ -3,12 +3,12 @@
   flex-wrap: wrap;
 }
 
-.shop-letter-container {
+.shop-letter-container, .inventory-letter-container {
   position: relative;
   margin-top: 30px;
 }
 
-.shop-letter-container:not(:last-child) {
+.shop-letter-container:not(:last-child), .inventory-letter-container:not(:last-child) {
   margin-right: 10px;
 }
 

@@ -25,3 +25,7 @@
   text-align: center;
   overflow-wrap: normal;
 }
+
+.inventory-letter-container {
+  width: 66px;
+}
