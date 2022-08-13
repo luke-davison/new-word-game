@@ -116,5 +116,11 @@
   position: absolute;
 }
 
+.inventory-letter-container .letter-label {
+  top: -11px;
+  left: -8px;
+  transform: rotate(345deg);
+}
+
 
 

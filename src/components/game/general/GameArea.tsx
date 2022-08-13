@@ -8,10 +8,8 @@ import { LetterInstance } from '../../../models/LetterInstance';
 import { GameContext } from '../../../stores/GameContext';
 import { CampaignCounters } from '../campaign/CampaignCounters';
 import { Counters } from './Counters';
-import { Inventory } from '../campaign/Inventory';
 import { LetterShop } from './LetterShop';
 import { PlayerArea } from './PlayerArea';
-import { SecretShop } from '../campaign/SecretShop';
 
 export const GameArea: React.FC = observer(() => {
   const { onDropLetterOutside } = useContext(GameContext)
@@ -34,8 +32,6 @@ export const GameArea: React.FC = observer(() => {
     <div ref={drop} className="game-area">
       <div className="game-top-row">
         <LetterShop/>
-        <SecretShop/>
-        <Inventory/>
       </div>
       <Counters/>
       <PlayerArea/>
