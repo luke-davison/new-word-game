@@ -31,15 +31,18 @@ export const LetterShop: React.FC = observer(() => {
               <DraggableLetter letter={shopLetter} label="Secret"/>
             </div>
           ))}
-          { inventory.map((inventoryLetter, index) => (
-            <div key={index} className="inventory-letter-container" onDoubleClick={() => onQuickAddLetter(inventoryLetter)}>
-              { getIsLetterUsed(inventoryLetter) ? (
-                <Letter letter={inventoryLetter} disabled/>
-              ) :(
-                <DraggableLetter letter={inventoryLetter} label="Saved"/>
-              )}
-            </div>
-          ))}
+          { inventory.map((inventoryLetter, index) => {
+            const classNames = "inventory-letter-container inventory-letter-" + (index + 1)
+            return (
+              <div key={index} className={classNames} onDoubleClick={() => onQuickAddLetter(inventoryLetter)}>
+                { getIsLetterUsed(inventoryLetter) ? (
+                  <Letter letter={inventoryLetter} disabled/>
+                ) :(
+                  <DraggableLetter letter={inventoryLetter} label="Saved"/>
+                )}
+              </div>
+            )
+          })}
 
     </div>
   )

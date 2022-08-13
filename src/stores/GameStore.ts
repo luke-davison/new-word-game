@@ -82,11 +82,13 @@ export class GameStore {
     })
 
     this._shopLetters = setupLetters(this.game?.letters)
-    if (appStore.player?.inventory) {
-      this._inventory = setupLetters(appStore.player.inventory)
+    if (appStore.isPlayingCampaignGame) {
+      if (appStore.player?.inventory) {
+        this._inventory = setupLetters(appStore.player.inventory)
+      }
+  
+      this._secretShopLetters = setupLetters(this.campaignGame?.memberLetters)
     }
-
-    this._secretShopLetters = setupLetters(this.campaignGame?.memberLetters)
   }
 
   get dailyGame(): IDailyGame | undefined {
