@@ -10,7 +10,12 @@ import { GameContext } from '../../../stores/GameContext';
 import { AbilityImage } from './AbilityImage';
 import { LetterPopup } from './LetterPopup';
 
-export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }) => {
+interface LetterProps {
+  letter: LetterInstance;
+  disabled?: boolean;
+}
+
+export const Letter: React.FC<LetterProps> = observer(({ disabled, letter }) => {
   const { player } = useContext(AppContext)
   const { playerWordFull } = useContext(GameContext)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
@@ -18,12 +23,20 @@ export const Letter: React.FC<{ letter: LetterInstance }> = observer(({ letter }
   const isAbilityActive = letter.position === undefined || getAbilityIsActive(playerWordFull, letter.position, player)
 
   const onClick = () => {
-    setIsPopupOpen(!isPopupOpen)
+    if (!disabled) {
+      setIsPopupOpen(!isPopupOpen)
+    }
+  }
+
+  let classNames = "letter-container"
+  classNames += " letter-color-" + letter.color
+  if (disabled) {
+    classNames += " disabled"
   }
 
   return (
     <div className="letter-container-outer">
-      <div className={"letter-container letter-color-" + letter.color} onClick={onClick}>
+      <div className={classNames} onClick={onClick}>
         <div className="letter-character">
           { letter.char }
         </div>

@@ -2,6 +2,11 @@
   position: relative;
 }
 
+.letter-container.disabled {
+  color: rgb(158, 158, 158);
+  border-color: gray;
+}
+
 .letter-container {
   position: relative;
   width: 60px;
@@ -45,6 +50,10 @@
   background-color: #bcdbf2;
 }
 
+.letter-container.disabled {
+  background-color: #f1f1f1;
+}
+
 .letter-character {
   display: flex;
   width: 100%;
@@ -61,11 +70,19 @@
   font-size: 18px;
 }
 
+.letter-container.disabled .letter-points {
+  display: none;
+}
+
 .letter-ability {
   position: absolute;
   bottom: -13px;
   left: 4px;
   width: 46px;
+}
+
+.letter-container.disabled .letter-ability {
+  display: none;
 }
 
 .letter-ability img {

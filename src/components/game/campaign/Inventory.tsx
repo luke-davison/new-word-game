@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { AppContext } from '../../../stores/AppContext';
 import { GameContext } from '../../../stores/GameContext';
 import { DraggableLetter } from '../general/DraggableLetter';
+import { Letter } from "../general/Letter";
 
 export const Inventory: React.FC = observer(() => {
   const { isPlayingCampaignGame } = useContext(AppContext)
@@ -24,7 +25,9 @@ export const Inventory: React.FC = observer(() => {
         <div className="shop-container">
           { inventory.map((inventoryLetter, index) => (
             <div key={index} className="inventory-letter-container" onDoubleClick={() => onQuickAddLetter(inventoryLetter)}>
-              { !getIsLetterUsed(inventoryLetter) && (
+              { getIsLetterUsed(inventoryLetter) ? (
+                <Letter letter={inventoryLetter} disabled/>
+              ) :(
                 <DraggableLetter letter={inventoryLetter}/>
               )}
             </div>
