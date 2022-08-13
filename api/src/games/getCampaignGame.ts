@@ -61,7 +61,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: "2022-07-31",
+    date: "2022-08-13",
     letters: [
       { char: "v", price: 3, points: 4, ability: Abilities.WordLength6 },
       { char: "e", price: 4, points: 2, ability: Abilities.Retain },

@@ -1,3 +1,5 @@
+import "./styles/Inventory.css"
+
 import { observer } from 'mobx-react-lite';
 import { useContext } from 'react';
 
@@ -14,12 +16,19 @@ export const Inventory: React.FC = observer(() => {
   }
 
   return (
-    <div className="shop-container">
-      { inventory.map((shopLetter, index) => (
-        <div key={index} className="shop-letter-container" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
-          <DraggableLetter letter={shopLetter}/>
+    <div className="inventory-container">
+      <div className="inventory">
+        <div className="inventory-title">
+          Saved
         </div>
-      ))}
+        <div className="shop-container">
+          { inventory.map((shopLetter, index) => (
+            <div key={index} className="shop-letter-container" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
+              <DraggableLetter letter={shopLetter}/>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 })
