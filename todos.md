@@ -11,15 +11,16 @@ To do list
 * -Ability to view history-
 * -Make drag and drop look nice, for both touch and desktop
 * -Style buttons nicer-
+* -Handle API errors on frontend
+* -Ensure inventory letters disappear when dragging (like placed letters but unlike shop letters)
+* -Style text buttons nicer (word that can be clicked to get back best word)
+* -Create icon for return to menu button
+* Tidy up code using eslint or prettier
 * Allow to resubmit daily and campaign games
-* Handle API errors on frontend
 * Clearly identify secret shop letters and inventory letters
 * Use graphs on history page
-* Ensure inventory letters disappear when dragging (like placed letters but unlike shop letters)
-* Create icon for return to menu button
 * Fix campaign submit
 * Add warning message if viewing in mobile portrait view recommending rotating (display once per day)
-* Style text buttons nicer (word that can be clicked to get back best word)
 * Games look good on a mobile device
 * Have tutorial display instructions
 * Update player if they miss a campaign game
