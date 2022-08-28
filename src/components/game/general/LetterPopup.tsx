@@ -32,14 +32,14 @@ export const LetterPopup: React.FC<LetterPopupProps> = ({ letter, onClose }) => 
     <div className="letter-popup">
       {letter.ability && (
         <div className="letter-popup-ability-image">
-          <AbilityImage ability={letter.ability}/>
+          <AbilityImage ability={letter.ability} />
         </div>
       )}
       <div className="letter-popup-ability-text">
         {letter.ability ? getAbilityText(letter.ability) : "This letter has no ability"}
       </div>
       {letter.position !== undefined && letter.ability === Abilities.Wild && (
-        <Alphabet onSelect={onSelect}/>
+        <Alphabet onSelect={onSelect} />
       )}
     </div>
   )

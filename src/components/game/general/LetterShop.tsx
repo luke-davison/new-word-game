@@ -19,7 +19,7 @@ export const LetterShop: React.FC = observer(() => {
             <div className="shop-letter-price">
               {"$" + shopLetter.price}
             </div>
-            <DraggableLetter letter={shopLetter}/>
+            <DraggableLetter letter={shopLetter} />
           </div>
         )
       })}
@@ -28,7 +28,7 @@ export const LetterShop: React.FC = observer(() => {
           <div className="shop-letter-price">
             {"$" + shopLetter.price}
           </div>
-          <DraggableLetter letter={shopLetter} label="Secret"/>
+          <DraggableLetter letter={shopLetter} label="Secret" />
         </div>
       ))}
       { inventory.map((inventoryLetter, index) => {
@@ -36,9 +36,9 @@ export const LetterShop: React.FC = observer(() => {
         return (
           <div key={index} className={classNames} onDoubleClick={() => onQuickAddLetter(inventoryLetter)}>
             { getIsLetterUsed(inventoryLetter) ? (
-              <Letter letter={inventoryLetter} disabled/>
+              <Letter letter={inventoryLetter} disabled />
             ) :(
-              <DraggableLetter letter={inventoryLetter} label="Saved"/>
+              <DraggableLetter letter={inventoryLetter} label="Saved" />
             )}
           </div>
         )

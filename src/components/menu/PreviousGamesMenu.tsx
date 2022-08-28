@@ -72,7 +72,7 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
             maxDate={latestGame ? getDateFromString(latestGame.date) : new Date()}
             renderDate={renderDate}
           />
-          <PreviousGamesMenuKey/>
+          <PreviousGamesMenuKey />
         </div>
       ): (
         <div>

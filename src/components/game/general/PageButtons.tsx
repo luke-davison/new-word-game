@@ -27,7 +27,7 @@ export const PageButtons: FunctionComponent = observer(() => {
 
   return (
     <div className="page-buttons">
-      <button className="return-to-menu-button" onClick={returnToMenu} title="Return to menu"/>
+      <button className="return-to-menu-button" onClick={returnToMenu} title="Return to menu" />
       <div className="page-buttons-right">
         <button className="clear-button" onClick={onClear} disabled={playerWord.length === 0}>Clear</button>
         {tutorialButtons}

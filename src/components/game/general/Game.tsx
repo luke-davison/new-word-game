@@ -24,14 +24,14 @@ export const Game: React.FC = observer(() => {
   return (
     <GameContext.Provider value={gameStore}>
       <DndProvider backend={backend}>
-        <DragPreviewLayer/>
+        <DragPreviewLayer />
         <div className="game-container">
           <div className="game-container-title">
-            <AppTitle/>
+            <AppTitle />
           </div>
           <div className="game-container-inner">
-            <GameArea/>
-            <PageButtons/>
+            <GameArea />
+            <PageButtons />
           </div>
         </div>
       </DndProvider>

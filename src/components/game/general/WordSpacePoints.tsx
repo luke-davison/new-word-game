@@ -27,5 +27,5 @@ export const WordSpacePoints: React.FC<{ spaceIndex: number }> = observer(({ spa
     )
   }
 
-  return <div/>
+  return <div />
 })

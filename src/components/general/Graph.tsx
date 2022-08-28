@@ -47,7 +47,7 @@ export const Graph: FunctionComponent<IGraphProps> = observer(props => {
                   <div className="graph-bar" style={{ height: (barHeight * 100).toFixed(0) + "%" }} />
                 )}
                 { xAxe === props.selected && (
-                  <div className="selected-bar"/>
+                  <div className="selected-bar" />
                 ) }
               </div>
               <div className="x-column-axe">

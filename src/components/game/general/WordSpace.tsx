@@ -31,12 +31,12 @@ export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceInde
   return (
     <div ref={drop} className="player-area-space" onDoubleClick={onDoubleClick}>
       {letter && (
-        <DraggableLetter letter={letter}/>
+        <DraggableLetter letter={letter} />
       )}
       {isOver && (
-        <div className="player-space-drop-overlay"/>
+        <div className="player-space-drop-overlay" />
       )}
-      <WordSpacePoints spaceIndex={spaceIndex}/>
+      <WordSpacePoints spaceIndex={spaceIndex} />
     </div>
   )
 })

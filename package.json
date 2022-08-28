@@ -42,16 +42,96 @@
       "react-app/jest"
     ],
     "rules": {
-      "@typescript-eslint/no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }],
-      "array-bracket-spacing": ["warn", "never"],
-      "arrow-spacing": ["warn", { "before": true, "after": true }],
-      "block-spacing": ["warn", "always"],
-      "comma-spacing": ["warn", { "before": false, "after": true }],
-      "indent": ["warn", 2, {"SwitchCase": 2 }],
-      "key-spacing": ["warn", { "beforeColon": false, "afterColon": true }],
-      "keyword-spacing": ["warn", { "before": true, "after": true }],
-      "object-curly-spacing": ["warn", "always"],
-      "space-before-blocks": ["warn", "always"]
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          "vars": "all",
+          "args": "after-used",
+          "ignoreRestSiblings": true
+        }
+      ],
+      "array-bracket-spacing": [
+        "warn",
+        "never"
+      ],
+      "arrow-spacing": [
+        "warn",
+        {
+          "before": true,
+          "after": true
+        }
+      ],
+      "block-spacing": [
+        "warn",
+        "always"
+      ],
+      "computed-property-spacing": [
+        "warn",
+        "never"
+      ],
+      "comma-spacing": [
+        "warn",
+        {
+          "before": false,
+          "after": true
+        }
+      ],
+      "func-call-spacing": [
+        "error",
+        "never"
+      ],
+      "indent": [
+        "warn",
+        2,
+        {
+          "SwitchCase": 2
+        }
+      ],
+      "key-spacing": [
+        "warn",
+        {
+          "beforeColon": false,
+          "afterColon": true
+        }
+      ],
+      "keyword-spacing": [
+        "warn",
+        {
+          "before": true,
+          "after": true
+        }
+      ],
+      "object-curly-spacing": [
+        "warn",
+        "always"
+      ],
+      "semi-spacing": [
+        "warn",
+        {
+          "before": false,
+          "after": true
+        }
+      ],
+      "space-in-parens": [
+        "warn",
+        "never"
+      ],
+      "spaced-comment": [
+        "warn",
+        "always"
+      ],
+      "space-before-blocks": [
+        "warn",
+        "always"
+      ],
+      "switch-colon-spacing": [
+        "error",
+        {
+          "after": true,
+          "before": false
+        }
+      ],
+      "react/jsx-tag-spacing": "warn"
     }
   },
   "browserslist": {
@@ -75,5 +155,8 @@
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
     ]
   },
-  "proxy": "http://localhost:3004"
+  "proxy": "http://localhost:3004",
+  "devDependencies": {
+    "eslint-plugin-react": "^7.31.1"
+  }
 }

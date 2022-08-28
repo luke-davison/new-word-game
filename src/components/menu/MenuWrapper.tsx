@@ -8,7 +8,7 @@ import { FunctionComponent } from 'react';
 export const MenuWrapper: FunctionComponent = observer(props => {
   return (
     <div className="menu-wrapper">
-      <AppTitle/>
+      <AppTitle />
       {props.children}
     </div>
   );
