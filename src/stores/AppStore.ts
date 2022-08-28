@@ -90,7 +90,7 @@ export class AppStore {
   get player() {
     return this._appData?.player
   }
-
+  
   fetchingAppData: boolean = true
 
   loadAppData = async () => {
