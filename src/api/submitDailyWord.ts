@@ -1,4 +1,4 @@
-import { IGameStats, ISubmitWord } from '../shared/datamodels';
+import { IGameStats, ISubmitWord } from '../shared/datamodels'
 
 export const submitDailyWord = async (submitWord: ISubmitWord): Promise<IGameStats> => {
   const url = "/api/submit/daily"

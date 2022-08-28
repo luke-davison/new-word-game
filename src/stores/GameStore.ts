@@ -1,19 +1,19 @@
-import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx'
 
-import { submitDailyWord } from '../api/submitDailyWord';
-import { LetterInstance } from '../models/LetterInstance';
-import { ICampaignGame, IDailyGame, IGame, ISubmitWord } from '../shared/datamodels';
-import { IRawLetter } from '../shared/datamodels/IRawLetter';
-import { Letter } from '../shared/models/Letter';
-import { getIsValidWord } from '../shared/utils';
-import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive';
-import { getAbilityPoints } from '../shared/utils/abilities/getAbilityPoints';
-import { setupLetters } from '../shared/utils/setupLetters';
-import { DAILY_PREFIX, SCORE_SUFFIX, WORD_SUFFIX } from '../utils/cacheAppData';
-import { convertLetterInstancesToWord } from '../utils/convertLettersToWord';
-import { convertWordToLetterInstances } from '../utils/convertWordToLetterInstances';
-import { getIntroductoryGame } from '../utils/getIntroductoryGame';
-import { AppStore } from './AppStore';
+import { submitDailyWord } from '../api/submitDailyWord'
+import { LetterInstance } from '../models/LetterInstance'
+import { ICampaignGame, IDailyGame, IGame, ISubmitWord } from '../shared/datamodels'
+import { IRawLetter } from '../shared/datamodels/IRawLetter'
+import { Letter } from '../shared/models/Letter'
+import { getIsValidWord } from '../shared/utils'
+import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive'
+import { getAbilityPoints } from '../shared/utils/abilities/getAbilityPoints'
+import { setupLetters } from '../shared/utils/setupLetters'
+import { DAILY_PREFIX, SCORE_SUFFIX, WORD_SUFFIX } from '../utils/cacheAppData'
+import { convertLetterInstancesToWord } from '../utils/convertLettersToWord'
+import { convertWordToLetterInstances } from '../utils/convertWordToLetterInstances'
+import { getIntroductoryGame } from '../utils/getIntroductoryGame'
+import { AppStore } from './AppStore'
 
 export class GameStore {
   constructor(private appStore: AppStore) {
@@ -66,7 +66,7 @@ export class GameStore {
               if (this.appStore.isPlayingDailyGame) {
                 this.submitWord()
               }
-              this.bestWordScore = this.wordPoints;
+              this.bestWordScore = this.wordPoints
               this._bestWord = this.playerWord.map((letter) => letter.char).join("")
               this.bestLetters = convertLetterInstancesToWord(this.playerWord)
               window.localStorage.setItem(DAILY_PREFIX + this.game?.date + WORD_SUFFIX, JSON.stringify(this.bestLetters))
@@ -208,7 +208,7 @@ export class GameStore {
     
     return sortedWord.reduce((sum, letter) => {
       const basePoints = letter.points
-      let abilityPoints = 0;
+      let abilityPoints = 0
       if (getAbilityIsActive(this.playerWordFull, letter.position!, this.appStore.player)) {
         abilityPoints = getAbilityPoints(this.playerWordFull, letter.position!, this.appStore.player)
       }
@@ -304,7 +304,7 @@ export class GameStore {
       setTimeout(() => {
         // check whether letter has been removed
         if (this.playerWord.some((otherLetter) => otherLetter.id === letter.id)) {
-          const newValue = prompt("Enter a letter");
+          const newValue = prompt("Enter a letter")
           letter.setWildLetter(newValue || "")
         }
       }, 300)
@@ -312,7 +312,7 @@ export class GameStore {
   }
 
   onQuickAddLetter = (letter: LetterInstance) => {
-    let nextPosition = 0;
+    let nextPosition = 0
     for (let i = 0; i < this.playerWord.length; i++) {
       if (this.playerWord.some((otherLetter) => otherLetter.position === i)) {
         nextPosition++

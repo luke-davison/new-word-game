@@ -1,6 +1,6 @@
-import { ISubmitWord } from '../../../src/shared/datamodels';
-import { getTodayDateString } from '../utils/getTodayDateString';
-import { getCheckSubmitWordError } from './checkSubmitWord';
+import { ISubmitWord } from '../../../src/shared/datamodels'
+import { getTodayDateString } from '../utils/getTodayDateString'
+import { getCheckSubmitWordError } from './checkSubmitWord'
 
 const testInput: ISubmitWord = {
   date: getTodayDateString(),

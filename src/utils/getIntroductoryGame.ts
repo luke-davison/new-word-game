@@ -1,4 +1,4 @@
-import { Abilities, IDailyGame } from '../shared';
+import { Abilities, IDailyGame } from '../shared'
 
 export const getIntroductoryGame = (num: number): IDailyGame => {
   if (num === 1) {

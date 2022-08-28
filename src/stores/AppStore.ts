@@ -1,11 +1,11 @@
-import { action, computed, makeObservable, observable, runInAction } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 
-import { getAppData } from '../api/getAppData';
-import { Pages } from '../models';
-import { getDateFromString, IAppData, IDailyGame } from '../shared';
-import { IRawLetter } from '../shared/datamodels/IRawLetter';
-import { cacheAppData } from '../utils/cacheAppData';
-import { loadCachedGameData } from '../utils/loadCachedGameData';
+import { getAppData } from '../api/getAppData'
+import { Pages } from '../models'
+import { getDateFromString, IAppData, IDailyGame } from '../shared'
+import { IRawLetter } from '../shared/datamodels/IRawLetter'
+import { cacheAppData } from '../utils/cacheAppData'
+import { loadCachedGameData } from '../utils/loadCachedGameData'
 
 export class AppStore {
   constructor() {
@@ -70,7 +70,7 @@ export class AppStore {
       return this.previousGame?.date
     }
 
-    return undefined;
+    return undefined
   }
 
   get today() {
@@ -142,7 +142,7 @@ export class AppStore {
   }
 
   startCampaignGame = () => {
-    this.currentPage = Pages.campaignGame;
+    this.currentPage = Pages.campaignGame
   }
 
   startTutorialGame = () => {

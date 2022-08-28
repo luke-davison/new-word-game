@@ -1,6 +1,6 @@
-import { IDailyGame } from '../shared';
-import { IRawLetter } from '../shared/datamodels/IRawLetter';
-import { DAILY_PREFIX, GAME_IDS, SCORE_SUFFIX, WORD_SUFFIX } from './cacheAppData';
+import { IDailyGame } from '../shared'
+import { IRawLetter } from '../shared/datamodels/IRawLetter'
+import { DAILY_PREFIX, GAME_IDS, SCORE_SUFFIX, WORD_SUFFIX } from './cacheAppData'
 
 interface ICachedData {
   dates: string[]
@@ -51,7 +51,7 @@ export const loadCachedGameData = (): ICachedData | undefined => {
     }
 
     if (!scores.has(dateString) || !words.has(dateString)) {
-      scores.delete(dateString);
+      scores.delete(dateString)
       words.delete(dateString)
       return false
     }

@@ -1,11 +1,11 @@
-import './styles/WordBetweenSpace.css';
+import './styles/WordBetweenSpace.css'
 
-import { observer } from 'mobx-react-lite';
-import { useContext } from 'react';
-import { useDrop } from 'react-dnd';
+import { observer } from 'mobx-react-lite'
+import { useContext } from 'react'
+import { useDrop } from 'react-dnd'
 
-import { LetterInstance } from '../../../models/LetterInstance';
-import { GameContext } from '../../../stores/GameContext';
+import { LetterInstance } from '../../../models/LetterInstance'
+import { GameContext } from '../../../stores/GameContext'
 
 export const WordBetweenSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceIndex }) => {
   const { playerWord, onDropLetterBetween } = useContext(GameContext)

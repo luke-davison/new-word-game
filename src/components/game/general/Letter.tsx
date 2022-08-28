@@ -1,14 +1,14 @@
-import './styles/Letter.css';
+import './styles/Letter.css'
 
-import { observer } from 'mobx-react-lite';
-import { useContext, useState } from 'react';
+import { observer } from 'mobx-react-lite'
+import { useContext, useState } from 'react'
 
-import { LetterInstance } from '../../../models/LetterInstance';
-import { getAbilityIsActive } from '../../../shared/utils/abilities/getAbilityIsActive';
-import { AppContext } from '../../../stores/AppContext';
-import { GameContext } from '../../../stores/GameContext';
-import { AbilityImage } from './AbilityImage';
-import { LetterPopup } from './LetterPopup';
+import { LetterInstance } from '../../../models/LetterInstance'
+import { getAbilityIsActive } from '../../../shared/utils/abilities/getAbilityIsActive'
+import { AppContext } from '../../../stores/AppContext'
+import { GameContext } from '../../../stores/GameContext'
+import { AbilityImage } from './AbilityImage'
+import { LetterPopup } from './LetterPopup'
 
 export interface LetterProps {
   letter: LetterInstance;

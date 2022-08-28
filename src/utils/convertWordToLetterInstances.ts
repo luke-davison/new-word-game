@@ -1,6 +1,6 @@
-import { LetterInstance } from '../models/LetterInstance';
-import { Letter } from '../shared';
-import { IRawLetter } from '../shared/datamodels/IRawLetter';
+import { LetterInstance } from '../models/LetterInstance'
+import { Letter } from '../shared'
+import { IRawLetter } from '../shared/datamodels/IRawLetter'
 
 export const convertWordToLetterInstances = (word: IRawLetter[], letters: Letter[]): LetterInstance[] => {
   const letterInstances = word.map(({ id, char }, index) => {

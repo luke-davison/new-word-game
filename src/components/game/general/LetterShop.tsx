@@ -1,11 +1,11 @@
-import './styles/LetterShop.css';
+import './styles/LetterShop.css'
 
-import { observer } from 'mobx-react-lite';
-import { useContext } from 'react';
+import { observer } from 'mobx-react-lite'
+import { useContext } from 'react'
 
-import { GameContext } from '../../../stores/GameContext';
-import { DraggableLetter } from './DraggableLetter';
-import { Letter } from './Letter';
+import { GameContext } from '../../../stores/GameContext'
+import { DraggableLetter } from './DraggableLetter'
+import { Letter } from './Letter'
 
 export const LetterShop: React.FC = observer(() => {
   const { getIsLetterUsed, inventory, secretShopLetters, shopLetters, onQuickAddLetter } = useContext(GameContext)

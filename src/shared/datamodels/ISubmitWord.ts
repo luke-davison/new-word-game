@@ -1,4 +1,4 @@
-import { IRawLetter } from './IRawLetter';
+import { IRawLetter } from './IRawLetter'
 
 export interface ISubmitWord {
   date: string;

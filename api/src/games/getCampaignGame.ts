@@ -1,6 +1,6 @@
-import { ICampaignGame, ILetter } from '../../../src/shared/datamodels';
-import { Abilities } from '../../../src/shared/enums';
-import { getWildLetter } from './getWildLetter';
+import { ICampaignGame, ILetter } from '../../../src/shared/datamodels'
+import { Abilities } from '../../../src/shared/enums'
+import { getWildLetter } from './getWildLetter'
 
 interface ICampaignGameNoIds extends Omit<ICampaignGame, "letters" | "memberLetters"> {
   letters: Array<Omit<ILetter, "id">>

@@ -1,9 +1,9 @@
-import './styles/Calendar.css';
+import './styles/Calendar.css'
 
-import { observer } from 'mobx-react-lite';
-import { FunctionComponent, MouseEvent, useState } from 'react';
+import { observer } from 'mobx-react-lite'
+import { FunctionComponent, MouseEvent, useState } from 'react'
 
-const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 const dayHeadings: string[] = ["M", "T", "W", "T", "F", "S", "S"]
 
 interface CalendarProps {
@@ -16,15 +16,15 @@ interface CalendarProps {
 export const Calendar: FunctionComponent<CalendarProps> = observer(({ startDate, minDate, maxDate, renderDate }) => {
   const [dayInCurrentMonth, setDayInCurrentMonth] = useState<Date>(startDate)
 
-  const year = dayInCurrentMonth.getFullYear();
-  const month = dayInCurrentMonth.getMonth();
+  const year = dayInCurrentMonth.getFullYear()
+  const month = dayInCurrentMonth.getMonth()
 
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
   const firstDayOfWeek = (new Date(year, month, 1).getDay() + 6) % 7
   const days = [...Array(daysInMonth)]
 
   const onClickCalendar = (event: MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
+    event.stopPropagation()
   }
 
   const showPreviousMonthButton: boolean = 
@@ -77,7 +77,7 @@ export const Calendar: FunctionComponent<CalendarProps> = observer(({ startDate,
         <div className="calendar-main">
           {days.map((x, index) => {
             
-            let className = "calendar-day";
+            let className = "calendar-day"
             if (index === 0) {
               className += " calendar-day-offset-" + firstDayOfWeek
             }

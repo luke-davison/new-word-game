@@ -1,4 +1,4 @@
-import { Abilities, ILetter } from '../../../src/shared';
+import { Abilities, ILetter } from '../../../src/shared'
 
 export const getWildLetter = (): Omit<ILetter, "id"> => {
   return {

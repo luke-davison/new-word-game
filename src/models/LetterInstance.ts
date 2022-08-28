@@ -1,13 +1,13 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx'
 
-import { Abilities } from '../shared';
-import { Letter } from '../shared/models/Letter';
+import { Abilities } from '../shared'
+import { Letter } from '../shared/models/Letter'
 
 let nextLetterInstanceId = 1
 
 export class LetterInstance {
 
-  id: string;
+  id: string
   parent: Letter
   position: number | undefined
   _char: string | undefined

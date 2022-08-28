@@ -1,13 +1,13 @@
 
-import * as readline from 'readline';
+import * as readline from 'readline'
 
-import { getDailyGame } from './games/getDailyGame';
-import { getBestWords } from './utils/getBestWords';
+import { getDailyGame } from './games/getDailyGame'
+import { getBestWords } from './utils/getBestWords'
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
-});
+})
 
 const checkGame = () => {
   const args = process.argv.slice(2)
@@ -19,18 +19,18 @@ const checkGame = () => {
     } else {
       console.log("Game not found")
     }
-    rl.close();
+    rl.close()
   } else {
     rl.question('Enter the date to check ', (dateString: string) => {
       const game = getDailyGame(dateString)
       if (game) {
         rl.question('Enter the minimum points to print ', (pointsString) => {
           getBestWords(game, Number(pointsString) || 99)
-          askAgain();
+          askAgain()
         })
       } else {
         console.log("Game not found")
-        askAgain();
+        askAgain()
       }
     }) 
   }
@@ -41,9 +41,9 @@ const askAgain = () => {
     if (reply.toLowerCase() === "y" || reply.toLocaleLowerCase() === 'yes') {
       checkGame()
     } else {
-      rl.close();
+      rl.close()
     }
   })
 }
 
-checkGame();
+checkGame()

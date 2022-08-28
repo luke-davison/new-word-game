@@ -1,9 +1,9 @@
-import { Abilities } from '../../../src/shared';
-import { IGame, ILetter } from '../../../src/shared/datamodels';
-import { Letter } from '../../../src/shared/models';
-import { wordlist } from '../../../src/shared/utils';
-import { getWordPoints } from '../../../src/shared/utils/getWordPoints';
-import { setupLetters } from '../../../src/shared/utils/setupLetters';
+import { Abilities } from '../../../src/shared'
+import { IGame, ILetter } from '../../../src/shared/datamodels'
+import { Letter } from '../../../src/shared/models'
+import { wordlist } from '../../../src/shared/utils'
+import { getWordPoints } from '../../../src/shared/utils/getWordPoints'
+import { setupLetters } from '../../../src/shared/utils/setupLetters'
 
 export const getBestWords = (game: IGame, printScore: number) => {
   const map = new Map<number, number>()

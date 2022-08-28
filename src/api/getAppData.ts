@@ -1,4 +1,4 @@
-import { IAppData } from '../../src/shared/datamodels';
+import { IAppData } from '../../src/shared/datamodels'
 
 export const getAppData = async (userId: string | undefined): Promise<IAppData> => {
   let url = "/api/start"

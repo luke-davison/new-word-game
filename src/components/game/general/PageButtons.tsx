@@ -1,10 +1,10 @@
-import './styles/PageButtons.css';
+import './styles/PageButtons.css'
 
-import { observer } from 'mobx-react-lite';
-import { FunctionComponent, useContext } from 'react';
+import { observer } from 'mobx-react-lite'
+import { FunctionComponent, useContext } from 'react'
 
-import { AppContext } from '../../../stores/AppContext';
-import { GameContext } from '../../../stores/GameContext';
+import { AppContext } from '../../../stores/AppContext'
+import { GameContext } from '../../../stores/GameContext'
 
 export const PageButtons: FunctionComponent = observer(() => {
   const { isPlayingCampaignGame, returnToMenu, isPlayingTutorialGame, tutorialGameInProgress, setTutorialGame } = useContext(AppContext)

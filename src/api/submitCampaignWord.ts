@@ -1,4 +1,4 @@
-import { IPlayer, ISubmitWord } from '../shared/datamodels';
+import { IPlayer, ISubmitWord } from '../shared/datamodels'
 
 export const submitCampaignWord = async (submitWord: ISubmitWord): Promise<IPlayer> => {
   const url = "/api/submit/campaign"

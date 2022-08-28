@@ -1,5 +1,5 @@
-import { Abilities } from '../enums/Abilities';
-import { IRawLetter } from './IRawLetter';
+import { Abilities } from '../enums/Abilities'
+import { IRawLetter } from './IRawLetter'
 
 export interface ILetter extends IRawLetter {
   price: number;

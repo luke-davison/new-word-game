@@ -1,9 +1,9 @@
-import './styles/Money.css';
+import './styles/Money.css'
 
-import { observer } from 'mobx-react-lite';
-import React, { useContext } from 'react';
+import { observer } from 'mobx-react-lite'
+import React, { useContext } from 'react'
 
-import { GameContext } from '../../../stores/GameContext';
+import { GameContext } from '../../../stores/GameContext'
 
 export const Money: React.FC = observer(() => {
   const { money } = useContext(GameContext)

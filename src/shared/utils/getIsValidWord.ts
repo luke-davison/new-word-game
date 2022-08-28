@@ -1,5 +1,5 @@
-import { LetterInstance } from '../../models/LetterInstance';
-import { getIsWordInWordlist } from './getIsWordInWordlist';
+import { LetterInstance } from '../../models/LetterInstance'
+import { getIsWordInWordlist } from './getIsWordInWordlist'
 
 export const getIsValidWord = (word: LetterInstance[]): boolean => {
   const highestPosition = word.reduce((high, letter) => {

@@ -1,11 +1,11 @@
-import { ICampaignGame, IPlayer, ISubmitWord } from '../../../src/shared/datamodels';
-import { Abilities } from '../../../src/shared/enums';
-import { getDateFromString } from '../../../src/shared/utils';
-import { getWordPoints } from '../../../src/shared/utils/getWordPoints';
-import { convertWordToLetters } from '../utils/convertWordToLetters';
-import { getFundingFromLetters } from '../utils/getFundingFromLetters';
-import { getInventoryAfterSubmit } from '../utils/getInventoryAfterSubmit';
-import { getNextEndOfCampaignDateString } from '../utils/getNextEndOfCampaignDateString';
+import { ICampaignGame, IPlayer, ISubmitWord } from '../../../src/shared/datamodels'
+import { Abilities } from '../../../src/shared/enums'
+import { getDateFromString } from '../../../src/shared/utils'
+import { getWordPoints } from '../../../src/shared/utils/getWordPoints'
+import { convertWordToLetters } from '../utils/convertWordToLetters'
+import { getFundingFromLetters } from '../utils/getFundingFromLetters'
+import { getInventoryAfterSubmit } from '../utils/getInventoryAfterSubmit'
+import { getNextEndOfCampaignDateString } from '../utils/getNextEndOfCampaignDateString'
 
 export const getPlayerAfterSubmit = (body: ISubmitWord, campaignGame: ICampaignGame, player?: IPlayer): IPlayer => {
 

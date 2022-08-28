@@ -1,7 +1,7 @@
-import './styles/PreviousGamesMenuKey.css';
+import './styles/PreviousGamesMenuKey.css'
 
-import { observer } from 'mobx-react-lite';
-import { FunctionComponent } from 'react';
+import { observer } from 'mobx-react-lite'
+import { FunctionComponent } from 'react'
 
 export const PreviousGamesMenuKey: FunctionComponent = observer(() => {
   

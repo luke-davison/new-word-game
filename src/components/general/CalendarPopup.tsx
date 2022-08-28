@@ -1,6 +1,6 @@
-import './styles/CalendarPopup.css';
+import './styles/CalendarPopup.css'
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
 // import { Calendar } from './Calendar';
 
@@ -16,7 +16,7 @@ export const CalendarPopup: React.FC<CalendarPopupProps> = ({ onClose }) => {
       onClose()
     }
 
-    document.body.addEventListener('click', listener);
+    document.body.addEventListener('click', listener)
     return () => document.body.removeEventListener('click', listener)
   }, [onClose])
 

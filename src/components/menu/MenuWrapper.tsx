@@ -1,9 +1,9 @@
-import './styles/MenuWrapper.css';
+import './styles/MenuWrapper.css'
 
-import { observer } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite'
 
-import { AppTitle } from './AppTitle';
-import { FunctionComponent } from 'react';
+import { AppTitle } from './AppTitle'
+import { FunctionComponent } from 'react'
 
 export const MenuWrapper: FunctionComponent = observer(props => {
   return (
@@ -11,5 +11,5 @@ export const MenuWrapper: FunctionComponent = observer(props => {
       <AppTitle/>
       {props.children}
     </div>
-  );
+  )
 })

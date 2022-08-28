@@ -1,12 +1,12 @@
-import './App.css';
+import './App.css'
 
-import { observer } from 'mobx-react-lite';
-import React, { useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite'
+import React, { useEffect, useState } from 'react'
 
-import { AppContext } from '../stores/AppContext';
-import { AppStore } from '../stores/AppStore';
-import { Menu } from './menu/Menu';
-import { LoadingOverlay } from './general/LoadingOverlay';
+import { AppContext } from '../stores/AppContext'
+import { AppStore } from '../stores/AppStore'
+import { Menu } from './menu/Menu'
+import { LoadingOverlay } from './general/LoadingOverlay'
 
 const App: React.FC = observer(() => {
   const [appStore] = useState<AppStore>(new AppStore())
@@ -22,7 +22,7 @@ const App: React.FC = observer(() => {
         <Menu/>
       </div>
     </AppContext.Provider>
-  );
+  )
 })
 
-export default App;
+export default App

@@ -1,4 +1,4 @@
-import { ILetter } from './ILetter';
+import { ILetter } from './ILetter'
 
 export interface IGame {
   date: string;

@@ -1,10 +1,10 @@
-import { Abilities } from '../../../src/shared';
-import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../src/shared/datamodels';
-import { IUser } from '../datamodels';
-import { generateNickname } from '../utils/generateNickname';
-import { getNextEndOfCampaignDateString } from '../utils/getNextEndOfCampaignDateString';
-import { getTodayDateString } from '../utils/getTodayDateString';
-import { IDatabaseConnection } from './IDatabaseConnection';
+import { Abilities } from '../../../src/shared'
+import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../src/shared/datamodels'
+import { IUser } from '../datamodels'
+import { generateNickname } from '../utils/generateNickname'
+import { getNextEndOfCampaignDateString } from '../utils/getNextEndOfCampaignDateString'
+import { getTodayDateString } from '../utils/getTodayDateString'
+import { IDatabaseConnection } from './IDatabaseConnection'
 
 export class Database {
   constructor(public databaseConnection: IDatabaseConnection) {}
@@ -28,7 +28,7 @@ export class Database {
 
     if (player) {
       if (player.startDate !== startDate) {
-        return this.createPlayer(userId);
+        return this.createPlayer(userId)
       }
 
       return player
@@ -38,7 +38,7 @@ export class Database {
   }
 
   createPlayer = async (userId: string): Promise<IPlayer> => {
-    const startDate = getTodayDateString();
+    const startDate = getTodayDateString()
     const endDate = getNextEndOfCampaignDateString(new Date())
 
     const player: IPlayer = {
@@ -81,7 +81,7 @@ export class Database {
   }
 
   createUser = async (userId: string): Promise<IUser> => {
-    const generatedNickname = generateNickname();
+    const generatedNickname = generateNickname()
     const user: IUser = { id: userId, nickname: generatedNickname, campaignRating: 1000 }
 
     return this.databaseConnection.createUser(user)
@@ -96,7 +96,7 @@ export class Database {
   }
 
   submitGameStats = async (dateString: string, score: number, previousScore?: number): Promise<IGameStats> => {
-    let gameStats: IGameStats | undefined = await this.getGameStats(dateString);
+    let gameStats: IGameStats | undefined = await this.getGameStats(dateString)
 
     if (gameStats) {
       let scoreStat = gameStats.results.find((stat => stat[0] === score))

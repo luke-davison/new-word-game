@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express'
 
-import { ISubmitWord } from '../../../src/shared/datamodels';
-import { getDateFromString } from '../../../src/shared/utils';
+import { ISubmitWord } from '../../../src/shared/datamodels'
+import { getDateFromString } from '../../../src/shared/utils'
 
 export const checkSubmitWord = (request: Request<{}, {}, ISubmitWord>, response: Response, next: NextFunction) => {
   const message = getCheckSubmitWordError(request.body)
@@ -53,7 +53,7 @@ export const getCheckSubmitWordError = (body: ISubmitWord): string | undefined =
   }
 
   const dateFromString = getDateFromString(body.date)
-  const today = new Date();
+  const today = new Date()
 
   if (dateFromString.getFullYear() !== today.getFullYear() || dateFromString.getMonth() !== today.getMonth() || dateFromString.getDate() !== today.getDate()) {
     return "Unable to validate - date does not match"

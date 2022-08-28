@@ -1,7 +1,7 @@
-import './styles/Alphabet.css';
+import './styles/Alphabet.css'
 
-import { observer } from 'mobx-react-lite';
-import React, { KeyboardEvent, useEffect } from 'react';
+import { observer } from 'mobx-react-lite'
+import React, { KeyboardEvent, useEffect } from 'react'
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz "
 const alphabetSplit = ["abcdefghi", "jklmnopqr", "stuvwxyz "]
@@ -19,7 +19,7 @@ export const Alphabet: React.FC<AlphabetProps> = observer(({ onSelect }) => {
       }
     }
 
-    document.body.addEventListener('keydown', listener);
+    document.body.addEventListener('keydown', listener)
     return () => document.body.removeEventListener('keydown', listener)
   }, [onSelect])
 

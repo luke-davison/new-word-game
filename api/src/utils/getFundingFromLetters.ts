@@ -1,8 +1,8 @@
-import { ILetter } from '../../../src/shared/datamodels';
-import { Abilities } from '../../../src/shared/enums/Abilities';
+import { ILetter } from '../../../src/shared/datamodels'
+import { Abilities } from '../../../src/shared/enums/Abilities'
 
 export const getFundingFromLetters = (letters: ILetter[]): number => {
-  let funding: number = 0;
+  let funding: number = 0
 
   letters.forEach(letter => {
     if (letter.ability === Abilities.Funding1) {

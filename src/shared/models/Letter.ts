@@ -1,6 +1,6 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx'
 
-import { ILetter } from '../datamodels';
+import { ILetter } from '../datamodels'
 
 export interface IGameLetter extends ILetter {
   color: number;

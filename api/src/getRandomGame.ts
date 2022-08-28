@@ -1,9 +1,9 @@
-import { ILetter } from '../../src/shared/datamodels';
-import { Abilities } from '../../src/shared/enums';
-import { getIsCharacterVowel, wordlist } from '../../src/shared/utils';
+import { ILetter } from '../../src/shared/datamodels'
+import { Abilities } from '../../src/shared/enums'
+import { getIsCharacterVowel, wordlist } from '../../src/shared/utils'
 
 export const generateGame = (): Omit<ILetter, "id">[] => {
-  const letters = getRandomWord().split("");
+  const letters = getRandomWord().split("")
   const uniqueLetters = sortByFrequency(Array.from(new Set(letters)))
   const output: Omit<ILetter, "id">[] = []
   
@@ -64,10 +64,10 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
         }
       } else if (ability === "word-length") {
         const minLength = Math.floor(Math.random() * 2) + 6
-        let ability: Abilities | undefined;
+        let ability: Abilities | undefined
         switch (minLength) {
-            case 6: ability = Abilities.MinWordLength6; break;
-            case 7: ability = Abilities.MinWordLength7; break;
+          case 6: ability = Abilities.MinWordLength6; break
+          case 7: ability = Abilities.MinWordLength7; break
         }
         const frequencyFactor = Math.floor(frequencyIndex / 14) + Math.floor((minLength - 4) / 2) 
         output.unshift({
@@ -208,9 +208,9 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
 
 export const getRandomWord = (): string => {
   const r = Math.random()
-  const wordlistLength = wordlist.length;
-  const index = Math.floor(r * wordlistLength);
-  const word = wordlist[index];
+  const wordlistLength = wordlist.length
+  const index = Math.floor(r * wordlistLength)
+  const word = wordlist[index]
   if (word.length >= 6 && word.length <= 7) {
     return word
   }

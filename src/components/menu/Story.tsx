@@ -1,5 +1,5 @@
-import { observer } from 'mobx-react-lite';
-import { FunctionComponent } from 'react';
+import { observer } from 'mobx-react-lite'
+import { FunctionComponent } from 'react'
 
 export const Story: FunctionComponent = observer(() => {
   return (

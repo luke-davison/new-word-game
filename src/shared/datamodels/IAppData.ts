@@ -1,8 +1,8 @@
-import { ICampaignGame } from './ICampaignGame';
-import { IGameStats } from './IGameStats';
-import { ILeague } from './ILeague';
-import { IDailyGame } from './index';
-import { IPlayer } from './IPlayer';
+import { ICampaignGame } from './ICampaignGame'
+import { IGameStats } from './IGameStats'
+import { ILeague } from './ILeague'
+import { IDailyGame } from './index'
+import { IPlayer } from './IPlayer'
 
 export interface IAppData {
   date: string;

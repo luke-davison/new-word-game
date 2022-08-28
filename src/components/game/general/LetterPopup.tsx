@@ -1,12 +1,12 @@
-import './styles/LetterPopup.css';
+import './styles/LetterPopup.css'
 
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 
-import { LetterInstance } from '../../../models/LetterInstance';
-import { Abilities } from '../../../shared';
-import { getAbilityText } from '../../../utils/getAbilityText';
-import { AbilityImage } from './AbilityImage';
-import { Alphabet } from './Alphabet';
+import { LetterInstance } from '../../../models/LetterInstance'
+import { Abilities } from '../../../shared'
+import { getAbilityText } from '../../../utils/getAbilityText'
+import { AbilityImage } from './AbilityImage'
+import { Alphabet } from './Alphabet'
 
 interface LetterPopupProps {
   letter: LetterInstance
@@ -19,7 +19,7 @@ export const LetterPopup: React.FC<LetterPopupProps> = ({ letter, onClose }) => 
       onClose()
     }
 
-    document.body.addEventListener('click', listener);
+    document.body.addEventListener('click', listener)
     return () => document.body.removeEventListener('click', listener)
   }, [onClose])
 

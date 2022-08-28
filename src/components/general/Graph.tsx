@@ -1,8 +1,8 @@
 import "./styles/Graph.css"
 
-import { observer } from "mobx-react-lite";
-import { FunctionComponent } from "react";
-import { IGameStats } from "../../shared";
+import { observer } from "mobx-react-lite"
+import { FunctionComponent } from "react"
+import { IGameStats } from "../../shared"
 
 interface IGraphProps {
   stats: IGameStats;

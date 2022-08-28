@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
+import { Request, Response } from 'express'
 
-import { IGameStats, ISubmitWord } from '../../../src/shared/datamodels';
-import { getWordPoints } from '../../../src/shared/utils/getWordPoints';
-import { db } from '../db';
-import { validateSubmitWord } from '../middleware/validateSubmitWord';
-import { convertWordToLetters } from '../utils/convertWordToLetters';
+import { IGameStats, ISubmitWord } from '../../../src/shared/datamodels'
+import { getWordPoints } from '../../../src/shared/utils/getWordPoints'
+import { db } from '../db'
+import { validateSubmitWord } from '../middleware/validateSubmitWord'
+import { convertWordToLetters } from '../utils/convertWordToLetters'
 
 export const submitDailyWord = async (request: Request<{}, {}, ISubmitWord>, response: Response) => {
   const { body } = request

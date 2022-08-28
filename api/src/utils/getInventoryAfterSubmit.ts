@@ -1,5 +1,5 @@
-import { ILetter } from '../../../src/shared/datamodels';
-import { Abilities } from '../../../src/shared/enums';
+import { ILetter } from '../../../src/shared/datamodels'
+import { Abilities } from '../../../src/shared/enums'
 
 export const getInventoryAfterSubmit = (letters: ILetter[], inventory: ILetter[] = []): ILetter[] => {
   const unusedInventory = inventory.filter(inventoryLetter => !letters.some(letter => letter.id === inventoryLetter.id))

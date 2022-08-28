@@ -54,7 +54,7 @@
       "warn",
       2,
       {
-        "SwitchCase": 2
+        "SwitchCase": 1
       }
     ],
     "key-spacing": [
@@ -81,6 +81,10 @@
         "beforeSelfClosing": "never",
         "beforeClosing": "never"
       }
+    ],
+    "semi": [
+      "warn",
+      "never"
     ],
     "semi-spacing": [
       "warn",

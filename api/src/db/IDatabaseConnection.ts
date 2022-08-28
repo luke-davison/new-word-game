@@ -1,5 +1,5 @@
-import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../src/shared/datamodels';
-import { IUser } from '../datamodels';
+import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../src/shared/datamodels'
+import { IUser } from '../datamodels'
 
 export interface IDatabaseConnection {
   getPlayer: (userId: string) => Promise<IPlayer | undefined>

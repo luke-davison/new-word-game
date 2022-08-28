@@ -1,7 +1,7 @@
 import {
   ICampaignGame, IDailyGame, ILetter, IPlayer
-} from '../../../src/shared/datamodels';
-import { IRawLetter } from '../../../src/shared/datamodels/IRawLetter';
+} from '../../../src/shared/datamodels'
+import { IRawLetter } from '../../../src/shared/datamodels/IRawLetter'
 
 export const convertWordToLetters = (
   word: IRawLetter[],

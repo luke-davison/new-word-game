@@ -1,5 +1,5 @@
-import React from 'react';
+import React from 'react'
 
-import { GameStore } from './GameStore';
+import { GameStore } from './GameStore'
 
-export const GameContext = React.createContext<GameStore>({} as GameStore);
+export const GameContext = React.createContext<GameStore>({} as GameStore)

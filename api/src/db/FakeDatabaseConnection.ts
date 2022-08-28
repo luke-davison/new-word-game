@@ -1,8 +1,8 @@
-import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../src/shared/datamodels';
-import { IUser } from '../datamodels';
-import { getCampaignGame } from '../games/getCampaignGame';
-import { getDailyGame } from '../games/getDailyGame';
-import { IDatabaseConnection } from './IDatabaseConnection';
+import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../src/shared/datamodels'
+import { IUser } from '../datamodels'
+import { getCampaignGame } from '../games/getCampaignGame'
+import { getDailyGame } from '../games/getDailyGame'
+import { IDatabaseConnection } from './IDatabaseConnection'
 
 export class FakeDatabaseConnection implements IDatabaseConnection {
   players: Map<string, IPlayer> = new Map()
@@ -47,10 +47,10 @@ export class FakeDatabaseConnection implements IDatabaseConnection {
 
   getGameStats = (dateString: string): Promise<IGameStats | undefined> => {
     return Promise.resolve(this.gameStats.get(dateString))
-  };
+  }
 
   updateGameStats = (gameStats: IGameStats): Promise<IGameStats> => {
     this.gameStats.set(gameStats.date, gameStats)
     return Promise.resolve(gameStats)
-  };
+  }
 }

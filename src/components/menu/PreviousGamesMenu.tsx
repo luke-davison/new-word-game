@@ -1,13 +1,13 @@
-import './styles/PreviousGamesMenu.css';
+import './styles/PreviousGamesMenu.css'
 
-import { observer } from 'mobx-react-lite';
-import { FunctionComponent, useContext, useEffect } from 'react';
+import { observer } from 'mobx-react-lite'
+import { FunctionComponent, useContext, useEffect } from 'react'
 
-import { getDateFromString, getDateString } from '../../shared';
-import { AppContext } from '../../stores/AppContext';
-import { Calendar } from '../general/Calendar';
-import { MenuWrapper } from './MenuWrapper';
-import { PreviousGamesMenuKey } from './PreviousGamesMenuKey';
+import { getDateFromString, getDateString } from '../../shared'
+import { AppContext } from '../../stores/AppContext'
+import { Calendar } from '../general/Calendar'
+import { MenuWrapper } from './MenuWrapper'
+import { PreviousGamesMenuKey } from './PreviousGamesMenuKey'
 
 export const PreviousGamesMenu: FunctionComponent = observer(() => {
   const { dateString, startPreviousGame, returnToMenu, startDailyGame, cachedGameDates = [], cachedGames, cachedScores,  loadCachedGameData } = useContext(AppContext)
@@ -88,5 +88,5 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
         <button onClick={returnToMenu}>Return to Menu</button>
       </div>
     </MenuWrapper>
-  );
+  )
 })

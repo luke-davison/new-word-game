@@ -1,21 +1,21 @@
 import "./styles/DragPreviewLayer.css"
 
-import { observer } from "mobx-react-lite";
-import { useDragLayer, XYCoord } from "react-dnd";
-import { Letter } from "./Letter";
+import { observer } from "mobx-react-lite"
+import { useDragLayer, XYCoord } from "react-dnd"
+import { Letter } from "./Letter"
 
 function getItemStyles(initialOffset: XYCoord | null, currentOffset: XYCoord | null) {
   if (!initialOffset || !currentOffset) {
     return {
       display: "none"
-    };
+    }
   }
-  let { x, y } = currentOffset;
-  const transform = `translate(${x}px, ${y}px)`;
+  let { x, y } = currentOffset
+  const transform = `translate(${x}px, ${y}px)`
   return {
     transform,
     WebkitTransform: transform
-  };
+  }
 }
 
 export const DragPreviewLayer: React.FunctionComponent = observer(() => {
@@ -30,7 +30,7 @@ export const DragPreviewLayer: React.FunctionComponent = observer(() => {
     initialOffset: monitor.getInitialSourceClientOffset(),
     currentOffset: monitor.getSourceClientOffset(),
     isDragging: monitor.isDragging()
-  }));
+  }))
 
   if (!isDragging) {
     return null

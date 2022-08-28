@@ -1,4 +1,4 @@
-import { IAppData, ICampaignGame, IDailyGame, IGameStats } from '../shared';
+import { IAppData, ICampaignGame, IDailyGame, IGameStats } from '../shared'
 
 export const GAME_IDS = "gameIds"
 export const DAILY_PREFIX = "daily-"

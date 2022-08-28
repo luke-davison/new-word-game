@@ -58109,4 +58109,4 @@ export const wordlist: string[] = [
   'zoos', 
   'zulu', 
   'zulus'
-];
+]

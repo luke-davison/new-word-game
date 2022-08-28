@@ -1,12 +1,12 @@
-import './styles/Menu.css';
+import './styles/Menu.css'
 
-import { observer } from 'mobx-react-lite';
-import { FunctionComponent, useContext } from 'react';
+import { observer } from 'mobx-react-lite'
+import { FunctionComponent, useContext } from 'react'
 
-import { AppContext } from '../../stores/AppContext';
-import { Game } from '../game/general/Game';
-import { MenuWrapper } from './MenuWrapper';
-import { PreviousGamesMenu } from './PreviousGamesMenu';
+import { AppContext } from '../../stores/AppContext'
+import { Game } from '../game/general/Game'
+import { MenuWrapper } from './MenuWrapper'
+import { PreviousGamesMenu } from './PreviousGamesMenu'
 
 export const Menu: FunctionComponent = observer(() => {
   const { startCampaignGame, isPlayingCampaignGame, isPlayingDailyGame, startDailyGame, startTutorialGame, isPlayingTutorialGame, gameId, openPreviousGamesMenu, isPreviousGamesMenuOpen, isPlayingPreviousGame } = useContext(AppContext)
@@ -44,7 +44,7 @@ export const Menu: FunctionComponent = observer(() => {
         </div>
       </div>
     </MenuWrapper>
-  );
+  )
 })
 
 

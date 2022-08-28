@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
+import { Request, Response } from 'express'
 
-import { IAppData, IGameStats } from '../../../src/shared/datamodels';
-import { db } from '../db';
-import { getTodayDateString } from '../utils/getTodayDateString';
+import { IAppData, IGameStats } from '../../../src/shared/datamodels'
+import { db } from '../db'
+import { getTodayDateString } from '../utils/getTodayDateString'
 
 export const getAppData = async (request: Request<{}, {}, {}, { userId?: string }>, response: Response) => {
   const date = getTodayDateString()
