@@ -10,14 +10,14 @@ export const validateSubmitWord = (body: ISubmitWord, game: ICampaignGame | IDai
     const lastSubmitDate = getDateFromString(player.lastSubmit)
 
     if (gameDate <= lastSubmitDate) {
-      return "Unable to validate - game already submitted"
+      return 'Unable to validate - game already submitted'
     }
   }
 
   const letters = convertWordToLetters(body.word, game, player)
 
   if (letters.length !== body.word.length) {
-    return "Unable to validate - letter not available or could not find letter"
+    return 'Unable to validate - letter not available or could not find letter'
   }
 
   let isLetterIncorrect = false
@@ -34,7 +34,7 @@ export const validateSubmitWord = (body: ISubmitWord, game: ICampaignGame | IDai
   })
 
   if (isLetterIncorrect) {
-    return "Unable to validate - letter character is incorrect"
+    return 'Unable to validate - letter character is incorrect'
   }
 
   const money = game.money + (player?.funding || 0)
@@ -44,7 +44,7 @@ export const validateSubmitWord = (body: ISubmitWord, game: ICampaignGame | IDai
   }, 0)
 
   if (moneyUsed > money) {
-    return "Unable to validate - insufficient money"
+    return 'Unable to validate - insufficient money'
   }
 
   if (player?.inventory) {
@@ -58,13 +58,13 @@ export const validateSubmitWord = (body: ISubmitWord, game: ICampaignGame | IDai
     })
   
     if (inventoryLetterUsedMultipleTimes) {
-      return "Unable to validate - inventory letter used more than once"
+      return 'Unable to validate - inventory letter used more than once'
     }
   }
 
-  const isValidWord = getIsWordInWordlist(body.word.map(letter => letter.char).join(""))
+  const isValidWord = getIsWordInWordlist(body.word.map(letter => letter.char).join(''))
   if (!isValidWord) {
-    return "Unable to validate - word is not in wordlist"
+    return 'Unable to validate - word is not in wordlist'
   }
 
   return undefined

@@ -22,8 +22,8 @@ export class Player {
     this.points = this.data.points
   }
 
-  funding: IPlayer["funding"]
+  funding: IPlayer['funding']
   inventory: Letter[] = []
-  isMember: IPlayer["isMember"]
-  points: IPlayer["points"]
+  isMember: IPlayer['isMember']
+  points: IPlayer['points']
 }

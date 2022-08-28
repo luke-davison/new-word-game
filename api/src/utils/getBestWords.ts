@@ -42,7 +42,7 @@ export const getBestWords = (game: IGame, printScore: number) => {
   console.log()
 
   pointsArray.forEach(([points, num]) => {
-    console.log(points, "-", num)
+    console.log(points, '-', num)
   })
 
   console.log()
@@ -51,7 +51,7 @@ export const getBestWords = (game: IGame, printScore: number) => {
 export const calculateBestScoreForWord = (game: IGame, word: string): number => {
   const shop = setupLetters(game.letters)
 
-  const letters = word.split("")
+  const letters = word.split('')
 
   const doThing = (wordSoFar: ILetter[], lettersRemaining: string[]): number => {
     const [nextLetter,  ...otherLetters] = lettersRemaining

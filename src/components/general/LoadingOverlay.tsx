@@ -1,8 +1,8 @@
-import "./styles/LoadingOverlay.css"
+import './styles/LoadingOverlay.css'
 
-import { observer } from "mobx-react-lite"
-import { FunctionComponent, useContext, useEffect, useState } from "react"
-import { AppContext } from "../../stores/AppContext"
+import { observer } from 'mobx-react-lite'
+import { FunctionComponent, useContext, useEffect, useState } from 'react'
+import { AppContext } from '../../stores/AppContext'
 
 export const LoadingOverlay: FunctionComponent = observer(() => {
 
@@ -20,9 +20,9 @@ export const LoadingOverlay: FunctionComponent = observer(() => {
     return null
   }
 
-  let classNames = "loading-overlay"
+  let classNames = 'loading-overlay'
   if (loadingDelayElapsed || isError) {
-    classNames += " show-overlay"
+    classNames += ' show-overlay'
   }
   
   return (

@@ -63,7 +63,7 @@ export class AppStore {
     }
 
     if (this.isPlayingTutorialGame) {
-      return "intro-" + this.tutorialGameInProgress
+      return 'intro-' + this.tutorialGameInProgress
     }
 
     if (this.isPlayingPreviousGame) {
@@ -94,14 +94,14 @@ export class AppStore {
   fetchingAppData: boolean = true
 
   loadAppData = async () => {
-    const userId = window.localStorage.getItem("userId")
+    const userId = window.localStorage.getItem('userId')
     try {
       const appData = await getAppData(userId || undefined)
       runInAction(() => {
         this._appData = appData
         this.fetchingAppData = false
       })
-      window.localStorage.setItem("userId", appData.userId)
+      window.localStorage.setItem('userId', appData.userId)
       cacheAppData(appData)
     } catch (error) {
       runInAction(() => {

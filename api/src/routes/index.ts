@@ -7,14 +7,14 @@ import { submitDailyWord } from './submitDailyWord'
 
 const router = express.Router()
 
-router.get("/start", getAppData)
+router.get('/start', getAppData)
 
-router.route("/submit/weekly").post(
+router.route('/submit/weekly').post(
   checkSubmitWord,
   submitCampaignWord
 )
 
-router.route("/submit/daily").post(
+router.route('/submit/daily').post(
   checkSubmitWord,
   submitDailyWord
 )

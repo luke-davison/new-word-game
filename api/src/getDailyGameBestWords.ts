@@ -14,10 +14,10 @@ const checkGame = () => {
   if (args[0]) {
     const game = getDailyGame(args[0])
     if (game) {
-      console.log("Finding best words for game", args[0])
+      console.log('Finding best words for game', args[0])
       getBestWords(game, Number(args[1]) || 99)
     } else {
-      console.log("Game not found")
+      console.log('Game not found')
     }
     rl.close()
   } else {
@@ -29,7 +29,7 @@ const checkGame = () => {
           askAgain()
         })
       } else {
-        console.log("Game not found")
+        console.log('Game not found')
         askAgain()
       }
     }) 
@@ -38,7 +38,7 @@ const checkGame = () => {
 
 const askAgain = () => {
   rl.question('Do you want to check another? ', (reply) => {
-    if (reply.toLowerCase() === "y" || reply.toLocaleLowerCase() === 'yes') {
+    if (reply.toLowerCase() === 'y' || reply.toLocaleLowerCase() === 'yes') {
       checkGame()
     } else {
       rl.close()

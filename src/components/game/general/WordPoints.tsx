@@ -15,22 +15,22 @@ export const WordPoints: React.FC = observer(() => {
 
   return (
     <div className="word-points-area">
-      <div className={`word-points ${isSecretTargetMet ? "secret-target-met" : ""}`}>
+      <div className={`word-points ${isSecretTargetMet ? 'secret-target-met' : ''}`}>
         <span>{wordPoints}</span>
       </div>
       {isShowTargets && (
         <div className="word-points-targets">
           <div className="word-target">
-            {`Target: ` + target}
+            {'Target: ' + target}
           </div>
           { (bestWordScore || 0) >= (secretTarget || 0) && (
             <div className="secret-target">
-              {`Secret Target: ` + secretTarget}
+              {'Secret Target: ' + secretTarget}
             </div>
           ) }
           {bestWord && (
             <div className="best-word">
-              <span>{"Best: "}</span>
+              <span>{'Best: '}</span>
               { wordPoints < (bestWordScore || 0) ? (
                 <button className="link" onClick={reinstateBestWord}>{`${bestWord} (${bestWordScore})`}</button>
               ) : (

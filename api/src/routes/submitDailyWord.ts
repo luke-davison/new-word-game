@@ -11,7 +11,7 @@ export const submitDailyWord = async (request: Request<{}, {}, ISubmitWord>, res
   const dailyGame = await db.getDailyGame(request.body.date)
 
   if (!dailyGame) {
-    return response.status(400).send("Unable to validate - game not found")
+    return response.status(400).send('Unable to validate - game not found')
   }
 
   const message = validateSubmitWord(request.body, dailyGame, undefined)

@@ -32,20 +32,20 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
         }
       }
 
-      let className: string = "game-link"
+      let className: string = 'game-link'
 
       if (game.date === dateString) {
-        className += " current-game"
+        className += ' current-game'
       } else {
-        className += " previous-game"
+        className += ' previous-game'
       }
 
       const points = cachedScores.get(gameDateString) || 0
 
       if (points >= game.secretTarget) {
-        className += " met-secret-target"
+        className += ' met-secret-target'
       } else if (points >= game.target) {
-        className += " met-target"
+        className += ' met-target'
       }
 
       return (

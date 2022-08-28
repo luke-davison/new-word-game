@@ -1,5 +1,5 @@
-import { ILetter } from "../../datamodels"
-import { Abilities } from "../../enums"
+import { ILetter } from '../../datamodels'
+import { Abilities } from '../../enums'
 
 const abilitiesThatCannotBeCopied: Abilities[] = [
   Abilities.Club,

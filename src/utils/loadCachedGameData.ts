@@ -19,7 +19,7 @@ export const loadCachedGameData = (): ICachedData | undefined => {
   const scores: Map<string, number> = new Map()
   const words: Map<string, IRawLetter[]> = new Map()
 
-  const dateStrings = gameIdsString.split(",")
+  const dateStrings = gameIdsString.split(',')
 
   const filteredDates = dateStrings.filter(dateString => {
     const gameString = window.localStorage.getItem(DAILY_PREFIX + dateString)
@@ -31,7 +31,7 @@ export const loadCachedGameData = (): ICachedData | undefined => {
       const game = JSON.parse(gameString) as IDailyGame
       games.set(dateString, game)
     } catch {
-      console.log("Unable to parse daily game", gameString)
+      console.log('Unable to parse daily game', gameString)
     }
 
     const scoreString = window.localStorage.getItem(DAILY_PREFIX + dateString + SCORE_SUFFIX)
@@ -46,7 +46,7 @@ export const loadCachedGameData = (): ICachedData | undefined => {
         const word = JSON.parse(wordString) as IRawLetter[]
         words.set(dateString, word)
       } catch {
-        console.log("Unable to parse daily word", gameString)
+        console.log('Unable to parse daily word', gameString)
       }
     }
 

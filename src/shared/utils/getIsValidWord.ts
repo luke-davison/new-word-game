@@ -14,6 +14,6 @@ export const getIsValidWord = (word: LetterInstance[]): boolean => {
     return false
   }
 
-  const str = word.reduce((str: string, letter) => str + letter.char, "")
+  const str = word.reduce((str: string, letter) => str + letter.char, '')
   return getIsWordInWordlist(str)
 }

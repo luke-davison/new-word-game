@@ -44,11 +44,11 @@ export class GameStore {
     })
 
     runInAction(() => {
-      const bestWord = window.localStorage.getItem(DAILY_PREFIX + this.game?.date + WORD_SUFFIX) || ""
+      const bestWord = window.localStorage.getItem(DAILY_PREFIX + this.game?.date + WORD_SUFFIX) || ''
       if (bestWord) {
         const letters = JSON.parse(bestWord) as IRawLetter[]
         if (letters) {
-          this._bestWord = letters.map(({ char }) => char).join("")
+          this._bestWord = letters.map(({ char }) => char).join('')
           this.bestWordScore = Number(window.localStorage.getItem(DAILY_PREFIX + this.game?.date + SCORE_SUFFIX) || 0)
           this.bestLetters = letters
         }
@@ -61,21 +61,21 @@ export class GameStore {
       this.validWordTimeout = window.setTimeout(action(() => {
         if (this.isCompleteWord) {
           if (this.isValidWord) {
-            this.isValidText = "Valid word"
+            this.isValidText = 'Valid word'
             if (this.wordPoints >= (this.bestWordScore || 0)) {
               if (this.appStore.isPlayingDailyGame) {
                 this.submitWord()
               }
               this.bestWordScore = this.wordPoints
-              this._bestWord = this.playerWord.map((letter) => letter.char).join("")
+              this._bestWord = this.playerWord.map((letter) => letter.char).join('')
               this.bestLetters = convertLetterInstancesToWord(this.playerWord)
               window.localStorage.setItem(DAILY_PREFIX + this.game?.date + WORD_SUFFIX, JSON.stringify(this.bestLetters))
               window.localStorage.setItem(DAILY_PREFIX + this.game?.date + SCORE_SUFFIX, String(this.bestWordScore))
             }
           } else if (this.money < 0) {
-            this.isValidText = "Not enough money"
+            this.isValidText = 'Not enough money'
           } else {
-            this.isValidText = "Not a word"
+            this.isValidText = 'Not a word'
           }
         }
       }), 1500)
@@ -236,7 +236,7 @@ export class GameStore {
 
   get bestWord() {
     if (!this._bestWord) {
-      return ""
+      return ''
     }
 
     return this._bestWord.slice(0, 1).toUpperCase() + this._bestWord.slice(1) 
@@ -304,8 +304,8 @@ export class GameStore {
       setTimeout(() => {
         // check whether letter has been removed
         if (this.playerWord.some((otherLetter) => otherLetter.id === letter.id)) {
-          const newValue = prompt("Enter a letter")
-          letter.setWildLetter(newValue || "")
+          const newValue = prompt('Enter a letter')
+          letter.setWildLetter(newValue || '')
         }
       }, 300)
     }
@@ -337,8 +337,8 @@ export class GameStore {
     word.sort((a, b) => (a.position || 0) - (b.position || 0))
 
     const submitWord: ISubmitWord = {
-      date: this.appStore.dateString || "",
-      userId: this.appStore.userId || "",
+      date: this.appStore.dateString || '',
+      userId: this.appStore.userId || '',
       word: word.map(({ parent, char }) => ({ id: parent.id, char }))
     }
 

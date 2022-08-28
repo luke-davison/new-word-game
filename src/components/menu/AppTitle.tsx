@@ -1,6 +1,6 @@
-import "./styles/AppTitle.css"
+import './styles/AppTitle.css'
 
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
 export const AppTitle: FunctionComponent = () => {
   return (

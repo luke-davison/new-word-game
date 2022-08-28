@@ -1,8 +1,8 @@
-import "./styles/Graph.css"
+import './styles/Graph.css'
 
-import { observer } from "mobx-react-lite"
-import { FunctionComponent } from "react"
-import { IGameStats } from "../../shared"
+import { observer } from 'mobx-react-lite'
+import { FunctionComponent } from 'react'
+import { IGameStats } from '../../shared'
 
 interface IGraphProps {
   stats: IGameStats;
@@ -44,7 +44,7 @@ export const Graph: FunctionComponent<IGraphProps> = observer(props => {
             <div key={xAxe} className="x-column">
               <div className="x-column-inner">
                 { value > 0 && (
-                  <div className="graph-bar" style={{ height: (barHeight * 100).toFixed(0) + "%" }}/>
+                  <div className="graph-bar" style={{ height: (barHeight * 100).toFixed(0) + '%' }}/>
                 )}
                 { xAxe === props.selected && (
                   <div className="selected-bar"/>

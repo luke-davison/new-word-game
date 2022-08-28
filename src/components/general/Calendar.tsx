@@ -3,8 +3,8 @@ import './styles/Calendar.css'
 import { observer } from 'mobx-react-lite'
 import { FunctionComponent, MouseEvent, useState } from 'react'
 
-const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-const dayHeadings: string[] = ["M", "T", "W", "T", "F", "S", "S"]
+const months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const dayHeadings: string[] = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 
 interface CalendarProps {
   startDate: Date;
@@ -77,12 +77,12 @@ export const Calendar: FunctionComponent<CalendarProps> = observer(({ startDate,
         <div className="calendar-main">
           {days.map((x, index) => {
             
-            let className = "calendar-day"
+            let className = 'calendar-day'
             if (index === 0) {
-              className += " calendar-day-offset-" + firstDayOfWeek
+              className += ' calendar-day-offset-' + firstDayOfWeek
             }
             if (month === startDate.getMonth() && year === startDate.getFullYear() && index + 1 === startDate.getDate()) {
-              className += " calendar-day-today"
+              className += ' calendar-day-today'
             }
 
             return (

@@ -14,7 +14,7 @@ export const Counters: React.FC = observer(() => {
     <div className="counters-container">
       <Money/>
       <div className="status-text">
-        {isValidText || " "}
+        {isValidText || ' '}
       </div>
       <WordPoints/>
     </div>

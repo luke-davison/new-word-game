@@ -2,19 +2,19 @@ import { ILetter } from '../../src/shared/datamodels'
 import { Abilities } from '../../src/shared/enums'
 import { getIsCharacterVowel, wordlist } from '../../src/shared/utils'
 
-export const generateGame = (): Omit<ILetter, "id">[] => {
-  const letters = getRandomWord().split("")
+export const generateGame = (): Omit<ILetter, 'id'>[] => {
+  const letters = getRandomWord().split('')
   const uniqueLetters = sortByFrequency(Array.from(new Set(letters)))
-  const output: Omit<ILetter, "id">[] = []
+  const output: Omit<ILetter, 'id'>[] = []
   
   const mostCommonLetter = uniqueLetters.splice(0, 1)[0]
-  let mostCommonLetterOutput: Omit<ILetter, "id"> | undefined = {
+  let mostCommonLetterOutput: Omit<ILetter, 'id'> | undefined = {
     char: mostCommonLetter,
     price: 1,
     points: 2
   }
   
-  const abilities = ["multiply", "vowel", "word-length", "start", "last", "vowels", "wilds", "next-to-wild", "other-position", "large", "notvowels", "set-length", "other-ability"]
+  const abilities = ['multiply', 'vowel', 'word-length', 'start', 'last', 'vowels', 'wilds', 'next-to-wild', 'other-position', 'large', 'notvowels', 'set-length', 'other-ability']
   const abilitiesShuffled: string[] = []
   for (let i = 0; i < letters.length - 1; i++) {
     abilitiesShuffled.push(abilities.splice(Math.floor(Math.random() * abilities.length), 1)[0])
@@ -42,14 +42,14 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
       
       const frequencyIndex = letterFrequencies.findIndex((a) => a.letter === char)
       
-      if (ability === "set-points") {
+      if (ability === 'set-points') {
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
           char,
           price: 2,
           points: 3 + frequencyFactor
         })
-      } else if (ability === "start") {
+      } else if (ability === 'start') {
         if (letters[0] === char) {
           redoAbility()
         } else {
@@ -62,7 +62,7 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
             abilityPoints: 4
           })
         }
-      } else if (ability === "word-length") {
+      } else if (ability === 'word-length') {
         const minLength = Math.floor(Math.random() * 2) + 6
         let ability: Abilities | undefined
         switch (minLength) {
@@ -77,8 +77,8 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
           ability,
           abilityPoints: 4
         })
-      } else if (ability === "vowel") {
-        if ("hjklmnqrvxz".includes(char)) {
+      } else if (ability === 'vowel') {
+        if ('hjklmnqrvxz'.includes(char)) {
           redoAbility()
         } else {
           const frequencyFactor = Math.floor(frequencyIndex / 14)
@@ -90,7 +90,7 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
             abilityPoints: getIsCharacterVowel(char) ? 4 : 3
           })
         }
-      } else if (ability === "multiply") {
+      } else if (ability === 'multiply') {
         // TODO - more expensive if large letter exists
         const possiblePositions: Abilities[] = [Abilities.OtherInPosition1, Abilities.OtherInPosition2, Abilities.OtherInPosition3, Abilities.OtherInPosition4]
         const randomIndex = Math.floor(Math.random() * possiblePositions.length)
@@ -101,8 +101,8 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
           points: 4,
           ability: possiblePositions[randomIndex],
         })
-      } else if (ability === "last") {
-        if ("dijqrsuvwxy".includes(char)) {
+      } else if (ability === 'last') {
+        if ('dijqrsuvwxy'.includes(char)) {
           redoAbility()
         } else {
           const frequencyFactor = Math.floor(frequencyIndex / 14)
@@ -114,7 +114,7 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
             abilityPoints: 4
           })
         }
-      } else if (ability === "vowels") {
+      } else if (ability === 'vowels') {
         output.unshift({
           char,
           price: 4,
@@ -122,7 +122,7 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
           ability: Abilities.Vowels,
           abilityPoints: 1
         })
-      } else if (ability === "wilds") {
+      } else if (ability === 'wilds') {
         // TODO - cannot be used if too much money
         output.unshift({
           char,
@@ -131,7 +131,7 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
           ability: Abilities.Wilds,
           abilityPoints: 1
         })
-      } else if (ability === "next-to-wild") {
+      } else if (ability === 'next-to-wild') {
         const frequencyFactor = Math.floor(frequencyIndex / 14)
         output.unshift({
           char,
@@ -140,7 +140,7 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
           ability: Abilities.NextToWild,
           abilityPoints: 3
         })
-      } else if (ability === "other-position") {
+      } else if (ability === 'other-position') {
         const positions: Abilities[] = [Abilities.InPosition2, Abilities.InPosition3, Abilities.InPosition4]
         const randomIndex = Math.floor(Math.random() * positions.length)
 
@@ -156,14 +156,14 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
             abilityPoints: 4
           })
         }
-      } else if (ability === "large") {
+      } else if (ability === 'large') {
         output.unshift({
           char,
           price: 5,
           points: 8
         })
-      } else if (ability === "notvowels") {
-        if ("aehijklmnoqruvxz".includes(char)) {
+      } else if (ability === 'notvowels') {
+        if ('aehijklmnoqruvxz'.includes(char)) {
           redoAbility()
         } else {
           const frequencyFactor = Math.floor(frequencyIndex / 14)
@@ -175,7 +175,7 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
             abilityPoints: 4
           })
         }
-      } else if (ability === "set-length") {
+      } else if (ability === 'set-length') {
         const frequencyFactor1 = frequencyIndex > 7 ? 1 : 0
         const frequencyFactor2 = Math.floor(frequencyIndex / 16)
         const lengths: Abilities[] = [Abilities.WordLength5, Abilities.WordLength6, Abilities.WordLength7]
@@ -187,7 +187,7 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
           ability: lengths[randomIndex],
           abilityPoints: 4 + frequencyFactor2
         })
-      } else if (ability === "other-ability") {
+      } else if (ability === 'other-ability') {
         const frequencyFactor1 = frequencyIndex > 10 ? 1 : 0
         const otherPositions: Abilities[] = [Abilities.CopyAbilityInPosition1, Abilities.CopyAbilityInPosition2, Abilities.CopyAbilityInPosition3, Abilities.CopyAbilityInPosition4, Abilities.CopyAbilityInPosition5]
         const randomIndex = Math.floor(Math.random() * otherPositions.length)
@@ -226,16 +226,16 @@ export const sortByFrequency = (letters: string[]) => {
   })
 }
 
-const alphabet = "abcdefghijklmnopqrstuvwxyz-"
+const alphabet = 'abcdefghijklmnopqrstuvwxyz-'
 
 export const countLetters = () => {
   const map = new Map()
-  alphabet.split("").forEach((letter) => {
+  alphabet.split('').forEach((letter) => {
     map.set(letter, 0)
   })
 
   wordlist.forEach((word) => {
-    const letter = word.split("")[0]
+    const letter = word.split('')[0]
     map.set(letter, map.get(letter) + 1)
   })
 
@@ -243,32 +243,32 @@ export const countLetters = () => {
 }
 
 const letterFrequencies = [
-  { letter: "e", count: 56003 },
-  { letter: "i", count: 2631 },
-  { letter: "s", count: 41429 },
-  { letter: "a", count: 36650 },
-  { letter: "r", count: 35208 },
-  { letter: "n", count: 34477 },
-  { letter: "t", count: 33933 },
-  { letter: "o", count: 29053 },
-  { letter: "l", count: 26399 },
-  { letter: "c", count: 19909 },
-  { letter: "d", count: 19367 },
-  { letter: "u", count: 16500 },
-  { letter: "g", count: 14299 },
-  { letter: "p", count: 14119 },
-  { letter: "m", count: 12944 },
-  { letter: "h", count: 10402 },
-  { letter: "b", count: 9046 },
-  { letter: "y", count: 8349 },
-  { letter: "f", count: 6876 },
-  { letter: "v", count: 5130 },
-  { letter: "w", count: 4127 },
-  { letter: "k", count: 3943 },
-  { letter: "x", count: 1391 },
-  { letter: "q", count: 870 },
-  { letter: "j", count: 807 },
-  { letter: "z", count: 715 }
+  { letter: 'e', count: 56003 },
+  { letter: 'i', count: 2631 },
+  { letter: 's', count: 41429 },
+  { letter: 'a', count: 36650 },
+  { letter: 'r', count: 35208 },
+  { letter: 'n', count: 34477 },
+  { letter: 't', count: 33933 },
+  { letter: 'o', count: 29053 },
+  { letter: 'l', count: 26399 },
+  { letter: 'c', count: 19909 },
+  { letter: 'd', count: 19367 },
+  { letter: 'u', count: 16500 },
+  { letter: 'g', count: 14299 },
+  { letter: 'p', count: 14119 },
+  { letter: 'm', count: 12944 },
+  { letter: 'h', count: 10402 },
+  { letter: 'b', count: 9046 },
+  { letter: 'y', count: 8349 },
+  { letter: 'f', count: 6876 },
+  { letter: 'v', count: 5130 },
+  { letter: 'w', count: 4127 },
+  { letter: 'k', count: 3943 },
+  { letter: 'x', count: 1391 },
+  { letter: 'q', count: 870 },
+  { letter: 'j', count: 807 },
+  { letter: 'z', count: 715 }
 ]
 
 // const firstLetterFrequencies = [

@@ -1,5 +1,5 @@
-import { ILetter } from "../datamodels"
-import { getAbilityPoints } from "./abilities/getAbilityPoints"
+import { ILetter } from '../datamodels'
+import { getAbilityPoints } from './abilities/getAbilityPoints'
 
 export const getWordPoints = (word: ILetter[]): number => {
   return word.reduce((sum, letter, position) => {

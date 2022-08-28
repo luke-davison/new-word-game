@@ -13,11 +13,11 @@ export const LetterShop: React.FC = observer(() => {
   return (
     <div className="shop-container">
       { shopLetters.map((shopLetter, index) => {
-        const className = "shop-letter-container shop-letter-char-" + (shopLetter.char || "empty")
+        const className = 'shop-letter-container shop-letter-char-' + (shopLetter.char || 'empty')
         return (
           <div key={index} className={className} onDoubleClick={() => onQuickAddLetter(shopLetter)}>
             <div className="shop-letter-price">
-              {"$" + shopLetter.price}
+              {'$' + shopLetter.price}
             </div>
             <DraggableLetter letter={shopLetter}/>
           </div>
@@ -26,13 +26,13 @@ export const LetterShop: React.FC = observer(() => {
       { secretShopLetters.map((shopLetter, index) => (
         <div key={index} className="shop-letter-container secret-letter" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
           <div className="shop-letter-price">
-            {"$" + shopLetter.price}
+            {'$' + shopLetter.price}
           </div>
           <DraggableLetter letter={shopLetter} label="Secret"/>
         </div>
       ))}
       { inventory.map((inventoryLetter, index) => {
-        const classNames = "inventory-letter-container inventory-letter-" + (index + 1)
+        const classNames = 'inventory-letter-container inventory-letter-' + (index + 1)
         return (
           <div key={index} className={classNames} onDoubleClick={() => onQuickAddLetter(inventoryLetter)}>
             { getIsLetterUsed(inventoryLetter) ? (

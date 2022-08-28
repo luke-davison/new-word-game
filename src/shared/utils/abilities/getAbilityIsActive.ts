@@ -1,10 +1,10 @@
-import { Abilities } from "../../enums"
-import { ILetter, IPlayer } from "../../datamodels"
-import { getIsNextToVowelActive } from "./getIsNextToVowelActive"
-import { getIsNextToWildActive } from "./getNextToWildActive"
-import { getVowelsActive } from "./getVowelsActive"
-import { getWildsActive } from "./getWildsActive"
-import { getIsAnotherAbilityInPosition } from "./getIsAnotherAbilityInPosition"
+import { Abilities } from '../../enums'
+import { ILetter, IPlayer } from '../../datamodels'
+import { getIsNextToVowelActive } from './getIsNextToVowelActive'
+import { getIsNextToWildActive } from './getNextToWildActive'
+import { getVowelsActive } from './getVowelsActive'
+import { getWildsActive } from './getWildsActive'
+import { getIsAnotherAbilityInPosition } from './getIsAnotherAbilityInPosition'
 
 export const getAbilityIsActive = (word: Array<ILetter | undefined>, position: number, player?: IPlayer): boolean => {
   const letter = word[position]

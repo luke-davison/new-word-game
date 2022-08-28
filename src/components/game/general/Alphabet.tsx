@@ -3,8 +3,8 @@ import './styles/Alphabet.css'
 import { observer } from 'mobx-react-lite'
 import React, { KeyboardEvent, useEffect } from 'react'
 
-const alphabet = "abcdefghijklmnopqrstuvwxyz "
-const alphabetSplit = ["abcdefghi", "jklmnopqr", "stuvwxyz "]
+const alphabet = 'abcdefghijklmnopqrstuvwxyz '
+const alphabetSplit = ['abcdefghi', 'jklmnopqr', 'stuvwxyz ']
 
 interface AlphabetProps {
   onSelect: (letter: string) => void
@@ -13,7 +13,7 @@ interface AlphabetProps {
 export const Alphabet: React.FC<AlphabetProps> = observer(({ onSelect }) => {
   useEffect(() => {
     const listener = (event: globalThis.KeyboardEvent) => {
-      const letters = alphabet.split("")
+      const letters = alphabet.split('')
       if (letters.indexOf(event.key.toLowerCase()) !== -1) {
         onSelect(event.key)
       }
@@ -31,7 +31,7 @@ export const Alphabet: React.FC<AlphabetProps> = observer(({ onSelect }) => {
     <div className="alphabet-container" onKeyDown={onKeyDown} tabIndex={0}>
       {alphabetSplit.map((row, index) => (
         <div key={index} className="alphabet-row">
-          {row.split("").map((letter, index) => (
+          {row.split('').map((letter, index) => (
             <div key={index} className="alphabet-letter" onClick={() => onSelect(letter)}>
               {letter}
             </div>

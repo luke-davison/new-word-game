@@ -45,11 +45,11 @@ export class Database {
       startDate,
       endDate,
       userId,
-      inventory: [{ id: "asdf", price: 1, points: 4, ability: Abilities.Retain, char: "e" }, { id: "asdf2", price: 1, points: 4, ability: Abilities.Retain, char: "f" }], // temporary
+      inventory: [{ id: 'asdf', price: 1, points: 4, ability: Abilities.Retain, char: 'e' }, { id: 'asdf2', price: 1, points: 4, ability: Abilities.Retain, char: 'f' }], // temporary
       funding: 0,
       isMember: true,
       points: 0,
-      lastSubmit: ""
+      lastSubmit: ''
     }
 
     return this.databaseConnection.createPlayer(player)
@@ -118,7 +118,7 @@ export class Database {
       if (scoreStat) {
         scoreStat[1] = scoreStat[1] - 1
       } else {
-        console.log("Unable to adjust previous score") // should never happen
+        console.log('Unable to adjust previous score') // should never happen
       }
     }
 

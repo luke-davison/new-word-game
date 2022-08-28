@@ -16,47 +16,47 @@ export const checkSubmitWord = (request: Request<{}, {}, ISubmitWord>, response:
 export const getCheckSubmitWordError = (body: ISubmitWord): string | undefined => {
   const wordIsArray = Array.isArray(body.word)
   if (!wordIsArray) {
-    return "Unable to validate - invalid word"
+    return 'Unable to validate - invalid word'
   }
 
   let isLetterError: boolean = false
 
   body.word.forEach(letter => {
-    if (!letter || typeof letter !== "object") {
+    if (!letter || typeof letter !== 'object') {
       isLetterError = true
       return
     }
 
-    if (!letter.id || typeof letter.id !== "string") {
+    if (!letter.id || typeof letter.id !== 'string') {
       isLetterError = true
       return
     }
 
-    if (!letter.char || typeof letter.char !== "string") {
+    if (!letter.char || typeof letter.char !== 'string') {
       isLetterError = true
       return
     }
   })
 
   if (isLetterError) {
-    return "Unable to validate - invalid letter"
+    return 'Unable to validate - invalid letter'
   }
 
-  const hasUserId = body.userId && typeof body.userId === "string"
+  const hasUserId = body.userId && typeof body.userId === 'string'
   if (!hasUserId) {
-    return "Unable to validate - no user"
+    return 'Unable to validate - no user'
   }
 
-  const hasDate = body.date && typeof body.date === "string"
+  const hasDate = body.date && typeof body.date === 'string'
   if (!hasDate) {
-    return "Unable to validate - no date"
+    return 'Unable to validate - no date'
   }
 
   const dateFromString = getDateFromString(body.date)
   const today = new Date()
 
   if (dateFromString.getFullYear() !== today.getFullYear() || dateFromString.getMonth() !== today.getMonth() || dateFromString.getDate() !== today.getDate()) {
-    return "Unable to validate - date does not match"
+    return 'Unable to validate - date does not match'
   }
 
   return undefined

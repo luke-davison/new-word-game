@@ -75,6 +75,13 @@
       "warn",
       "always"
     ],
+    "quotes": [
+      "warn",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
     "react/jsx-tag-spacing": [
       "warn",
       {

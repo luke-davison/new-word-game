@@ -14,7 +14,7 @@ export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceInde
 
   const letter = playerWord.find((letter) => letter.position === spaceIndex)
   const [{ isOver }, drop] = useDrop({
-    accept: ["letter"],
+    accept: ['letter'],
     drop: (storeLetter: LetterInstance) => onDropLetter(storeLetter, spaceIndex),
     collect: (monitor) => ({
       isOver: monitor.isOver(),

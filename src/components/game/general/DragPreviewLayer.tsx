@@ -1,13 +1,13 @@
-import "./styles/DragPreviewLayer.css"
+import './styles/DragPreviewLayer.css'
 
-import { observer } from "mobx-react-lite"
-import { useDragLayer, XYCoord } from "react-dnd"
-import { Letter } from "./Letter"
+import { observer } from 'mobx-react-lite'
+import { useDragLayer, XYCoord } from 'react-dnd'
+import { Letter } from './Letter'
 
 function getItemStyles(initialOffset: XYCoord | null, currentOffset: XYCoord | null) {
   if (!initialOffset || !currentOffset) {
     return {
-      display: "none"
+      display: 'none'
     }
   }
   let { x, y } = currentOffset

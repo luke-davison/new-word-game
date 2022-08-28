@@ -1,2 +1,2 @@
-export * from "./Letter"
-export * from "./Player"
+export * from './Letter'
+export * from './Player'

@@ -19,7 +19,7 @@ export const CampaignCounters: React.FC = observer(() => {
         {`${player?.points || 0} total points so far`}
       </div>
       <div className="member-counter">
-        {`Is ${player?.isMember ? "" : "not "} a secret club member`}
+        {`Is ${player?.isMember ? '' : 'not '} a secret club member`}
       </div>
     </div>
   )

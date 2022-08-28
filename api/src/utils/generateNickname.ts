@@ -1,15 +1,15 @@
 import { wordlist } from '../../../src/shared/utils'
 
 const titles: string[] = [
-  "Mr",
-  "Mrs",
-  "Miss",
-  "Ms",
-  "Dr",
-  "Sir",
-  "Lady",
-  "Lord",
-  "Captain"
+  'Mr',
+  'Mrs',
+  'Miss',
+  'Ms',
+  'Dr',
+  'Sir',
+  'Lady',
+  'Lord',
+  'Captain'
 ]
 
 export const generateNickname = () => {
@@ -17,5 +17,5 @@ export const generateNickname = () => {
   const wordIndex = Math.floor(Math.random() * wordlist.length)
   const word = wordlist[wordIndex]
 
-  return titles[titleIndex] + " " + word.slice(0, 1)[0].toUpperCase() + word.slice(1)
+  return titles[titleIndex] + ' ' + word.slice(0, 1)[0].toUpperCase() + word.slice(1)
 }

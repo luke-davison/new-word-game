@@ -1,11 +1,11 @@
 import { IAppData, ICampaignGame, IDailyGame, IGameStats } from '../shared'
 
-export const GAME_IDS = "gameIds"
-export const DAILY_PREFIX = "daily-"
-export const DAILY_STATS_PREVIX = "dailystats-"
-export const CAMPAIGN_PREFIX = "campaign-"
-export const WORD_SUFFIX = "-word"
-export const SCORE_SUFFIX = "-score"
+export const GAME_IDS = 'gameIds'
+export const DAILY_PREFIX = 'daily-'
+export const DAILY_STATS_PREVIX = 'dailystats-'
+export const CAMPAIGN_PREFIX = 'campaign-'
+export const WORD_SUFFIX = '-word'
+export const SCORE_SUFFIX = '-score'
 
 export const cacheAppData = (appData: IAppData) => {
   cacheDate(appData.date)
@@ -19,9 +19,9 @@ export const cacheAppData = (appData: IAppData) => {
 
 const cacheDate = (dateString: string) => {
   const gameIdsString = window.localStorage.getItem(GAME_IDS)
-  const gameIds: Set<string> = new Set(gameIdsString ? gameIdsString.split(",") : [])
+  const gameIds: Set<string> = new Set(gameIdsString ? gameIdsString.split(',') : [])
   gameIds.add(dateString)
-  window.localStorage.setItem(GAME_IDS, Array.from(gameIds).join(","))
+  window.localStorage.setItem(GAME_IDS, Array.from(gameIds).join(','))
 }
 
 const cacheDailyGame = (game: IDailyGame) => {

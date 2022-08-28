@@ -1,4 +1,4 @@
-import "./styles/Game.css"
+import './styles/Game.css'
 
 import { observer } from 'mobx-react-lite'
 import { useContext, useState } from 'react'
@@ -13,7 +13,7 @@ import { GameStore } from '../../../stores/GameStore'
 import { GameArea } from './GameArea'
 import { PageButtons } from './PageButtons'
 import { AppTitle } from '../../menu/AppTitle'
-import { DragPreviewLayer } from "./DragPreviewLayer"
+import { DragPreviewLayer } from './DragPreviewLayer'
 
 export const Game: React.FC = observer(() => {
   const appStore = useContext(AppContext)

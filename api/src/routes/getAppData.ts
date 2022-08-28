@@ -15,11 +15,11 @@ export const getAppData = async (request: Request<{}, {}, {}, { userId?: string 
   ])
 
   if (!dailyGame) {
-    return response.status(500).send("Could not load data - unable to find daily game")
+    return response.status(500).send('Could not load data - unable to find daily game')
   }
 
   if (!campaignGame) {
-    return response.status(500).send("Could not load data - unable to find campaign game")
+    return response.status(500).send('Could not load data - unable to find campaign game')
   }
 
   let currentDailyGameStats: IGameStats | undefined = undefined

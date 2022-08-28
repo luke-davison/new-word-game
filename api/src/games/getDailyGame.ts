@@ -4,18 +4,18 @@ import { IDailyGame, ILetter } from '../../../src/shared/datamodels'
 import { Abilities } from '../../../src/shared/enums'
 import { getWildLetter } from './getWildLetter'
 
-interface IDailyGameNoIds extends Omit<IDailyGame, "letters"> {
-  letters: Array<Omit<ILetter, "id">>
+interface IDailyGameNoIds extends Omit<IDailyGame, 'letters'> {
+  letters: Array<Omit<ILetter, 'id'>>
 }
 
 const games: IDailyGameNoIds[] = [
   {
-    date: "intro-1",
+    date: 'intro-1',
     letters: [
-      { char: "p", price: 1, points: 2 },
-      { char: "l", price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
-      { char: "a", price: 4, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
-      { char: "y", price: 4, points: 6 }
+      { char: 'p', price: 1, points: 2 },
+      { char: 'l', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'a', price: 4, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'y', price: 4, points: 6 }
     ],
     target: 15,
     secretTarget: 17,
@@ -23,13 +23,13 @@ const games: IDailyGameNoIds[] = [
     money: 11
   },
   {
-    date: "intro-2",
+    date: 'intro-2',
     letters: [
-      { char: "l", price: 3, points: 3, ability: Abilities.WordLength5, abilityPoints: 4 },
-      { char: "e", price: 1, points: 2 },
-      { char: "a", price: 5, points: 3, ability: Abilities.OtherInPosition1 },
-      { char: "r", price: 5, points: 7 },
-      { char: "n", price: 3, points: 3, ability: Abilities.Vowels, abilityPoints: 1 }
+      { char: 'l', price: 3, points: 3, ability: Abilities.WordLength5, abilityPoints: 4 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 'a', price: 5, points: 3, ability: Abilities.OtherInPosition1 },
+      { char: 'r', price: 5, points: 7 },
+      { char: 'n', price: 3, points: 3, ability: Abilities.Vowels, abilityPoints: 1 }
     ],
     target: 23,
     secretTarget: 26,
@@ -37,14 +37,14 @@ const games: IDailyGameNoIds[] = [
     money: 15
   },
   {
-    date: "intro-3",
+    date: 'intro-3',
     letters: [
-      { char: "m", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
-      { char: "a", price: 1, points: 2 },
-      { char: "s", price: 3, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
-      { char: "t", price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 2 },
-      { char: "e", price: 4, points: 3, ability: Abilities.InPosition3, abilityPoints: 4 },
-      { char: "r", price: 4, points: 3, ability: Abilities.MinWordLength7, abilityPoints: 4 }
+      { char: 'm', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'a', price: 1, points: 2 },
+      { char: 's', price: 3, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+      { char: 't', price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 2 },
+      { char: 'e', price: 4, points: 3, ability: Abilities.InPosition3, abilityPoints: 4 },
+      { char: 'r', price: 4, points: 3, ability: Abilities.MinWordLength7, abilityPoints: 4 }
     ],
     target: 27,
     secretTarget: 31,
@@ -52,15 +52,15 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-07-02",
+    date: '2022-07-02',
     letters: [
-      { char: "t", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
-      { char: "i", price: 5, points: 3, ability: Abilities.OtherInPosition1 },
-      { char: "l", price: 3, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 3 },
-      { char: "t", price: 4, points: 4, ability: Abilities.NextToVowel, abilityPoints: 2 },
-      { char: "i", price: 1, points: 2 },
-      { char: "n", price: 5, points: 8 },
-      { char: "g", price: 4, points: 4, ability: Abilities.NextToWild, abilityPoints: 4 }
+      { char: 't', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'i', price: 5, points: 3, ability: Abilities.OtherInPosition1 },
+      { char: 'l', price: 3, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 3 },
+      { char: 't', price: 4, points: 4, ability: Abilities.NextToVowel, abilityPoints: 2 },
+      { char: 'i', price: 1, points: 2 },
+      { char: 'n', price: 5, points: 8 },
+      { char: 'g', price: 4, points: 4, ability: Abilities.NextToWild, abilityPoints: 4 }
     ],
     target: 25,
     secretTarget: 30,
@@ -68,14 +68,14 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-07-03",
+    date: '2022-07-03',
     letters: [
-      { char: "l", price: 4, points: 4, ability: Abilities.Wilds, abilityPoints: 1 },
-      { char: "i", price: 1, points: 2 },
-      { char: "t", price: 3, points: 4, ability: Abilities.InPosition4, abilityPoints: 4 },
-      { char: "m", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
-      { char: "u", price: 5, points: 8 },
-      { char: "s", price: 4, points: 4, ability: Abilities.MinWordLength6, abilityPoints: 3 }
+      { char: 'l', price: 4, points: 4, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 'i', price: 1, points: 2 },
+      { char: 't', price: 3, points: 4, ability: Abilities.InPosition4, abilityPoints: 4 },
+      { char: 'm', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'u', price: 5, points: 8 },
+      { char: 's', price: 4, points: 4, ability: Abilities.MinWordLength6, abilityPoints: 3 }
     ],
     target: 26,
     secretTarget: 29,
@@ -83,14 +83,14 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-07-09",
+    date: '2022-07-09',
     letters: [
-      { char: "b", price: 4, points: 4, ability: Abilities.NextToWild, abilityPoints: 3 },
-      { char: "o", price: 4, points: 4, ability: Abilities.MinWordLength6, abilityPoints: 3 },
-      { char: "r", price: 4, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
-      { char: "e", price: 1, points: 1 },
-      { char: "r", price: 4, points: 3, ability: Abilities.InPositionLast, abilityPoints: 4 },
-      { char: "s", price: 3, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 3 }
+      { char: 'b', price: 4, points: 4, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'o', price: 4, points: 4, ability: Abilities.MinWordLength6, abilityPoints: 3 },
+      { char: 'r', price: 4, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'e', price: 1, points: 1 },
+      { char: 'r', price: 4, points: 3, ability: Abilities.InPositionLast, abilityPoints: 4 },
+      { char: 's', price: 3, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 3 }
     ],
     target: 24,
     secretTarget: 28,
@@ -98,15 +98,15 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-07-10",
+    date: '2022-07-10',
     letters: [
-      { char: "p", price: 4, points: 4, ability: Abilities.NextToVowel, abilityPoints: 4 },
-      { char: "r", price: 5, points: 8 },
-      { char: "o", price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
-      { char: "m", price: 3, points: 4, ability: Abilities.NextToWild, abilityPoints: 4 },
-      { char: "o", price: 4, points: 4, ability: Abilities.Wilds, abilityPoints: 1 },
-      { char: "t", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
-      { char: "e", price: 1, points: 2 }
+      { char: 'p', price: 4, points: 4, ability: Abilities.NextToVowel, abilityPoints: 4 },
+      { char: 'r', price: 5, points: 8 },
+      { char: 'o', price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'm', price: 3, points: 4, ability: Abilities.NextToWild, abilityPoints: 4 },
+      { char: 'o', price: 4, points: 4, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 't', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'e', price: 1, points: 2 }
     ],
     target: 29,
     secretTarget: 31,
@@ -114,15 +114,15 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-07-29",
+    date: '2022-07-29',
     letters: [
-      { char: "s", price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
-      { char: "l", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
-      { char: "i", price: 3, points: 3, ability: Abilities.NextToVowel, abilityPoints: 4 },
-      { char: "t", price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
-      { char: "h", price: 4, points: 5, ability: Abilities.Vowels, abilityPoints: 1 },
-      { char: "e", price: 1, points: 2 },
-      { char: "r", price: 4, points: 3, ability: Abilities.InPosition4, abilityPoints: 4 }
+      { char: 's', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 'l', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+      { char: 'i', price: 3, points: 3, ability: Abilities.NextToVowel, abilityPoints: 4 },
+      { char: 't', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'h', price: 4, points: 5, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 'r', price: 4, points: 3, ability: Abilities.InPosition4, abilityPoints: 4 }
     ],
     target: 27,
     secretTarget: 29,
@@ -130,15 +130,15 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-05-20",
+    date: '2022-05-20',
     letters: [
-      { char: "r", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
-      { char: "i", price: 4, points: 4, ability: Abilities.MinWordLength6, abilityPoints: 4 },
-      { char: "p", price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },
-      { char: "p", price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 3 },
-      { char: "l", price: 3, points: 3, ability: Abilities.InPosition3, abilityPoints: 5 },
-      { char: "e", price: 1, points: 2 },
-      { char: "d", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 5 }
+      { char: 'r', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'i', price: 4, points: 4, ability: Abilities.MinWordLength6, abilityPoints: 4 },
+      { char: 'p', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },
+      { char: 'p', price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 3 },
+      { char: 'l', price: 3, points: 3, ability: Abilities.InPosition3, abilityPoints: 5 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 'd', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 5 }
     ],
     target: 28,
     secretTarget: 31,
@@ -146,15 +146,15 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-05-21",
+    date: '2022-05-21',
     letters: [
-      { char: "k", price: 3, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 4 },
-      { char: "i", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 2 },
-      { char: "n", price: 3, points: 3, ability: Abilities.InPosition3, abilityPoints: 4 },
-      { char: "g", price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
-      { char: "p", price: 4, points: 4, ability: Abilities.NextToVowel, abilityPoints: 3 },
-      { char: "i", price: 1, points: 2 },
-      { char: "n", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 }
+      { char: 'k', price: 3, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 4 },
+      { char: 'i', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 2 },
+      { char: 'n', price: 3, points: 3, ability: Abilities.InPosition3, abilityPoints: 4 },
+      { char: 'g', price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'p', price: 4, points: 4, ability: Abilities.NextToVowel, abilityPoints: 3 },
+      { char: 'i', price: 1, points: 2 },
+      { char: 'n', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 }
     ],
     target: 27,
     secretTarget: 30,
@@ -162,14 +162,14 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-05-22",
+    date: '2022-05-22',
     letters: [
-      { char: "m", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 5 },
-      { char: "u", price: 3, points: 3, ability: Abilities.NextToWild, abilityPoints: 4 },
-      { char: "e", price: 1, points: 2 },
-      { char: "s", price: 4, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
-      { char: "l", price: 4, points: 4, ability: Abilities.Wilds, abilityPoints: 1 },
-      { char: "i", price: 4, points: 4, ability: Abilities.OtherInPosition4 }
+      { char: 'm', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 5 },
+      { char: 'u', price: 3, points: 3, ability: Abilities.NextToWild, abilityPoints: 4 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 's', price: 4, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'l', price: 4, points: 4, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 'i', price: 4, points: 4, ability: Abilities.OtherInPosition4 }
     ],
     target: 29,
     secretTarget: 31,
@@ -177,15 +177,15 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-05-23",
+    date: '2022-05-23',
     letters: [
-      { char: "m", price: 3, points: 4, ability: Abilities.NextToVowel, abilityPoints: 3 },
-      { char: "e", price: 5, points: 7 },
-      { char: "l", price: 4, points: 3, ability: Abilities.OtherInPosition1 },
-      { char: "a", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 2 },
-      { char: "n", price: 3, points: 3, ability: Abilities.InPosition3, abilityPoints: 4 },
-      { char: "g", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
-      { char: "e", price: 1, points: 2 }
+      { char: 'm', price: 3, points: 4, ability: Abilities.NextToVowel, abilityPoints: 3 },
+      { char: 'e', price: 5, points: 7 },
+      { char: 'l', price: 4, points: 3, ability: Abilities.OtherInPosition1 },
+      { char: 'a', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 2 },
+      { char: 'n', price: 3, points: 3, ability: Abilities.InPosition3, abilityPoints: 4 },
+      { char: 'g', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+      { char: 'e', price: 1, points: 2 }
     ],
     target: 27,
     secretTarget: 32,
@@ -193,15 +193,15 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-05-24",
+    date: '2022-05-24',
     letters: [
-      { char: "c", price: 3, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
-      { char: "a", price: 4, points: 3, ability: Abilities.WordLength7, abilityPoints: 5 },
-      { char: "r", price: 4, points: 3, ability: Abilities.OtherInPosition4 },
-      { char: "b", price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
-      { char: "i", price: 4, points: 3, ability: Abilities.Vowels },
-      { char: "d", price: 4, points: 4, ability: Abilities.MaxWordLength6, abilityPoints: 3 },
-      { char: "e", price: 1, points: 2 }
+      { char: 'c', price: 3, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+      { char: 'a', price: 4, points: 3, ability: Abilities.WordLength7, abilityPoints: 5 },
+      { char: 'r', price: 4, points: 3, ability: Abilities.OtherInPosition4 },
+      { char: 'b', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'i', price: 4, points: 3, ability: Abilities.Vowels },
+      { char: 'd', price: 4, points: 4, ability: Abilities.MaxWordLength6, abilityPoints: 3 },
+      { char: 'e', price: 1, points: 2 }
     ],
     target: 27,
     secretTarget: 31,
@@ -209,14 +209,14 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-08-14",
+    date: '2022-08-14',
     letters: [
-      { char: "b", price: 4, points: 4, ability: Abilities.MinWordLength6, abilityPoints: 3 },
-      { char: "r", price: 3, points: 3, ability: Abilities.InPosition4, abilityPoints: 4 },
-      { char: "a", price: 4, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
-      { char: "z", price: 3, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
-      { char: "e", price: 3, points: 3, ability: Abilities.InPositionLast, abilityPoints: 3 },
-      { char: "n", price: 1, points: 2 },
+      { char: 'b', price: 4, points: 4, ability: Abilities.MinWordLength6, abilityPoints: 3 },
+      { char: 'r', price: 3, points: 3, ability: Abilities.InPosition4, abilityPoints: 4 },
+      { char: 'a', price: 4, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'z', price: 3, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'e', price: 3, points: 3, ability: Abilities.InPositionLast, abilityPoints: 3 },
+      { char: 'n', price: 1, points: 2 },
     ],
     target: 24,
     secretTarget: 30,
@@ -224,15 +224,15 @@ const games: IDailyGameNoIds[] = [
     money: 20
   },
   { 
-    date: "2022-08-28",
+    date: '2022-08-28',
     letters: [
-      { char: "a", price: 4, points: 4, ability: Abilities.NextToWild, abilityPoints: 3 },
-      { char: "l", price: 4, points: 4, ability: Abilities.InPositionLast, abilityPoints: 3 },
-      { char: "u", price: 4, points: 4, ability: Abilities.MaxWordLength6, abilityPoints: 4 },
-      { char: "m", price: 4, points: 4, ability: Abilities.WordLength7, abilityPoints: 3 },
-      { char: "n", price: 3, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
-      { char: "u", price: 1, points: 2 },
-      { char: "s", price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+      { char: 'a', price: 4, points: 4, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'l', price: 4, points: 4, ability: Abilities.InPositionLast, abilityPoints: 3 },
+      { char: 'u', price: 4, points: 4, ability: Abilities.MaxWordLength6, abilityPoints: 4 },
+      { char: 'm', price: 4, points: 4, ability: Abilities.WordLength7, abilityPoints: 3 },
+      { char: 'n', price: 3, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'u', price: 1, points: 2 },
+      { char: 's', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
     ],
     target: 28,
     secretTarget: 31,
@@ -240,15 +240,15 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-05-27",
+    date: '2022-05-27',
     letters: [
-      { char: "m", price: 4, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 4 },
-      { char: "e", price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 3 },
-      { char: "d", price: 4, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
-      { char: "l", price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
-      { char: "e", price: 1, points: 2 },
-      { char: "y", price: 3, points: 4, ability: Abilities.WordLength5, abilityPoints: 4 },
-      { char: "s", price: 4, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'm', price: 4, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 4 },
+      { char: 'e', price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 3 },
+      { char: 'd', price: 4, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'l', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 'y', price: 3, points: 4, ability: Abilities.WordLength5, abilityPoints: 4 },
+      { char: 's', price: 4, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
     ],
     target: 27,
     secretTarget: 30,
@@ -256,14 +256,14 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   { 
-    date: "2022-05-28",
+    date: '2022-05-28',
     letters: [
-      { char: "g", price: 3, points: 4, ability: Abilities.InPosition2, abilityPoints: 4 },
-      { char: "r", price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
-      { char: "a", price: 3, points: 3, ability: Abilities.NextToVowel, abilityPoints: 4 },
-      { char: "h", price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },
-      { char: "a", price: 1, points: 2 },
-      { char: "m", price: 4, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 3 },
+      { char: 'g', price: 3, points: 4, ability: Abilities.InPosition2, abilityPoints: 4 },
+      { char: 'r', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'a', price: 3, points: 3, ability: Abilities.NextToVowel, abilityPoints: 4 },
+      { char: 'h', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },
+      { char: 'a', price: 1, points: 2 },
+      { char: 'm', price: 4, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 3 },
     ],
     target: 21,
     secretTarget: 24,
@@ -271,14 +271,14 @@ const games: IDailyGameNoIds[] = [
     money: 15
   },
   { 
-    date: "2022-05-29",
+    date: '2022-05-29',
     letters: [
-      { char: "c", price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
-      { char: "o", price: 4, points: 3, ability: Abilities.WordLength7, abilityPoints: 4 },
-      { char: "r", price: 1, points: 2 },
-      { char: "d", price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
-      { char: "o", price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
-      { char: "n", price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 'c', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'o', price: 4, points: 3, ability: Abilities.WordLength7, abilityPoints: 4 },
+      { char: 'r', price: 1, points: 2 },
+      { char: 'd', price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'o', price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
+      { char: 'n', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
     ],
     target: 28,
     secretTarget: 31,
@@ -286,7 +286,7 @@ const games: IDailyGameNoIds[] = [
     money: 19
   },
   {
-    date: "2022-05-30",
+    date: '2022-05-30',
     letters: [
       { char: 'w', price: 3, points: 5, ability: Abilities.InPosition2, abilityPoints: 4 },
       { char: 'o', price: 4, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
@@ -302,7 +302,7 @@ const games: IDailyGameNoIds[] = [
     money: 17
   },
   {
-    date: "2022-05-31",
+    date: '2022-05-31',
     letters: [
       { char: 'l', price: 4, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
       { char: 'o', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 5 },
@@ -317,7 +317,7 @@ const games: IDailyGameNoIds[] = [
     money: 16
   },
   {
-    date: "2022-06-01",
+    date: '2022-06-01',
     letters: [
       { char: 'c', price: 3, points: 4, ability: Abilities.InPosition2, abilityPoints: 4 },
       { char: 'r', price: 4, points: 3, ability: Abilities.WordLength6, abilityPoints: 4 },
@@ -333,7 +333,7 @@ const games: IDailyGameNoIds[] = [
     money: 16
   },
   {
-    date: "2022-06-02",
+    date: '2022-06-02',
     letters: [
       { char: 's', price: 4, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 3 },
       { char: 'a', price: 5, points: 8 },
@@ -349,7 +349,7 @@ const games: IDailyGameNoIds[] = [
     money: 17
   },
   {
-    date: "2022-06-03",
+    date: '2022-06-03',
     letters: [
       { char: 'b', price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
       { char: 'l', price: 4, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
@@ -365,7 +365,7 @@ const games: IDailyGameNoIds[] = [
     money: 18
   },
   {
-    date: "2022-06-04",
+    date: '2022-06-04',
     letters: [
       { char: 't', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },
       { char: 'r', price: 5, points: 8 },
@@ -380,7 +380,7 @@ const games: IDailyGameNoIds[] = [
     money: 15
   },
   {
-    date: "2022-07-31",
+    date: '2022-07-31',
     letters: [
       { char: 's', price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 3 },
       { char: 't', price: 3, points: 4, ability: Abilities.InPosition4, abilityPoints: 4 },
@@ -396,7 +396,7 @@ const games: IDailyGameNoIds[] = [
     money: 17
   },
   {
-    date: "2022-08-13",
+    date: '2022-08-13',
     letters: [
       { char: 't', price: 4, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
       { char: 'a', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },

@@ -1,5 +1,5 @@
-import { ILetter } from "../../datamodels"
-import { getIsCharacterVowel } from "../getIsChararacterVowel"
+import { ILetter } from '../../datamodels'
+import { getIsCharacterVowel } from '../getIsChararacterVowel'
 
 export const getIsNextToVowelActive = (word: Array<ILetter | undefined>, position: number): boolean => {
   if (position > 0) {

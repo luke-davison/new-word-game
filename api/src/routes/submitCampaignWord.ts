@@ -10,7 +10,7 @@ export const submitCampaignWord = async (request: Request<{}, {}, ISubmitWord>, 
   const campaignGame = await db.getCampaignGame(request.body.date)
 
   if (!campaignGame) {
-    return response.status(400).send("Unable to validate - game not found")
+    return response.status(400).send('Unable to validate - game not found')
   }
 
   const player = await db.getPlayer(body.userId, body.date)

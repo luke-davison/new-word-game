@@ -1,5 +1,5 @@
-import { ILetter } from "../../datamodels"
-import { Abilities } from "../../enums"
+import { ILetter } from '../../datamodels'
+import { Abilities } from '../../enums'
 
 export const getIsNextToWildActive = (word: Array<ILetter | undefined>, position: number): boolean => {
   if (position > 0) {

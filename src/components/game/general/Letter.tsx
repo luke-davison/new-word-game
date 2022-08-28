@@ -29,10 +29,10 @@ export const Letter: React.FC<LetterProps> = observer(({ disabled, label, letter
     }
   }
 
-  let classNames = "letter-container"
-  classNames += " letter-color-" + letter.color
+  let classNames = 'letter-container'
+  classNames += ' letter-color-' + letter.color
   if (disabled) {
-    classNames += " disabled"
+    classNames += ' disabled'
   }
 
   return (
@@ -47,7 +47,7 @@ export const Letter: React.FC<LetterProps> = observer(({ disabled, label, letter
           </div>
         )}
         { letter.ability && (
-          <div className={`letter-ability${ isAbilityActive ? " is-active" : ""}` }>
+          <div className={`letter-ability${ isAbilityActive ? ' is-active' : ''}` }>
             <AbilityImage ability={letter.ability}/>
             {letter.abilityPoints !== undefined && (
               <div className="letter-ability-points">
