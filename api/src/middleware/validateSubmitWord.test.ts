@@ -9,7 +9,7 @@ describe("validateSubmitWord", () => {
     testInput = {
       date: "2022-04-09",
       userId: '0',
-      word: [{ id: '1', char: 'g' }, { id: '3', char: 'i'}, { id: '1', char: 'g' }]
+      word: [{ id: '1', char: 'g' }, { id: '3', char: 'i' }, { id: '1', char: 'g' }]
     }
 
     game = {

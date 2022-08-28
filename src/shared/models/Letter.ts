@@ -17,7 +17,7 @@ export class Letter {
   get price() { return this.data.price }
   get points() { return this.data.points }
   get ability() { return this.data.ability }
-  get abilityPoints() { return this.data.abilityPoints}
+  get abilityPoints() { return this.data.abilityPoints }
 
   constructor(data: IGameLetter, limit?: number) {
     this.data = data

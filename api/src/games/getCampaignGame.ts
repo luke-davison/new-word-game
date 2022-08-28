@@ -222,5 +222,5 @@ export const getCampaignGame = (dateString: string): ICampaignGame | undefined =
     }
   })
 
-  return {...game, letters, memberLetters }
+  return { ...game, letters, memberLetters }
 }

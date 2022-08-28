@@ -25,7 +25,7 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
     const char = letters[letterIndex]
 
     if (char === mostCommonLetterOutput?.char) {
-      output.unshift({...mostCommonLetterOutput})
+      output.unshift({ ...mostCommonLetterOutput })
       mostCommonLetterOutput = undefined
     } else {
       const ability = abilitiesShuffled.pop()
@@ -239,36 +239,36 @@ export const countLetters = () => {
     map.set(letter, map.get(letter) + 1)
   })
 
-  console.log(JSON.stringify(Array.from(map).map(([abc, freq]) => ({ letter: abc, count: freq})).sort((a, b) => b.count - a.count)))
+  console.log(JSON.stringify(Array.from(map).map(([abc, freq]) => ({ letter: abc, count: freq })).sort((a, b) => b.count - a.count)))
 }
 
 const letterFrequencies = [
-  {letter: "e", count: 56003},
-  {letter: "i", count: 2631},
-  {letter: "s", count: 41429},
-  {letter: "a", count: 36650},
-  {letter: "r", count: 35208},
-  {letter: "n", count: 34477},
-  {letter: "t", count: 33933},
-  {letter: "o", count: 29053},
-  {letter: "l", count: 26399},
-  {letter: "c", count: 19909},
-  {letter: "d", count: 19367},
-  {letter: "u", count: 16500},
-  {letter: "g", count: 14299},
-  {letter: "p", count: 14119},
-  {letter: "m", count: 12944},
-  {letter: "h", count: 10402},
-  {letter: "b", count: 9046},
-  {letter: "y", count: 8349},
-  {letter: "f", count: 6876},
-  {letter: "v", count: 5130},
-  {letter: "w", count: 4127},
-  {letter: "k", count: 3943},
-  {letter: "x", count: 1391},
-  {letter: "q", count: 870},
-  {letter: "j", count: 807},
-  {letter: "z", count: 715}
+  { letter: "e", count: 56003 },
+  { letter: "i", count: 2631 },
+  { letter: "s", count: 41429 },
+  { letter: "a", count: 36650 },
+  { letter: "r", count: 35208 },
+  { letter: "n", count: 34477 },
+  { letter: "t", count: 33933 },
+  { letter: "o", count: 29053 },
+  { letter: "l", count: 26399 },
+  { letter: "c", count: 19909 },
+  { letter: "d", count: 19367 },
+  { letter: "u", count: 16500 },
+  { letter: "g", count: 14299 },
+  { letter: "p", count: 14119 },
+  { letter: "m", count: 12944 },
+  { letter: "h", count: 10402 },
+  { letter: "b", count: 9046 },
+  { letter: "y", count: 8349 },
+  { letter: "f", count: 6876 },
+  { letter: "v", count: 5130 },
+  { letter: "w", count: 4127 },
+  { letter: "k", count: 3943 },
+  { letter: "x", count: 1391 },
+  { letter: "q", count: 870 },
+  { letter: "j", count: 807 },
+  { letter: "z", count: 715 }
 ]
 
 // const firstLetterFrequencies = [

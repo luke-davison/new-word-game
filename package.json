@@ -42,8 +42,13 @@
       "react-app/jest"
     ],
     "rules": {
+      "@typescript-eslint/no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }],
+      "arrow-spacing": ["warn", { "before": true, "after": true }],
+      "block-spacing": ["warn", "always"],
+      "comma-spacing": ["warn", { "before": false, "after": true }],
       "key-spacing": ["warn", { "beforeColon": false, "afterColon": true }],
-      "@typescript-eslint/no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }]
+      "keyword-spacing": ["warn", { "before": true, "after": true }],
+      "object-curly-spacing": ["warn", "always"]
     }
   },
   "browserslist": {

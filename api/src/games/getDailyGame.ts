@@ -433,5 +433,5 @@ export const getDailyGame = (dateString: string): IDailyGame | undefined => {
 
   letters.push()
 
-  return {...game, letters }
+  return { ...game, letters }
 }
