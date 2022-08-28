@@ -8,5 +8,5 @@ interface IAbilityImageProps {
 }
 
 export const AbilityImage: FunctionComponent<IAbilityImageProps> = observer(props => (
-  <img src={getAbilityImage(props.ability)}/>
+  <img src={getAbilityImage(props.ability)} alt=""/>
 ))

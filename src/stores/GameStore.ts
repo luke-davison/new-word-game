@@ -206,7 +206,7 @@ export class GameStore {
       return (a.position || 0) - (b.position || 0)
     })
     
-    return sortedWord.reduce((sum, letter, index) => {
+    return sortedWord.reduce((sum, letter) => {
       const basePoints = letter.points
       let abilityPoints = 0;
       if (getAbilityIsActive(this.playerWordFull, letter.position!, this.appStore.player)) {
@@ -313,9 +313,14 @@ export class GameStore {
 
   onQuickAddLetter = (letter: LetterInstance) => {
     let nextPosition = 0;
-    while (this.playerWord.some((otherLetter) => otherLetter.position === nextPosition)) {
-      nextPosition++
+    for (let i = 0; i < this.playerWord.length; i++) {
+      if (this.playerWord.some((otherLetter) => otherLetter.position === i)) {
+        nextPosition++
+      } else {
+        break
+      }
     }
+
     this.onDropLetter(letter, nextPosition)
   }
 

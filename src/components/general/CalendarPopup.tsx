@@ -18,7 +18,7 @@ export const CalendarPopup: React.FC<CalendarPopupProps> = ({ onClose }) => {
 
     document.body.addEventListener('click', listener);
     return () => document.body.removeEventListener('click', listener)
-  }, [])
+  }, [onClose])
 
   return (
     <div className="calendar-popup">

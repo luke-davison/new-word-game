@@ -1,7 +1,7 @@
 import './styles/PreviousGamesMenu.css';
 
 import { observer } from 'mobx-react-lite';
-import { FunctionComponent, useContext, useEffect, useState } from 'react';
+import { FunctionComponent, useContext, useEffect } from 'react';
 
 import { getDateFromString, getDateString } from '../../shared';
 import { AppContext } from '../../stores/AppContext';
@@ -14,7 +14,7 @@ export const PreviousGamesMenu: FunctionComponent = observer(() => {
 
   useEffect(() => {
     loadCachedGameData()
-  }, [])
+  }, [loadCachedGameData])
 
   const earliestGame = cachedGameDates.length > 0 ? cachedGames.get(cachedGameDates[0]) : undefined
   const latestGame = cachedGameDates.length > 0 ? cachedGames.get(cachedGameDates[cachedGameDates.length - 1]) : undefined

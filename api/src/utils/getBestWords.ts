@@ -27,7 +27,7 @@ export const getBestWords = (game: IGame, printScore: number) => {
 
   })
   const pointsArray = Array.from(map).sort((a, b) => a[0] - b[0])
-  pointsArray.forEach(([points, num]) => {
+  pointsArray.forEach(([points]) => {
     if (points >= printScore) {
       console.log()
       console.log(points)
@@ -61,7 +61,7 @@ export const calculateBestScoreForWord = (game: IGame, word: string): number => 
         return highestScore
       }
 
-      const newLetter = shopLetter.ability == Abilities.Wild
+      const newLetter = shopLetter.ability === Abilities.Wild
         ? { ...shopLetter.data, char: nextLetter } as Letter
         : shopLetter
 

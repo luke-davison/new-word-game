@@ -1,5 +1,5 @@
 import {
-    ICampaignGame, IDailyGame, ILetter, IPlayer, ISubmitWord
+    ICampaignGame, IDailyGame, ILetter, IPlayer
 } from '../../../src/shared/datamodels';
 import { IRawLetter } from '../../../src/shared/datamodels/IRawLetter';
 

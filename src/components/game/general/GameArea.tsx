@@ -14,7 +14,7 @@ import { PlayerArea } from './PlayerArea';
 export const GameArea: React.FC = observer(() => {
   const { onDropLetterOutside } = useContext(GameContext)
 
-  const [dropOptions, drop] = useDrop({
+  const [, drop] = useDrop({
     accept: ["letter"],
     drop: (letter: LetterInstance, monitor) => {
       if (monitor.didDrop()) {
