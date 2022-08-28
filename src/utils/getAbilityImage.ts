@@ -42,47 +42,47 @@ import { Abilities } from '../shared/enums';
 
 export const getAbilityImage = (ability: Abilities): string | undefined => {
   switch (ability) {
-    case Abilities.Club: return clubImage;
-    case Abilities.CopyAbilityInPosition1: return copyAbiliytInPosition1Image;
-    case Abilities.CopyAbilityInPosition2: return copyAbiliytInPosition2Image;
-    case Abilities.CopyAbilityInPosition3: return copyAbiliytInPosition3Image;
-    case Abilities.CopyAbilityInPosition4: return copyAbiliytInPosition4Image;
-    case Abilities.CopyAbilityInPosition5: return copyAbiliytInPosition5Image;
-    case Abilities.Funding1: return funding1Image;
-    case Abilities.Funding2: return funding2Image;
-    case Abilities.InPosition1: return inPosition1Image;
-    case Abilities.InPosition2: return inPosition2Image;
-    case Abilities.InPosition3: return inPosition3Image;
-    case Abilities.InPosition4: return inPosition4Image;
-    case Abilities.InPositionLast: return inLastPositionImage;
-    case Abilities.MaxWordLength4: return maxWordLength4Image;
-    case Abilities.MaxWordLength5: return maxWordLength5Image;
-    case Abilities.MaxWordLength6: return maxWordLength6Image;
-    case Abilities.MaxWordLength7: return maxWordLength7Image;
-    case Abilities.MinWordLength4: return minWordLength4Image;
-    case Abilities.MinWordLength5: return minWordLength5Image;
-    case Abilities.MinWordLength6: return minWordLength6Image;
-    case Abilities.MinWordLength7: return minWordLength7Image;
-    case Abilities.NextToVowel: return nextToVowelImage;
-    case Abilities.NextToWild: return nextToWildImage;
-    case Abilities.NotNextToVowel: return notNextToVowelImage;
-    case Abilities.NotNextToWild: return notNextToWildImage;
-    case Abilities.OtherInPosition1: return otherInPosition1Image;
-    case Abilities.OtherInPosition2: return otherInPosition2Image;
-    case Abilities.OtherInPosition3: return otherInPosition3Image;
-    case Abilities.OtherInPosition4: return otherInPosition4Image;
-    case Abilities.OtherInPosition5: return otherInPosition5Image;
-    case Abilities.Retain: return retainImage;
-    case Abilities.RetainLeft: return retainLeftImage;
-    case Abilities.RetainRight: return retainRightImage;
-    case Abilities.Vowels: return vowelsImage;
-    case Abilities.Wild: return wildImage;
-    case Abilities.Wilds: return wildsImage;
-    case Abilities.WordLength4: return wordLength4Image;
-    case Abilities.WordLength5: return wordLength5Image;
-    case Abilities.WordLength6: return wordLength6Image;
-    case Abilities.WordLength7: return wordLength7Image;
+      case Abilities.Club: return clubImage;
+      case Abilities.CopyAbilityInPosition1: return copyAbiliytInPosition1Image;
+      case Abilities.CopyAbilityInPosition2: return copyAbiliytInPosition2Image;
+      case Abilities.CopyAbilityInPosition3: return copyAbiliytInPosition3Image;
+      case Abilities.CopyAbilityInPosition4: return copyAbiliytInPosition4Image;
+      case Abilities.CopyAbilityInPosition5: return copyAbiliytInPosition5Image;
+      case Abilities.Funding1: return funding1Image;
+      case Abilities.Funding2: return funding2Image;
+      case Abilities.InPosition1: return inPosition1Image;
+      case Abilities.InPosition2: return inPosition2Image;
+      case Abilities.InPosition3: return inPosition3Image;
+      case Abilities.InPosition4: return inPosition4Image;
+      case Abilities.InPositionLast: return inLastPositionImage;
+      case Abilities.MaxWordLength4: return maxWordLength4Image;
+      case Abilities.MaxWordLength5: return maxWordLength5Image;
+      case Abilities.MaxWordLength6: return maxWordLength6Image;
+      case Abilities.MaxWordLength7: return maxWordLength7Image;
+      case Abilities.MinWordLength4: return minWordLength4Image;
+      case Abilities.MinWordLength5: return minWordLength5Image;
+      case Abilities.MinWordLength6: return minWordLength6Image;
+      case Abilities.MinWordLength7: return minWordLength7Image;
+      case Abilities.NextToVowel: return nextToVowelImage;
+      case Abilities.NextToWild: return nextToWildImage;
+      case Abilities.NotNextToVowel: return notNextToVowelImage;
+      case Abilities.NotNextToWild: return notNextToWildImage;
+      case Abilities.OtherInPosition1: return otherInPosition1Image;
+      case Abilities.OtherInPosition2: return otherInPosition2Image;
+      case Abilities.OtherInPosition3: return otherInPosition3Image;
+      case Abilities.OtherInPosition4: return otherInPosition4Image;
+      case Abilities.OtherInPosition5: return otherInPosition5Image;
+      case Abilities.Retain: return retainImage;
+      case Abilities.RetainLeft: return retainLeftImage;
+      case Abilities.RetainRight: return retainRightImage;
+      case Abilities.Vowels: return vowelsImage;
+      case Abilities.Wild: return wildImage;
+      case Abilities.Wilds: return wildsImage;
+      case Abilities.WordLength4: return wordLength4Image;
+      case Abilities.WordLength5: return wordLength5Image;
+      case Abilities.WordLength6: return wordLength6Image;
+      case Abilities.WordLength7: return wordLength7Image;
 
-    default: return undefined
+      default: return undefined
   }
 }

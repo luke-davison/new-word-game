@@ -23,26 +23,26 @@ export const LetterShop: React.FC = observer(() => {
           </div>
         )
       })}
-                { secretShopLetters.map((shopLetter, index) => (
-            <div key={index} className="shop-letter-container secret-letter" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
-              <div className="shop-letter-price">
-                {"$" + shopLetter.price}
-              </div>
-              <DraggableLetter letter={shopLetter} label="Secret"/>
-            </div>
-          ))}
-          { inventory.map((inventoryLetter, index) => {
-            const classNames = "inventory-letter-container inventory-letter-" + (index + 1)
-            return (
-              <div key={index} className={classNames} onDoubleClick={() => onQuickAddLetter(inventoryLetter)}>
-                { getIsLetterUsed(inventoryLetter) ? (
-                  <Letter letter={inventoryLetter} disabled/>
-                ) :(
-                  <DraggableLetter letter={inventoryLetter} label="Saved"/>
-                )}
-              </div>
-            )
-          })}
+      { secretShopLetters.map((shopLetter, index) => (
+        <div key={index} className="shop-letter-container secret-letter" onDoubleClick={() => onQuickAddLetter(shopLetter)}>
+          <div className="shop-letter-price">
+            {"$" + shopLetter.price}
+          </div>
+          <DraggableLetter letter={shopLetter} label="Secret"/>
+        </div>
+      ))}
+      { inventory.map((inventoryLetter, index) => {
+        const classNames = "inventory-letter-container inventory-letter-" + (index + 1)
+        return (
+          <div key={index} className={classNames} onDoubleClick={() => onQuickAddLetter(inventoryLetter)}>
+            { getIsLetterUsed(inventoryLetter) ? (
+              <Letter letter={inventoryLetter} disabled/>
+            ) :(
+              <DraggableLetter letter={inventoryLetter} label="Saved"/>
+            )}
+          </div>
+        )
+      })}
 
     </div>
   )

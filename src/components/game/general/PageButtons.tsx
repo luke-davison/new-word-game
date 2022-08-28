@@ -13,11 +13,11 @@ export const PageButtons: FunctionComponent = observer(() => {
   const tutorialButtons = isPlayingTutorialGame ? (
     <>
       { tutorialGameInProgress > 1 && (
-          <button onClick={() => setTutorialGame(tutorialGameInProgress - 1)}>Previous</button>
-        )}
-        { tutorialGameInProgress < 3 && (target || 0) <= (bestWordScore || 0) && (
-          <button onClick={() => setTutorialGame(tutorialGameInProgress + 1)}>Next</button>
-        )}
+        <button onClick={() => setTutorialGame(tutorialGameInProgress - 1)}>Previous</button>
+      )}
+      { tutorialGameInProgress < 3 && (target || 0) <= (bestWordScore || 0) && (
+        <button onClick={() => setTutorialGame(tutorialGameInProgress + 1)}>Next</button>
+      )}
     </>
   ) : undefined
 
@@ -29,7 +29,7 @@ export const PageButtons: FunctionComponent = observer(() => {
     <div className="page-buttons">
       <button className="return-to-menu-button" onClick={returnToMenu} title="Return to menu"/>
       <div className="page-buttons-right">
-      <button className="clear-button" onClick={onClear} disabled={playerWord.length === 0}>Clear</button>
+        <button className="clear-button" onClick={onClear} disabled={playerWord.length === 0}>Clear</button>
         {tutorialButtons}
         {submitButton}
       </div>

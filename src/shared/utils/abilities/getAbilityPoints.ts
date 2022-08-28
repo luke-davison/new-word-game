@@ -22,29 +22,29 @@ export const getAbilityPoints = (word: Array<ILetter | undefined>, position: num
   if (!isActive) return 0
 
   switch (letter.ability) {
-    case Abilities.OtherInPosition1: return word[0]?.points || 0;
-    case Abilities.OtherInPosition2: return word[1]?.points || 0;
-    case Abilities.OtherInPosition3: return word[2]?.points || 0;
-    case Abilities.OtherInPosition4: return word[3]?.points || 0;
-    case Abilities.OtherInPosition5: return word[4]?.points || 0;
+      case Abilities.OtherInPosition1: return word[0]?.points || 0;
+      case Abilities.OtherInPosition2: return word[1]?.points || 0;
+      case Abilities.OtherInPosition3: return word[2]?.points || 0;
+      case Abilities.OtherInPosition4: return word[3]?.points || 0;
+      case Abilities.OtherInPosition5: return word[4]?.points || 0;
   }
 
   switch (letter.ability) {
-    case Abilities.Vowels:
-      return word.reduce((sum, otherLetter) => otherLetter && getIsCharacterVowel(otherLetter.char) ? sum + (letter.abilityPoints || 0) : sum, 0);
-    case Abilities.Wilds:
-      return word.reduce((sum, otherLetter) => otherLetter?.ability === Abilities.Wild ? sum + (letter.abilityPoints || 0) : sum, 0);
+      case Abilities.Vowels:
+        return word.reduce((sum, otherLetter) => otherLetter && getIsCharacterVowel(otherLetter.char) ? sum + (letter.abilityPoints || 0) : sum, 0);
+      case Abilities.Wilds:
+        return word.reduce((sum, otherLetter) => otherLetter?.ability === Abilities.Wild ? sum + (letter.abilityPoints || 0) : sum, 0);
   }
 
   if (copyAbilities.some(ability => ability === letter.ability)) {
     let modifiedWord = Array.from(word)
     let positionToCopy = 0
     switch (letter.ability) {
-      case Abilities.CopyAbilityInPosition1: positionToCopy = 0; break;
-      case Abilities.CopyAbilityInPosition2: positionToCopy = 1; break;
-      case Abilities.CopyAbilityInPosition3: positionToCopy = 2; break;
-      case Abilities.CopyAbilityInPosition4: positionToCopy = 3; break;
-      case Abilities.CopyAbilityInPosition5: positionToCopy = 4; break;
+        case Abilities.CopyAbilityInPosition1: positionToCopy = 0; break;
+        case Abilities.CopyAbilityInPosition2: positionToCopy = 1; break;
+        case Abilities.CopyAbilityInPosition3: positionToCopy = 2; break;
+        case Abilities.CopyAbilityInPosition4: positionToCopy = 3; break;
+        case Abilities.CopyAbilityInPosition5: positionToCopy = 4; break;
     }
 
     const letterToUpdate = word[position] 

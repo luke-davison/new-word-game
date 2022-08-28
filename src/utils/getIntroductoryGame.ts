@@ -51,5 +51,5 @@ export const getIntroductoryGame = (num: number): IDailyGame => {
     secretTarget: 31,
     // maxTarget: 32,
     money: 18
-    }
+  }
 }

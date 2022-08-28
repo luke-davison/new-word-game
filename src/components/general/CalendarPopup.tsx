@@ -23,7 +23,7 @@ export const CalendarPopup: React.FC<CalendarPopupProps> = ({ onClose }) => {
   return (
     <div className="calendar-popup">
       {/* <Calendar/> */}
-        <div>{`You have a streak of ${streak}`}</div>
+      <div>{`You have a streak of ${streak}`}</div>
     </div>
   )
 }

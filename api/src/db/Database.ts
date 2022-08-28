@@ -1,3 +1,4 @@
+import { Abilities } from '../../../src/shared';
 import { ICampaignGame, IDailyGame, IGameStats, IPlayer } from '../../../src/shared/datamodels';
 import { IUser } from '../datamodels';
 import { generateNickname } from '../utils/generateNickname';
@@ -12,6 +13,11 @@ export class Database {
     const player = await this.databaseConnection.getPlayer(userId)
     if (player && player.startDate !== startDate) {
       return undefined
+    }
+
+    // temporary
+    if (!player) {
+      return this.createPlayer(userId)
     }
 
     return player
@@ -39,9 +45,9 @@ export class Database {
       startDate,
       endDate,
       userId,
-      inventory: [],
+      inventory: [{ id: "asdf", price: 1, points: 4, ability: Abilities.Retain, char: "e" }, { id: "asdf2", price: 1, points: 4, ability: Abilities.Retain, char: "f" }], // temporary
       funding: 0,
-      isMember: false,
+      isMember: true,
       points: 0,
       lastSubmit: ""
     }

@@ -13,7 +13,7 @@ const App: React.FC = observer(() => {
 
   useEffect(() => {
     appStore.loadAppData()
-}, [appStore])
+  }, [appStore])
 
   return (
     <AppContext.Provider value={appStore}>

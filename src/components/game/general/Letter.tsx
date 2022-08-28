@@ -46,21 +46,21 @@ export const Letter: React.FC<LetterProps> = observer(({ disabled, label, letter
             { letter.points }
           </div>
         )}
-          { letter.ability && (
-            <div className={`letter-ability${ isAbilityActive ? " is-active" : ""}` }>
-              <AbilityImage ability={letter.ability}/>
-              {letter.abilityPoints !== undefined && (
-                <div className="letter-ability-points">
-                  {letter.abilityPoints}
-                </div>
-              )}
-        </div>
-          )}
-          {label && (
-            <div className="letter-label">
-              {label}
-            </div>
-          )}
+        { letter.ability && (
+          <div className={`letter-ability${ isAbilityActive ? " is-active" : ""}` }>
+            <AbilityImage ability={letter.ability}/>
+            {letter.abilityPoints !== undefined && (
+              <div className="letter-ability-points">
+                {letter.abilityPoints}
+              </div>
+            )}
+          </div>
+        )}
+        {label && (
+          <div className="letter-label">
+            {label}
+          </div>
+        )}
       </div>
       {isPopupOpen && <LetterPopup letter={letter} onClose={ () => setIsPopupOpen(false)}/>}
     </div>

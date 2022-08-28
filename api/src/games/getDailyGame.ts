@@ -37,19 +37,19 @@ const games: IDailyGameNoIds[] = [
     money: 15
   },
   {
-  date: "intro-3",
-  letters: [
-    { char: "m", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
-    { char: "a", price: 1, points: 2 },
-    { char: "s", price: 3, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
-    { char: "t", price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 2 },
-    { char: "e", price: 4, points: 3, ability: Abilities.InPosition3, abilityPoints: 4 },
-    { char: "r", price: 4, points: 3, ability: Abilities.MinWordLength7, abilityPoints: 4 }
-  ],
-  target: 27,
-  secretTarget: 31,
-  // maxTarget: 32,
-  money: 18
+    date: "intro-3",
+    letters: [
+      { char: "m", price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: "a", price: 1, points: 2 },
+      { char: "s", price: 3, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+      { char: "t", price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 2 },
+      { char: "e", price: 4, points: 3, ability: Abilities.InPosition3, abilityPoints: 4 },
+      { char: "r", price: 4, points: 3, ability: Abilities.MinWordLength7, abilityPoints: 4 }
+    ],
+    target: 27,
+    secretTarget: 31,
+    // maxTarget: 32,
+    money: 18
   },
   { 
     date: "2022-07-02",

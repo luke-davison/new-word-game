@@ -43,12 +43,15 @@
     ],
     "rules": {
       "@typescript-eslint/no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }],
+      "array-bracket-spacing": ["warn", "never"],
       "arrow-spacing": ["warn", { "before": true, "after": true }],
       "block-spacing": ["warn", "always"],
       "comma-spacing": ["warn", { "before": false, "after": true }],
+      "indent": ["warn", 2, {"SwitchCase": 2 }],
       "key-spacing": ["warn", { "beforeColon": false, "afterColon": true }],
       "keyword-spacing": ["warn", { "before": true, "after": true }],
-      "object-curly-spacing": ["warn", "always"]
+      "object-curly-spacing": ["warn", "always"],
+      "space-before-blocks": ["warn", "always"]
     }
   },
   "browserslist": {

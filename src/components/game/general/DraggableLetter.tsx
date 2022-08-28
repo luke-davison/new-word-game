@@ -30,4 +30,4 @@ export const DraggableLetter: React.FC<LetterProps> = observer(props => {
       <Letter {...props}/>
     </div>
   )
-  })
+})

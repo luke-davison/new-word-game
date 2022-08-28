@@ -66,8 +66,8 @@ export const generateGame = (): Omit<ILetter, "id">[] => {
         const minLength = Math.floor(Math.random() * 2) + 6
         let ability: Abilities | undefined;
         switch (minLength) {
-          case 6: ability = Abilities.MinWordLength6; break;
-          case 7: ability = Abilities.MinWordLength7; break;
+            case 6: ability = Abilities.MinWordLength6; break;
+            case 7: ability = Abilities.MinWordLength7; break;
         }
         const frequencyFactor = Math.floor(frequencyIndex / 14) + Math.floor((minLength - 4) / 2) 
         output.unshift({

@@ -68,10 +68,10 @@ export const getGameStats = async (userId: string | undefined): Promise<{ curren
     : undefined
 
   const previousGameDate = user?.lastDailyGameSubmit === date
-  ? user?.previousDailyGameSubmit
-  : user?.lastDailyGameSubmit
+    ? user?.previousDailyGameSubmit
+    : user?.lastDailyGameSubmit
 
-  const [ currentGameStats, previousGameStats ] = await Promise.all([
+  const [currentGameStats, previousGameStats] = await Promise.all([
     currentGameDate ? db.getGameStats(currentGameDate) : undefined,
     previousGameDate ? db.getGameStats(previousGameDate) : undefined
   ])
