@@ -24,7 +24,7 @@ const checkGame = () => {
     rl.question('Enter the date to check ', (dateString: string) => {
       const game = getDailyGame(dateString)
       if (game) {
-        rl.question('Enter the minimum points to print ', (pointsString) => {
+        rl.question('Enter the minimum points to print ', pointsString => {
           getBestWords(game, Number(pointsString) || 99)
           askAgain()
         })
@@ -37,7 +37,7 @@ const checkGame = () => {
 }
 
 const askAgain = () => {
-  rl.question('Do you want to check another? ', (reply) => {
+  rl.question('Do you want to check another? ', reply => {
     if (reply.toLowerCase() === 'y' || reply.toLocaleLowerCase() === 'yes') {
       checkGame()
     } else {

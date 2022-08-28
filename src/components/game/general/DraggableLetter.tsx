@@ -12,7 +12,7 @@ export const DraggableLetter: React.FC<LetterProps> = observer(props => {
     () => ({
       type: 'letter',
       item: letter,
-      collect: (monitor) => ({
+      collect: monitor => ({
         isDragging: monitor.isDragging()
       })
     }),

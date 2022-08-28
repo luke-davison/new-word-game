@@ -12,7 +12,7 @@ export const WordSpacePoints: React.FC<{ spaceIndex: number }> = observer(({ spa
   const { player } = useContext(AppContext)
   const { playerWord, playerWordFull } = useContext(GameContext)
 
-  const letter = playerWord.find((letter) => letter.position === spaceIndex)
+  const letter = playerWord.find(letter => letter.position === spaceIndex)
   
   if (letter) {
     let points = letter.points

@@ -8,7 +8,7 @@ const copyAbilities: Abilities[] = [
   Abilities.CopyAbilityInPosition2,
   Abilities.CopyAbilityInPosition3,
   Abilities.CopyAbilityInPosition4,
-  Abilities.CopyAbilityInPosition5,
+  Abilities.CopyAbilityInPosition5
 ]
 
 export const getAbilityPoints = (word: Array<ILetter | undefined>, position: number, player?: IPlayer): number => {

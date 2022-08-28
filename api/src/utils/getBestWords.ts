@@ -9,7 +9,7 @@ export const getBestWords = (game: IGame, printScore: number) => {
   const map = new Map<number, number>()
   const words = new Map<number, string[]>()
 
-  wordlist.forEach((word) => {
+  wordlist.forEach(word => {
     const points = calculateBestScoreForWord(game, word)
     // console.log(word, points)
     if (map.has(points)) {

@@ -4,7 +4,7 @@ import { getIsNextToWildActive } from './getNextToWildActive'
 describe('getNextToWildActive', () => {
   it('returns false if word only has one letter', () => {
     const result = getIsNextToWildActive([
-      { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.NextToWild },
+      { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.NextToWild }
     ], 0)
     expect(result).toBe(false)
   })
@@ -13,7 +13,7 @@ describe('getNextToWildActive', () => {
     const result = getIsNextToWildActive([
       { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.NextToWild },
       { id: '2', char: 'n', price: 1, points: 1, ability: Abilities.Retain },
-      { id: '3', char: 'd', price: 1, points: 1 },
+      { id: '3', char: 'd', price: 1, points: 1 }
     ], 0)
     expect(result).toBe(false)
   })
@@ -22,7 +22,7 @@ describe('getNextToWildActive', () => {
     const result = getIsNextToWildActive([
       { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.NextToWild },
       { id: '2', char: 'n', price: 1, points: 1, ability: Abilities.Wild },
-      { id: '3', char: 'd', price: 1, points: 1 },
+      { id: '3', char: 'd', price: 1, points: 1 }
     ], 0)
     expect(result).toBe(true)
   })
@@ -31,7 +31,7 @@ describe('getNextToWildActive', () => {
     const result = getIsNextToWildActive([
       { id: '1', char: 'a', price: 1, points: 1 },
       { id: '2', char: 'n', price: 1, points: 1, ability: Abilities.Retain },
-      { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.NextToWild },
+      { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.NextToWild }
     ], 2)
     expect(result).toBe(false)
   })
@@ -40,7 +40,7 @@ describe('getNextToWildActive', () => {
     const result = getIsNextToWildActive([
       { id: '1', char: 'a', price: 1, points: 1 },
       { id: '2', char: 'n', price: 1, points: 1, ability: Abilities.Wild },
-      { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.NextToWild },
+      { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.NextToWild }
     ], 2)
     expect(result).toBe(true)
   })
@@ -49,7 +49,7 @@ describe('getNextToWildActive', () => {
     const result = getIsNextToWildActive([
       { id: '1', char: 'a', price: 1, points: 1 },
       { id: '2', char: 'n', price: 1, points: 1, ability: Abilities.NextToWild },
-      { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.Retain },
+      { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.Retain }
     ], 1)
     expect(result).toBe(false)
   })
@@ -58,7 +58,7 @@ describe('getNextToWildActive', () => {
     const result = getIsNextToWildActive([
       { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.Wild },
       { id: '2', char: 'n', price: 1, points: 1, ability: Abilities.NextToWild },
-      { id: '3', char: 'd', price: 1, points: 1 },
+      { id: '3', char: 'd', price: 1, points: 1 }
     ], 1)
     expect(result).toBe(true)
   })
@@ -67,7 +67,7 @@ describe('getNextToWildActive', () => {
     const result = getIsNextToWildActive([
       { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.Retain },
       { id: '2', char: 'n', price: 1, points: 1, ability: Abilities.NextToWild },
-      { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.Wild },
+      { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.Wild }
     ], 1)
     expect(result).toBe(true)
   })
@@ -76,7 +76,7 @@ describe('getNextToWildActive', () => {
     const result = getIsNextToWildActive([
       { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.Wild },
       { id: '2', char: 'n', price: 1, points: 1, ability: Abilities.NextToWild },
-      { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.Wild },
+      { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.Wild }
     ], 1)
     expect(result).toBe(true)
   })

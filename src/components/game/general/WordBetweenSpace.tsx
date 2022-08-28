@@ -13,10 +13,10 @@ export const WordBetweenSpace: React.FC<{ spaceIndex: number }> = observer(({ sp
   const [{ isOver }, drop] = useDrop({
     accept: ['letter'],
     drop: (storeLetter: LetterInstance) => onDropLetterBetween(storeLetter, spaceIndex),
-    collect: (monitor) => ({
+    collect: monitor => ({
       isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
+      canDrop: monitor.canDrop()
+    })
   })
 
   const isBetweenLetters = playerWord.some(letter => letter.position === spaceIndex)

@@ -24,6 +24,14 @@
       "warn",
       "never"
     ],
+    "arrow-parens": [
+      "warn",
+      "as-needed"
+    ],
+    "comma-dangle": [
+      "warn",
+      "never"
+    ],
     "arrow-spacing": [
       "warn",
       {

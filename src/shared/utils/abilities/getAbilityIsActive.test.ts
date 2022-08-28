@@ -5,7 +5,7 @@ describe('getAbilityIsActive', () => {
   describe('Abilities.Club', () => {
     it('should always be true', () => {
       const result = getAbilityIsActive([
-        { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.Club },
+        { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.Club }
       ], 0)
       expect(result).toBe(true)
     })
@@ -14,7 +14,7 @@ describe('getAbilityIsActive', () => {
   describe('Abilities.Funding1', () => {
     it('should always be true', () => {
       const result = getAbilityIsActive([
-        { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.Funding1 },
+        { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.Funding1 }
       ], 0)
       expect(result).toBe(true)
     })
@@ -23,7 +23,7 @@ describe('getAbilityIsActive', () => {
   describe('Abilities.Funding2', () => {
     it('should always be true', () => {
       const result = getAbilityIsActive([
-        { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.Funding2 },
+        { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.Funding2 }
       ], 0)
       expect(result).toBe(true)
     })
@@ -32,7 +32,7 @@ describe('getAbilityIsActive', () => {
   describe('Abilities.InPosition1', () => {
     it('should be true if in the first position', () => {
       const result = getAbilityIsActive([
-        { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.InPosition1 },
+        { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.InPosition1 }
       ], 0)
       expect(result).toBe(true)
     })
@@ -40,7 +40,7 @@ describe('getAbilityIsActive', () => {
     it('should be false if in a different position', () => {
       const result = getAbilityIsActive([
         { id: '1', char: 'a', price: 1, points: 1 },
-        { id: '2', char: 't', price: 1, points: 1, ability: Abilities.InPosition1 },
+        { id: '2', char: 't', price: 1, points: 1, ability: Abilities.InPosition1 }
       ], 1)
       expect(result).toBe(false)
     })
@@ -50,7 +50,7 @@ describe('getAbilityIsActive', () => {
     it('should be true if in the seond position', () => {
       const result = getAbilityIsActive([
         { id: '1', char: 'a', price: 1, points: 1 },
-        { id: '2', char: 't', price: 1, points: 1, ability: Abilities.InPosition2 },
+        { id: '2', char: 't', price: 1, points: 1, ability: Abilities.InPosition2 }
       ], 1)
       expect(result).toBe(true)
     })
@@ -58,7 +58,7 @@ describe('getAbilityIsActive', () => {
     it('should be false if in a different position', () => {
       const result = getAbilityIsActive([
         { id: '1', char: 'a', price: 1, points: 1, ability: Abilities.InPosition2 },
-        { id: '2', char: 't', price: 1, points: 1 },
+        { id: '2', char: 't', price: 1, points: 1 }
       ], 0)
       expect(result).toBe(false)
     })
@@ -69,7 +69,7 @@ describe('getAbilityIsActive', () => {
       const result = getAbilityIsActive([
         { id: '1', char: 'a', price: 1, points: 1 },
         { id: '2', char: 'n', price: 1, points: 1 },
-        { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.InPosition3 },
+        { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.InPosition3 }
       ], 2)
       expect(result).toBe(true)
     })
@@ -78,7 +78,7 @@ describe('getAbilityIsActive', () => {
       const result = getAbilityIsActive([
         { id: '1', char: 'a', price: 1, points: 1 },
         { id: '2', char: 'n', price: 1, points: 1, ability: Abilities.InPosition3 },
-        { id: '3', char: 'd', price: 1, points: 1 },
+        { id: '3', char: 'd', price: 1, points: 1 }
       ], 1)
       expect(result).toBe(false)
     })
@@ -90,7 +90,7 @@ describe('getAbilityIsActive', () => {
         { id: '4', char: 's', price: 1, points: 1 },
         { id: '1', char: 'a', price: 1, points: 1 },
         { id: '2', char: 'n', price: 1, points: 1 },
-        { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.InPosition4 },
+        { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.InPosition4 }
       ], 3)
       expect(result).toBe(true)
     })
@@ -100,7 +100,7 @@ describe('getAbilityIsActive', () => {
         { id: '4', char: 's', price: 1, points: 1 },
         { id: '1', char: 'a', price: 1, points: 1 },
         { id: '2', char: 'n', price: 1, points: 1, ability: Abilities.InPosition4 },
-        { id: '3', char: 'd', price: 1, points: 1 },
+        { id: '3', char: 'd', price: 1, points: 1 }
       ], 2)
       expect(result).toBe(false)
     })
@@ -112,7 +112,7 @@ describe('getAbilityIsActive', () => {
         { id: '4', char: 's', price: 1, points: 1 },
         { id: '1', char: 'a', price: 1, points: 1 },
         { id: '2', char: 'n', price: 1, points: 1 },
-        { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.InPositionLast },
+        { id: '3', char: 'd', price: 1, points: 1, ability: Abilities.InPositionLast }
       ], 3)
       expect(result).toBe(true)
     })
@@ -267,7 +267,7 @@ describe('getAbilityIsActive', () => {
         { id: '2', char: 'd', price: 1, points: 1 },
         { id: '6', char: 'e', price: 1, points: 1 },
         { id: '6', char: 'e', price: 1, points: 1 },
-        { id: '4', char: 's', price: 1, points: 1 },
+        { id: '4', char: 's', price: 1, points: 1 }
       ], 0)
       expect(result).toBe(false)
     })
@@ -388,7 +388,7 @@ describe('getAbilityIsActive', () => {
         { id: '2', char: 'd', price: 1, points: 1 },
         { id: '6', char: 'e', price: 1, points: 1 },
         { id: '6', char: 'e', price: 1, points: 1 },
-        { id: '4', char: 's', price: 1, points: 1 },
+        { id: '4', char: 's', price: 1, points: 1 }
       ], 0)
       expect(result).toBe(true)
     })

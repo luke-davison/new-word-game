@@ -10,7 +10,7 @@ export const getIsValidWord = (word: LetterInstance[]): boolean => {
     return false
   }
 
-  if (word.some((letter) => letter.isWild && !letter.char)) {
+  if (word.some(letter => letter.isWild && !letter.char)) {
     return false
   }
 

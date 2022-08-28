@@ -24,7 +24,7 @@ export const DragPreviewLayer: React.FunctionComponent = observer(() => {
     item,
     initialOffset,
     currentOffset
-  } = useDragLayer((monitor) => ({
+  } = useDragLayer(monitor => ({
     item: monitor.getItem(),
     itemType: monitor.getItemType(),
     initialOffset: monitor.getInitialSourceClientOffset(),

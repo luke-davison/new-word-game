@@ -67,7 +67,7 @@ export class GameStore {
                 this.submitWord()
               }
               this.bestWordScore = this.wordPoints
-              this._bestWord = this.playerWord.map((letter) => letter.char).join('')
+              this._bestWord = this.playerWord.map(letter => letter.char).join('')
               this.bestLetters = convertLetterInstancesToWord(this.playerWord)
               window.localStorage.setItem(DAILY_PREFIX + this.game?.date + WORD_SUFFIX, JSON.stringify(this.bestLetters))
               window.localStorage.setItem(DAILY_PREFIX + this.game?.date + SCORE_SUFFIX, String(this.bestWordScore))
@@ -129,14 +129,14 @@ export class GameStore {
   
   _shopLetters: Letter[] = []
   get shopLetters(): LetterInstance[] {
-    return this._shopLetters.map((letter) => {
+    return this._shopLetters.map(letter => {
       return new LetterInstance(letter)
     })
   }
 
   _inventory: Letter[] = []
   get inventory(): LetterInstance[] { 
-    return this._inventory.map((letter) => {
+    return this._inventory.map(letter => {
       return new LetterInstance(letter)
     })
   }
@@ -147,7 +147,7 @@ export class GameStore {
       return []
     }
 
-    return this._secretShopLetters.map((letter) => {
+    return this._secretShopLetters.map(letter => {
       return new LetterInstance(letter)
     })
   }
@@ -195,7 +195,7 @@ export class GameStore {
     if (highestPosition > this.playerWord.length - 1) {
       return false
     }
-    if (this.playerWord.some((letter) => letter.isWild && !letter.char)) {
+    if (this.playerWord.some(letter => letter.isWild && !letter.char)) {
       return false
     }
     return true
@@ -217,7 +217,7 @@ export class GameStore {
   }
 
   get wordLetters() {
-    return this.playerWord.map((letter) => letter.char)
+    return this.playerWord.map(letter => letter.char)
   }
   
   get target(): number | undefined {
@@ -259,7 +259,7 @@ export class GameStore {
     letter.setPosition(position)
 
     this.playerWordData = [
-      ...this.playerWord.filter((otherLetter) => otherLetter.id !== letter.id && (letter.position === undefined || otherLetter.position !== letter.position)),
+      ...this.playerWord.filter(otherLetter => otherLetter.id !== letter.id && (letter.position === undefined || otherLetter.position !== letter.position)),
       letter
     ]
   }
@@ -294,7 +294,7 @@ export class GameStore {
 
   onDropLetterOutside = (letter: LetterInstance) => {
     if (letter.position !== undefined) {
-      this.playerWordData = this.playerWord.filter((otherLetter) => otherLetter.id !== letter.id)
+      this.playerWordData = this.playerWord.filter(otherLetter => otherLetter.id !== letter.id)
       letter.parent.onUnplaceLetter()
     }
   }
@@ -303,7 +303,7 @@ export class GameStore {
     if (letter.isWild) {
       setTimeout(() => {
         // check whether letter has been removed
-        if (this.playerWord.some((otherLetter) => otherLetter.id === letter.id)) {
+        if (this.playerWord.some(otherLetter => otherLetter.id === letter.id)) {
           const newValue = prompt('Enter a letter')
           letter.setWildLetter(newValue || '')
         }
@@ -314,7 +314,7 @@ export class GameStore {
   onQuickAddLetter = (letter: LetterInstance) => {
     let nextPosition = 0
     for (let i = 0; i < this.playerWord.length; i++) {
-      if (this.playerWord.some((otherLetter) => otherLetter.position === i)) {
+      if (this.playerWord.some(otherLetter => otherLetter.position === i)) {
         nextPosition++
       } else {
         break

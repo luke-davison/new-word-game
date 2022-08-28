@@ -40,7 +40,7 @@ export const generateGame = (): Omit<ILetter, 'id'>[] => {
         letterIndex++
       }
       
-      const frequencyIndex = letterFrequencies.findIndex((a) => a.letter === char)
+      const frequencyIndex = letterFrequencies.findIndex(a => a.letter === char)
       
       if (ability === 'set-points') {
         const frequencyFactor = Math.floor(frequencyIndex / 14)
@@ -99,7 +99,7 @@ export const generateGame = (): Omit<ILetter, 'id'>[] => {
           char,
           price: 5 - frequencyFactor,
           points: 4,
-          ability: possiblePositions[randomIndex],
+          ability: possiblePositions[randomIndex]
         })
       } else if (ability === 'last') {
         if ('dijqrsuvwxy'.includes(char)) {
@@ -195,7 +195,7 @@ export const generateGame = (): Omit<ILetter, 'id'>[] => {
           char,
           price: 4,
           points: 3 + frequencyFactor1,
-          ability: otherPositions[randomIndex],
+          ability: otherPositions[randomIndex]
         })
       }
     }
@@ -220,8 +220,8 @@ export const getRandomWord = (): string => {
 
 export const sortByFrequency = (letters: string[]) => {
   return Array.from(letters).sort((a, b) => {
-    const aIndex = letterFrequencies.findIndex((letter) => letter.letter === a)
-    const bIndex = letterFrequencies.findIndex((letter) => letter.letter === b)
+    const aIndex = letterFrequencies.findIndex(letter => letter.letter === a)
+    const bIndex = letterFrequencies.findIndex(letter => letter.letter === b)
     return aIndex - bIndex
   })
 }
@@ -230,11 +230,11 @@ const alphabet = 'abcdefghijklmnopqrstuvwxyz-'
 
 export const countLetters = () => {
   const map = new Map()
-  alphabet.split('').forEach((letter) => {
+  alphabet.split('').forEach(letter => {
     map.set(letter, 0)
   })
 
-  wordlist.forEach((word) => {
+  wordlist.forEach(word => {
     const letter = word.split('')[0]
     map.set(letter, map.get(letter) + 1)
   })

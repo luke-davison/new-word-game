@@ -15,7 +15,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'e', price: 1, points: 2 },
       { char: 'r', price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
       { char: 'i', price: 4, points: 4, ability: Abilities.NextToVowel, abilityPoints: 3 },
-      { char: 't', price: 4, points: 2, ability: Abilities.Retain },
+      { char: 't', price: 4, points: 2, ability: Abilities.Retain }
     ],
     money: 15,
     memberLetters: []
@@ -27,7 +27,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'n', price: 1, points: 2 },
       { char: 't', price: 3, points: 3, ability: Abilities.Club },
       { char: 'e', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 3 },
-      { char: 'r', price: 4, points: 3, ability: Abilities.MinWordLength6, abilityPoints: 3 },
+      { char: 'r', price: 4, points: 3, ability: Abilities.MinWordLength6, abilityPoints: 3 }
     ],
     money: 15,
     memberLetters: []
@@ -39,7 +39,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'u', price: 1, points: 2 },
       { char: 'l', price: 3, points: 3, ability: Abilities.InPosition4, abilityPoints: 4 },
       { char: 'b', price: 3, points: 2, ability: Abilities.Retain },
-      { char: 's', price: 3, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 's', price: 3, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 }
     ],
     money: 14,
     memberLetters: [
@@ -53,7 +53,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'a', price: 1, points: 2 },
       { char: 'u', price: 5, points: 8 },
       { char: 'n', price: 4, points: 3, ability: Abilities.MinWordLength7, abilityPoints: 4 },
-      { char: 'a', price: 4, points: 3, ability: Abilities.Funding2 },
+      { char: 'a', price: 4, points: 3, ability: Abilities.Funding2 }
     ],
     money: 14,
     memberLetters: [
@@ -67,7 +67,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'e', price: 4, points: 2, ability: Abilities.Retain },
       { char: 'r', price: 1, points: 1, ability: Abilities.Club },
       { char: 'g', price: 3, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
-      { char: 'e', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 'e', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 }
     ],
     money: 13,
     memberLetters: [
@@ -81,7 +81,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'h', price: 3, points: 4, ability: Abilities.RetainLeft },
       { char: 'i', price: 1, points: 2 },
       { char: 'm', price: 3, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
-      { char: 'p', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 'p', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 }
     ],
     money: 12,
     memberLetters: [
@@ -95,7 +95,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'r', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
       { char: 'a', price: 1, points: 2 },
       { char: 's', price: 4, points: 3, ability: Abilities.WordLength6, abilityPoints: 4 },
-      { char: 'p', price: 4, points: 3, ability: Abilities.OtherInPosition1 },
+      { char: 'p', price: 4, points: 3, ability: Abilities.OtherInPosition1 }
     ],
     money: 13,
     memberLetters: [
@@ -109,7 +109,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'r', price: 1, points: 2 },
       { char: 'o', price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
       { char: 'p', price: 4, points: 4, ability: Abilities.NextToVowel, abilityPoints: 3 },
-      { char: 's', price: 4, points: 2, ability: Abilities.Retain },
+      { char: 's', price: 4, points: 2, ability: Abilities.Retain }
     ],
     money: 15,
     memberLetters: []
@@ -121,7 +121,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'r', price: 1, points: 2 },
       { char: 'i', price: 3, points: 3, ability: Abilities.Club },
       { char: 'n', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 3 },
-      { char: 'd', price: 4, points: 3, ability: Abilities.MinWordLength6, abilityPoints: 3 },
+      { char: 'd', price: 4, points: 3, ability: Abilities.MinWordLength6, abilityPoints: 3 }
     ],
     money: 15,
     memberLetters: []
@@ -133,7 +133,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'i', price: 1, points: 2 },
       { char: 'p', price: 3, points: 3, ability: Abilities.InPosition4, abilityPoints: 4 },
       { char: 'e', price: 3, points: 2, ability: Abilities.Retain },
-      { char: 'd', price: 3, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'd', price: 3, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 }
     ],
     money: 14,
     memberLetters: [
@@ -147,7 +147,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'u', price: 1, points: 2 },
       { char: 'd', price: 5, points: 8 },
       { char: 'e', price: 4, points: 3, ability: Abilities.MinWordLength7, abilityPoints: 4 },
-      { char: 's', price: 4, points: 3, ability: Abilities.Funding2 },
+      { char: 's', price: 4, points: 3, ability: Abilities.Funding2 }
     ],
     money: 14,
     memberLetters: [
@@ -161,7 +161,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 't', price: 4, points: 2, ability: Abilities.Retain },
       { char: 'u', price: 1, points: 1, ability: Abilities.Club },
       { char: 'b', price: 3, points: 3, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
-      { char: 's', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 's', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 }
     ],
     money: 13,
     memberLetters: [
@@ -175,7 +175,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'i', price: 3, points: 4, ability: Abilities.RetainLeft },
       { char: 'l', price: 1, points: 2 },
       { char: 'e', price: 3, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
-      { char: 's', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 's', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 }
     ],
     money: 12,
     memberLetters: [
@@ -189,7 +189,7 @@ const games: ICampaignGameNoIds[] = [
       { char: 'a', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
       { char: 'z', price: 1, points: 2 },
       { char: 'e', price: 4, points: 3, ability: Abilities.WordLength6, abilityPoints: 4 },
-      { char: 'l', price: 4, points: 3, ability: Abilities.OtherInPosition1 },
+      { char: 'l', price: 4, points: 3, ability: Abilities.OtherInPosition1 }
     ],
     money: 13,
     memberLetters: [
@@ -199,7 +199,7 @@ const games: ICampaignGameNoIds[] = [
 ]
 
 export const getCampaignGame = (dateString: string): ICampaignGame | undefined => {
-  const game = games.find((game) => game.date === dateString)
+  const game = games.find(game => game.date === dateString)
 
   if (!game) {
     return undefined

@@ -22,10 +22,10 @@ export const GameArea: React.FC = observer(() => {
       }
       onDropLetterOutside(letter)
     },
-    collect: (monitor) => ({
+    collect: monitor => ({
       isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
+      canDrop: monitor.canDrop()
+    })
   })
 
   return (

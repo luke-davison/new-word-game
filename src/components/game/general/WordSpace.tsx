@@ -12,14 +12,14 @@ import { WordSpacePoints } from './WordSpacePoints'
 export const WordSpace: React.FC<{ spaceIndex: number }> = observer(({ spaceIndex }) => {
   const { playerWord, onDropLetter, onQuickRemoveLetter } = useContext(GameContext)
 
-  const letter = playerWord.find((letter) => letter.position === spaceIndex)
+  const letter = playerWord.find(letter => letter.position === spaceIndex)
   const [{ isOver }, drop] = useDrop({
     accept: ['letter'],
     drop: (storeLetter: LetterInstance) => onDropLetter(storeLetter, spaceIndex),
-    collect: (monitor) => ({
+    collect: monitor => ({
       isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
+      canDrop: monitor.canDrop()
+    })
   })
 
   const onDoubleClick = () => {

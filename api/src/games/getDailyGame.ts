@@ -216,7 +216,7 @@ const games: IDailyGameNoIds[] = [
       { char: 'a', price: 4, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
       { char: 'z', price: 3, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
       { char: 'e', price: 3, points: 3, ability: Abilities.InPositionLast, abilityPoints: 3 },
-      { char: 'n', price: 1, points: 2 },
+      { char: 'n', price: 1, points: 2 }
     ],
     target: 24,
     secretTarget: 30,
@@ -232,7 +232,7 @@ const games: IDailyGameNoIds[] = [
       { char: 'm', price: 4, points: 4, ability: Abilities.WordLength7, abilityPoints: 3 },
       { char: 'n', price: 3, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
       { char: 'u', price: 1, points: 2 },
-      { char: 's', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+      { char: 's', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 }
     ],
     target: 28,
     secretTarget: 31,
@@ -248,7 +248,7 @@ const games: IDailyGameNoIds[] = [
       { char: 'l', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
       { char: 'e', price: 1, points: 2 },
       { char: 'y', price: 3, points: 4, ability: Abilities.WordLength5, abilityPoints: 4 },
-      { char: 's', price: 4, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 's', price: 4, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 }
     ],
     target: 27,
     secretTarget: 30,
@@ -263,7 +263,7 @@ const games: IDailyGameNoIds[] = [
       { char: 'a', price: 3, points: 3, ability: Abilities.NextToVowel, abilityPoints: 4 },
       { char: 'h', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 },
       { char: 'a', price: 1, points: 2 },
-      { char: 'm', price: 4, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 3 },
+      { char: 'm', price: 4, points: 4, ability: Abilities.MinWordLength7, abilityPoints: 3 }
     ],
     target: 21,
     secretTarget: 24,
@@ -278,7 +278,7 @@ const games: IDailyGameNoIds[] = [
       { char: 'r', price: 1, points: 2 },
       { char: 'd', price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
       { char: 'o', price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
-      { char: 'n', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 'n', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 }
     ],
     target: 28,
     secretTarget: 31,
@@ -410,12 +410,12 @@ const games: IDailyGameNoIds[] = [
     secretTarget: 36,
     // maxTarget: 38, // checked
     money: 19
-  },
+  }
   
 ]
 
 export const getDailyGame = (dateString: string): IDailyGame | undefined => {
-  const game = games.find((game) => game.date === dateString)
+  const game = games.find(game => game.date === dateString)
 
   if (!game) {
     return undefined
@@ -423,7 +423,7 @@ export const getDailyGame = (dateString: string): IDailyGame | undefined => {
 
   const letters: ILetter[] = [
     ...game.letters,
-    getWildLetter(),
+    getWildLetter()
   ].map((letter, index) => {
     return {
       ...letter,
