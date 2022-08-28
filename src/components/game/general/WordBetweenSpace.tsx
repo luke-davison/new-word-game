@@ -29,7 +29,7 @@ export const WordBetweenSpace: React.FC<{ spaceIndex: number }> = observer(({ sp
   return (
     <div ref={drop} className="player-area-between-space">
       {isOver && (
-        <div className="player-between-drop-overlay" />
+        <div className="player-between-drop-overlay"/>
       )}
     </div>
   )

@@ -12,11 +12,11 @@ export const Counters: React.FC = observer(() => {
   
   return (
     <div className="counters-container">
-      <Money />
+      <Money/>
       <div className="status-text">
         {isValidText || " "}
       </div>
-      <WordPoints />
+      <WordPoints/>
     </div>
   )
 })

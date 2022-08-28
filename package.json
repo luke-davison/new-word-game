@@ -105,6 +105,13 @@
         "warn",
         "always"
       ],
+      "react/jsx-tag-spacing": [
+        "warn",
+        {
+          "beforeSelfClosing": "never",
+          "beforeClosing": "never"
+        }
+      ],
       "semi-spacing": [
         "warn",
         {
@@ -131,7 +138,14 @@
           "before": false
         }
       ],
-      "react/jsx-tag-spacing": "warn"
+      "@typescript-eslint/type-annotation-spacing": [
+        "warn",
+        {
+          "before": true,
+          "after": true,
+          "overrides": { "colon": { "before": false, "after": true }}
+        }
+      ]
     }
   },
   "browserslist": {

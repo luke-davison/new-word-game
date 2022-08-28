@@ -37,7 +37,7 @@ export const DragPreviewLayer: React.FunctionComponent = observer(() => {
   }
 
   const previewImage = item ? (
-    <Letter letter={item} />
+    <Letter letter={item}/>
   ) : undefined
   
   return (

@@ -18,8 +18,8 @@ const App: React.FC = observer(() => {
   return (
     <AppContext.Provider value={appStore}>
       <div className="App">
-        <LoadingOverlay />
-        <Menu />
+        <LoadingOverlay/>
+        <Menu/>
       </div>
     </AppContext.Provider>
   );

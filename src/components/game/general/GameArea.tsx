@@ -31,11 +31,11 @@ export const GameArea: React.FC = observer(() => {
   return (
     <div ref={drop} className="game-area">
       <div className="game-top-row">
-        <LetterShop />
+        <LetterShop/>
       </div>
-      <Counters />
-      <PlayerArea />
-      <CampaignCounters />
+      <Counters/>
+      <PlayerArea/>
+      <CampaignCounters/>
     </div>
   )
 })

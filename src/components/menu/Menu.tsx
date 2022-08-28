@@ -13,13 +13,13 @@ export const Menu: FunctionComponent = observer(() => {
 
   if (isPreviousGamesMenuOpen) {
     return (
-      <PreviousGamesMenu />
+      <PreviousGamesMenu/>
     )
   }
 
   if (isPlayingCampaignGame || isPlayingTutorialGame || isPlayingDailyGame || isPlayingPreviousGame) {
     return (
-      <Game key={gameId} />
+      <Game key={gameId}/>
     )
   }
 

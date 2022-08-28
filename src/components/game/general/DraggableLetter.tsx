@@ -27,7 +27,7 @@ export const DraggableLetter: React.FC<LetterProps> = observer(props => {
   
   return (
     <div ref={drag} className="letter-drag-container" style={style}>
-      <Letter {...props} />
+      <Letter {...props}/>
     </div>
   )
 })

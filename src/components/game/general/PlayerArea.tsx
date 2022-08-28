@@ -28,8 +28,8 @@ export const PlayerArea: React.FC = observer(() => {
       <div className="player-area-word-area">
         { spaces.map((space, index) => (
           <div key={index} className="player-area-word-cell">
-            <WordSpace spaceIndex={index} />
-            <WordBetweenSpace spaceIndex={index} />
+            <WordSpace spaceIndex={index}/>
+            <WordBetweenSpace spaceIndex={index}/>
           </div>
         ))}
       </div>
