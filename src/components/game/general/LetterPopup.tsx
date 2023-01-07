@@ -7,6 +7,7 @@ import { Abilities } from '../../../shared';
 import { getAbilityText } from '../../../utils/getAbilityText';
 import { AbilityImage } from './AbilityImage';
 import { Alphabet } from './Alphabet';
+import { Popup } from '../../general/Popup';
 
 interface LetterPopupProps {
   letter: LetterInstance
@@ -14,22 +15,13 @@ interface LetterPopupProps {
 }
 
 export const LetterPopup: React.FC<LetterPopupProps> = ({ letter, onClose }) => {
-  useEffect(() => {
-    const listener = () => {
-      onClose()
-    }
-
-    document.body.addEventListener('click', listener);
-    return () => document.body.removeEventListener('click', listener)
-  }, [onClose])
-
   const onSelect = (character: string) => {
     letter.setWildLetter(character)
     onClose()
   }
 
   return (
-    <div className="letter-popup">
+    <Popup onClose={onClose}>
       {letter.ability && (
         <div className="letter-popup-ability-image">
           <AbilityImage ability={letter.ability} />
@@ -41,6 +33,6 @@ export const LetterPopup: React.FC<LetterPopupProps> = ({ letter, onClose }) => 
       {letter.position !== undefined && letter.ability === Abilities.Wild && (
         <Alphabet onSelect={onSelect} />
       )}
-    </div>
+    </Popup>
   )
 }
