@@ -23,7 +23,7 @@ export class AppStore {
       startTutorialGame: action,
       setTutorialGame: action,
       gameId: computed,
-      tutorialGameInProgress: observable,
+      tutorialGameInProgress: computed,
       offlineMode: observable,
       isPreviousGamesMenuOpen: computed,
       openPreviousGamesMenu: action,
@@ -135,7 +135,14 @@ export class AppStore {
     return this.currentPage === Pages.previousGame
   }
 
-  tutorialGameInProgress: number = 0
+  get tutorialGameInProgress(): number {
+    switch (this.currentPage) {
+      case Pages.tutorialGame1: return 1;
+      case Pages.tutorialGame2: return 2;
+      case Pages.tutorialGame3: return 3;
+      default: return 0;
+    }
+  }
 
   startDailyGame = () => {
     this.currentPage = Pages.dailyGame

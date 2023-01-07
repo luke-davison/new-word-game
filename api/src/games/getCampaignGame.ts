@@ -9,7 +9,7 @@ interface ICampaignGameNoIds extends Omit<ICampaignGame, "letters" | "memberLett
 
 const games: ICampaignGameNoIds[] = [
   {
-    date: "2022-07-02",
+    date: "2023-01-08",
     letters: [
       { char: "m", price: 3, points: 4, ability: Abilities.Funding1 },
       { char: "e", price: 1, points: 2 },
