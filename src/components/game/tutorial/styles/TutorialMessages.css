@@ -1,0 +1,8 @@
+.popup.tutorial-message {
+    padding: 15px;
+    background-color: lightblue;
+}
+
+.tutorial-message > div {
+    padding-bottom: 10px;
+}

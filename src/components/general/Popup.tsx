@@ -5,13 +5,14 @@ import { FunctionComponent, useCallback, useEffect, useLayoutEffect, useRef, use
 
 export interface PopupProps {
   elementId?: string;
-  onClose: () => void
+  onClose: () => void;
+  className?: string;
 }
 
 const X_OFFSET = 0
 const Y_OFFSET = 15
 
-export const Popup: FunctionComponent<PopupProps> = observer(({ children, elementId, onClose }) => {
+export const Popup: FunctionComponent<PopupProps> = observer(({ children, elementId, onClose, className }) => {
   const popupRef = useRef<HTMLDivElement | null>(null)
   const timeout = useRef<NodeJS.Timer>()
   const [position, setPosition] = useState<{ top?: number, left?: number, bottom?: number, right?: number }>()
@@ -58,10 +59,12 @@ export const Popup: FunctionComponent<PopupProps> = observer(({ children, elemen
     }
   }, [])
 
-  const style = position || { opacity: 0 }; // opacity 0 will hide the element on the first render, so the position can be calculated
+  const style = elementId
+    ? (position || { opacity: 0 }) // opacity 0 will hide the element on the first render, so the position can be calculated
+    : undefined; 
 
   return (
-    <div ref={popupRef} className="popup" style={style}>
+    <div ref={popupRef} className={"popup " + className} style={style}>
       { children }
     </div>
   )
