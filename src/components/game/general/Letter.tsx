@@ -35,8 +35,10 @@ export const Letter: React.FC<LetterProps> = observer(({ disabled, label, letter
     classNames += " disabled"
   }
 
+  const elementId = 'letter-' + letter.id
+
   return (
-    <div className="letter-container-outer">
+    <div id={elementId} className="letter-container-outer">
       <div className={classNames} onClick={onClick}>
         <div className="letter-character">
           { letter.char }
@@ -62,7 +64,7 @@ export const Letter: React.FC<LetterProps> = observer(({ disabled, label, letter
           </div>
         )}
       </div>
-      {isPopupOpen && <LetterPopup letter={letter} onClose={ () => setIsPopupOpen(false)} />}
+      {isPopupOpen && <LetterPopup letter={letter} onClose={() => setIsPopupOpen(false)} elementId={elementId}/>}
     </div>
   )
 })

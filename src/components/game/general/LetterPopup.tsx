@@ -7,21 +7,20 @@ import { Abilities } from '../../../shared';
 import { getAbilityText } from '../../../utils/getAbilityText';
 import { AbilityImage } from './AbilityImage';
 import { Alphabet } from './Alphabet';
-import { Popup } from '../../general/Popup';
+import { Popup, PopupProps } from '../../general/Popup';
 
-interface LetterPopupProps {
+interface LetterPopupProps extends PopupProps {
   letter: LetterInstance
-  onClose: () => void
 }
 
-export const LetterPopup: React.FC<LetterPopupProps> = ({ letter, onClose }) => {
+export const LetterPopup: React.FC<LetterPopupProps> = ({ letter, ...props }) => {
   const onSelect = (character: string) => {
     letter.setWildLetter(character)
-    onClose()
+    props.onClose()
   }
 
   return (
-    <Popup onClose={onClose}>
+    <Popup {...props}>
       {letter.ability && (
         <div className="letter-popup-ability-image">
           <AbilityImage ability={letter.ability} />
