@@ -35,7 +35,7 @@ export const Letter: React.FC<LetterProps> = observer(({ disabled, label, letter
     classNames += " disabled"
   }
 
-  const elementId = 'letter-' + letter.id
+  const elementId = 'letter-' + letter.letterId
 
   return (
     <div id={elementId} className="letter-container-outer">

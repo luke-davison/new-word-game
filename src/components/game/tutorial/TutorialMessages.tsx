@@ -22,6 +22,7 @@ export const TutorialMessages: FunctionComponent = observer(() => {
       )
     break;
     case 2:
+      popupElementId = "letter-11"
       popupBody = (
         <>
           <div>Letters can be bought by dragging the letter into the word area, or by double clicking on the letter in the shop to quick add.</div>
@@ -30,6 +31,7 @@ export const TutorialMessages: FunctionComponent = observer(() => {
       )
     break;
     case 3:
+      popupElementId = "player-area-cell-1"
       popupBody = (
         <>
           <div>Once purchased, letters can be freely rearranged by dragging them to the new position.</div>
@@ -38,6 +40,7 @@ export const TutorialMessages: FunctionComponent = observer(() => {
       )
     break;
     case 4:
+      popupElementId = "letter-11"
       popupBody = (
         <>
           <div>Each letter is worth a certain number of points.  This is the number in the top right corner of each letter</div>
@@ -46,6 +49,7 @@ export const TutorialMessages: FunctionComponent = observer(() => {
       )
     break;
     case 5:
+      popupElementId = "letter-12"
       popupBody = (
         <>
           <div>For example, this letter gains extra points if it is next to a vowel.</div>
@@ -54,6 +58,7 @@ export const TutorialMessages: FunctionComponent = observer(() => {
       )
     break;
     case 6:
+      popupElementId = "letter-13"
       popupBody = (
         <>
           <div>Another example - this letter gains extra points if it is the first letter in the word.</div>
@@ -62,6 +67,7 @@ export const TutorialMessages: FunctionComponent = observer(() => {
       )
     break;
     case 7:
+      popupElementId = "letter-15"
       popupBody = (
         <>
           <div>In addition to the regular letters, usually you will also be able to also use "wild" letters.  These can be set to be any letter, but will not contribute any points towards the word score.</div>
@@ -89,7 +95,7 @@ export const TutorialMessages: FunctionComponent = observer(() => {
   }
 
   return (
-    <Popup className="tutorial-message" onClose={handleClose} elementId={popupElementId}>
+    <Popup key={messageIndex} className="tutorial-message" onClose={handleClose} elementId={popupElementId}>
       { popupBody }
     </Popup>
   )
