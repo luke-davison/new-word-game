@@ -12,6 +12,7 @@ export class LetterInstance {
   position: number | undefined
   _char: string | undefined
   
+  get letterId() { return this.parent.id }
   get color() { return this.parent.color }
   get char() { return this._char === undefined ? this.parent.char : this._char }
   get price() { return this.parent.price }

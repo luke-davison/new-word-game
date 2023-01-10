@@ -5,6 +5,7 @@ import { FunctionComponent, useContext } from 'react'
 
 import { AppContext } from '../../../stores/AppContext'
 import { GameContext } from '../../../stores/GameContext'
+import { TutorialMessages } from '../tutorial/TutorialMessages'
 
 export const PageButtons: FunctionComponent = observer(() => {
   const { isPlayingCampaignGame, returnToMenu, isPlayingTutorialGame, tutorialGameInProgress, setTutorialGame } = useContext(AppContext)
@@ -21,6 +22,10 @@ export const PageButtons: FunctionComponent = observer(() => {
     </>
   ) : undefined
 
+  const tutorialMessages = isPlayingTutorialGame ? (
+    <TutorialMessages/>
+  ) : undefined
+
   const submitButton = isPlayingCampaignGame ? (
     <button className="submit-button" onClick={submitWord} disabled={!isValidWord}>Submit</button>
   ) : undefined
@@ -32,6 +37,7 @@ export const PageButtons: FunctionComponent = observer(() => {
         <button className="clear-button" onClick={onClear} disabled={playerWord.length === 0}>Clear</button>
         {tutorialButtons}
         {submitButton}
+        {tutorialMessages}
       </div>
     </div>
   )

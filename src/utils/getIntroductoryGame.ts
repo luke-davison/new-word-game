@@ -1,7 +1,8 @@
+import { Pages } from '../models'
 import { Abilities, IDailyGame } from '../shared'
 
-export const getIntroductoryGame = (num: number): IDailyGame => {
-  if (num === 1) {
+export const getIntroductoryGame = (page: Pages): IDailyGame => {
+  if (page === Pages.tutorialGame1) {
     return {
       date: 'intro-1',
       letters: [
@@ -18,7 +19,7 @@ export const getIntroductoryGame = (num: number): IDailyGame => {
     }
   }
 
-  if (num === 2) {
+  if (page === Pages.tutorialGame2) {
     return {
       date: 'intro-2',
       letters: [

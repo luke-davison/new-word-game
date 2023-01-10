@@ -100,7 +100,7 @@ export class GameStore {
   }
 
   get tutorialGame(): IDailyGame | undefined {
-    return getIntroductoryGame(this.appStore.tutorialGameInProgress)
+    return getIntroductoryGame(this.appStore.currentPage)
   }
 
   get previousGame(): IDailyGame | undefined {

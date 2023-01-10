@@ -410,6 +410,52 @@ const games: IDailyGameNoIds[] = [
     secretTarget: 36,
     // maxTarget: 38, // checked
     money: 19
+  },
+  {
+    date: '2023-01-07',
+    letters: [
+      { char: 'd', price: 3, points: 4, ability: Abilities.InPosition2, abilityPoints: 4 },
+      { char: 'e', price: 5, points: 0, ability: Abilities.MinWordLength7, abilityPoints: 11 },
+      { char: 'f', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 5 },
+      { char: 'i', price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 5 },
+      { char: 'l', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'e', price: 1, points: 2 }
+    ],
+    target: 28,
+    secretTarget: 31,
+    // maxTarget: 32, // checked
+    money: 17
+  },
+  {
+    date: '2023-01-08',
+    letters: [
+      { char: 'u', price: 4, points: 4, ability: Abilities.OtherInPosition4 },
+      { char: 'r', price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'g', price: 4, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 },
+      { char: 'e', price: 1, points: 2 },
+      { char: 'n', price: 4, points: 3, ability: Abilities.WordLength5, abilityPoints: 4 },
+      { char: 'c', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'y', price: 4, points: 6, ability: Abilities.MinWordLength6, abilityPoints: 4 }
+    ],
+    target: 29,
+    secretTarget: 33,
+    // maxTarget: 34,
+    money: 18
+  },
+  {
+    date: '2023-01-09',
+    letters: [
+      { char: 'g', price: 5, points: 9 },
+      { char: 'a', price: 5, points: 4, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 'p', price: 3, points: 4, ability: Abilities.CopyAbilityInPosition4 },
+      { char: 'i', price: 1, points: 2 },
+      { char: 'n', price: 4, points: 4, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'g', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4 }
+    ],
+    target: 28,
+    secretTarget: 30,
+    // maxTarget: 31, // checked
+    money: 17
   }
   
 ]

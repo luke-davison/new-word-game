@@ -5,11 +5,11 @@
   max-width: calc(100vw - 40px);
 }
 
-.player-area-background, .player-area-word-area {
+.player-area-background, #player-area-word-area {
   display: flex;
 }
 
-.player-area-word-area {
+#player-area-word-area {
   padding-top: 60px;
 }
 
