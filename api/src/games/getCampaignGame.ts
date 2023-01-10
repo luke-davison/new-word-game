@@ -9,7 +9,7 @@ interface ICampaignGameNoIds extends Omit<ICampaignGame, 'letters' | 'memberLett
 
 const games: ICampaignGameNoIds[] = [
   {
-    date: '2023-01-09',
+    date: '2023-01-10',
     letters: [
       { char: 'm', price: 3, points: 4, ability: Abilities.Funding1 },
       { char: 'e', price: 1, points: 2 },
@@ -21,7 +21,7 @@ const games: ICampaignGameNoIds[] = [
     memberLetters: []
   },
   {
-    date: '2022-07-03',
+    date: '2023-01-11',
     letters: [
       { char: 'e', price: 3, points: 3, ability: Abilities.RetainLeft },
       { char: 'n', price: 1, points: 2 },
@@ -33,7 +33,7 @@ const games: ICampaignGameNoIds[] = [
     memberLetters: []
   },
   {
-    date: '2022-07-09',
+    date: '2023-01-12',
     letters: [
       { char: 'b', price: 4, points: 3, ability: Abilities.Funding2 },
       { char: 'u', price: 1, points: 2 },
@@ -47,7 +47,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2022-07-10',
+    date: '2023-01-13',
     letters: [
       { char: 's', price: 4, points: 2, ability: Abilities.RetainRight },
       { char: 'a', price: 1, points: 2 },
@@ -61,7 +61,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2022-08-13',
+    date: '2023-01-14',
     letters: [
       { char: 'v', price: 3, points: 4, ability: Abilities.WordLength6 },
       { char: 'e', price: 4, points: 2, ability: Abilities.Retain },
@@ -75,7 +75,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2022-08-14',
+    date: '2023-01-15',
     letters: [
       { char: 'c', price: 3, points: 4, ability: Abilities.MaxWordLength5 },
       { char: 'h', price: 3, points: 4, ability: Abilities.RetainLeft },
@@ -89,7 +89,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2022-08-28',
+    date: '2023-01-16',
     letters: [
       { char: 'g', price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
       { char: 'r', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
@@ -103,7 +103,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2022-05-23',
+    date: '2023-01-17',
     letters: [
       { char: 'p', price: 3, points: 4, ability: Abilities.Funding1 },
       { char: 'r', price: 1, points: 2 },
@@ -115,7 +115,7 @@ const games: ICampaignGameNoIds[] = [
     memberLetters: []
   },
   {
-    date: '2022-05-24',
+    date: '2023-01-18',
     letters: [
       { char: 'g', price: 3, points: 3, ability: Abilities.RetainLeft },
       { char: 'r', price: 1, points: 2 },
@@ -127,7 +127,7 @@ const games: ICampaignGameNoIds[] = [
     memberLetters: []
   },
   {
-    date: '2022-05-25',
+    date: '2023-01-19',
     letters: [
       { char: 'w', price: 4, points: 3, ability: Abilities.Funding2 },
       { char: 'i', price: 1, points: 2 },
@@ -141,7 +141,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2022-05-26',
+    date: '2023-01-20',
     letters: [
       { char: 'd', price: 4, points: 2, ability: Abilities.RetainRight },
       { char: 'u', price: 1, points: 2 },
@@ -155,7 +155,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2022-05-27',
+    date: '2023-01-21',
     letters: [
       { char: 's', price: 3, points: 4, ability: Abilities.WordLength6 },
       { char: 't', price: 4, points: 2, ability: Abilities.Retain },
@@ -169,7 +169,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2022-05-28',
+    date: '2023-01-22',
     letters: [
       { char: 't', price: 3, points: 4, ability: Abilities.MaxWordLength5 },
       { char: 'i', price: 3, points: 4, ability: Abilities.RetainLeft },
@@ -183,7 +183,7 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2022-05-29',
+    date: '2023-01-23',
     letters: [
       { char: 'h', price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
       { char: 'a', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },

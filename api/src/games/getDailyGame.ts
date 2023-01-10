@@ -456,8 +456,22 @@ const games: IDailyGameNoIds[] = [
     secretTarget: 30,
     // maxTarget: 31, // checked
     money: 17
+  },
+  {
+    date: '2023-01-10',
+    letters: [
+      { char: 'r', price: 1, points: 2 },
+      { char: 'e', price: 4, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'm', price: 4, points: 4, ability: Abilities.NextToWild, abilityPoints: 3 },
+      { char: 'a', price: 4, points: 3, ability: Abilities.Vowels, abilityPoints: 1 },
+      { char: 'i', price: 3, points: 4, ability: Abilities.WordLength6, abilityPoints: 3 },
+      { char: 'n', price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 }
+    ],
+    target: 25,
+    secretTarget: 28,
+    // maxTarget: 29, // checked
+    money: 16
   }
-  
 ]
 
 export const getDailyGame = (dateString: string): IDailyGame | undefined => {
