@@ -1,5 +1,5 @@
 // <reference types="react-scripts" />
-declare module "*.png" {
-    const value: any;
+declare module '*.png' {
+    const value: any
     export = value;
  }

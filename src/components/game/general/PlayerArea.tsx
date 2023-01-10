@@ -20,7 +20,7 @@ export const PlayerArea: React.FC = observer(() => {
     <div className="player-area">
       <div className="player-area-background">
         { spaces.map((space, index) => (
-          <div key={index} id={"player-area-cell-" + (index + 1)} className="player-area-background-cell">
+          <div key={index} id={'player-area-cell-' + (index + 1)} className="player-area-background-cell">
             {index + 1}
           </div>
         ))}

@@ -137,10 +137,10 @@ export class AppStore {
 
   get tutorialGameInProgress(): number {
     switch (this.currentPage) {
-      case Pages.tutorialGame1: return 1;
-      case Pages.tutorialGame2: return 2;
-      case Pages.tutorialGame3: return 3;
-      default: return 0;
+      case Pages.tutorialGame1: return 1
+      case Pages.tutorialGame2: return 2
+      case Pages.tutorialGame3: return 3
+      default: return 0
     }
   }
 

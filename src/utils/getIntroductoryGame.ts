@@ -7,7 +7,7 @@ export const getIntroductoryGame = (page: Pages): IDailyGame => {
       date: 'intro-1',
       letters: [
         { id: '11', char: 'p', price: 1, points: 2 },
-        { id: '12', char: 'l', price: 4, points: 3, ability: Abilities.NextToWild, abilityPoints: 3 },
+        { id: '12', char: 'l', price: 4, points: 3, ability: Abilities.NextToVowel, abilityPoints: 3 },
         { id: '13', char: 'a', price: 4, points: 3, ability: Abilities.InPosition1, abilityPoints: 4 },
         { id: '14', char: 'y', price: 4, points: 6 },
         { id: '15', char: '', price: 1, points: 0, ability: Abilities.Wild }

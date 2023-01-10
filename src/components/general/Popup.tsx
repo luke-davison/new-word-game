@@ -1,7 +1,7 @@
-import "./styles/Popup.css"
+import './styles/Popup.css'
 
-import { observer } from "mobx-react-lite";
-import { FunctionComponent, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { observer } from 'mobx-react-lite'
+import { FunctionComponent, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 export interface PopupProps {
   elementId?: string;
@@ -22,7 +22,7 @@ export const Popup: FunctionComponent<PopupProps> = observer(({ children, elemen
       onClose()
     }
 
-    document.body.addEventListener('click', listener);
+    document.body.addEventListener('click', listener)
     return () => document.body.removeEventListener('click', listener)
   }, [onClose])
 
@@ -30,8 +30,9 @@ export const Popup: FunctionComponent<PopupProps> = observer(({ children, elemen
     if (elementId) {
       const element = document.getElementById(elementId)
       if (element && popupRef.current) {
+        
         const elementRect = element.getBoundingClientRect()
-        const popupRect = element.getBoundingClientRect();
+        const popupRect = popupRef.current.getBoundingClientRect()
         const popupWidth = popupRef.current.offsetWidth
         const popupHeight = popupRef.current.offsetHeight
         const isAbove = elementRect.bottom + Y_OFFSET + popupRect.height > window.innerHeight
@@ -46,7 +47,7 @@ export const Popup: FunctionComponent<PopupProps> = observer(({ children, elemen
 
   useLayoutEffect(() => {
     setTimeout(() => {
-      recalculatePosition();
+      recalculatePosition()
     }, 1)
     timeout.current = setInterval(recalculatePosition, 1000)
   }, [recalculatePosition])
@@ -61,10 +62,10 @@ export const Popup: FunctionComponent<PopupProps> = observer(({ children, elemen
 
   const style = elementId
     ? (position || { opacity: 0 }) // opacity 0 will hide the element on the first render, so the position can be calculated
-    : undefined; 
+    : undefined 
 
   return (
-    <div ref={popupRef} className={"popup " + className} style={style}>
+    <div ref={popupRef} className={'popup ' + className} style={style}>
       { children }
     </div>
   )
