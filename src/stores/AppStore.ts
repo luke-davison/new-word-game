@@ -2,7 +2,7 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 
 import { getAppData } from '../api/getAppData'
 import { Pages } from '../models'
-import { getDateFromString, IAppData, IDailyGame } from '../shared'
+import { Abilities, getDateFromString, IAppData, IDailyGame, IPlayer } from '../shared'
 import { IRawLetter } from '../shared/datamodels/IRawLetter'
 import { cacheAppData } from '../utils/cacheAppData'
 import { loadCachedGameData } from '../utils/loadCachedGameData'
@@ -45,10 +45,6 @@ export class AppStore {
 
   offlineMode: boolean = false
 
-  get userId() {
-    return this._appData?.userId
-  }
-
   get dateString() {
     return this._appData?.date
   }
@@ -87,10 +83,15 @@ export class AppStore {
 
   previousGame: IDailyGame | undefined = undefined
 
-  get player() {
-    return this._appData?.player
+  get player(): IPlayer {
+    return {
+      inventory: [{ id: 'asdf', price: 1, points: 4, ability: Abilities.Retain, char: 'e' }, { id: 'asdf2', price: 1, points: 4, ability: Abilities.Retain, char: 'f' }], // temporary
+      funding: 0,
+      isMember: true,
+      points: 0,
+      lastSubmit: ''
+    }
   }
-  
   fetchingAppData: boolean = true
 
   loadAppData = async () => {
@@ -101,7 +102,6 @@ export class AppStore {
         this._appData = appData
         this.fetchingAppData = false
       })
-      window.localStorage.setItem('userId', appData.userId)
       cacheAppData(appData)
     } catch (error) {
       runInAction(() => {

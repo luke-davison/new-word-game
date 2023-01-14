@@ -8,8 +8,6 @@ export class Player {
 
   data: IPlayer
 
-  get userId() { return this.data.userId }
-
   constructor(data: IPlayer) {
     makeObservable(this, {
       inventory: observable

@@ -1,6 +1,5 @@
 import { action, computed, makeObservable, observable, reaction, runInAction } from 'mobx'
 
-import { submitDailyWord } from '../api/submitDailyWord'
 import { LetterInstance } from '../models/LetterInstance'
 import { ICampaignGame, IDailyGame, IGame, ISubmitWord } from '../shared/datamodels'
 import { IRawLetter } from '../shared/datamodels/IRawLetter'
@@ -63,9 +62,6 @@ export class GameStore {
           if (this.isValidWord) {
             this.isValidText = 'Valid word'
             if (this.wordPoints >= (this.bestWordScore || 0)) {
-              if (this.appStore.isPlayingDailyGame) {
-                this.submitWord()
-              }
               this.bestWordScore = this.wordPoints
               this._bestWord = this.playerWord.map(letter => letter.char).join('')
               this.bestLetters = convertLetterInstancesToWord(this.playerWord)
@@ -330,19 +326,6 @@ export class GameStore {
 
   onClear = () => {
     this.playerWordData = []
-  }
-
-  submitWord = async () => {
-    const word = Array.from(this.playerWord)
-    word.sort((a, b) => (a.position || 0) - (b.position || 0))
-
-    const submitWord: ISubmitWord = {
-      date: this.appStore.dateString || '',
-      userId: this.appStore.userId || '',
-      word: word.map(({ parent, char }) => ({ id: parent.id, char }))
-    }
-
-    await submitDailyWord(submitWord)
   }
 
   reinstateBestWord = () => {

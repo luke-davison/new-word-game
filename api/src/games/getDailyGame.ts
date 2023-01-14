@@ -471,6 +471,22 @@ const games: IDailyGameNoIds[] = [
     secretTarget: 28,
     // maxTarget: 29, // checked
     money: 16
+  },
+    {
+    date: '2023-01-15',
+    letters: [
+      { char: 'f', price: 3, points: 4, ability: Abilities.InPositionLast, abilityPoints: 4},
+      { char: 'l', price: 3, points: 4, ability: Abilities.InPosition1, abilityPoints: 4 },
+      { char: 'y', price: 4, points: 4, ability: Abilities.WordLength6, abilityPoints: 5 },
+      { char: 'w', price: 4, points: 3, ability: Abilities.Wilds, abilityPoints: 1 },
+      { char: 'a', price: 1, points: 2 },
+      { char: 'y', price: 4, points: 7 },
+      { char: 's', price: 3, points: 4, ability: Abilities.NotNextToVowel, abilityPoints: 4 }
+    ],
+    target: 27,
+    secretTarget: 31,
+    // maxTarget: 36, // checked
+    money: 16
   }
 ]
 

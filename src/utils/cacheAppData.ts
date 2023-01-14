@@ -11,10 +11,7 @@ export const cacheAppData = (appData: IAppData) => {
   cacheDate(appData.date)
   cacheDailyGame(appData.dailyGame)
   cacheCampaignGame(appData.campaignGame)
-  
-  if (appData.previousDailyGameDate && appData.previousDailyGameStats) {
-    cachePreviousGameStats(appData.previousDailyGameDate, appData.previousDailyGameStats)
-  }
+
 }
 
 const cacheDate = (dateString: string) => {
@@ -30,8 +27,4 @@ const cacheDailyGame = (game: IDailyGame) => {
 
 const cacheCampaignGame = (game: ICampaignGame) => {
   window.localStorage.setItem(CAMPAIGN_PREFIX + game.date, JSON.stringify(game))
-}
-
-const cachePreviousGameStats = (dateString: string, stats: IGameStats) => {
-  window.localStorage.setItem(DAILY_STATS_PREVIX + dateString, JSON.stringify(stats))
 }

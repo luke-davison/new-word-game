@@ -9,7 +9,7 @@ import { TutorialMessages } from '../tutorial/TutorialMessages'
 
 export const PageButtons: FunctionComponent = observer(() => {
   const { isPlayingCampaignGame, returnToMenu, isPlayingTutorialGame, tutorialGameInProgress, setTutorialGame } = useContext(AppContext)
-  const { onClear, target, bestWordScore, submitWord, isValidWord, playerWord } = useContext(GameContext)
+  const { onClear, target, bestWordScore, isValidWord, playerWord } = useContext(GameContext)
 
   const tutorialButtons = isPlayingTutorialGame ? (
     <>
@@ -27,7 +27,7 @@ export const PageButtons: FunctionComponent = observer(() => {
   ) : undefined
 
   const submitButton = isPlayingCampaignGame ? (
-    <button className="submit-button" onClick={submitWord} disabled={!isValidWord}>Submit</button>
+    <button className="submit-button" disabled={!isValidWord}>Submit</button>
   ) : undefined
 
   return (
