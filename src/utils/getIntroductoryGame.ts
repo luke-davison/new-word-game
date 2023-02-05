@@ -14,7 +14,7 @@ export const getIntroductoryGame = (page: Pages): IDailyGame => {
       ],
       target: 15,
       secretTarget: 17,
-      // maxTarget: 17,
+      maxTarget: 17,
       money: 11
     }
   }
@@ -32,7 +32,7 @@ export const getIntroductoryGame = (page: Pages): IDailyGame => {
       ],
       target: 23,
       secretTarget: 26,
-      // maxTarget: 27,
+      maxTarget: 27,
       money: 15
     }
   }
@@ -50,7 +50,7 @@ export const getIntroductoryGame = (page: Pages): IDailyGame => {
     ],
     target: 27,
     secretTarget: 31,
-    // maxTarget: 32,
+    maxTarget: 32,
     money: 18
   }
 }
