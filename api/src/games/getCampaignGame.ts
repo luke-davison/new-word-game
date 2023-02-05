@@ -2,14 +2,15 @@ import { ICampaignGame, ILetter } from '../../../src/shared/datamodels'
 import { Abilities } from '../../../src/shared/enums'
 import { getWildLetter } from './getWildLetter'
 
-interface ICampaignGameNoIds extends Omit<ICampaignGame, 'letters' | 'memberLetters'> {
+export const originalDate = new Date(2023, 1, 6)
+
+interface ICampaignGameNoIds extends Omit<ICampaignGame, 'letters' | 'memberLetters' | 'date'> {
   letters: Array<Omit<ILetter, 'id'>>
   memberLetters: Array<Omit<ILetter, 'id'>>,
 }
 
 const games: ICampaignGameNoIds[] = [
   {
-    date: '2023-01-10',
     letters: [
       { char: 'm', price: 3, points: 4, ability: Abilities.Funding1 },
       { char: 'e', price: 1, points: 2 },
@@ -21,7 +22,6 @@ const games: ICampaignGameNoIds[] = [
     memberLetters: []
   },
   {
-    date: '2023-01-11',
     letters: [
       { char: 'e', price: 3, points: 3, ability: Abilities.RetainLeft },
       { char: 'n', price: 1, points: 2 },
@@ -33,7 +33,6 @@ const games: ICampaignGameNoIds[] = [
     memberLetters: []
   },
   {
-    date: '2023-01-12',
     letters: [
       { char: 'b', price: 4, points: 3, ability: Abilities.Funding2 },
       { char: 'u', price: 1, points: 2 },
@@ -47,7 +46,6 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2023-01-13',
     letters: [
       { char: 's', price: 4, points: 2, ability: Abilities.RetainRight },
       { char: 'a', price: 1, points: 2 },
@@ -61,7 +59,6 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2023-01-14',
     letters: [
       { char: 'v', price: 3, points: 4, ability: Abilities.WordLength6 },
       { char: 'e', price: 4, points: 2, ability: Abilities.Retain },
@@ -75,7 +72,6 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2023-01-15',
     letters: [
       { char: 'c', price: 3, points: 4, ability: Abilities.MaxWordLength5 },
       { char: 'h', price: 3, points: 4, ability: Abilities.RetainLeft },
@@ -89,7 +85,6 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2023-01-16',
     letters: [
       { char: 'g', price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
       { char: 'r', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
@@ -103,7 +98,6 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2023-01-17',
     letters: [
       { char: 'p', price: 3, points: 4, ability: Abilities.Funding1 },
       { char: 'r', price: 1, points: 2 },
@@ -115,7 +109,6 @@ const games: ICampaignGameNoIds[] = [
     memberLetters: []
   },
   {
-    date: '2023-01-18',
     letters: [
       { char: 'g', price: 3, points: 3, ability: Abilities.RetainLeft },
       { char: 'r', price: 1, points: 2 },
@@ -127,7 +120,6 @@ const games: ICampaignGameNoIds[] = [
     memberLetters: []
   },
   {
-    date: '2023-01-19',
     letters: [
       { char: 'w', price: 4, points: 3, ability: Abilities.Funding2 },
       { char: 'i', price: 1, points: 2 },
@@ -141,7 +133,6 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2023-01-20',
     letters: [
       { char: 'd', price: 4, points: 2, ability: Abilities.RetainRight },
       { char: 'u', price: 1, points: 2 },
@@ -155,7 +146,6 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2023-01-21',
     letters: [
       { char: 's', price: 3, points: 4, ability: Abilities.WordLength6 },
       { char: 't', price: 4, points: 2, ability: Abilities.Retain },
@@ -169,7 +159,6 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2023-01-22',
     letters: [
       { char: 't', price: 3, points: 4, ability: Abilities.MaxWordLength5 },
       { char: 'i', price: 3, points: 4, ability: Abilities.RetainLeft },
@@ -183,7 +172,6 @@ const games: ICampaignGameNoIds[] = [
     ]
   },
   {
-    date: '2023-01-23',
     letters: [
       { char: 'h', price: 3, points: 4, ability: Abilities.InPosition3, abilityPoints: 4 },
       { char: 'a', price: 4, points: 4, ability: Abilities.Vowels, abilityPoints: 1 },
@@ -199,8 +187,10 @@ const games: ICampaignGameNoIds[] = [
 ]
 
 export const getCampaignGame = (dateString: string): ICampaignGame | undefined => {
-  const game = games.find(game => game.date === dateString)
-
+  const date = new Date(dateString);
+  const offset = Math.abs(Math.floor((date.getTime() - originalDate.getTime()) / (1000 * 60 * 60 * 24))) % games.length
+  
+  const game = games[offset]
   if (!game) {
     return undefined
   }
@@ -211,16 +201,16 @@ export const getCampaignGame = (dateString: string): ICampaignGame | undefined =
   ].map((letter, index) => {
     return {
       ...letter,
-      id: 'd' + game.date + (index + 1)
+      id: 'd' + dateString + (index + 1)
     }
   })
 
   const memberLetters: ILetter[] = game.memberLetters.map((letter, index) => {
     return {
       ...letter,
-      id: 'd' + game.date + (index + 1) + 'm'
+      id: 'd' + dateString + (index + 1) + 'm'
     }
   })
 
-  return { ...game, letters, memberLetters }
+  return { ...game, letters, memberLetters, date: dateString }
 }
