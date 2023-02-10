@@ -1,6 +1,6 @@
 {
   "name": "new-word-game",
-  "homepage": "https://luke-davison.github.io/new-word-game",
+  "homepage": "/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

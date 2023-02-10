@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'path'
 
 import router from './routes'
 
@@ -11,3 +12,5 @@ app.use('/api', router)
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`)
 })
+
+app.use(express.static(path.join(__dirname, '../client/build')))
