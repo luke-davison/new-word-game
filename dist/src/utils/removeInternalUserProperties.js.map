@@ -1,1 +1,0 @@
-{"version":3,"file":"removeInternalUserProperties.js","sourceRoot":"","sources":["../../../src/utils/removeInternalUserProperties.ts"],"names":[],"mappings":";;;;;;;;;;;;;;AAGO,MAAM,4BAA4B,GAAG,CAAC,IAAW,EAAe,EAAE;IACvE,MAAM,EAAE,QAAQ,EAAE,cAAc,EAAE,mBAAmB,KAAkB,IAAI,EAAjB,QAAQ,UAAK,IAAI,EAArE,qDAA8D,CAAO,CAAA;IAC3E,OAAO,QAAQ,CAAA;AACjB,CAAC,CAAA;AAHY,QAAA,4BAA4B,gCAGxC"}

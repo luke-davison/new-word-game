@@ -1,1 +1,0 @@
-{"version":3,"file":"getWildLetter.js","sourceRoot":"","sources":["../../../src/games/getWildLetter.ts"],"names":[],"mappings":";;;AAAA,oDAA4D;AAErD,MAAM,aAAa,GAAG,GAAwB,EAAE;IACrD,OAAO;QACL,KAAK,EAAE,CAAC;QACR,MAAM,EAAE,CAAC;QACT,IAAI,EAAE,EAAE;QACR,OAAO,EAAE,kBAAS,CAAC,IAAI;KACxB,CAAA;AACH,CAAC,CAAA;AAPY,QAAA,aAAa,iBAOzB"}
