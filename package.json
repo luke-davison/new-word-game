@@ -1,64 +1,56 @@
 {
-  "name": "new-word-game",
-  "homepage": "https://luke-davison.github.io/new-word-game",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.4.1",
-    "@types/node": "^16.11.26",
-    "@types/react": "^17.0.40",
-    "@types/react-dnd": "^3.0.2",
-    "@types/react-dom": "^17.0.13",
-    "mobx": "^6.4.2",
-    "mobx-react-lite": "^3.3.0",
-    "react": "^17.0.2",
-    "react-device-detect": "^2.1.2",
-    "react-dnd": "^15.1.1",
-    "react-dnd-html5-backend": "^15.1.2",
-    "react-dnd-touch-backend": "^15.1.1",
-    "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "ts-jest": "^27.1.4",
-    "typescript": "^4.6.2",
-    "web-vitals": "^2.1.4"
-  },
+  "name": "new-word-game-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
   "scripts": {
-    "build": "react-scripts build",
-    "eslint": "eslint \"src/**/*.{ts,tsx}\"",
-    "eslint-fix": "eslint \"*/**/*.{ts,tsx}\" --fix",
-    "eject": "react-scripts eject",
-    "jest": "jest",
-    "predeploy": "npm run build",
-    "start": "react-scripts start",
-    "tsc": "tsc",
-    "test": "react-scripts test"
+    "start": "ts-node ./src/server.ts",
+    "bestwords": "ts-node ./src/getDailyGameBestWords.ts",
+    "randomgame": "ts-node ./src/getRandomGame.ts",
+    "dev": "nodemon",
+    "start:prod": "npm run build && node ./dist/src/server.js",
+    "build": "npx tsc",
+    "knexinit": "knex migrate:make create_campaign_users_table --esm --migrations-directory ./src/db/migrations",
+    "test": "jest",
+    "tsc": "tsc"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.19.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.24",
+    "@types/sequelize": "^4.28.11",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^27.5.1",
+    "jest-transform-stub": "^2.0.0",
+    "nodemon": "^2.0.15",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
   },
   "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
     "transform": {
-      "^.+\\.ts?$": "ts-jest"
+      "^.+\\.ts?$": "ts-jest",
+      ".+\\.(css|scss|png|jpg|svg)$": "jest-transform-stub"
     },
-    "testMatch": [
-      "<rootDir>/src/**/*.test.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "transformIgnorePatterns": [
+      "/node_modules/"
     ]
-  },
-  "proxy": "http://localhost:3004",
-  "devDependencies": {
-    "eslint-plugin-react": "^7.31.1"
   }
 }

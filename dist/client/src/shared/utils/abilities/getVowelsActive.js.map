@@ -1,0 +1,1 @@
+{"version":3,"file":"getVowelsActive.js","sourceRoot":"","sources":["../../../../../../client/src/shared/utils/abilities/getVowelsActive.ts"],"names":[],"mappings":";;;AACA,oEAA8D;AAEvD,MAAM,eAAe,GAAG,CAAC,IAAgC,EAAW,EAAE;IAC3E,OAAO,IAAI,CAAC,IAAI,CAAC,MAAM,CAAC,EAAE,CAAC,MAAM,IAAI,IAAA,2CAAmB,EAAC,MAAM,CAAC,IAAI,CAAC,CAAC,CAAA;AACxE,CAAC,CAAA;AAFY,QAAA,eAAe,mBAE3B"}
