@@ -1,2 +1,2 @@
-export * from './Letter'
-export * from './Player'
+export * from '../../models/Letter'
+export * from '../../models/Player'

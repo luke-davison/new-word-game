@@ -3,7 +3,7 @@ import { action, computed, makeObservable, observable, reaction, runInAction } f
 import { LetterInstance } from '../models/LetterInstance'
 import { ICampaignGame, IDailyGame, IGame, ISubmitWord } from '../shared/datamodels'
 import { IRawLetter } from '../shared/datamodels/IRawLetter'
-import { Letter } from '../shared/models/Letter'
+import { Letter } from '../models/Letter'
 import { getIsValidWord } from '../shared/utils'
 import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive'
 import { getAbilityPoints } from '../shared/utils/abilities/getAbilityPoints'

@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from 'mobx'
 
-import { ILetter } from '../datamodels'
+import { ILetter } from '../shared/datamodels'
 
 export interface IGameLetter extends ILetter {
   color: number;

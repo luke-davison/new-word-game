@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from 'mobx'
 
 import { Abilities } from '../shared'
-import { Letter } from '../shared/models/Letter'
+import { Letter } from './Letter'
 
 let nextLetterInstanceId = 1
 
