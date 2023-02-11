@@ -1,8 +1,8 @@
-import { Letter } from '../../client/src/models/Letter'
 import { Abilities } from '../../client/src/shared'
 import { IGame, ILetter } from '../../client/src/shared/datamodels'
 import { wordlist } from '../../client/src/shared/utils'
 import { getWordPoints } from '../../client/src/shared/utils/getWordPoints'
+import { Letter } from '../models/Letter'
 import { setupLetters } from './setupLetters'
 
 export const getBestWords = (game: IGame, printScore: number) => {
