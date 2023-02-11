@@ -1,9 +1,9 @@
+import { Letter } from '../../client/src/models/Letter'
 import { Abilities } from '../../client/src/shared'
 import { IGame, ILetter } from '../../client/src/shared/datamodels'
-import { Letter } from '../../client/src/shared/models'
 import { wordlist } from '../../client/src/shared/utils'
 import { getWordPoints } from '../../client/src/shared/utils/getWordPoints'
-import { setupLetters } from '../../client/src/shared/utils/setupLetters'
+import { setupLetters } from './setupLetters'
 
 export const getBestWords = (game: IGame, printScore: number) => {
   const map = new Map<number, number>()
@@ -11,7 +11,6 @@ export const getBestWords = (game: IGame, printScore: number) => {
 
   wordlist.forEach(word => {
     const points = calculateBestScoreForWord(game, word)
-    // console.log(word, points)
     if (map.has(points)) {
       map.set(points, map.get(points)! + 1)
     } else {

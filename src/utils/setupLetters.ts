@@ -1,6 +1,5 @@
-
-import { Letter } from '../../models/Letter'
-import { ILetter } from '../datamodels'
+import { ILetter } from "../../client/src/shared"
+import { Letter } from "../models/Letter"
 
 export const setupLetters = (letters: ILetter[] = []): Letter[] => {
   return letters.map((letter, index) => {
