@@ -1,5 +1,4 @@
 export * from './getDateString'
 export * from './getIsChararacterVowel'
-export * from './getIsValidWord'
 export * from './getIsWordInWordlist'
 export * from './getWordlist'

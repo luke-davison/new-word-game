@@ -4,7 +4,6 @@ import { LetterInstance } from '../models/LetterInstance'
 import { ICampaignGame, IDailyGame, IGame, ISubmitWord } from '../shared/datamodels'
 import { IRawLetter } from '../shared/datamodels/IRawLetter'
 import { Letter } from '../models/Letter'
-import { getIsValidWord } from '../shared/utils'
 import { getAbilityIsActive } from '../shared/utils/abilities/getAbilityIsActive'
 import { getAbilityPoints } from '../shared/utils/abilities/getAbilityPoints'
 import { setupLetters } from '../utils/setupLetters'
@@ -13,6 +12,7 @@ import { convertLetterInstancesToWord } from '../utils/convertLettersToWord'
 import { convertWordToLetterInstances } from '../utils/convertWordToLetterInstances'
 import { getIntroductoryGame } from '../utils/getIntroductoryGame'
 import { AppStore } from './AppStore'
+import { getIsValidWord } from '../utils/getIsValidWord'
 
 export class GameStore {
   constructor(private appStore: AppStore) {
