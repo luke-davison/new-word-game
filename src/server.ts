@@ -13,4 +13,4 @@ app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`)
 })
 
-app.use(express.static(path.join(__dirname, '../client/build')))
+app.use(express.static(path.join(__dirname, '../../client/build')))
