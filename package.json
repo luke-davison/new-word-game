@@ -6,9 +6,8 @@
   "scripts": {
     "bestwords": "ts-node ./src/getDailyGameBestWords.ts",
     "randomgame": "ts-node ./src/getRandomGame.ts",
-    "postinstall": "tsc",
     "dev": "nodemon",
-    "start": "node ./dist/src/server.js",
+    "start": "npm run build && node ./dist/src/server.js",
     "build": "npx tsc",
     "test": "jest",
     "tsc": "tsc"
