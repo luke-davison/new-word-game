@@ -7,8 +7,8 @@
     "bestwords": "ts-node ./src/getDailyGameBestWords.ts",
     "randomgame": "ts-node ./src/getRandomGame.ts",
     "dev": "nodemon",
-    "start": "npm run build && node ./dist/src/server.js",
-    "build": "npx tsc",
+    "start": "node ./dist/src/server.js",
+    "build": "rm -rf ./dist && npx tsc",
     "test": "jest",
     "tsc": "tsc"
   },

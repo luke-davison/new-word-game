@@ -4,7 +4,7 @@
     "esModuleInterop": true,
     "target": "es6",
     "moduleResolution": "node",
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "dist",
     "strict": true,
     "noFallthroughCasesInSwitch": true,
@@ -13,5 +13,9 @@
   "include": [
     "src/**/*.ts",
     "client/src/shared/**/*.ts" 
+  ],
+  "exclude": [
+    "src/**/*.test.ts",
+    "client/src/shared/**/*.test.ts" 
   ]
 }
